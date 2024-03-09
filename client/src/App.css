@@ -1,0 +1,65 @@
+#app {
+    display: flex;
+}
+
+#left-sidebar,
+#right-sidebar {
+    width: 30%;
+    max-height: 100vh;
+    position: sticky;
+    top: 0;
+}
+
+#main {
+    width: 40%;
+    max-height: 100vh;
+    overflow-y: auto;
+    --dot-bg: var(--body_background);
+    --dot-color: var(--body_color);
+    --dot-size: 1px;
+    --dot-space: 15px;
+    background:
+        linear-gradient(90deg, var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
+        linear-gradient(var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
+        var(--dot-color);
+}
+
+@media screen and (max-width: 1024px) {
+    #left-sidebar {
+        width: 10%;
+    }
+
+    #main {
+        width: 50%;
+    }
+
+    #right-sidebar {
+        width: 40%;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    #left-sidebar {
+        width: 15%;
+    }
+
+    #main {
+        width: 85%;
+    }
+
+    #right-sidebar {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 480px) {
+
+    #left-sidebar,
+    #right-sidebar {
+        display: none;
+    }
+
+    #main {
+        width: 100%;
+    }
+}
