@@ -1,18 +1,33 @@
 import "./right-sidebar.css";
-import { Theme, useNavStore } from "../../store/useNavStore";
-import { RxHamburgerMenu } from "react-icons/rx";
+import React, { useState } from "react";
+import ToggleTheme from "../button/toggle-theme";
+import ExpandMenu from "../menu/expand-menu";
 
 const RightSidebar = () => {
-  const { theme, setTheme } = useNavStore();
-
-  const handleToggleTheme = () => {
-    const newTheme = theme === Theme.Light ? Theme.Dark : Theme.Light;
-    document.querySelector("body")?.setAttribute('data-theme', newTheme);
-    setTheme(newTheme);
-  }
+  const [expand, setExpand] = useState(false);
 
   return (
     <div id='right-sidebar'>
+      <div className={`expand-menu__background ${expand ? 'expand' : ''}`} />
+
+      <SidebarContent
+        expand={expand}
+        setExpand={setExpand}
+      />
+
+      {expand && <ExpandMenu setExpand={setExpand} />}
+    </div>
+  )
+}
+
+interface SidebarContentProps {
+  expand: boolean
+  setExpand: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+const SidebarContent: React.FC<SidebarContentProps> = ({ expand, setExpand }) => {
+  return (
+    <div className='right-sidebar__container'>
       <div className='logo__container'>
         <img src="/logo.png" alt="Logo" />
       </div>
@@ -27,15 +42,19 @@ const RightSidebar = () => {
             </div>
           </div>
 
-          <div className='theme__wrapper' onClick={handleToggleTheme}>
-            <div className='theme__button'>
-              
-            </div>
+          <div className='theme__wrapper'>
+            <ToggleTheme />
           </div>
         </div>
 
-        <RxHamburgerMenu className='menu-icon' />
+        <div className='menu-icon' onClick={() => setExpand(!expand)}>
+          <div className={`hamburger__line ${expand ? 'animate' : ''}`} />
+          <div className={`hamburger__line ${expand ? 'animate' : ''}`} />
+          <div className={`hamburger__line ${expand ? 'animate' : ''}`} />
+        </div>
       </div>
+
+      {!expand && <div className='nav-border' />}
     </div>
   )
 }

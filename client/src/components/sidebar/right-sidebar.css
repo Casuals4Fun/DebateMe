@@ -27,7 +27,7 @@
     border-radius: 50%;
     border: 2px solid white;
     cursor: pointer;
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    /* box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; */
 }
 
 #right-sidebar .profile__info p {
@@ -40,27 +40,74 @@
 #right-sidebar .profile__info p:nth-child(1) {
     font-size: 18px;
     color: var(--body_color);
+    cursor: pointer;
 }
 
 #right-sidebar .profile__info p:nth-child(2) {
-    font-size: 12px;
+    font-size: 13px;
+    font-weight: 500;
     color: var(--nav_profile_username);
+    cursor: pointer;
 }
 
-#right-sidebar .theme__wrapper {
+.theme__wrapper {
     max-width: 83px;
     width: 100%;
     height: 40px;
     border-radius: 20px;
     background-color: var(--theme-button);
-    /* background-color: #959595; */
 }
 
-#right-sidebar .menu-icon {
+.menu-icon {
     display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 4px;
+    /* padding: 0.25rem; */
     width: 35px;
     height: 35px;
     cursor: pointer;
+}
+
+.hamburger__line {
+    width: 22px;
+    height: 2px;
+    background-color: var(--body_color);
+    transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+    transition-duration: 500ms;
+    transition-property: opacity, transform;
+}
+
+.hamburger__line:nth-child(1) {
+    transform-origin: bottom right;
+}
+
+.hamburger__line:nth-child(3) {
+    transform-origin: top right;
+}
+
+.hamburger__line.animate:nth-child(1) {
+    transform: rotate(-45deg) translateY(-3px);
+}
+
+.hamburger__line.animate:nth-child(2) {
+    opacity: 0;
+    transform: scale(0);
+}
+
+.hamburger__line.animate:nth-child(3) {
+    transform: rotate(45deg) translateY(3px);
+}
+
+.nav-border {
+    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    background-color: var(--nav_border);
 }
 
 @media screen and (max-width: 1024px) {
@@ -75,6 +122,28 @@
         padding: 0 15px;
         display: flex;
         align-items: center;
+    }
+
+    #right-sidebar .expand-menu__background {
+        position: absolute;
+        top: 60px;
+        left: 0;
+        z-index: 2;
+        width: 100%;
+        height: 0;
+        background-color: var(--body_background);
+        opacity: 0.975;
+        transition: height ease-in-out 100ms;
+    }
+
+    #right-sidebar .expand-menu__background.expand {
+        z-index: 1;
+        height: 100dvh;
+    }
+
+    .right-sidebar__container {
+        width: 100%;
+        display: flex;
         justify-content: space-between;
     }
 
@@ -96,6 +165,10 @@
     }
 
     #right-sidebar .menu-icon {
+        display: flex;
+    }
+
+    #right-sidebar .nav-border {
         display: block;
     }
 }

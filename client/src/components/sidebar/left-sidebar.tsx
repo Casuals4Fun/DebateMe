@@ -1,6 +1,6 @@
 import "./left-sidebar.css";
-import { leftSidebarLinks } from "../../data/left-sidebar-links";
 import { useLocation, Link } from "react-router-dom";
+import { leftSidebarLinks } from "../../data/left-sidebar-links";
 
 const LeftSidebar = () => {
   const location = useLocation();
@@ -12,9 +12,9 @@ const LeftSidebar = () => {
           <li key={item.id}>
             <Link to={item.href} className='links__wrapper'>
               <item.icon />
-              <p className={`${location.pathname === item.href && "name-active"} underline`}>{item.name}</p>
+              <p className={`${location.pathname === item.href ? 'name-active' : ''} underline`}>{item.name}</p>
             </Link>
-            <div className={`${location.pathname === item.href && "footer-active"}`} />
+            <div className={`${location.pathname === item.href ? 'footer-active' : ''}`} />
           </li>
         ))}
       </ul>

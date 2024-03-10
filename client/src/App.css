@@ -17,7 +17,7 @@
     --dot-bg: var(--body_background);
     --dot-color: #4C4E52;
     --dot-size: 1px;
-    --dot-space: 10px;
+    --dot-space: 15px;
     background:
         linear-gradient(90deg, var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
         linear-gradient(var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
@@ -70,7 +70,6 @@
         width: 100%;
         height: 60px;
         background: var(--body_background);
-        border-bottom: 1px solid var(--nav_border);
     }
 
     #main {

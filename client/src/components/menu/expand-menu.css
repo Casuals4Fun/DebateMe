@@ -1,0 +1,60 @@
+#expand-menu {
+    display: none;
+    position: fixed;
+    z-index: 3;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    height: calc(100svh - 60px);
+}
+
+#expand-menu ul {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+}
+
+#expand-menu a {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+#expand-menu svg {
+    width: 30px;
+    height: 30px;
+}
+
+#expand-menu p {
+    font-size: 20px;
+}
+
+#expand-menu li:hover .underline::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+#expand-menu .link-active.underline::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+#expand-menu .theme__wrapper {
+    display: block;
+}
+
+@media screen and (max-width: 480px) {
+    #expand-menu {
+        display: block;
+    }
+}
+
+@media screen and (max-width: 180px) {
+    #expand-menu p {
+        display: none;
+    }
+}
