@@ -33,6 +33,10 @@
     font-size: 20px;
 }
 
+.underline::after {
+    height: 1px;
+}
+
 #expand-menu li:hover .underline::after {
     transform: scaleX(1);
     transform-origin: bottom left;

@@ -53,16 +53,19 @@
 }
 
 :root {
-    --body_background: rgb(240, 240, 240);
+    /* --body_background: rgb(240, 240, 240); */
+    --body_background: #fafafa;
     --body_color: rgb(1, 1, 1);
-    --nav_border: #ABB0B8;
-    --nav_profile_username: #A6A6A6;
-    --theme-button: #DCDCDC;
+    --nav-foot__background: #ffffff;
+    --nav_border: #abb0b8;
+    --nav_profile_username: #a6a6a6;
+    --theme-button: #dcdcdc;
 }
 
 [data-theme='dark'] {
     --body_background: rgb(1, 1, 1);
     --body_color: rgb(255, 255, 255);
+    --nav-foot__background: #0a0a0a;
     --nav_border: #313335;
     --nav_profile_username: #606060;
     --theme-button: #242526;
