@@ -1,8 +1,16 @@
 import "./right-sidebar.css";
+import { Theme, useNavStore } from "../../store/useNavStore";
 import { RxHamburgerMenu } from "react-icons/rx";
 
-
 const RightSidebar = () => {
+  const { theme, setTheme } = useNavStore();
+
+  const handleToggleTheme = () => {
+    const newTheme = theme === Theme.Light ? Theme.Dark : Theme.Light;
+    document.querySelector("body")?.setAttribute('data-theme', newTheme);
+    setTheme(newTheme);
+  }
+
   return (
     <div id='right-sidebar'>
       <div className='logo__container'>
@@ -19,9 +27,9 @@ const RightSidebar = () => {
             </div>
           </div>
 
-          <div className='theme__wrapper'>
+          <div className='theme__wrapper' onClick={handleToggleTheme}>
             <div className='theme__button'>
-
+              
             </div>
           </div>
         </div>

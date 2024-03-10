@@ -7,7 +7,6 @@ import Home from './pages/home';
 import LeftSidebar from './components/sidebar/left-sidebar';
 import RightSidebar from './components/sidebar/right-sidebar';
 
-
 export default function App() {
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme') || Theme.Dark;

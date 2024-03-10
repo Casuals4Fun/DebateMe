@@ -17,12 +17,61 @@
 }
 
 #left-sidebar .links__wrapper p {
-    font-size: 20px;
+    font-size: 22px;
 }
 
 #left-sidebar .links__wrapper svg {
     width: 30px;
     height: 30px;
+}
+
+/* .underline {
+    display: inline-block;
+    position: relative;
+}
+
+.underline::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0.1em;
+    background-color: var(--body_color);
+    opacity: 1;
+    transform: scale(0);
+    transform-origin: center;
+    transition: opacity 300ms, transform 300ms;
+}
+
+#left-sidebar .links__wrapper:hover .underline::after,
+#left-sidebar .links__wrapper .name-active.underline::after {
+    transform: translate3d(0, 0.2em, 0);
+    transform: scale(1);
+} */
+
+.underline {
+    display: inline-block;
+    position: relative;
+}
+
+.underline::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0.1em;
+    transform: scaleX(0);
+    background-color: var(--body_color);
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
+
+#left-sidebar .links__wrapper:hover .underline::after,
+#left-sidebar .links__wrapper .name-active.underline::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
 }
 
 @media screen and (max-width: 1024px) {
@@ -53,20 +102,38 @@
     }
 
     #left-sidebar ul {
-        flex-direction: row;
-        gap: 25px;
-        align-items: center;
-    }
-}
-
-@media screen and (max-width: 380px) {
-    #left-sidebar ul {
-        max-width: 380px;
+        max-width: 480px;
         width: 100%;
-        justify-content: space-around;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        flex-direction: row;
         gap: unset;
     }
 
+    #left-sidebar li {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #left-sidebar .footer-active {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background-color: white;
+    }
+
+    .underline::after {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 400px) {
     #left-sidebar .links__wrapper p {
         display: none;
     }

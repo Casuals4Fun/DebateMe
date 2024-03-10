@@ -57,6 +57,7 @@
     --body_color: rgb(1, 1, 1);
     --nav_border: #ABB0B8;
     --nav_profile_username: #A6A6A6;
+    --theme-button: #DCDCDC;
 }
 
 [data-theme='dark'] {
@@ -64,6 +65,7 @@
     --body_color: rgb(255, 255, 255);
     --nav_border: #313335;
     --nav_profile_username: #606060;
+    --theme-button: #242526;
 }
 
 * {
@@ -92,6 +94,7 @@ body {
 a {
     color: inherit;
     text-decoration: none;
+    outline: none;
 }
 
 button {
