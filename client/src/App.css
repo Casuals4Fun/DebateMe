@@ -15,9 +15,9 @@
     max-height: 100dvh;
     overflow-y: auto;
     --dot-bg: var(--body_background);
-    --dot-color: var(--body_color);
+    --dot-color: #4C4E52;
     --dot-size: 1px;
-    --dot-space: 15px;
+    --dot-space: 10px;
     background:
         linear-gradient(90deg, var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
         linear-gradient(var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
@@ -53,13 +53,23 @@
 }
 
 @media screen and (max-width: 480px) {
+    #left-sidebar {
+        position: fixed;
+        top: unset;
+        left: 0;
+        width: 100%;
+        bottom: 0;
+        height: 60px;
+        background: var(--body_background);
+        border-top: 1px solid var(--nav_border);
+    }
 
-    #left-sidebar,
     #right-sidebar {
         display: none;
     }
 
     #main {
         width: 100%;
+        max-height: calc(100dvh - 60px);
     }
 }
