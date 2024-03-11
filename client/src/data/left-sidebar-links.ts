@@ -25,14 +25,14 @@ export const leftSidebarLinks = [
     },
     {
         id: 4,
+        name: "Notifications",
+        href: "/notifications",
+        icon: PiBellSimpleFill
+    },
+    {
+        id: 5,
         name: "Search",
         href: "/search",
         icon: IoSearch
     },
-    {
-        id: 5,
-        name: "Notifications",
-        href: "/notifications",
-        icon: PiBellSimpleFill
-    }
 ]

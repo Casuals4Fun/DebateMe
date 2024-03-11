@@ -74,7 +74,8 @@
         height: 25px;
     }
 
-    .underline::after {
+    .underline::after,
+    .name-active.underline::after {
         height: 1px;
     }
 }

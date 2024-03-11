@@ -29,20 +29,22 @@ const SidebarContent: React.FC<SidebarContentProps> = ({ expand, setExpand }) =>
   return (
     <div className='right-sidebar__container'>
       <div className='logo__container'>
-        <img src="/logo.png" alt="Logo" />
+        <img src="/logo.png" />
       </div>
 
       <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
         <div className='profile-theme__container'>
           <div className='profile__wrapper'>
-            <img src="/user.jpg" alt="User" className='profile__image' />
+            <div className='profile__image'>
+              <img src="/user.jpg" alt="" />
+            </div>
             <div className='profile__info'>
               <p>Julie Roberts</p>
               <p>julieroberts</p>
             </div>
           </div>
 
-          <div className='theme__wrapper'>
+          <div className={`theme__wrapper ${expand && 'expand-active'}`}>
             <ToggleTheme />
           </div>
         </div>
