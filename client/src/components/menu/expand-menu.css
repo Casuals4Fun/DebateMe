@@ -47,10 +47,6 @@
     transform-origin: bottom left;
 }
 
-#expand-menu .theme__wrapper {
-    display: block;
-}
-
 @media screen and (max-width: 480px) {
     #expand-menu {
         display: block;

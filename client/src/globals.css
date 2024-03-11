@@ -59,16 +59,14 @@
     --nav-foot__background: #ffffff;
     --nav_border: #abb0b8;
     --nav_profile_username: #a6a6a6;
-    --theme-button: #dcdcdc;
 }
 
 [data-theme='dark'] {
     --body_background: rgb(1, 1, 1);
     --body_color: rgb(255, 255, 255);
     --nav-foot__background: #0a0a0a;
-    --nav_border: #313335;
+    --nav_border: #242526;
     --nav_profile_username: #606060;
-    --theme-button: #242526;
 }
 
 * {

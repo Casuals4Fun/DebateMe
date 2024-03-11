@@ -50,14 +50,6 @@
     cursor: pointer;
 }
 
-.theme__wrapper {
-    max-width: 83px;
-    width: 100%;
-    height: 40px;
-    border-radius: 20px;
-    background-color: var(--theme-button);
-}
-
 .menu-icon {
     display: none;
     align-items: center;

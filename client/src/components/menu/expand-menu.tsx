@@ -2,7 +2,6 @@ import "./expand-menu.css";
 import React, { useEffect } from "react";
 import { useLocation, Link } from "react-router-dom";
 import { leftSidebarLinks } from "../../data/left-sidebar-links";
-import ToggleTheme from "../button/toggle-theme";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
@@ -18,9 +17,9 @@ const ExpandMenu: React.FC<ExpandMenuProps> = ({ setExpand }) => {
     }, []);
 
     const getAnimationType = (id: number) => {
-        if ([1, 3, 5].includes(id)) return "fade-left";
+        if ([1, 3].includes(id)) return "fade-left";
         if ([2, 4].includes(id)) return "fade-right";
-        if (id === 6) return "fade-up";
+        if (id === 5) return "fade-up";
         return "";
     };
 
@@ -39,9 +38,6 @@ const ExpandMenu: React.FC<ExpandMenuProps> = ({ setExpand }) => {
                         </Link>
                     </li>
                 ))}
-                <li data-aos={getAnimationType(6)} className='theme__wrapper'>
-                    <ToggleTheme />
-                </li>
             </ul>
         </div>
     )
