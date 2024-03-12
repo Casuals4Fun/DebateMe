@@ -53,12 +53,13 @@
 }
 
 :root {
-    /* --body_background: rgb(240, 240, 240); */
     --body_background: #fafafa;
     --body_color: rgb(1, 1, 1);
     --nav-foot__background: #ffffff;
     --nav_border: #abb0b8;
     --nav_profile_username: #a6a6a6;
+    --explore_input_bg: #e0e0e0;
+    --explore_input_placeholder: #606060;
 }
 
 [data-theme='dark'] {
@@ -67,6 +68,8 @@
     --nav-foot__background: #0a0a0a;
     --nav_border: #242526;
     --nav_profile_username: #606060;
+    --explore_input_bg: #1f1f21;
+    --explore_input_placeholder: #a0a0a0;;
 }
 
 * {
@@ -104,4 +107,9 @@ button {
 
 ul {
     list-style: none;
+}
+
+input {
+    border: 0;
+    outline: 0;
 }

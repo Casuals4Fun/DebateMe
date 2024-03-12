@@ -24,7 +24,7 @@
     width: 45px;
     height: 45px;
     border-radius: 50%;
-    border: 2px solid white;
+    border: 2px solid var(--explore_input_bg);
     cursor: pointer;
     overflow: hidden;
     /* box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; */
@@ -56,7 +56,6 @@
 
 #right-sidebar .profile__info p:nth-child(2) {
     font-size: 13px;
-    /* font-weight: 500; */
     color: var(--nav_profile_username);
     cursor: pointer;
 }
@@ -67,7 +66,6 @@
     justify-content: center;
     flex-direction: column;
     gap: 4px;
-    /* padding: 0.25rem; */
     width: 35px;
     height: 35px;
     cursor: pointer;
@@ -78,7 +76,7 @@
     height: 2px;
     background-color: var(--body_color);
     transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
-    transition-duration: 500ms;
+    transition-duration: 0.2s;
     transition-property: opacity, transform;
 }
 
@@ -110,7 +108,12 @@
     right: 0;
     bottom: 0;
     height: 1px;
-    background-color: var(--nav_border);
+    border-bottom: 2px solid var(--nav_border);
+}
+
+#right-sidebar .explore__container {
+    display: block;
+    padding: 30px 0;
 }
 
 @media screen and (max-width: 1024px) {
@@ -178,7 +181,11 @@
         display: flex;
     }
 
-    #right-sidebar .nav-border {
+    .nav-border {
         display: block;
+    }
+
+    #right-sidebar .explore__container {
+        display: none;
     }
 }

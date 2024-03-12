@@ -20,7 +20,7 @@
     background: #1F1F21;
     cursor: pointer;
     position: relative;
-    transition: 0.5s;
+    transition: 0.2s;
 }
 
 .theme__button .circle {
@@ -36,7 +36,7 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    transition: 0.5s;
+    transition: 0.2s;
 }
 
 .theme__button .moon {
@@ -52,7 +52,7 @@
 }
 
 .theme__button input[type=checkbox]:checked+.display label {
-    background: #F3F3F3;
+    background: #E0E0E0;
 }
 
 .theme__button input[type=checkbox]:checked+.display label .circle {

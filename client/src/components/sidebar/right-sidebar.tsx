@@ -2,6 +2,7 @@ import "./right-sidebar.css";
 import React, { useState } from "react";
 import ToggleTheme from "../button/toggle-theme";
 import ExpandMenu from "../menu/expand-menu";
+import Explore from "./explore";
 
 const RightSidebar = () => {
   const [expand, setExpand] = useState(false);
@@ -54,6 +55,10 @@ const SidebarContent: React.FC<SidebarContentProps> = ({ expand, setExpand }) =>
           <div className={`hamburger__line ${expand ? 'animate' : ''}`} />
           <div className={`hamburger__line ${expand ? 'animate' : ''}`} />
         </div>
+      </div>
+
+      <div className='explore__container'>
+        <Explore />
       </div>
 
       {!expand && <div className='nav-border' />}
