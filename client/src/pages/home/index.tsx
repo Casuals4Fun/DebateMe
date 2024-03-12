@@ -1,11 +1,9 @@
-import './style.css';
+import "./style.css";
 
-const Home = () => {
+export default function HomePage() {
   return (
     <div id='home'>
       
     </div>
   )
 }
-
-export default Home

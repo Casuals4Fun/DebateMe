@@ -12,6 +12,7 @@
 }
 
 #main {
+    padding: 20px;
     width: 40%;
     height: 100dvh;
     overflow-y: auto;
@@ -74,6 +75,7 @@
     }
 
     #main {
+        padding: 10px;
         width: 100%;
         max-height: calc(100dvh - 120px);
         margin-top: 60px;

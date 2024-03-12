@@ -1,0 +1,39 @@
+#search {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#search #explore {
+    display: none;
+}
+
+#search .search-term {
+    display: flex;
+    gap: 10px;
+}
+
+#search .search-term h1 {
+    font-size: 18px;
+    font-weight: normal;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+#search .search-term h1 span {
+    font-weight: 700;
+}
+
+#search .search-term .clear-term {
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    color: var(--body_color);
+}
+
+@media screen and (max-width: 767px) {
+    #search #explore {
+        display: flex;
+    }
+}

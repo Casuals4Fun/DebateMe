@@ -51,6 +51,10 @@
     height: 30px;
 }
 
+#left-sidebar li:nth-child(5) {
+    display: none;
+}
+
 .underline {
     display: inline-block;
     position: relative;
@@ -112,6 +116,11 @@
 }
 
 @media screen and (max-width: 767px) {
+    #left-sidebar li:nth-child(5) {
+        display: inline-flex;
+        justify-content: center;
+    }
+
     #left-sidebar .theme__wrapper {
         display: block;
     }

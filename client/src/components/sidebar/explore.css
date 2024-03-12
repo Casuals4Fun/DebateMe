@@ -1,6 +1,7 @@
 #explore {
     display: flex;
     flex-direction: column;
+    gap: 10px;
 }
 
 #explore .explore-input {
@@ -49,4 +50,22 @@
 
 #explore .explore-input button svg {
     color: var(--body_background);
+}
+
+#explore ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+#explore ul li {
+    padding: 7.5px 20px;
+    background-color: var(--body_background);
+    border: 1px solid var(--explore_input_bg);
+    border-radius: 20px;
+}
+
+#explore ul li:hover {
+    background-color: var(--explore_input_bg);
+    transition: background-color 0.2s ease-in-out;
 }

@@ -3,9 +3,10 @@ import { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 import { Theme } from './store/useNavStore';
-import Home from './pages/home';
 import LeftSidebar from './components/sidebar/left-sidebar';
 import RightSidebar from './components/sidebar/right-sidebar';
+import HomePage from './pages/home';
+import SearchPage from './pages/search';
 
 export default function App() {
   useEffect(() => {
@@ -18,7 +19,8 @@ export default function App() {
       <LeftSidebar />
       <main id='main'>
         <Routes>
-          <Route path='/' element={<Home />} />
+          <Route path='/' element={<HomePage />} />
+          <Route path='/search' element={<SearchPage />} />
         </Routes>
       </main>
       <RightSidebar />
