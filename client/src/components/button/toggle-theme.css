@@ -17,10 +17,10 @@
     width: 83px;
     height: 40px;
     border-radius: 20px;
-    background: #1F1F21;
+    background: var(--explore_input_bg);
     cursor: pointer;
     position: relative;
-    transition: 0.2s;
+    transition: 0.3s;
 }
 
 .theme__button .circle {
@@ -36,7 +36,7 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    transition: 0.2s;
+    transition: 0.3s;
 }
 
 .theme__button .moon {
@@ -52,7 +52,7 @@
 }
 
 .theme__button input[type=checkbox]:checked+.display label {
-    background: #E0E0E0;
+    background: var(--explore_input_bg);
 }
 
 .theme__button input[type=checkbox]:checked+.display label .circle {

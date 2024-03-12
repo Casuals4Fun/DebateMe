@@ -62,7 +62,7 @@
         bottom: 0;
         height: 60px;
         background: var(--nav-foot__background);
-        border-top: 2px solid var(--nav_border);
+        border-top: 1px solid var(--nav_border);
     }
 
     #right-sidebar {
