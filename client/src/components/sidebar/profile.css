@@ -30,6 +30,10 @@
     flex-direction: column;
 }
 
+.modal-profile__info {
+    padding-top: 5px;
+}
+
 .profile__info p {
     max-width: 140px;
     text-overflow: ellipsis;
@@ -54,7 +58,7 @@
 
 .profile__modal {
     display: none;
-    padding: 15px;
+    padding: 0 15px;
     position: fixed;
     height: 0;
     background-color: var(--nav-foot__background);
@@ -90,6 +94,8 @@
 
 @media screen and (max-width: 767px) {
     .profile__modal {
+        padding-top: 15px;
+        padding-bottom: 15px;
         width: 300px;
         left: 15%;
         bottom: 20px;
@@ -111,6 +117,8 @@
 
 @media screen and (max-width: 480px) {
     .profile__modal {
+        padding-top: 10px;
+        padding-bottom: 15px;
         width: 100%;
         top: 60px;
         left: 0;

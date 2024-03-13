@@ -37,11 +37,19 @@ const Profile: React.FC<ProfileProps> = ({ expand, setExpand }) => {
                         </div>
                         <ToggleTheme />
                     </div>
-                    <Link to='/' className='modal-profile-btn'>
+                    <Link
+                        to='/'
+                        className='modal-profile-btn'
+                        onClick={() => setExpand(false)}
+                    >
                         <IoMdPerson size={18} />
                         <p className='underline'>Profile</p>
                     </Link>
-                    <Link to='/' className='modal-profile-btn'>
+                    <Link
+                        to='/'
+                        className='modal-profile-btn'
+                        onClick={() => setExpand(false)}
+                    >
                         <PiSignOutBold size={18} />
                         <p className='underline'>Logout</p>
                     </Link>

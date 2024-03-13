@@ -40,7 +40,7 @@ const SidebarContent: React.FC<SidebarContentProps> = ({ expand, setExpand }) =>
 
       <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
         <div className='search-button' style={{ borderColor: `${location.pathname === "/search" ? "var(--body_color)" : ""}` }}>
-          <Link to='/search'>
+          <Link to='/search' onClick={() => setExpand(false)}>
             <IoSearch size={15} />
           </Link>
         </div>
