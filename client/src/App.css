@@ -9,6 +9,7 @@
     position: sticky;
     top: 0;
     user-select: none;
+    /* overflow-y: auto; */
 }
 
 #main {

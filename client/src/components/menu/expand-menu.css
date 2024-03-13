@@ -18,6 +18,10 @@
     gap: 50px;
 }
 
+#expand-menu ul li:nth-child(6) {
+    display: none;
+}
+
 #expand-menu a {
     display: flex;
     align-items: center;
@@ -53,7 +57,7 @@
     }
 }
 
-@media screen and (max-width: 180px) {
+@media screen and (max-width: 200px) {
     #expand-menu p {
         display: none;
     }

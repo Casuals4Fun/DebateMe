@@ -1,7 +1,10 @@
 import "./right-sidebar.css";
 import React, { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { IoSearch } from "react-icons/io5";
 import ToggleTheme from "../button/toggle-theme";
-import ExpandMenu from "../menu/expand-menu";
+// import ExpandMenu from "../menu/expand-menu";
+import Profile from "./profile";
 import Explore from "./explore";
 
 const RightSidebar = () => {
@@ -9,14 +12,14 @@ const RightSidebar = () => {
 
   return (
     <div id='right-sidebar'>
-      <div className={`expand-menu__background ${expand ? 'expand' : ''}`} />
+      {/* <div className={`expand-menu__background ${expand ? 'expand' : ''}`} /> */}
 
       <SidebarContent
         expand={expand}
         setExpand={setExpand}
       />
 
-      {expand && <ExpandMenu setExpand={setExpand} />}
+      {/* {expand && <ExpandMenu setExpand={setExpand} />} */}
     </div>
   )
 }
@@ -27,34 +30,38 @@ interface SidebarContentProps {
 }
 
 const SidebarContent: React.FC<SidebarContentProps> = ({ expand, setExpand }) => {
+  const location = useLocation();
+
   return (
     <div className='right-sidebar__container'>
-      <div className='logo__container'>
+      <Link to='/' className='logo__container'>
         <img src="/logo.png" />
-      </div>
+      </Link>
 
       <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
-        <div className='profile-theme__container'>
-          <div className='profile__wrapper'>
-            <div className='profile__image'>
-              <img src="/user.jpg" alt="" />
-            </div>
-            <div className='profile__info'>
-              <p>Julie Roberts</p>
-              <p>julieroberts</p>
-            </div>
-          </div>
+        <div className='search-button' style={{ borderColor: `${location.pathname === "/search" ? "var(--body_color)" : ""}` }}>
+          <Link to='/search'>
+            <IoSearch size={15} />
+          </Link>
+        </div>
 
-          <div className={`theme__wrapper ${expand && 'expand-active'}`}>
+        <div className='profile-theme__container'>
+          <Profile
+            expand={expand}
+            setExpand={setExpand}
+          />
+
+          {/* <div className={`theme__wrapper ${expand && 'expand-active'}`}> */}
+          <div className={`theme__wrapper`}>
             <ToggleTheme />
           </div>
         </div>
 
-        <div className='menu-icon' onClick={() => setExpand(!expand)}>
+        {/* <div className='menu-icon' onClick={() => setExpand(!expand)}>
           <div className={`hamburger__line ${expand ? 'animate' : ''}`} />
           <div className={`hamburger__line ${expand ? 'animate' : ''}`} />
           <div className={`hamburger__line ${expand ? 'animate' : ''}`} />
-        </div>
+        </div> */}
       </div>
 
       <div className='explore__container'>

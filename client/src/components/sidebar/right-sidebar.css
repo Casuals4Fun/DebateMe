@@ -1,9 +1,30 @@
-#right-sidebar {
+#right-sidebar .right-sidebar__container {
+    height: 100%;
     padding: 20px;
+    overflow-y: auto;
 }
 
 #right-sidebar .logo__container {
     display: none;
+}
+
+#right-sidebar .search-button {
+    display: none;
+    width: 40px;
+    height: 40px;
+    background-color: var(--explore_input_bg);
+    border-radius: 50%;
+    margin-right: 5px;
+    border: 2px solid transparent;
+    transition: border-color 0.2s ease-in-out;
+}
+
+#right-sidebar .search-button a {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    place-items: center;
+    color: var(--body_color);
 }
 
 #right-sidebar .profile-theme__container {
@@ -12,52 +33,6 @@
     align-items: center;
     justify-content: space-between;
     gap: 10px;
-}
-
-#right-sidebar .profile__wrapper {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-}
-
-#right-sidebar .profile__image {
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    border: 2px solid var(--explore_input_bg);
-    cursor: pointer;
-    overflow: hidden;
-    /* box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; */
-}
-
-#right-sidebar .profile__image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-#right-sidebar .profile__info {
-    display: flex;
-    flex-direction: column;
-}
-
-#right-sidebar .profile__info p {
-    max-width: 140px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-}
-
-#right-sidebar .profile__info p:nth-child(1) {
-    font-size: 18px;
-    color: var(--body_color);
-    cursor: pointer;
-}
-
-#right-sidebar .profile__info p:nth-child(2) {
-    font-size: 13px;
-    color: var(--nav_profile_username);
-    cursor: pointer;
 }
 
 .menu-icon {
@@ -124,11 +99,19 @@
 }
 
 @media screen and (max-width: 480px) {
-    #right-sidebar {
+    #right-sidebar .right-sidebar__container {
         padding: 0 15px;
         display: flex;
         align-items: center;
         background-color: var(--nav-foot__background);
+    }
+
+    #right-sidebar .search-button {
+        display: block;
+    }
+
+    #right-sidebar .profile-theme__container {
+        width: auto;
     }
 
     #right-sidebar .expand-menu__background {
@@ -174,8 +157,8 @@
         z-index: 4;
         display: block;
         position: fixed;
-        top: 9.1%;
-        right: 9.75px;
+        top: 70px;
+        right: 9.5px;
     }
 
     #right-sidebar .menu-icon {

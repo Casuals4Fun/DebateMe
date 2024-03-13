@@ -17,9 +17,9 @@ const ExpandMenu: React.FC<ExpandMenuProps> = ({ setExpand }) => {
     }, []);
 
     const getAnimationType = (id: number) => {
-        if ([1, 3].includes(id)) return "fade-left";
-        if ([2, 4].includes(id)) return "fade-right";
-        if (id === 5) return "fade-up";
+        if ([1, 3, 5].includes(id)) return "fade-left";
+        if ([2, 4, 6].includes(id)) return "fade-right";
+        // if (id === 5) return "fade-up";
         return "";
     };
 

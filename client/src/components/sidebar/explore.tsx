@@ -38,7 +38,7 @@ const Explore: React.FC<ExploreProps> = ({ term }) => {
                     <input
                         ref={inputRef}
                         type='text'
-                        placeholder='Explore'
+                        placeholder='Explore...'
                         value={searchTerm}
                         onChange={e => setSearchTerm(e.target.value)}
                         style={{ borderColor: formSubmitted && searchTerm.trim() === "" ? "var(--body_color)" : "" }}

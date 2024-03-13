@@ -1,16 +1,18 @@
 import "./left-sidebar.css";
 import { useLocation, Link } from "react-router-dom";
 import { leftSidebarLinks } from "../../data/left-sidebar-links";
-import ToggleTheme from "../button/toggle-theme";
+import Profile from "./profile";
+import { useState } from "react";
 
 const LeftSidebar = () => {
   const location = useLocation();
+  const [expand, setExpand] = useState(false);
 
   return (
     <div id='left-sidebar'>
-      <div className='logo__wrapper'>
+      <Link to='/' className='logo__wrapper'>
         <img src="/logo.png" alt="" />
-      </div>
+      </Link>
       <ul>
         {leftSidebarLinks.map(item => (
           <li key={item.id}>
@@ -22,8 +24,8 @@ const LeftSidebar = () => {
           </li>
         ))}
       </ul>
-      <div className='theme__wrapper'>
-        <ToggleTheme />
+      <div className='profile__container'>
+        <Profile expand={expand} setExpand={setExpand} />
       </div>
     </div>
   )
