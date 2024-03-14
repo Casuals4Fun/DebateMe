@@ -46,7 +46,7 @@
     color: var(--card_color_secondary);
 }
 
-#closed-card .left button {
+#closed-card .left a {
     padding-top: 10px;
     width: fit-content;
     color: var(--card_color_secondary);
@@ -98,6 +98,10 @@
     cursor: pointer;
 }
 
+#closed-card .debate-bar__container {
+    padding-top: 15px;
+}
+
 @media screen and (max-width: 1536px) {
     #closed-card {
         flex-direction: column;
@@ -112,7 +116,7 @@
     }
 
     #closed-card .right {
-        padding-top: 15px;
+        padding-top: 10px;
     }
 
     #closed-card .left h2 {
@@ -123,8 +127,12 @@
         display: none;
     }
 
-    #closed-card .left button {
+    #closed-card .left a {
         display: none;
+    }
+
+    #closed-card .debate-bar__container {
+        padding-top: 10px;
     }
 }
 

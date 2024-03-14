@@ -1,0 +1,40 @@
+.debate-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 30px;
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.left-side,
+.right-side {
+    height: 100%;
+    color: var(--card_background);
+}
+
+.left-side {
+    background-color: var(--debate_from);
+}
+
+.right-side {
+    background-color: var(--debate_by);
+}
+
+.debate-bar .from-vote,
+.debate-bar .to-vote {
+    position: absolute;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--card_background);
+}
+
+.debate-bar .from-vote {
+    left: 20px;
+}
+
+.debate-bar .to-vote {
+    right: 20px;
+}

@@ -15,10 +15,12 @@ const LeftSidebar = () => {
       </Link>
       <ul>
         {leftSidebarLinks.map(item => (
-          <li key={item.id}>
+          <li key={item.id} title={item.name}>
             <Link to={item.href} className='links__wrapper'>
               <item.icon />
-              <p className={`${location.pathname === item.href ? 'name-active' : ''} underline`}>{item.name}</p>
+              <p className={`${location.pathname === item.href ? 'name-active' : ''} underline`}>
+                {item.name}
+              </p>
             </Link>
             <div className={`${location.pathname === item.href ? 'footer-active' : ''}`} />
           </li>

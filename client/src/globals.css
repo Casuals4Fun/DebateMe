@@ -66,6 +66,8 @@
     --card_color_tertiary: #828282;
     --card_border: #e5e4e2;
     --card_divider: #a0a0a041;
+    --debate_from: #5b5b5b;
+    --debate_by: #000000;
 }
 
 [data-theme='dark'] {
@@ -82,6 +84,8 @@
     --card_color_tertiary: #cccccc;
     --card_border: #212122;
     --card_divider: #ffffff1a;
+    --debate_from: #AAAAAA;
+    --debate_by: #ffffff;
 }
 
 * {
