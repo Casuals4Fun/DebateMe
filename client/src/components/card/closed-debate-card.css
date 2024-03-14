@@ -19,6 +19,8 @@
 }
 
 #closed-card .right {
+    padding-top: 30px;
+    padding-bottom: 30px;
     flex: 0.8;
     display: flex;
     flex-direction: column;
@@ -102,6 +104,18 @@
     padding-top: 15px;
 }
 
+#closed-card .right .debate-info {
+    padding-top: 30px;
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: space-between;
+}
+
+#closed-card .right .debate-info p {
+    font-size: 14px;
+    color: var(--card_color_secondary);
+}
+
 @media screen and (max-width: 1536px) {
     #closed-card {
         flex-direction: column;
@@ -117,6 +131,7 @@
 
     #closed-card .right {
         padding-top: 10px;
+        padding-bottom: 20px;
     }
 
     #closed-card .left h2 {

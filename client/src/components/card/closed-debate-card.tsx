@@ -2,6 +2,7 @@ import "./closed-debate-card.css";
 import React from "react";
 import { Link } from "react-router-dom";
 import DebateBar from "./debate-bar";
+import formatNumber from "../../utils/format-number";
 
 interface CardProps {
     isHotTopic?: boolean;
@@ -28,7 +29,11 @@ const ClosedDebateCard: React.FC<CardProps> = () => {
                     </div>
                 </div>
                 <div className='debate-bar__container'>
-                    <DebateBar debateFrom={1250} debateBy={2725} />
+                    <DebateBar debateFrom={3250} debateBy={1725} />
+                </div>
+                <div className='debate-info'>
+                    <p>{formatNumber(2100)} comments</p>
+                    <p>5 days ago</p>
                 </div>
             </div>
         </div>
