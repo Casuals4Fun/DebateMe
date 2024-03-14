@@ -12,11 +12,17 @@
 }
 
 #closed-card .left {
-    flex: 1.1;
+    flex: 1.2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 #closed-card .right {
-    flex: 0.9;
+    flex: 0.8;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 #closed-card .divider {
@@ -26,7 +32,6 @@
 }
 
 #closed-card .left h2 {
-    padding-bottom: 10px;
     font-size: 20px;
     font-weight: 500;
     max-width: 280px;
@@ -36,8 +41,61 @@
 }
 
 #closed-card .left p {
+    padding-top: 10px;
     font-size: 14px;
     color: var(--card_color_secondary);
+}
+
+#closed-card .left button {
+    padding-top: 10px;
+    width: fit-content;
+    color: var(--card_color_secondary);
+    text-decoration: underline;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+#closed-card .right .user-info {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#closed-card .right .user-info .debate-from,
+#closed-card .right .user-info .debate-by {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+#closed-card .right .user-info .debate-by {
+    align-items: end;
+    text-align: end;
+}
+
+#closed-card .right .user-info .debate-from img,
+#closed-card .right .user-info .debate-by img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border: 2px solid var(--explore_input_bg);
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+#closed-card .right .user-info .debate-from p,
+#closed-card .right .user-info .debate-by p {
+    max-width: 100%;
+    width: fit-content;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    font-size: 14px;
+    color: var(--card_color_secondary);
+    cursor: pointer;
 }
 
 @media screen and (max-width: 1536px) {
@@ -54,16 +112,35 @@
     }
 
     #closed-card .right {
-        padding-top: 0;
+        padding-top: 15px;
+    }
+
+    #closed-card .left h2 {
+        max-width: 350px;
     }
 
     #closed-card .left p {
         display: none;
+    }
+
+    #closed-card .left button {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    #closed-card .left h2 {
+        max-width: 400px;
     }
 }
 
 @media screen and (max-width: 480px) {
     #closed-card {
         border-width: 1px;
+    }
+
+    #closed-card .left h2 {
+        max-width: 300px;
+        font-size: 18px;
     }
 }
