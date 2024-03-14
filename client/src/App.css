@@ -5,11 +5,18 @@
 #left-sidebar,
 #right-sidebar {
     width: 30%;
-    max-height: 100dvh;
     position: sticky;
     top: 0;
     user-select: none;
     /* overflow-y: auto; */
+}
+
+#left-sidebar {
+    max-height: 1080px;
+}
+
+#right-sidebar {
+    max-height: 100dvh;
 }
 
 #main {

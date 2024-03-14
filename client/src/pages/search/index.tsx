@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Explore from "../../components/sidebar/explore";
 import { IoMdClose } from "react-icons/io";
-import HomePage from "../home";
 
 export default function SearchPage() {
     const location = useLocation();
@@ -31,7 +30,7 @@ export default function SearchPage() {
         <div id='search'>
             <Explore term={searchTerm} />
 
-            {searchTerm ? (
+            {searchTerm && (
                 <>
                     <div className='search-term'>
                         <h1>
@@ -45,8 +44,6 @@ export default function SearchPage() {
                         </button>
                     </div>
                 </>
-            ) : (
-                <HomePage />
             )}
         </div>
     );

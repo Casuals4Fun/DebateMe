@@ -1,0 +1,11 @@
+#home {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+@media screen and (max-width: 480px) {
+    #home {
+        gap: 10px;
+    }
+}
