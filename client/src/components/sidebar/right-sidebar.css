@@ -119,6 +119,10 @@
         width: auto;
     }
 
+    #right-sidebar .profile-theme__container .profile__wrapper .theme__button {
+        display: unset;
+    }
+
     #right-sidebar .expand-menu__background {
         position: absolute;
         top: 60px;

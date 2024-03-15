@@ -32,10 +32,12 @@
 }
 
 #left-sidebar .links__wrapper {
+    width: fit-content;
     display: flex;
     align-items: center;
     gap: 30px;
     border-radius: 10px;
+    cursor: pointer;
 }
 
 #left-sidebar .links__wrapper p {
@@ -91,6 +93,7 @@
     }
 
     #left-sidebar .links__wrapper {
+        width: unset;
         flex-direction: column;
         gap: 2px;
     }

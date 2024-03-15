@@ -1,12 +1,24 @@
 import "./left-sidebar.css";
-import { useLocation, Link } from "react-router-dom";
+import { useState } from "react";
+import { useLocation, Link, useNavigate } from "react-router-dom";
 import { leftSidebarLinks } from "../../data/left-sidebar-links";
 import Profile from "./profile";
-import { useState } from "react";
+import { AuthTab, useAuthStore } from "../../store/useAuthStore";
 
 const LeftSidebar = () => {
   const location = useLocation();
+  const navigate = useNavigate();
+
   const [expand, setExpand] = useState(false);
+  const { isAuthenticated, setAuthTab } = useAuthStore();
+
+  const handleLinkClick = (href: string, name: string) => {
+    if (name === "Create Debate") {
+      if (!isAuthenticated) setAuthTab(AuthTab.Login);
+      else navigate(href);
+    }
+    else navigate(href);
+  };
 
   return (
     <div id='left-sidebar'>
@@ -16,12 +28,12 @@ const LeftSidebar = () => {
       <ul>
         {leftSidebarLinks.map(item => (
           <li key={item.id} title={item.name}>
-            <Link to={item.href} className='links__wrapper'>
+            <div onClick={() => handleLinkClick(item.href, item.name)} className='links__wrapper'>
               <item.icon />
               <p className={`${location.pathname === item.href ? 'name-active' : ''} underline`}>
                 {item.name}
               </p>
-            </Link>
+            </div>
             <div className={`${location.pathname === item.href ? 'footer-active' : ''}`} />
           </li>
         ))}
