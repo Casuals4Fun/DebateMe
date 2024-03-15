@@ -1,0 +1,12 @@
+#open-topics {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    user-select: none;
+}
+
+@media screen and (max-width: 480px) {
+    #open-topics {
+        gap: 10px;
+    }
+}

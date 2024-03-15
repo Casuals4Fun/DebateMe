@@ -1,0 +1,12 @@
+#hot-topics {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    user-select: none;
+}
+
+@media screen and (max-width: 480px) {
+    #hot-topics {
+        gap: 10px;
+    }
+}

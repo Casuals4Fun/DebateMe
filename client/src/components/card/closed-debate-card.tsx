@@ -4,16 +4,16 @@ import { Link } from "react-router-dom";
 import DebateBar from "./debate-bar";
 import formatNumber from "../../utils/format-number";
 
-interface CardProps {
-    isHotTopic?: boolean;
-}
+interface CardProps { }
 
 const ClosedDebateCard: React.FC<CardProps> = () => {
     return (
         <div id='closed-card'>
             <div className='left'>
                 <h2>Sony is the best camera</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Los nemo unde labore deleniti minima laboriosam harum.</p>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Non labore necessitatibus reiciendis rem ad perferendis.
+                </p>
                 <Link to='/'>View</Link>
             </div>
             <div className='divider' />

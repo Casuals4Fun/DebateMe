@@ -7,6 +7,8 @@ import LeftSidebar from './components/sidebar/left-sidebar';
 import RightSidebar from './components/sidebar/right-sidebar';
 import HomePage from './pages/home';
 import SearchPage from './pages/search';
+import HotTopicsPage from './pages/hot-topics';
+import OpenTopicsPage from './pages/open-topics';
 
 export default function App() {
   useEffect(() => {
@@ -21,6 +23,8 @@ export default function App() {
         <Routes>
           <Route path='/' element={<HomePage />} />
           <Route path='/search' element={<SearchPage />} />
+          <Route path='/hot-topics' element={<HotTopicsPage />} />
+          <Route path='/open-topics' element={<OpenTopicsPage />} />
         </Routes>
       </main>
       <RightSidebar />

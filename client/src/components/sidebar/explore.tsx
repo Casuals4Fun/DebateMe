@@ -40,7 +40,10 @@ const Explore: React.FC<ExploreProps> = ({ term }) => {
                         type='text'
                         placeholder='Explore...'
                         value={searchTerm}
-                        onChange={e => setSearchTerm(e.target.value)}
+                        onChange={e => {
+                            setSearchTerm(e.target.value);
+                            setFormSubmitted(false);
+                        }}
                         style={{ borderColor: formSubmitted && searchTerm.trim() === "" ? "var(--body_color)" : "" }}
                         className={formSubmitted && searchTerm.trim() === "" ? "shake" : ""}
                     />
