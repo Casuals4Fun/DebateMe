@@ -29,7 +29,7 @@ const ClosedDebateCard: React.FC<CardProps> = () => {
                     </div>
                 </div>
                 <div className='debate-bar__container'>
-                    <DebateBar debateFrom={3250} debateBy={1725} />
+                    <DebateBar debateFrom={4000000} debateBy={6000000} />
                 </div>
                 <div className='debate-info'>
                     <p>{formatNumber(2100)} comments</p>

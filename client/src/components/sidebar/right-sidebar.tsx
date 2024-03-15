@@ -46,15 +46,15 @@ const SidebarContent: React.FC<SidebarContentProps> = ({ expand, setExpand }) =>
         </div>
 
         <div className='profile-theme__container'>
-          <Profile
-            expand={expand}
-            setExpand={setExpand}
-          />
-
           {/* <div className={`theme__wrapper ${expand && 'expand-active'}`}> */}
           <div className={`theme__wrapper`}>
             <ToggleTheme />
           </div>
+
+          <Profile
+            expand={expand}
+            setExpand={setExpand}
+          />
         </div>
 
         {/* <div className='menu-icon' onClick={() => setExpand(!expand)}>

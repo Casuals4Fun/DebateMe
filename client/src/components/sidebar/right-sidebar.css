@@ -1,4 +1,5 @@
 #right-sidebar .right-sidebar__container {
+    position: relative;
     height: 100%;
     padding: 20px;
     overflow-y: auto;
@@ -33,6 +34,10 @@
     align-items: center;
     justify-content: space-between;
     gap: 10px;
+}
+
+#right-sidebar .profile-theme__container .profile__wrapper .theme__button {
+    display: none;
 }
 
 .menu-icon {
@@ -88,7 +93,7 @@
 
 #right-sidebar .explore__container {
     display: block;
-    padding: 30px 0;
+    padding: 20px 0;
 }
 
 @media screen and (max-width: 1024px) {
@@ -148,7 +153,6 @@
         object-fit: cover;
     }
 
-    #right-sidebar .profile__info,
     #right-sidebar .theme__wrapper {
         display: none;
     }

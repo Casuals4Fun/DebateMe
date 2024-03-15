@@ -18,10 +18,6 @@ const Profile: React.FC<ProfileProps> = ({ expand, setExpand }) => {
             >
                 <img src="/user.jpg" alt="" />
             </div>
-            <div className='profile__info'>
-                <p>Julie Roberts</p>
-                <p>julieroberts</p>
-            </div>
 
             {expand && (
                 <div className='profile__modal'>
@@ -53,7 +49,6 @@ const Profile: React.FC<ProfileProps> = ({ expand, setExpand }) => {
                         <PiSignOutBold size={18} />
                         <p className='underline'>Logout</p>
                     </Link>
-                    {/* <ToggleTheme /> */}
                 </div>
             )}
         </div>
