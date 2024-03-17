@@ -1,36 +1,27 @@
 import "./right-sidebar.css";
-import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { IoSearch } from "react-icons/io5";
 import ToggleTheme from "../button/toggle-theme";
 // import ExpandMenu from "../menu/expand-menu";
 import Profile from "./profile";
 import Explore from "./explore";
+import { useNavStore } from "../../store/useNavStore";
 
 const RightSidebar = () => {
-  const [expand, setExpand] = useState(false);
-
   return (
     <div id='right-sidebar'>
       {/* <div className={`expand-menu__background ${expand ? 'expand' : ''}`} /> */}
 
-      <SidebarContent
-        expand={expand}
-        setExpand={setExpand}
-      />
+      <SidebarContent />
 
       {/* {expand && <ExpandMenu setExpand={setExpand} />} */}
     </div>
   )
 }
 
-interface SidebarContentProps {
-  expand: boolean
-  setExpand: React.Dispatch<React.SetStateAction<boolean>>
-}
-
-const SidebarContent: React.FC<SidebarContentProps> = ({ expand, setExpand }) => {
+const SidebarContent = () => {
   const location = useLocation();
+  const { expand, setExpand } = useNavStore();
 
   return (
     <div className='right-sidebar__container'>
@@ -51,10 +42,7 @@ const SidebarContent: React.FC<SidebarContentProps> = ({ expand, setExpand }) =>
             <ToggleTheme />
           </div>
 
-          <Profile
-            expand={expand}
-            setExpand={setExpand}
-          />
+          <Profile />
         </div>
 
         {/* <div className='menu-icon' onClick={() => setExpand(!expand)}>

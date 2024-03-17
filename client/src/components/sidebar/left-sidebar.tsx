@@ -1,5 +1,4 @@
 import "./left-sidebar.css";
-import { useState } from "react";
 import { useLocation, Link, useNavigate } from "react-router-dom";
 import { leftSidebarLinks } from "../../data/left-sidebar-links";
 import Profile from "./profile";
@@ -9,7 +8,6 @@ const LeftSidebar = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const [expand, setExpand] = useState(false);
   const { isAuthenticated, setAuthTab } = useAuthStore();
 
   const handleLinkClick = (href: string, name: string) => {
@@ -39,7 +37,7 @@ const LeftSidebar = () => {
         ))}
       </ul>
       <div className='profile__container'>
-        <Profile expand={expand} setExpand={setExpand} />
+        <Profile />
       </div>
     </div>
   )

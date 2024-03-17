@@ -1,16 +1,14 @@
 import "./expand-menu.css";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useLocation, Link } from "react-router-dom";
+import { useNavStore } from "../../store/useNavStore";
 import { leftSidebarLinks } from "../../data/left-sidebar-links";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
-interface ExpandMenuProps {
-    setExpand: React.Dispatch<React.SetStateAction<boolean>>
-}
-
-const ExpandMenu: React.FC<ExpandMenuProps> = ({ setExpand }) => {
+const ExpandMenu = () => {
     const location = useLocation();
+    const { setExpand } = useNavStore();
 
     useEffect(() => {
         AOS.init();

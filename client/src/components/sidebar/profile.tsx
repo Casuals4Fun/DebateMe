@@ -1,15 +1,32 @@
 import "./profile.css";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useNavStore } from "../../store/useNavStore";
 import ToggleTheme from "../button/toggle-theme";
 import { IoMdPerson } from "react-icons/io";
 import { PiSignOutBold } from "react-icons/pi";
 
-interface ProfileProps {
-    expand: boolean
-    setExpand: React.Dispatch<React.SetStateAction<boolean>>
-}
+const Profile = () => {
+    const { expand, setExpand } = useNavStore();
 
-const Profile: React.FC<ProfileProps> = ({ expand, setExpand }) => {
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            const target = event.target as HTMLElement;
+            if (
+                expand &&
+                !target.closest(".profile__modal") &&
+                !target.closest(".profile__image")
+            ) {
+                setExpand(false);
+            }
+        };
+
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [expand, setExpand]);
+
     return (
         <div className='profile__wrapper'>
             <div
@@ -52,7 +69,7 @@ const Profile: React.FC<ProfileProps> = ({ expand, setExpand }) => {
                 </div>
             )}
         </div>
-    )
-}
+    );
+};
 
-export default Profile
+export default Profile;

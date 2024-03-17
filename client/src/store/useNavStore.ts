@@ -8,6 +8,8 @@ export enum Theme {
 interface NavStore {
     theme: Theme;
     setTheme: (theme_data: Theme) => void;
+    expand: boolean;
+    setExpand: (toggle: boolean) => void;
 }
 
 export const useNavStore = create<NavStore>((set) => {
@@ -20,5 +22,7 @@ export const useNavStore = create<NavStore>((set) => {
             set({ theme: theme_data });
             localStorage.setItem('theme', theme_data);
         },
+        expand: false,
+        setExpand: (toggle: boolean) => set({ expand: toggle })
     };
 });
