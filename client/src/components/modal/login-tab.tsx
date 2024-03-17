@@ -1,20 +1,22 @@
-import "./login-tab.css";
+import { AuthTab, useAuthStore } from "../../store/useAuthStore";
 import { FcGoogle } from "react-icons/fc";
 
 const LoginTab = () => {
+    const { setAuthTab } = useAuthStore();
+
     const handleLoginSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
     }
 
     return (
         <div id='login'>
-            <div className='login__header'>
+            <div className='auth__header'>
                 <h3>Login</h3>
-                <p>New here? <span>Create Account</span></p>
+                <p>New here? <span onClick={() => setAuthTab(AuthTab.Signup)}>Create Account</span></p>
             </div>
             <form className='form__container' onSubmit={handleLoginSubmit}>
                 <div className='input__container'>
-                    <p>Email/Username</p>
+                    <p>Email or Username</p>
                     <input />
                 </div>
                 <div className='input__container'>
@@ -31,7 +33,7 @@ const LoginTab = () => {
                 <div className='divider' />
             </div>
             <button className='google-btn'>
-                <FcGoogle size={25} />
+                <FcGoogle size={23} />
                 <span>Continue with Google</span>
             </button>
         </div>

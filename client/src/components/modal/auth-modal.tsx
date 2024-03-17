@@ -2,6 +2,7 @@ import "./auth-modal.css";
 import { useAuthStore, AuthTab } from "../../store/useAuthStore";
 import LoginTab from "./login-tab";
 import SignupTab from "./signup-tab";
+import { IoClose } from "react-icons/io5";
 
 const AuthModal = () => {
     const { authTab, setAuthTab } = useAuthStore();
@@ -25,6 +26,12 @@ const AuthModal = () => {
                         <SignupTab />
                     )}
                 </div>
+                <button
+                    className='close__btn'
+                    onClick={() => setAuthTab(AuthTab.Closed)}
+                >
+                    <IoClose size={25} />
+                </button>
             </div>
         </div>
     )
