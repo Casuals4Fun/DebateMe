@@ -9,6 +9,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    user-select: none;
 }
 
 .auth__container {
@@ -41,7 +42,8 @@
     }
 
     .auth__container .right__container {
-        padding: 10px;
+        padding: 20px;
+        width: 100%;
     }
 }
 
@@ -54,5 +56,9 @@
 @media screen and (max-width: 480px) {
     .auth__container {
         width: 95%;
+    }
+
+    .auth__container .right__container {
+        padding: 10px;
     }
 }
