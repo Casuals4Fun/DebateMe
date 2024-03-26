@@ -15,7 +15,7 @@ interface AuthStore {
 }
 
 export const useAuthStore = create<AuthStore>((set) => ({
-    authTab: AuthTab.Info,
+    authTab: AuthTab.Closed,
     setAuthTab: (tab: AuthTab) => set({ authTab: tab }),
     isAuthenticated: false,
     setIsAuthenticated: (authenticated: boolean) => set({ isAuthenticated: authenticated })
