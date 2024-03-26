@@ -6,6 +6,8 @@ const SignupTab = () => {
 
     const handleLoginSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+
+        setAuthTab(AuthTab.Info);
     }
 
     return (

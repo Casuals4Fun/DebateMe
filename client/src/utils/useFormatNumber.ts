@@ -1,4 +1,4 @@
-const formatNumber = (num: number) => {
+const useFormatNumber = (num: number) => {
     let formattedNum = "";
     if (num >= 1_000_000_000) {
         formattedNum = (num / 1_000_000_000).toFixed(2);
@@ -16,4 +16,4 @@ const formatNumber = (num: number) => {
     return num;
 };
 
-export default formatNumber;
+export default useFormatNumber;

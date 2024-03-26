@@ -2,6 +2,7 @@ import "./auth-modal.css";
 import { useAuthStore, AuthTab } from "../../store/useAuthStore";
 import LoginTab from "./login-tab";
 import SignupTab from "./signup-tab";
+import BriefInfo from "./brief-info";
 import { IoClose } from "react-icons/io5";
 
 const AuthModal = () => {
@@ -22,8 +23,10 @@ const AuthModal = () => {
                 <div className='right__container'>
                     {authTab === AuthTab.Login ? (
                         <LoginTab />
-                    ) : authTab === AuthTab.Signup && (
+                    ) : authTab === AuthTab.Signup ? (
                         <SignupTab />
+                    ) : authTab === AuthTab.Info && (
+                        <BriefInfo />
                     )}
                 </div>
                 <button

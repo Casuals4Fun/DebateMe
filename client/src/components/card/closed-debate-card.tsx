@@ -2,7 +2,7 @@ import "./closed-debate-card.css";
 import React from "react";
 import { Link } from "react-router-dom";
 import DebateBar from "./debate-bar";
-import formatNumber from "../../utils/format-number";
+import useFormatNumber from "../../utils/useFormatNumber";
 
 interface CardProps { }
 
@@ -32,7 +32,7 @@ const ClosedDebateCard: React.FC<CardProps> = () => {
                     <DebateBar debateFrom={4000000} debateBy={6000000} />
                 </div>
                 <div className='debate-info'>
-                    <p>{formatNumber(2100)} comments</p>
+                    <p>{useFormatNumber(2100)} comments</p>
                     <p>5 days ago</p>
                 </div>
             </div>

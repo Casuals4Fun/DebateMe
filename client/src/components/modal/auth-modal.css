@@ -48,7 +48,8 @@
 }
 
 #login,
-#signup {
+#signup,
+#brief {
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -81,6 +82,7 @@
 
 #auth-modal .form__container .input__container {
     position: relative;
+    width: 100%;
 }
 
 #auth-modal .form__container .input__container p {
@@ -144,6 +146,93 @@
     cursor: pointer;
 }
 
+#auth-modal .avatar-username__container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+#auth-modal .avatar__container {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+}
+
+#auth-modal .upload-btn {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 20px;
+    height: 20px;
+    background-color: var(--card_border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+#auth-modal .terms__container {
+    display: flex;
+}
+
+#auth-modal .terms__container p span {
+    color: var(--modal_header_color);
+    text-decoration: underline;
+    text-underline-offset: 2.5px;
+    cursor: pointer;
+}
+
+#auth-modal .checkbox__conatiner {
+    display: block;
+    position: relative;
+    margin-right: 27.5px;
+}
+
+#auth-modal .checkbox__conatiner input {
+    position: absolute;
+    opacity: 0;
+    height: 0;
+    width: 0;
+}
+
+#auth-modal .checkbox__conatiner .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    border: 2px solid var(--body_color);
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#auth-modal .checkbox__conatiner input:checked~.checkmark {
+    background-color: var(--card_background);
+}
+
+#auth-modal .checkbox__conatiner .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+#auth-modal .checkbox__conatiner input:checked~.checkmark:after {
+    display: block;
+}
+
+#auth-modal .checkbox__conatiner .checkmark:after {
+    left: 5px;
+    top: 1px;
+    width: 4px;
+    height: 10px;
+    border: solid var(--body_color);
+    border-width: 0 2px 2px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
 @media screen and (max-width: 1024px) {
     .auth__container {
         width: 50%;
@@ -179,5 +268,9 @@
         font-size: 26px;
         font-weight: 500;
         padding-bottom: 2.5px;
+    }
+
+    #auth-modal .auth__header p {
+        font-size: 16px;
     }
 }

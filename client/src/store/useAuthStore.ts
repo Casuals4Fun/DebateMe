@@ -4,6 +4,7 @@ export enum AuthTab {
     Closed = 'closed',
     Login = 'login',
     Signup = 'signup',
+    Info = 'info'
 }
 
 interface AuthStore {
@@ -14,7 +15,7 @@ interface AuthStore {
 }
 
 export const useAuthStore = create<AuthStore>((set) => ({
-    authTab: AuthTab.Closed,
+    authTab: AuthTab.Info,
     setAuthTab: (tab: AuthTab) => set({ authTab: tab }),
     isAuthenticated: false,
     setIsAuthenticated: (authenticated: boolean) => set({ isAuthenticated: authenticated })

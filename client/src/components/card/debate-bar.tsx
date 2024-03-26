@@ -1,6 +1,6 @@
 import "./debate-bar.css";
 import React from "react";
-import formatNumber from "../../utils/format-number";
+import useFormatNumber from "../../utils/useFormatNumber";
 
 interface BarProps {
     debateFrom: number;
@@ -22,14 +22,14 @@ const DebateBar: React.FC<BarProps> = ({ debateFrom, debateBy }) => {
                         borderRight: `${debateFrom !== 0 && debateBy !== 0 ? "2.5px solid var(--card_background)" : ""}`
                     }}
                 />
-                <p className='from-vote'>{formatNumber(debateFrom)}</p>
+                <p className='from-vote'>{useFormatNumber(debateFrom)}</p>
             </>
             <>
                 <div
                     className='right-side'
                     style={{ width: `${rightPercentage}%` }}
                 />
-                <p className='to-vote'>{formatNumber(debateBy)}</p>
+                <p className='to-vote'>{useFormatNumber(debateBy)}</p>
             </>
         </div>
     );
