@@ -1,12 +1,15 @@
 require('dotenv').config()
 const Fastify = require('fastify')
 const cors = require('@fastify/cors')
+const db = require('./db.js')
 
 const fastify = Fastify()
 
 fastify.register(cors, {
-    origin: '*',
+    origin: '*'
 })
+
+fastify.decorate('mysql', db)
 
 fastify.get('/', async function handler(request, reply) {
     reply.redirect(process.env.FRONTEND_URL)
@@ -30,6 +33,6 @@ fastify
     .listen({ port: process.env.PORT })
     .then(() => console.log('Server running...'))
     .catch(err => {
-        fastify.log.error(err)
+        console.log(err)
         process.exit(1)
-    })
+    });
