@@ -29,10 +29,18 @@ fastify.setNotFoundHandler((request, reply) => {
     reply.redirect(process.env.FRONTEND_URL)
 })
 
-fastify
-    .listen({ port: process.env.PORT })
-    .then(() => console.log('Server running...'))
+db.query('SELECT 1')
+    .then(() => {
+        console.log('Database connected')
+        fastify
+            .listen({ port: process.env.PORT })
+            .then(() => console.log('Server running'))
+            .catch(err => {
+                console.log('Server Error\n', err)
+                process.exit(1)
+            });
+    })
     .catch(err => {
-        console.log(err)
+        console.log('Database Error\n', err)
         process.exit(1)
-    });
+    })
