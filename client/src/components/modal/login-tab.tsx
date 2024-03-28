@@ -1,12 +1,56 @@
+import React, { useState, useCallback } from "react";
 import { AuthTab, useAuthStore } from "../../store/useAuthStore";
 import { FcGoogle } from "react-icons/fc";
 
 const LoginTab = () => {
     const { setAuthTab } = useAuthStore();
 
+    const [loginData, setLoginData] = useState({
+        id: "",
+        password: ""
+    });
+
+    const [isSubmitted, setIsSubmitted] = useState(false);
+    const [validationState, setValidationState] = useState({
+        isIdValid: true,
+        isPasswordValid: true
+    });
+
+    const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
+        setLoginData(prevState => ({
+            ...prevState,
+            [name]: value
+        }));
+
+        setValidationState(prevState => ({
+            ...prevState,
+            [`is${name.charAt(0).toUpperCase() + name.slice(1)}Valid`]: !!value
+        }));
+    }, []);
+
     const handleLoginSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-    }
+        setIsSubmitted(true);
+
+        const trimmedId = loginData.id.trim();
+        const trimmedPassword = loginData.password.trim();
+
+        setLoginData(prevState => ({
+            ...prevState,
+            id: trimmedId,
+            password: trimmedPassword
+        }));
+
+        setValidationState({
+            isIdValid: !!trimmedId,
+            isPasswordValid: !!trimmedPassword
+        });
+
+        if (trimmedId && trimmedPassword) {
+            console.log(trimmedId, trimmedPassword);
+        }
+    };
 
     return (
         <div id='login'>
@@ -17,11 +61,24 @@ const LoginTab = () => {
             <form className='form__container' onSubmit={handleLoginSubmit}>
                 <div className='input__container'>
                     <p>Email or Username</p>
-                    <input />
+                    <input
+                        name="id"
+                        value={loginData.id}
+                        onChange={handleInputChange}
+                        style={{ borderColor: isSubmitted && !validationState.isIdValid ? "red" : "" }}
+                        placeholder={isSubmitted && !validationState.isIdValid ? 'Required' : ''}
+                    />
                 </div>
                 <div className='input__container'>
                     <p>Password</p>
-                    <input />
+                    <input
+                        type="password"
+                        name="password"
+                        value={loginData.password}
+                        onChange={handleInputChange}
+                        style={{ borderColor: isSubmitted && !validationState.isPasswordValid ? "red" : "" }}
+                        placeholder={isSubmitted && !validationState.isPasswordValid ? 'Required' : ''}
+                    />
                 </div>
                 <button type='submit'>
                     Log in
@@ -37,7 +94,7 @@ const LoginTab = () => {
                 <span>Continue with Google</span>
             </button>
         </div>
-    )
-}
+    );
+};
 
-export default LoginTab
+export default LoginTab;

@@ -1,24 +1,36 @@
 import { useCallback } from 'react';
 
-const useFileHandler = (setFile: React.Dispatch<React.SetStateAction<string | null>>, maxSize: number) => {
-    const handleFileChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+type HandleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => Promise<string | null>;
+
+const useFileHandler = (maxSize: number): HandleFileChange => {
+    const handleFileChange = useCallback(async (e: React.ChangeEvent<HTMLInputElement>): Promise<string | null> => {
         const file = e.target.files?.[0];
         if (file) {
             if (file.type.startsWith('image/')) {
                 if (file.size <= maxSize * 1024 * 1024) {
-                    const reader = new FileReader();
-                    reader.onloadend = () => {
-                        setFile(reader.result as string);
-                    };
-                    reader.readAsDataURL(file);
+                    return new Promise((resolve, reject) => {
+                        const reader = new FileReader();
+                        reader.onloadend = () => {
+                            if (typeof reader.result === 'string') {
+                                resolve(reader.result);
+                            } else {
+                                reject(new Error('Failed to read file as data URL'));
+                            }
+                        };
+                        reader.onerror = reject;
+                        reader.readAsDataURL(file);
+                    });
                 } else {
                     alert("File size should not exceed " + maxSize + "MB");
+                    return null;
                 }
             } else {
                 alert("Please select an image file.");
+                return null;
             }
         }
-    }, [setFile, maxSize]);
+        return null;
+    }, [maxSize]);
 
     return handleFileChange;
 };

@@ -1,14 +1,52 @@
+import React, { useState, useCallback } from 'react';
 import { AuthTab, useAuthStore } from "../../store/useAuthStore";
 import { FcGoogle } from "react-icons/fc";
+import { RegisterDataProps } from '../../types';
 
-const SignupTab = () => {
+const SignupTab: React.FC<RegisterDataProps> = ({ registerData, setRegisterData }) => {
     const { setAuthTab } = useAuthStore();
+    
+    const [isSubmitted, setIsSubmitted] = useState(false);
+    const [validationState, setValidationState] = useState({
+        isEmailValid: true,
+        isPasswordValid: true
+    });
 
-    const handleLoginSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
+        setRegisterData(prevState => ({
+            ...prevState,
+            [name]: value
+        }));
+
+        setValidationState(prevState => ({
+            ...prevState,
+            [`is${name.charAt(0).toUpperCase() + name.slice(1)}Valid`]: !!value
+        }));
+    }, []);
+
+    const handleNextTab = useCallback((e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        setIsSubmitted(true);
 
-        setAuthTab(AuthTab.Info);
-    }
+        const trimmedEmail = registerData.email.trim();
+        const trimmedPassword = registerData.password.trim();
+
+        setRegisterData(prevState => ({
+            ...prevState,
+            email: trimmedEmail,
+            password: trimmedPassword
+        }));
+
+        setValidationState({
+            isEmailValid: !!trimmedEmail,
+            isPasswordValid: !!trimmedPassword
+        });
+
+        if (trimmedEmail && trimmedPassword) {
+            setAuthTab(AuthTab.Info);
+        }
+    }, [registerData, setAuthTab]);
 
     return (
         <div id='signup'>
@@ -16,14 +54,28 @@ const SignupTab = () => {
                 <h3>Register</h3>
                 <p>Already have an account? <span onClick={() => setAuthTab(AuthTab.Login)}>Log In</span></p>
             </div>
-            <form className='form__container' onSubmit={handleLoginSubmit}>
+            <form className='form__container' onSubmit={handleNextTab}>
                 <div className='input__container'>
                     <p>Email</p>
-                    <input />
+                    <input
+                        type="email"
+                        name="email"
+                        value={registerData.email}
+                        onChange={handleInputChange}
+                        style={{ borderColor: isSubmitted && !validationState.isEmailValid ? "red" : "" }}
+                        placeholder={isSubmitted && !validationState.isEmailValid ? 'Required' : ''}
+                    />
                 </div>
                 <div className='input__container'>
                     <p>Password</p>
-                    <input />
+                    <input
+                        type="password"
+                        name="password"
+                        value={registerData.password}
+                        onChange={handleInputChange}
+                        style={{ borderColor: isSubmitted && !validationState.isPasswordValid ? "red" : "" }}
+                        placeholder={isSubmitted && !validationState.isPasswordValid ? 'Required' : ''}
+                    />
                 </div>
                 <button type='submit'>
                     Continue
@@ -39,7 +91,7 @@ const SignupTab = () => {
                 <span>Continue with Google</span>
             </button>
         </div>
-    )
-}
+    );
+};
 
-export default SignupTab
+export default React.memo(SignupTab);

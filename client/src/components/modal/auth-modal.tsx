@@ -1,4 +1,5 @@
 import "./auth-modal.css";
+import { useState } from "react";
 import { useAuthStore, AuthTab } from "../../store/useAuthStore";
 import LoginTab from "./login-tab";
 import SignupTab from "./signup-tab";
@@ -7,6 +8,15 @@ import { IoClose } from "react-icons/io5";
 
 const AuthModal = () => {
     const { authTab, setAuthTab } = useAuthStore();
+
+    const [registerData, setRegisterData] = useState({
+        email: "",
+        password: "",
+        avatar: "",
+        username: "",
+        first_name: "",
+        last_name: ""
+    });
 
     const handleBackgroundClick = (event: React.MouseEvent<HTMLDivElement>) => {
         if (event.target === event.currentTarget) {
@@ -24,9 +34,15 @@ const AuthModal = () => {
                     {authTab === AuthTab.Login ? (
                         <LoginTab />
                     ) : authTab === AuthTab.Signup ? (
-                        <SignupTab />
+                        <SignupTab
+                            registerData={registerData}
+                            setRegisterData={setRegisterData}
+                        />
                     ) : authTab === AuthTab.Info && (
-                        <BriefInfo />
+                        <BriefInfo
+                            registerData={registerData}
+                            setRegisterData={setRegisterData}
+                        />
                     )}
                 </div>
                 <button
