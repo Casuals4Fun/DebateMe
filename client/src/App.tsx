@@ -1,16 +1,18 @@
-import './App.css';
-import { useEffect } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import "./App.css";
+import { useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
 
-import { Theme, useNavStore } from './store/useNavStore';
-import { AuthTab, useAuthStore } from './store/useAuthStore';
-import LeftSidebar from './components/sidebar/left-sidebar';
-import RightSidebar from './components/sidebar/right-sidebar';
-import HomePage from './pages/home';
-import SearchPage from './pages/search';
-import HotTopicsPage from './pages/hot-topics';
-import OpenTopicsPage from './pages/open-topics';
-import AuthModal from './components/modal/auth-modal';
+import { Theme, useNavStore } from "./store/useNavStore";
+import { AuthTab, useAuthStore } from "./store/useAuthStore";
+
+import LeftSidebar from "./components/sidebar/left-sidebar";
+import RightSidebar from "./components/sidebar/right-sidebar";
+import HomePage from "./pages/home";
+import SearchPage from "./pages/search";
+import HotTopicsPage from "./pages/hot-topics";
+import OpenTopicsPage from "./pages/open-topics";
+import Toast from "./components/toast";
+import AuthModal from "./components/modal/auth-modal";
 
 export default function App() {
   const { authTab } = useAuthStore();
@@ -22,20 +24,20 @@ export default function App() {
   }, []);
 
   return (
-    <>
-      <div id='app'>
-        <LeftSidebar />
-        <main id='main' className={`${expand ? 'expand' : ''}`}>
-          <Routes>
-            <Route path='/' element={<HomePage />} />
-            <Route path='/search' element={<SearchPage />} />
-            <Route path='/hot-topics' element={<HotTopicsPage />} />
-            <Route path='/open-topics' element={<OpenTopicsPage />} />
-          </Routes>
-        </main>
-        <RightSidebar />
-      </div>
+    <div id='app'>
+      <LeftSidebar />
+      <main id='main' className={`${expand ? 'expand' : ''}`}>
+        <Routes>
+          <Route path='/' element={<HomePage />} />
+          <Route path='/search' element={<SearchPage />} />
+          <Route path='/hot-topics' element={<HotTopicsPage />} />
+          <Route path='/open-topics' element={<OpenTopicsPage />} />
+        </Routes>
+      </main>
+      <RightSidebar />
+
+      <Toast />
       {authTab !== AuthTab.Closed && <AuthModal />}
-    </>
+    </div>
   );
 }

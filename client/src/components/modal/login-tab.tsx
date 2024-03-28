@@ -1,9 +1,11 @@
 import React, { useState, useCallback } from "react";
 import { AuthTab, useAuthStore } from "../../store/useAuthStore";
+// import { useToastStore } from "../../store/useToastStore";
 import { FcGoogle } from "react-icons/fc";
 
 const LoginTab = () => {
     const { setAuthTab } = useAuthStore();
+    // const { addToast } = useToastStore();
 
     const [loginData, setLoginData] = useState({
         id: "",
@@ -48,7 +50,7 @@ const LoginTab = () => {
         });
 
         if (trimmedId && trimmedPassword) {
-            console.log(trimmedId, trimmedPassword);
+            // console.log(trimmedId, trimmedPassword);
         }
     };
 

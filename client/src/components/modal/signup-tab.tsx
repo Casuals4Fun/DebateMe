@@ -1,7 +1,7 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback } from "react";
+import { RegisterDataProps } from "../../types";
 import { AuthTab, useAuthStore } from "../../store/useAuthStore";
 import { FcGoogle } from "react-icons/fc";
-import { RegisterDataProps } from '../../types';
 
 const SignupTab: React.FC<RegisterDataProps> = ({ registerData, setRegisterData }) => {
     const { setAuthTab } = useAuthStore();

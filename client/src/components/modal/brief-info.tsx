@@ -64,7 +64,7 @@ const BriefInfo: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
         if (!term) return;
 
         if (trimmedUsername && trimmedFirstName && trimmedLastName) {
-            console.log(registerData.email, registerData.password, registerData.avatar, trimmedUsername, trimmedFirstName, trimmedLastName)
+            // console.log(registerData.email, registerData.password, registerData.avatar, trimmedUsername, trimmedFirstName, trimmedLastName)
         }
     }, [registerData, term, setAuthTab]);
 
