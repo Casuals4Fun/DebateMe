@@ -1,11 +1,11 @@
 import React, { useState, useCallback } from "react";
 import { AuthTab, useAuthStore } from "../../store/useAuthStore";
-// import { useToastStore } from "../../store/useToastStore";
+import { useToastStore } from "../../store/useToastStore";
 import { FcGoogle } from "react-icons/fc";
 
 const LoginTab = () => {
     const { setAuthTab } = useAuthStore();
-    // const { addToast } = useToastStore();
+    const { addToast } = useToastStore();
 
     const [loginData, setLoginData] = useState({
         id: "",
@@ -33,26 +33,32 @@ const LoginTab = () => {
 
     const handleLoginSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        setIsSubmitted(true);
 
-        const trimmedId = loginData.id.trim();
-        const trimmedPassword = loginData.password.trim();
+        addToast('success', 'This is Success toast', 'top-center');
+    }
 
-        setLoginData(prevState => ({
-            ...prevState,
-            id: trimmedId,
-            password: trimmedPassword
-        }));
+    // const handleLoginSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    //     e.preventDefault();
+    //     setIsSubmitted(true);
 
-        setValidationState({
-            isIdValid: !!trimmedId,
-            isPasswordValid: !!trimmedPassword
-        });
+    //     const trimmedId = loginData.id.trim();
+    //     const trimmedPassword = loginData.password.trim();
 
-        if (trimmedId && trimmedPassword) {
-            // console.log(trimmedId, trimmedPassword);
-        }
-    };
+    //     setLoginData(prevState => ({
+    //         ...prevState,
+    //         id: trimmedId,
+    //         password: trimmedPassword
+    //     }));
+
+    //     setValidationState({
+    //         isIdValid: !!trimmedId,
+    //         isPasswordValid: !!trimmedPassword
+    //     });
+
+    //     if (trimmedId && trimmedPassword) {
+    //         // console.log(trimmedId, trimmedPassword);
+    //     }
+    // };
 
     return (
         <div id='login'>

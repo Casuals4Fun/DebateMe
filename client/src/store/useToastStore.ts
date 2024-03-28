@@ -4,7 +4,7 @@ type Toast = {
     id: string;
     type: 'success' | 'error' | 'warning' | 'loading';
     message: string;
-    position?: 'top-left' | 'top-center' | 'top-right' | 'bottom-left' | 'bottom-center' | 'bottom-right';
+    position: 'top-left' | 'top-center' | 'top-right' | 'bottom-left' | 'bottom-center' | 'bottom-right';
 };
 
 type ToastStore = {
@@ -16,10 +16,14 @@ type ToastStore = {
 export const useToastStore = create<ToastStore>((set) => ({
     toasts: [],
     addToast: (type, message, position = 'bottom-right') => {
-        const id = Math.random().toString(36).substr(2, 9);
-        set((state) => ({
-            toasts: [...state.toasts, { id, type, message, position }],
-        }));
+        set((state) => {
+            if (state.toasts.length >= 5) return state;
+            const id = Math.random().toString(36).substr(2, 9);
+            return {
+                ...state,
+                toasts: [...state.toasts, { id, type, message, position }],
+            };
+        });
     },
     removeToast: (id) => {
         set((state) => ({

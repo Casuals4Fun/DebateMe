@@ -17,13 +17,31 @@ const Toast: React.FC = () => {
     }, [toasts, removeToast]);
 
     return (
-        toasts.map((toast) => (
-            <div className={`toast-container ${toast.position}`} key={toast.id}>
-                <div className={`toast toast-${toast.type}`}>
-                    {toast.message}
+        toasts.map((toast, index) => {
+            const marginStyle = toast.position.startsWith('bottom') ? { marginBottom: `${index * 10}px` } : { marginTop: `${index * 10}px` };
+
+            return (
+                <div
+                    key={toast.id}
+                    className={`toast-container ${toast.position}`}
+                    style={{
+                        zIndex: 9999 - index,
+                        ...marginStyle
+                    }}
+                >
+                    <div
+                        className='toast'
+                        style={{
+                            backgroundColor: `var(--toast-${toast.type}-bg)`,
+                            opacity: 1 - (0.2 * index),
+                            width: `calc(300px - ${5 * index}px)`
+                        }}
+                    >
+                        {toast.message}
+                    </div>
                 </div>
-            </div>
-        ))
+            );
+        })
     );
 };
 
