@@ -3,7 +3,9 @@ const Fastify = require('fastify')
 const cors = require('@fastify/cors')
 const db = require('./db.js')
 
-const fastify = Fastify()
+const fastify = Fastify({
+    bodyLimit: 7 * 1024 * 1024
+})
 
 fastify.register(cors, {
     origin: '*'
