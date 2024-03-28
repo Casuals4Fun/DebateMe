@@ -34,7 +34,7 @@ module.exports = async function (fastify, opts) {
         if (request.validationError) {
             const errors = request.validationError.validation.map(error => {
                 return {
-                    field: error.params.missingProperty || error.params.property,
+                    field: error.instancePath.substring(1),
                     message: error.message
                 };
             });
@@ -50,7 +50,7 @@ module.exports = async function (fastify, opts) {
         if (request.validationError) {
             const errors = request.validationError.validation.map(error => {
                 return {
-                    field: error.params.missingProperty || error.params.property,
+                    field: error.instancePath.substring(1),
                     message: error.message
                 };
             });
