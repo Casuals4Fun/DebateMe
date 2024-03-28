@@ -35,30 +35,27 @@ const LoginTab = () => {
         e.preventDefault();
 
         addToast('success', 'This is Success toast', 'top-center');
-    }
+        
+        setIsSubmitted(true);
 
-    // const handleLoginSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    //     e.preventDefault();
-    //     setIsSubmitted(true);
+        const trimmedId = loginData.id.trim();
+        const trimmedPassword = loginData.password.trim();
 
-    //     const trimmedId = loginData.id.trim();
-    //     const trimmedPassword = loginData.password.trim();
+        setLoginData(prevState => ({
+            ...prevState,
+            id: trimmedId,
+            password: trimmedPassword
+        }));
 
-    //     setLoginData(prevState => ({
-    //         ...prevState,
-    //         id: trimmedId,
-    //         password: trimmedPassword
-    //     }));
+        setValidationState({
+            isIdValid: !!trimmedId,
+            isPasswordValid: !!trimmedPassword
+        });
 
-    //     setValidationState({
-    //         isIdValid: !!trimmedId,
-    //         isPasswordValid: !!trimmedPassword
-    //     });
-
-    //     if (trimmedId && trimmedPassword) {
-    //         // console.log(trimmedId, trimmedPassword);
-    //     }
-    // };
+        if (trimmedId && trimmedPassword) {
+            // console.log(trimmedId, trimmedPassword);
+        }
+    };
 
     return (
         <div id='login'>
