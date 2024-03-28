@@ -5,7 +5,7 @@ import { RegisterDataProps } from '../../types';
 
 const SignupTab: React.FC<RegisterDataProps> = ({ registerData, setRegisterData }) => {
     const { setAuthTab } = useAuthStore();
-    
+
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [validationState, setValidationState] = useState({
         isEmailValid: true,
@@ -62,6 +62,7 @@ const SignupTab: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
                         name="email"
                         value={registerData.email}
                         onChange={handleInputChange}
+                        className={`${isSubmitted && !validationState.isEmailValid ? "shake" : ""}`}
                         style={{ borderColor: isSubmitted && !validationState.isEmailValid ? "red" : "" }}
                         placeholder={isSubmitted && !validationState.isEmailValid ? 'Required' : ''}
                     />
@@ -73,6 +74,7 @@ const SignupTab: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
                         name="password"
                         value={registerData.password}
                         onChange={handleInputChange}
+                        className={`${isSubmitted && !validationState.isPasswordValid ? "shake" : ""}`}
                         style={{ borderColor: isSubmitted && !validationState.isPasswordValid ? "red" : "" }}
                         placeholder={isSubmitted && !validationState.isPasswordValid ? 'Required' : ''}
                     />

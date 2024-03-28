@@ -88,6 +88,7 @@
 #auth-modal .form__container .input__container p {
     padding: 0 5px;
     position: absolute;
+    z-index: 6;
     top: -10px;
     left: 10px;
     background-color: var(--card_background);

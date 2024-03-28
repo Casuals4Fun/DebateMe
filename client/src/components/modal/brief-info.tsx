@@ -104,6 +104,7 @@ const BriefInfo: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
                             name="username"
                             value={registerData.username}
                             onChange={handleInputChange}
+                            className={`${isSubmitted && !validationState.isUsernameValid ? "shake" : ""}`}
                             style={{ borderColor: isSubmitted && !validationState.isUsernameValid ? "red" : "" }}
                             placeholder={isSubmitted && !validationState.isUsernameValid ? 'Required' : ''}
                         />
@@ -116,6 +117,7 @@ const BriefInfo: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
                         name="first_name"
                         value={registerData.first_name}
                         onChange={handleInputChange}
+                        className={`${isSubmitted && !validationState.isFirstNameValid ? "shake" : ""}`}
                         style={{ borderColor: isSubmitted && !validationState.isFirstNameValid ? "red" : "" }}
                         placeholder={isSubmitted && !validationState.isFirstNameValid ? 'Required' : ''}
                     />
@@ -127,6 +129,7 @@ const BriefInfo: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
                         name="last_name"
                         value={registerData.last_name}
                         onChange={handleInputChange}
+                        className={`${isSubmitted && !validationState.isLastNameValid ? "shake" : ""}`}
                         style={{ borderColor: isSubmitted && !validationState.isLastNameValid ? "red" : "" }}
                         placeholder={isSubmitted && !validationState.isLastNameValid ? 'Required' : ''}
                     />
@@ -137,7 +140,10 @@ const BriefInfo: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
                             checked={term}
                             readOnly
                         />
-                        <span className='checkmark' style={{ borderColor: isSubmitted && !term ? "red" : "" }} />
+                        <span
+                            className={`checkmark ${isSubmitted && !term ? "shake" : ""}`}
+                            style={{ borderColor: isSubmitted && !term ? "red" : "" }}
+                        />
                     </div>
                     <p>Accept <span>Terms & Conditions</span></p>
                 </div>

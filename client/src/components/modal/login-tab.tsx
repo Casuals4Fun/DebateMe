@@ -65,6 +65,7 @@ const LoginTab = () => {
                         name="id"
                         value={loginData.id}
                         onChange={handleInputChange}
+                        className={`${isSubmitted && !validationState.isIdValid ? "shake" : ""}`}
                         style={{ borderColor: isSubmitted && !validationState.isIdValid ? "red" : "" }}
                         placeholder={isSubmitted && !validationState.isIdValid ? 'Required' : ''}
                     />
@@ -76,6 +77,7 @@ const LoginTab = () => {
                         name="password"
                         value={loginData.password}
                         onChange={handleInputChange}
+                        className={`${isSubmitted && !validationState.isPasswordValid ? "shake" : ""}`}
                         style={{ borderColor: isSubmitted && !validationState.isPasswordValid ? "red" : "" }}
                         placeholder={isSubmitted && !validationState.isPasswordValid ? 'Required' : ''}
                     />
