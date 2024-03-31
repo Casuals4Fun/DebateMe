@@ -7,16 +7,44 @@ export enum AuthTab {
     Info = 'info'
 }
 
+export enum AuthStatus {
+    Authenticating = 'authenticating',
+    Authenticated = 'authenticated',
+    Failed = 'failed',
+}
+
+export interface User {
+    username: string
+    email: string
+    first_name: string
+    last_name: string
+    avatar: string | null
+}
+
 interface AuthStore {
-    authTab: AuthTab;
-    setAuthTab: (tab: AuthTab) => void;
-    isAuthenticated: boolean;
-    setIsAuthenticated: (authenticated: boolean) => void;
+    route: string
+    setRoute: (navigate: string) => void
+    authTab: AuthTab
+    setAuthTab: (tab: AuthTab) => void
+    isAuthenticated: string
+    setIsAuthenticated: (authenticated: AuthStatus) => void
+    user: User
+    setUser: (data: User) => void
 }
 
 export const useAuthStore = create<AuthStore>((set) => ({
+    route: "",
+    setRoute: (navigate: string) => set({ route: navigate }),
     authTab: AuthTab.Closed,
     setAuthTab: (tab: AuthTab) => set({ authTab: tab }),
-    isAuthenticated: false,
-    setIsAuthenticated: (authenticated: boolean) => set({ isAuthenticated: authenticated })
+    isAuthenticated: AuthStatus.Authenticating,
+    setIsAuthenticated: (authenticated: AuthStatus) => set({ isAuthenticated: authenticated }),
+    user: {
+        username: "",
+        email: "",
+        first_name: "",
+        last_name: "",
+        avatar: null
+    },
+    setUser: (data: User) => set({ user: data }),
 }));

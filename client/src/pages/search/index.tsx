@@ -1,5 +1,5 @@
 import "./style.css";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Explore from "../../components/sidebar/explore";
 import { IoMdClose } from "react-icons/io";

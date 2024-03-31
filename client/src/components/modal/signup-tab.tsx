@@ -25,6 +25,10 @@ const SignupTab: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
         }));
     }, []);
 
+    const handleKeyPress = useCallback((e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === ' ') e.preventDefault();
+    }, []);
+
     const handleNextTab = useCallback((e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setIsSubmitted(true);
@@ -44,6 +48,9 @@ const SignupTab: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
         });
 
         if (trimmedEmail && trimmedPassword) {
+            if (trimmedPassword.length < 6) {
+                return // TODO: Error toast - 'Password should be atleast 6 digits'
+            }
             setAuthTab(AuthTab.Info);
         }
     }, [registerData, setAuthTab]);
@@ -62,6 +69,7 @@ const SignupTab: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
                         name="email"
                         value={registerData.email}
                         onChange={handleInputChange}
+                        onKeyPress={handleKeyPress}
                         className={`${isSubmitted && !validationState.isEmailValid ? "shake" : ""}`}
                         style={{ borderColor: isSubmitted && !validationState.isEmailValid ? "red" : "" }}
                         placeholder={isSubmitted && !validationState.isEmailValid ? 'Required' : ''}
@@ -74,6 +82,7 @@ const SignupTab: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
                         name="password"
                         value={registerData.password}
                         onChange={handleInputChange}
+                        onKeyPress={handleKeyPress}
                         className={`${isSubmitted && !validationState.isPasswordValid ? "shake" : ""}`}
                         style={{ borderColor: isSubmitted && !validationState.isPasswordValid ? "red" : "" }}
                         placeholder={isSubmitted && !validationState.isPasswordValid ? 'Required' : ''}

@@ -1,19 +1,23 @@
 import "./left-sidebar.css";
 import { useLocation, Link, useNavigate } from "react-router-dom";
+import { AuthStatus, AuthTab, useAuthStore } from "../../store/useAuthStore";
 import { leftSidebarLinks } from "../../data/left-sidebar-links";
 import Profile from "./profile";
-import { AuthTab, useAuthStore } from "../../store/useAuthStore";
 
 const LeftSidebar = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const { isAuthenticated, setAuthTab } = useAuthStore();
+  const { setRoute, isAuthenticated, setAuthTab } = useAuthStore();
 
   const handleLinkClick = (href: string, name: string) => {
     if (name === "Create Debate") {
-      if (!isAuthenticated) setAuthTab(AuthTab.Login);
-      else navigate(href);
+      if (isAuthenticated === AuthStatus.Failed) {
+        setRoute('/create');
+        setAuthTab(AuthTab.Login);
+      }
+      else if (isAuthenticated === AuthStatus.Authenticated) navigate(href);
+      else return // Warning Toast - 'Try again'
     }
     else navigate(href);
   };

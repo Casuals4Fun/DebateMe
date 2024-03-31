@@ -1,11 +1,12 @@
 import React, { useState, useCallback } from "react";
-import { AuthTab, useAuthStore } from "../../store/useAuthStore";
-import { useToastStore } from "../../store/useToastStore";
+import { useNavigate } from "react-router-dom";
+import { AuthStatus, AuthTab, useAuthStore } from "../../store/useAuthStore";
 import { FcGoogle } from "react-icons/fc";
 
 const LoginTab = () => {
-    const { setAuthTab } = useAuthStore();
-    const { addToast } = useToastStore();
+    const navigate = useNavigate();
+
+    const { route, setAuthTab, setIsAuthenticated, setUser } = useAuthStore();
 
     const [loginData, setLoginData] = useState({
         id: "",
@@ -31,11 +32,12 @@ const LoginTab = () => {
         }));
     }, []);
 
-    const handleLoginSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
+    const handleKeyPress = useCallback((e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === ' ') e.preventDefault();
+    }, []);
 
-        addToast('success', 'This is Success toast', 'top-center');
-        
+    const handleLoginSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
         setIsSubmitted(true);
 
         const trimmedId = loginData.id.trim();
@@ -53,7 +55,36 @@ const LoginTab = () => {
         });
 
         if (trimmedId && trimmedPassword) {
-            // console.log(trimmedId, trimmedPassword);
+            await fetch(`${import.meta.env.VITE_API_URL}/auth/login`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ id: trimmedId, password: trimmedPassword })
+            })
+                .then(res => res.json())
+                .then(response => {
+                    if (response.success) {
+                        setUser(response.data.user);
+                        setIsAuthenticated(AuthStatus.Authenticating);
+                        localStorage.setItem('token', response.data.token);
+                        setAuthTab(AuthTab.Closed);
+                        if (route) navigate(route);
+                        else navigate('/');
+                        // TODO: Success toast - `${response.message}`
+                    }
+                    else {
+                        setIsAuthenticated(AuthStatus.Failed);
+                        if (response.message === 'Validation failed') {
+                            // TODO: Error toast - `${response.errors[0].field.charAt(0).toUpperCase() + response.errors[0].field.slice(1)} ${response.errors[0].message}`
+                        }
+                        // TODO: Error toast - `${response.message}`
+                    }
+                })
+                .catch(err => {
+                    setIsAuthenticated(AuthStatus.Failed);
+                    console.log(`Catch Error\n ${err}`)
+                })
         }
     };
 
@@ -70,6 +101,7 @@ const LoginTab = () => {
                         name="id"
                         value={loginData.id}
                         onChange={handleInputChange}
+                        onKeyPress={handleKeyPress}
                         className={`${isSubmitted && !validationState.isIdValid ? "shake" : ""}`}
                         style={{ borderColor: isSubmitted && !validationState.isIdValid ? "red" : "" }}
                         placeholder={isSubmitted && !validationState.isIdValid ? 'Required' : ''}
@@ -82,6 +114,7 @@ const LoginTab = () => {
                         name="password"
                         value={loginData.password}
                         onChange={handleInputChange}
+                        onKeyPress={handleKeyPress}
                         className={`${isSubmitted && !validationState.isPasswordValid ? "shake" : ""}`}
                         style={{ borderColor: isSubmitted && !validationState.isPasswordValid ? "red" : "" }}
                         placeholder={isSubmitted && !validationState.isPasswordValid ? 'Required' : ''}
