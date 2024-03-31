@@ -1,4 +1,5 @@
-const { register, login } = require('../controllers/auth');
+const { register, login, autoLogin } = require('../controllers/auth');
+const verifyToken = require('../middleware/verifyToken');
 
 module.exports = async function (fastify, opts) {
     const registerSchema = {
@@ -57,5 +58,19 @@ module.exports = async function (fastify, opts) {
             return reply.code(400).send({ success: false, message: 'Validation failed', errors });
         }
         return login(fastify, request, reply);
+    });
+
+    fastify.get('/auto-login', {
+        preHandler: verifyToken
+    }, async (request, reply) => {
+        try {
+            return autoLogin(fastify, request, reply);
+        } catch (error) {
+            if (error.message === 'Authorization header is missing' || error.message === 'Invalid token') {
+                return reply.code(401).send({ success: false, message: error.message });
+            } else {
+                return reply.code(500).send({ success: false, message: 'Internal Server Error' });
+            }
+        }
     });
 }

@@ -1,22 +1,14 @@
 require('dotenv').config()
 const Fastify = require('fastify')
-const cors = require('@fastify/cors')
 const db = require('./db.js')
 
 const fastify = Fastify({
     bodyLimit: 7 * 1024 * 1024
 })
 
-fastify.register(cors, { origin: process.env.FRONTEND_URL })
+fastify.register(require('@fastify/cors'), { origin: process.env.FRONTEND_URL })
 
 fastify.decorate('mysql', db)
-
-fastify.addHook('preHandler', async (request, reply) => {
-    const apiKey = request.headers['x-api-key']
-    if (!apiKey || apiKey !== process.env.API_KEY) {
-        reply.redirect(process.env.FRONTEND_URL)
-    }
-})
 
 fastify.register(require('./routes/auth'), { prefix: '/api/auth' })
 
