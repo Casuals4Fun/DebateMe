@@ -7,14 +7,18 @@
 
 .profile__image,
 .modal-profile__image {
-    width: 45px;
-    height: 45px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
-    border: 2px solid var(--explore_input_bg);
     overflow: hidden;
-    /* box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; */
     cursor: pointer;
     flex-shrink: 0;
+}
+
+.modal-profile__image {
+    width: 45px;
+    height: 45px;
+    border: 2px solid var(--explore_input_bg);
 }
 
 .profile__image img,

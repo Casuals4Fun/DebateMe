@@ -40,6 +40,25 @@
     display: none;
 }
 
+#right-sidebar .profile-theme__container .login-btn {
+    width: 125px;
+    height: 40px;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 30px;
+    font-size: 17.5px;
+    background-color: var(--explore_input_bg);
+    color: var(--body_color);
+    transition: 0.2s ease-in-out;
+}
+
+#right-sidebar .profile-theme__container .login-btn:hover {
+    background-color: var(--body_color);
+    color: var(--body_background);
+}
+
 .menu-icon {
     display: none;
     align-items: center;
@@ -121,6 +140,15 @@
 
     #right-sidebar .profile-theme__container .profile__wrapper .theme__button {
         display: unset;
+    }
+
+    #right-sidebar .profile-theme__container .login-btn {
+        width: 40px;
+        height: 40px;
+    }
+
+    #right-sidebar .profile-theme__container .login-btn p {
+        display: none;
     }
 
     #right-sidebar .expand-menu__background {

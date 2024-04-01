@@ -3,6 +3,7 @@ import { useLocation, Link, useNavigate } from "react-router-dom";
 import { AuthStatus, AuthTab, useAuthStore } from "../../store/useAuthStore";
 import { leftSidebarLinks } from "../../data/left-sidebar-links";
 import Profile from "./profile";
+import { GoPerson } from "react-icons/go";
 
 const LeftSidebar = () => {
   const location = useLocation();
@@ -41,7 +42,13 @@ const LeftSidebar = () => {
         ))}
       </ul>
       <div className='profile__container'>
-        <Profile />
+        {isAuthenticated === AuthStatus.Authenticated ? (
+          <Profile />
+        ) : (
+          <button style={{ marginBottom: '6px' }} onClick={() => setAuthTab(AuthTab.Login)}>
+            <GoPerson size={30} />
+          </button>
+        )}
       </div>
     </div>
   )

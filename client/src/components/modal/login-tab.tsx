@@ -2,12 +2,13 @@ import React, { useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthStatus, AuthTab, useAuthStore } from "../../store/useAuthStore";
 import { toast } from "sonner";
+import LoadingSVG from "../loading/svg";
 import { FcGoogle } from "react-icons/fc";
 
 const LoginTab = () => {
     const navigate = useNavigate();
 
-    const { route, setAuthTab, setIsAuthenticated, setUser } = useAuthStore();
+    const { route, setAuthTab, isAuthenticated, setIsAuthenticated, setUser } = useAuthStore();
 
     const [loginData, setLoginData] = useState({
         id: "",
@@ -56,6 +57,7 @@ const LoginTab = () => {
         });
 
         if (trimmedId && trimmedPassword) {
+            setIsAuthenticated(AuthStatus.Authenticating);
             await fetch(`${import.meta.env.VITE_API_URL}/auth/login`, {
                 method: 'POST',
                 headers: {
@@ -120,7 +122,9 @@ const LoginTab = () => {
                     />
                 </div>
                 <button type='submit'>
-                    Log in
+                    {/* <LoadingSVG size={22} /> */}
+                    {/* Login */}
+                    {isAuthenticated === AuthStatus.Authenticating ? <LoadingSVG size={23} /> : 'Login'}
                 </button>
             </form>
             <div className='or-divider'>
@@ -129,7 +133,7 @@ const LoginTab = () => {
                 <div className='divider' />
             </div>
             <button className='google-btn'>
-                <FcGoogle size={23} />
+                <FcGoogle size={22.5} />
                 <span>Continue with Google</span>
             </button>
         </div>

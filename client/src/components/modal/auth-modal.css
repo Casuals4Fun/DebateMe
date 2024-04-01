@@ -106,6 +106,9 @@
 }
 
 #auth-modal .form__container button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 12.5px 0;
     background-color: var(--body_color);
     color: var(--body_background);

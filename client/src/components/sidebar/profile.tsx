@@ -11,7 +11,7 @@ import { PiSignOutBold } from "react-icons/pi";
 const Profile = () => {
     const navigate = useNavigate();
     const { expand, setExpand } = useNavStore();
-    const { setIsAuthenticated, setUser } = useAuthStore();
+    const { setIsAuthenticated, user, setUser } = useAuthStore();
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
@@ -37,7 +37,7 @@ const Profile = () => {
                 className='profile__image'
                 onClick={() => setExpand(!expand)}
             >
-                <img src="/user.jpg" alt="" />
+                <img src={user.avatar || "/user.jpg"} alt="" />
             </div>
 
             {expand && (
@@ -45,11 +45,11 @@ const Profile = () => {
                     <div className='modal-profile__wrapper'>
                         <div className="profile-wrapper">
                             <div className='modal-profile__image'>
-                                <img src="/user.jpg" alt="" />
+                                <img src={user.avatar || "/user.jpg"} alt="" />
                             </div>
                             <div className='modal-profile__info'>
-                                <p>Julie Roberts</p>
-                                <p>julieroberts</p>
+                                <p>{user.first_name} {user.last_name}</p>
+                                <p>{user.username}</p>
                             </div>
                         </div>
                         <ToggleTheme />

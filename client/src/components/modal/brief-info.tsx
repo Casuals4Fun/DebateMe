@@ -1,10 +1,12 @@
 import React, { useState, useCallback } from "react";
 import { AuthTab, useAuthStore } from "../../store/useAuthStore";
+import { RegisterDataProps } from "../../types";
 import useFileHandler from "../../utils/useFileHandler";
+import { toast } from "sonner";
+import LoadingSVG from "../loading/svg";
 import { IoPersonCircleOutline } from "react-icons/io5";
 import { MdModeEdit } from "react-icons/md";
 import { GrCloudUpload } from "react-icons/gr";
-import { RegisterDataProps } from "../../types";
 
 const BriefInfo: React.FC<RegisterDataProps> = ({ registerData, setRegisterData }) => {
     const { setAuthTab } = useAuthStore();
@@ -16,6 +18,7 @@ const BriefInfo: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
         isFirstNameValid: true,
         isLastNameValid: true
     });
+    const [loading, setLoading] = useState<boolean>(false);
 
     const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -40,7 +43,7 @@ const BriefInfo: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
         }));
     };
 
-    const handleFormSubmit = useCallback((e: React.FormEvent<HTMLFormElement>) => {
+    const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setIsSubmitted(true);
 
@@ -64,9 +67,38 @@ const BriefInfo: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
         if (!term) return;
 
         if (trimmedUsername && trimmedFirstName && trimmedLastName) {
-            
+            setLoading(true);
+            await fetch(`${import.meta.env.VITE_API_URL}/auth/register`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email: registerData.email,
+                    password: registerData.password,
+                    avatar: registerData.avatar,
+                    username: trimmedUsername,
+                    first_name: trimmedFirstName,
+                    last_name: trimmedLastName
+                })
+            })
+                .then(res => res.json())
+                .then(response => {
+                    if (response.success) {
+                        setAuthTab(AuthTab.Login);
+                        toast.success(response.message)
+                    }
+                    else {
+                        if (response.message === 'Validation failed') {
+                            return toast.error(`${response.errors[0].field.charAt(0).toUpperCase() + response.errors[0].field.slice(1)} ${response.errors[0].message}`)
+                        }
+                        toast.error(response.message)
+                    }
+                })
+                .catch(() => toast.error('Something went wrong'))
+                .finally(() => setLoading(false));
         }
-    }, [registerData, term, setAuthTab]);
+    };
 
     return (
         <div id='brief'>
@@ -148,7 +180,7 @@ const BriefInfo: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
                     <p>Accept <span>Terms & Conditions</span></p>
                 </div>
                 <button type='submit'>
-                    Create my Account
+                    {loading ? <LoadingSVG size={23} /> : 'Create my Account'}
                 </button>
             </form>
         </div>
