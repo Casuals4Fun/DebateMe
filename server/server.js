@@ -1,12 +1,18 @@
 require('dotenv').config()
 const Fastify = require('fastify')
+const path = require('path')
 const db = require('./db.js')
 
-const fastify = Fastify({
-    bodyLimit: 7 * 1024 * 1024
-})
+const fastify = Fastify({ bodyLimit: 7 * 1024 * 1024 })
 
 fastify.register(require('@fastify/cors'), { origin: process.env.FRONTEND_URL })
+
+fastify.register(require('@fastify/static'), {
+    root: path.join(__dirname, 'avatars'),
+    prefix: '/avatars/',
+    wildcard: false,
+    redirect: false,
+});
 
 fastify.decorate('mysql', db)
 

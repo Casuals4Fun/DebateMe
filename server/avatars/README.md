@@ -1,0 +1,1 @@
+This dir is where the user avatar are stored
