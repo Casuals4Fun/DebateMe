@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from "react";
 import { RegisterDataProps } from "../../types";
 import { AuthTab, useAuthStore } from "../../store/useAuthStore";
+import { toast } from "sonner";
 import { FcGoogle } from "react-icons/fc";
 
 const SignupTab: React.FC<RegisterDataProps> = ({ registerData, setRegisterData }) => {
@@ -49,7 +50,7 @@ const SignupTab: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
 
         if (trimmedEmail && trimmedPassword) {
             if (trimmedPassword.length < 6) {
-                return // TODO: Error toast - 'Password should be atleast 6 digits'
+                return toast.warning('Password should be atleast 6 digits')
             }
             setAuthTab(AuthTab.Info);
         }

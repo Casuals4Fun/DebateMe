@@ -118,8 +118,10 @@ a {
 }
 
 button {
+    color: inherit;
     border: none;
     background: none;
+    cursor: pointer;
 }
 
 ul {

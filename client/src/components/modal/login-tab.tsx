@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthStatus, AuthTab, useAuthStore } from "../../store/useAuthStore";
+import { toast } from "sonner";
 import { FcGoogle } from "react-icons/fc";
 
 const LoginTab = () => {
@@ -66,25 +67,23 @@ const LoginTab = () => {
                 .then(response => {
                     if (response.success) {
                         setUser(response.data.user);
-                        setIsAuthenticated(AuthStatus.Authenticating);
+                        setIsAuthenticated(AuthStatus.Authenticated);
                         localStorage.setItem('token', response.data.token);
                         setAuthTab(AuthTab.Closed);
-                        if (route) navigate(route);
-                        else navigate('/');
-                        // TODO: Success toast - `${response.message}`
+
+                        navigate(route);
+
+                        toast.success(response.message)
                     }
                     else {
                         setIsAuthenticated(AuthStatus.Failed);
                         if (response.message === 'Validation failed') {
-                            // TODO: Error toast - `${response.errors[0].field.charAt(0).toUpperCase() + response.errors[0].field.slice(1)} ${response.errors[0].message}`
+                            return toast.error(`${response.errors[0].field.charAt(0).toUpperCase() + response.errors[0].field.slice(1)} ${response.errors[0].message}`)
                         }
-                        // TODO: Error toast - `${response.message}`
+                        toast.error(response.message)
                     }
                 })
-                .catch(err => {
-                    setIsAuthenticated(AuthStatus.Failed);
-                    console.log(`Catch Error\n ${err}`)
-                })
+                .catch(() => setIsAuthenticated(AuthStatus.Failed));
         }
     };
 

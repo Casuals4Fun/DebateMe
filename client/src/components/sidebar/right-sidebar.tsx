@@ -1,10 +1,10 @@
 import "./right-sidebar.css";
 import { Link, useLocation } from "react-router-dom";
+import { useNavStore } from "../../store/useNavStore";
 import { IoSearch } from "react-icons/io5";
 import ToggleTheme from "../button/toggle-theme";
 import Profile from "./profile";
 import Explore from "./explore";
-import { useNavStore } from "../../store/useNavStore";
 
 const RightSidebar = () => {
   const location = useLocation();

@@ -1,13 +1,17 @@
 import "./profile.css";
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useNavStore } from "../../store/useNavStore";
+import { useAuthStore } from "../../store/useAuthStore";
 import ToggleTheme from "../button/toggle-theme";
+import useLogout from "../../hooks/useLogout";
 import { IoMdPerson } from "react-icons/io";
 import { PiSignOutBold } from "react-icons/pi";
 
 const Profile = () => {
+    const navigate = useNavigate();
     const { expand, setExpand } = useNavStore();
+    const { setIsAuthenticated, setUser } = useAuthStore();
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
@@ -58,14 +62,16 @@ const Profile = () => {
                         <IoMdPerson size={18} />
                         <p className='underline'>Profile</p>
                     </Link>
-                    <Link
-                        to='/'
+                    <button
                         className='modal-profile-btn'
-                        onClick={() => setExpand(false)}
+                        onClick={() => {
+                            setExpand(false);
+                            useLogout(navigate, setIsAuthenticated, setUser);
+                        }}
                     >
                         <PiSignOutBold size={18} />
                         <p className='underline'>Logout</p>
-                    </Link>
+                    </button>
                 </div>
             )}
         </div>

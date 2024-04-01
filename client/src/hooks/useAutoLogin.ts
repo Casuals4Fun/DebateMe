@@ -1,12 +1,17 @@
 import { User, AuthStatus } from '../store/useAuthStore';
 
+type SetRoute = (navigate: string) => void;
 type SetUser = (user: User) => void;
 type SetIsAuthenticated = (authenticated: AuthStatus) => void;
 
-const useAutoLogin = (setUser: SetUser, setIsAuthenticated: SetIsAuthenticated) => {
+const useAutoLogin = (setRoute: SetRoute, setUser: SetUser, setIsAuthenticated: SetIsAuthenticated) => {
     const token = localStorage.getItem('token');
 
-    if (token) {
+    if (!token) {
+        if (location.pathname !== '/auth') setRoute(location.pathname);
+        return setIsAuthenticated(AuthStatus.Failed);
+    }
+    else {
         const headers = new Headers();
         headers.append('Authorization', `Bearer ${token}`);
 
@@ -19,12 +24,8 @@ const useAutoLogin = (setUser: SetUser, setIsAuthenticated: SetIsAuthenticated) 
                 setUser(response.data.user);
                 setIsAuthenticated(AuthStatus.Authenticated);
             })
-            .catch(error => {
-                console.error('Auto-login failed:', error);
-                setIsAuthenticated(AuthStatus.Failed);
-            });
+            .catch(() => setIsAuthenticated(AuthStatus.Failed));
     }
-    else setIsAuthenticated(AuthStatus.Failed);
 };
 
 export default useAutoLogin;

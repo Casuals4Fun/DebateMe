@@ -1,26 +1,29 @@
 import "./App.css";
 import { useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import { ProtectedRoute } from "./ProtectedRoute";
 
 import { Theme, useNavStore } from "./store/useNavStore";
 import { AuthTab, useAuthStore } from "./store/useAuthStore";
 import useAutoLogin from "./hooks/useAutoLogin";
 
+import { Toaster } from "sonner";
 import LeftSidebar from "./components/sidebar/left-sidebar";
 import RightSidebar from "./components/sidebar/right-sidebar";
 import HomePage from "./pages/home";
+import AuthPage from "./pages/auth";
 import SearchPage from "./pages/search";
+import CreateDebatePage from "./pages/create-debate";
 import HotTopicsPage from "./pages/hot-topics";
 import OpenTopicsPage from "./pages/open-topics";
 import AuthModal from "./components/modal/auth-modal";
 
 export default function App() {
-  const { authTab, setUser, setIsAuthenticated } = useAuthStore();
+  const { authTab, setUser, setIsAuthenticated, setRoute } = useAuthStore();
   const { expand } = useNavStore();
 
   useEffect(() => {
-    useAutoLogin(setUser, setIsAuthenticated);
+    useAutoLogin(setRoute, setUser, setIsAuthenticated);
     const savedTheme = localStorage.getItem('theme') || Theme.Dark;
     document.body.setAttribute('data-theme', savedTheme);
   }, []);
@@ -31,12 +34,11 @@ export default function App() {
       <main id='main' className={`${expand ? 'expand' : ''}`}>
         <Routes>
           <Route path='/' element={<HomePage />} />
+          <Route path='/auth' element={<AuthPage />} />
+          <Route path='/login' element={<Navigate to='/auth' />} />
+          <Route path='/signup' element={<Navigate to='/auth' />} />
           <Route path='/search' element={<SearchPage />} />
-          <Route path='/create' element={
-            <ProtectedRoute>
-              <>Create Page</>
-            </ProtectedRoute>
-          } />
+          <Route path='/create' element={<ProtectedRoute><CreateDebatePage /></ProtectedRoute>} />
           <Route path='/hot-topics' element={<HotTopicsPage />} />
           <Route path='/open-topics' element={<OpenTopicsPage />} />
         </Routes>
@@ -44,6 +46,12 @@ export default function App() {
       <RightSidebar />
 
       {authTab !== AuthTab.Closed && <AuthModal />}
+
+      <Toaster
+        duration={3000}
+        position="top-center"
+        theme={(localStorage.getItem('theme') as Theme) || Theme.Dark}
+      />
     </div>
   );
 }

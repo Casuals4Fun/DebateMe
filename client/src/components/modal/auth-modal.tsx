@@ -1,5 +1,6 @@
 import "./auth-modal.css";
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 import { useAuthStore, AuthTab } from "../../store/useAuthStore";
 import LoginTab from "./login-tab";
 import SignupTab from "./signup-tab";
@@ -7,6 +8,7 @@ import BriefInfo from "./brief-info";
 import { IoClose } from "react-icons/io5";
 
 const AuthModal = () => {
+    const location = useLocation();
     const { authTab, setAuthTab } = useAuthStore();
 
     const [registerData, setRegisterData] = useState({
@@ -19,7 +21,7 @@ const AuthModal = () => {
     });
 
     const handleBackgroundClick = (event: React.MouseEvent<HTMLDivElement>) => {
-        if (event.target === event.currentTarget) {
+        if (location.pathname !== '/auth' && event.target === event.currentTarget) {
             setAuthTab(AuthTab.Closed);
         }
     };
@@ -45,12 +47,14 @@ const AuthModal = () => {
                         />
                     )}
                 </div>
-                <button
-                    className='close__btn'
-                    onClick={() => setAuthTab(AuthTab.Closed)}
-                >
-                    <IoClose size={25} />
-                </button>
+                {location.pathname !== '/auth' && (
+                    <button
+                        className='close__btn'
+                        onClick={() => setAuthTab(AuthTab.Closed)}
+                    >
+                        <IoClose size={25} />
+                    </button>
+                )}
             </div>
         </div>
     )
