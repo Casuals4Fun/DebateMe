@@ -58,7 +58,7 @@ const LoginTab = () => {
 
         if (trimmedId && trimmedPassword) {
             setIsAuthenticated(AuthStatus.Authenticating);
-            await fetch(`${import.meta.env.VITE_API_URL}/auth/login`, {
+            await fetch(`${import.meta.env.VITE_SERVER_URL}/api/auth/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -132,7 +132,7 @@ const LoginTab = () => {
                 <p>or</p>
                 <div className='divider' />
             </div>
-            <button className='google-btn'>
+            <button className='google-btn' onClick={() => window.location.href = `${import.meta.env.VITE_SERVER_URL}/api/auth/google`}>
                 <FcGoogle size={22.5} />
                 <span>Continue with Google</span>
             </button>

@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from "react";
-import { AuthTab, useAuthStore } from "../../store/useAuthStore";
+import { AuthTab, useAuthStore, useTempStore } from "../../store/useAuthStore";
 import { RegisterDataProps } from "../../types";
 import useFileHandler from "../../utils/useFileHandler";
 import { toast } from "sonner";
@@ -10,6 +10,7 @@ import { GrCloudUpload } from "react-icons/gr";
 
 const BriefInfo: React.FC<RegisterDataProps> = ({ registerData, setRegisterData }) => {
     const { setAuthTab } = useAuthStore();
+    const { clearTempUser } = useTempStore();
 
     const [term, setTerm] = useState<boolean>(false);
     const [isSubmitted, setIsSubmitted] = useState(false);
@@ -68,7 +69,7 @@ const BriefInfo: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
 
         if (trimmedUsername && trimmedFirstName && trimmedLastName) {
             setLoading(true);
-            await fetch(`${import.meta.env.VITE_API_URL}/auth/register`, {
+            await fetch(`${import.meta.env.VITE_SERVER_URL}/api/auth/register`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -86,7 +87,8 @@ const BriefInfo: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
                 .then(response => {
                     if (response.success) {
                         setAuthTab(AuthTab.Login);
-                        toast.success(response.message)
+                        toast.success(response.message);
+                        clearTempUser();
                     }
                     else {
                         if (response.message === 'Validation failed') {

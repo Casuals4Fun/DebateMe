@@ -19,11 +19,11 @@ import OpenTopicsPage from "./pages/open-topics";
 import AuthModal from "./components/modal/auth-modal";
 
 export default function App() {
-  const { authTab, setUser, setIsAuthenticated, setRoute } = useAuthStore();
+  const { authTab, setAuthTab, setUser, setIsAuthenticated, setRoute } = useAuthStore();
   const { expand } = useNavStore();
 
   useEffect(() => {
-    useAutoLogin(setRoute, setUser, setIsAuthenticated);
+    useAutoLogin(setRoute, setUser, setIsAuthenticated, setAuthTab);
     const savedTheme = localStorage.getItem('theme') || Theme.Dark;
     document.body.setAttribute('data-theme', savedTheme);
   }, []);

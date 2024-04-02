@@ -1,7 +1,7 @@
 import "./auth-modal.css";
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
-import { useAuthStore, AuthTab } from "../../store/useAuthStore";
+import { useAuthStore, AuthTab, useTempStore } from "../../store/useAuthStore";
 import LoginTab from "./login-tab";
 import SignupTab from "./signup-tab";
 import BriefInfo from "./brief-info";
@@ -10,15 +10,16 @@ import { IoClose } from "react-icons/io5";
 const AuthModal = () => {
     const location = useLocation();
     const { authTab, setAuthTab } = useAuthStore();
+    const { tempUser } = useTempStore();
 
-    const [registerData, setRegisterData] = useState({
-        email: "",
+    const [registerData, setRegisterData] = useState(() => ({
+        email: tempUser.email || "",
         password: "",
-        avatar: "",
-        username: "",
-        first_name: "",
-        last_name: ""
-    });
+        avatar: tempUser.avatar || "",
+        username: tempUser.username || "",
+        first_name: tempUser.first_name || "",
+        last_name: tempUser.last_name || ""
+    }));
 
     const handleBackgroundClick = (event: React.MouseEvent<HTMLDivElement>) => {
         if (location.pathname !== '/auth' && event.target === event.currentTarget) {

@@ -46,5 +46,31 @@ export const useAuthStore = create<AuthStore>((set) => ({
         last_name: "",
         avatar: null
     },
-    setUser: (data: User) => set({ user: data }),
+    setUser: (data: User) => set({ user: data })
+}));
+
+interface TempStore {
+    tempUser: User
+    setTempUser: (data: User) => void
+    clearTempUser: () => void
+}
+
+export const useTempStore = create<TempStore>((set) => ({
+    tempUser: {
+        username: "",
+        email: "",
+        first_name: "",
+        last_name: "",
+        avatar: null
+    },
+    setTempUser: (data: User) => set({ tempUser: data }),
+    clearTempUser: () => set({
+        tempUser: {
+            username: "",
+            email: "",
+            first_name: "",
+            last_name: "",
+            avatar: null
+        }
+    })
 }));
