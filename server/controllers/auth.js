@@ -60,7 +60,7 @@ exports.register = async function (fastify, request, reply) {
             const token = jwt.sign({ userId: username }, process.env.JWT_SECRET, { expiresIn: '12h' });
             return reply.code(201).send({
                 success: true,
-                message: 'User account created successfully.',
+                message: 'Account created successfully.',
                 data: {
                     user: { email, avatar: avatarPath, username, first_name, last_name },
                     token
