@@ -1,10 +1,21 @@
-require('dotenv').config()
-const Fastify = require('fastify')
-const path = require('path')
-const db = require('./db.js')
-const fastifyOauth2 = require('@fastify/oauth2');
+require('dotenv').config();
+const path = require('path');
 
-const fastify = Fastify({ bodyLimit: 7 * 1024 * 1024 })
+const http = require('http');
+let server;
+
+const serverFactory = (handler, opts) => {
+    server = http.createServer((req, res) => {
+        handler(req, res);
+    });
+
+    return server;
+};
+
+const fastify = require('fastify')({
+    serverFactory: serverFactory,
+    bodyLimit: 7 * 1024 * 1024
+});
 
 fastify.register(require('@fastify/cors'), { origin: process.env.FRONTEND_URL })
 
@@ -15,9 +26,9 @@ fastify.register(require('@fastify/static'), {
     redirect: false,
 });
 
-fastify.decorate('mysql', db)
+fastify.decorate('mysql', require('./db.js'))
 
-fastify.register(fastifyOauth2, {
+fastify.register(require('@fastify/oauth2'), {
     name: 'googleOAuth2',
     scope: 'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email',
     credentials: {
@@ -39,18 +50,9 @@ fastify.setNotFoundHandler((request, reply) => {
     reply.redirect(process.env.FRONTEND_URL)
 })
 
-db.query('SELECT 1')
-    .then(() => {
-        console.log('Database connected')
-        fastify
-            .listen({ port: process.env.PORT })
-            .then(() => console.log('Server running'))
-            .catch(err => {
-                console.log('Server Error\n', err)
-                process.exit(1)
-            });
-    })
-    .catch(err => {
-        console.log('Database Error\n', err)
-        process.exit(1)
-    })
+fastify.ready(() => {
+    server.listen({ port: process.env.PORT }, (err) => {
+        if (err) throw err;
+        console.log(`Server running on port ${process.env.PORT}`);
+    });
+});
