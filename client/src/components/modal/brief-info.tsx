@@ -12,7 +12,7 @@ import { GrCloudUpload } from "react-icons/gr";
 const BriefInfo: React.FC<RegisterDataProps> = ({ registerData, setRegisterData }) => {
     const navigate = useNavigate();
 
-    const { setAuthTab, isAuthenticated, setIsAuthenticated, setUser } = useAuthStore();
+    const { setAuthTab, setUser, setIsAuthenticated } = useAuthStore();
     const { clearTempUser } = useTempStore();
 
     const [term, setTerm] = useState<boolean>(false);
@@ -22,6 +22,7 @@ const BriefInfo: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
         isFirstNameValid: true,
         isLastNameValid: true
     });
+    const [loading, setLoading] = useState<boolean>(false);
 
     const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -70,7 +71,7 @@ const BriefInfo: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
         if (!term) return;
 
         if (trimmedUsername && trimmedFirstName && trimmedLastName) {
-            setIsAuthenticated(AuthStatus.Authenticating);
+            setLoading(true);
             await fetch(`${import.meta.env.VITE_SERVER_URL}/api/auth/register`, {
                 method: 'POST',
                 headers: {
@@ -92,9 +93,9 @@ const BriefInfo: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
                         toast.success(response.message);
 
                         setUser(response.data.user);
-                        setIsAuthenticated(AuthStatus.Authenticated);
                         localStorage.setItem('token', response.data.token);
                         setAuthTab(AuthTab.Closed);
+                        setIsAuthenticated(AuthStatus.Authenticated);
 
                         navigate('/');
                     }
@@ -106,7 +107,10 @@ const BriefInfo: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
                         toast.error(response.message)
                     }
                 })
-                .catch(() => setIsAuthenticated(AuthStatus.Failed));
+                .catch(() => {
+                    setLoading(false);
+                    setIsAuthenticated(AuthStatus.Failed);
+                });
         }
     };
 
@@ -189,8 +193,8 @@ const BriefInfo: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
                     </div>
                     <p>Accept <span>Terms & Conditions</span></p>
                 </div>
-                <button type='submit' disabled={isAuthenticated === AuthStatus.Authenticating}>
-                    {isAuthenticated === AuthStatus.Authenticating ? <LoadingSVG size={23} /> : 'Create my Account'}
+                <button type='submit' disabled={loading}>
+                    {loading ? <LoadingSVG size={23} /> : 'Create my Account'}
                 </button>
             </form>
         </div>
