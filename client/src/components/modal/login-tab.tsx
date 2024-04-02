@@ -122,7 +122,7 @@ const LoginTab = () => {
                     />
                 </div>
                 <button disabled={isAuthenticated === AuthStatus.Authenticating} type='submit'>
-                    {isAuthenticated === AuthStatus.Authenticating ? <LoadingSVG size={23} /> : 'Login'}
+                    {loginData.id && loginData.password && isAuthenticated === AuthStatus.Authenticating ? <LoadingSVG size={23} /> : 'Login'}
                 </button>
             </form>
             <div className='or-divider'>

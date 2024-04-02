@@ -47,8 +47,10 @@ fastify.register(require('@fastify/oauth2'), {
 fastify.register(require('./routes/auth'), { prefix: '/api/auth' })
 
 fastify.setNotFoundHandler((request, reply) => {
-    reply.redirect(process.env.FRONTEND_URL)
-})
+    const url = request.raw.url;
+    if (url.startsWith('/avatars/')) return
+    reply.redirect(process.env.FRONTEND_URL);
+});
 
 fastify.ready(() => {
     server.listen({ port: process.env.PORT }, (err) => {
