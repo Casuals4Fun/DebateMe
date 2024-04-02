@@ -2,6 +2,7 @@ require('dotenv').config()
 const Fastify = require('fastify')
 const path = require('path')
 const db = require('./db.js')
+const fastifyOauth2 = require('@fastify/oauth2');
 
 const fastify = Fastify({ bodyLimit: 7 * 1024 * 1024 })
 
@@ -15,6 +16,22 @@ fastify.register(require('@fastify/static'), {
 });
 
 fastify.decorate('mysql', db)
+
+fastify.register(fastifyOauth2, {
+    name: 'googleOAuth2',
+    scope: 'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email',
+    credentials: {
+        client: {
+            id: process.env.GOOGLE_CLIENT_ID,
+            secret: process.env.GOOGLE_CLIENT_SECRET
+        }
+    },
+    startRedirectPath: '/api/auth/google',
+    callbackUri: process.env.GOOGLE_REDIRECT_URI,
+    discovery: {
+        issuer: 'https://accounts.google.com'
+    }
+});
 
 fastify.register(require('./routes/auth'), { prefix: '/api/auth' })
 

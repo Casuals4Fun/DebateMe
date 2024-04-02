@@ -1,4 +1,4 @@
-const { register, login, autoLogin } = require('../controllers/auth');
+const { handleGoogleAuth, register, login, autoLogin } = require('../controllers/auth');
 const verifyToken = require('../middleware/verifyToken');
 
 module.exports = async function (fastify, opts) {
@@ -27,6 +27,10 @@ module.exports = async function (fastify, opts) {
             required: ['id', 'password']
         }
     };
+
+    fastify.get('/google/callback', async (request, reply) => {
+        return handleGoogleAuth(fastify, request, reply);
+    });
 
     fastify.post('/register', {
         schema: registerSchema,
