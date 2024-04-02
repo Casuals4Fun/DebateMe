@@ -1,5 +1,6 @@
 import React, { useState, useCallback } from "react";
-import { AuthTab, useAuthStore, useTempStore } from "../../store/useAuthStore";
+import { useNavigate } from "react-router-dom";
+import { AuthStatus, AuthTab, useAuthStore, useTempStore } from "../../store/useAuthStore";
 import { RegisterDataProps } from "../../types";
 import useFileHandler from "../../utils/useFileHandler";
 import { toast } from "sonner";
@@ -9,7 +10,9 @@ import { MdModeEdit } from "react-icons/md";
 import { GrCloudUpload } from "react-icons/gr";
 
 const BriefInfo: React.FC<RegisterDataProps> = ({ registerData, setRegisterData }) => {
-    const { setAuthTab } = useAuthStore();
+    const navigate = useNavigate();
+
+    const { setAuthTab, isAuthenticated, setIsAuthenticated, setUser } = useAuthStore();
     const { clearTempUser } = useTempStore();
 
     const [term, setTerm] = useState<boolean>(false);
@@ -19,7 +22,6 @@ const BriefInfo: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
         isFirstNameValid: true,
         isLastNameValid: true
     });
-    const [loading, setLoading] = useState<boolean>(false);
 
     const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -68,7 +70,7 @@ const BriefInfo: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
         if (!term) return;
 
         if (trimmedUsername && trimmedFirstName && trimmedLastName) {
-            setLoading(true);
+            setIsAuthenticated(AuthStatus.Authenticating);
             await fetch(`${import.meta.env.VITE_SERVER_URL}/api/auth/register`, {
                 method: 'POST',
                 headers: {
@@ -86,19 +88,25 @@ const BriefInfo: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
                 .then(res => res.json())
                 .then(response => {
                     if (response.success) {
-                        setAuthTab(AuthTab.Login);
-                        toast.success(response.message);
                         clearTempUser();
+                        toast.success(response.message);
+
+                        setUser(response.data.user);
+                        setIsAuthenticated(AuthStatus.Authenticated);
+                        localStorage.setItem('token', response.data.token);
+                        setAuthTab(AuthTab.Closed);
+
+                        navigate('/');
                     }
                     else {
+                        setIsAuthenticated(AuthStatus.Failed);
                         if (response.message === 'Validation failed') {
                             return toast.error(`${response.errors[0].field.charAt(0).toUpperCase() + response.errors[0].field.slice(1)} ${response.errors[0].message}`)
                         }
                         toast.error(response.message)
                     }
                 })
-                .catch(() => toast.error('Something went wrong'))
-                .finally(() => setLoading(false));
+                .catch(() => setIsAuthenticated(AuthStatus.Failed));
         }
     };
 
@@ -181,8 +189,8 @@ const BriefInfo: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
                     </div>
                     <p>Accept <span>Terms & Conditions</span></p>
                 </div>
-                <button type='submit'>
-                    {loading ? <LoadingSVG size={23} /> : 'Create my Account'}
+                <button type='submit' disabled={isAuthenticated === AuthStatus.Authenticating}>
+                    {isAuthenticated === AuthStatus.Authenticating ? <LoadingSVG size={23} /> : 'Create my Account'}
                 </button>
             </form>
         </div>

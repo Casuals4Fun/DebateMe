@@ -68,14 +68,14 @@ const LoginTab = () => {
                 .then(res => res.json())
                 .then(response => {
                     if (response.success) {
+                        toast.success(response.message)
+
                         setUser(response.data.user);
                         setIsAuthenticated(AuthStatus.Authenticated);
                         localStorage.setItem('token', response.data.token);
                         setAuthTab(AuthTab.Closed);
 
                         navigate(route);
-
-                        toast.success(response.message)
                     }
                     else {
                         setIsAuthenticated(AuthStatus.Failed);
@@ -121,9 +121,7 @@ const LoginTab = () => {
                         placeholder={isSubmitted && !validationState.isPasswordValid ? 'Required' : ''}
                     />
                 </div>
-                <button type='submit'>
-                    {/* <LoadingSVG size={22} /> */}
-                    {/* Login */}
+                <button disabled={isAuthenticated === AuthStatus.Authenticating} type='submit'>
                     {isAuthenticated === AuthStatus.Authenticating ? <LoadingSVG size={23} /> : 'Login'}
                 </button>
             </form>
@@ -132,9 +130,19 @@ const LoginTab = () => {
                 <p>or</p>
                 <div className='divider' />
             </div>
-            <button className='google-btn' onClick={() => window.location.href = `${import.meta.env.VITE_SERVER_URL}/api/auth/google`}>
-                <FcGoogle size={22.5} />
-                <span>Continue with Google</span>
+            <button
+                disabled={isAuthenticated === AuthStatus.Authenticating}
+                className='google-btn'
+                onClick={() => window.location.href = `${import.meta.env.VITE_SERVER_URL}/api/auth/google`}
+            >
+                {!loginData.id && !loginData.password && isAuthenticated === AuthStatus.Authenticating ? (
+                    <LoadingSVG size={23} />
+                ) : (
+                    <>
+                        <FcGoogle size={22.5} />
+                        <span>Continue with Google</span>
+                    </>
+                )}
             </button>
         </div>
     );

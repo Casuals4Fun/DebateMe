@@ -106,16 +106,21 @@
 }
 
 #auth-modal .form__container button {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 12.5px 0;
+    height: 48px;
     background-color: var(--body_color);
     color: var(--body_background);
     font-size: 16px;
     font-weight: 600;
     border-radius: 5px;
     cursor: pointer;
+}
+
+#auth-modal .form__container button svg {
+    position: absolute;
 }
 
 #auth-modal .or-divider {
