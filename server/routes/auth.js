@@ -38,9 +38,8 @@ module.exports = async function (fastify, opts) {
     }, (request, reply) => {
         if (request.validationError) {
             const errors = request.validationError.validation.map(error => {
-                console.log(error)
                 return {
-                    field: error.instancePath.substring(1),
+                    field: error.params.missingProperty || error.instancePath.substring(1),
                     message: error.message
                 };
             });
@@ -56,7 +55,7 @@ module.exports = async function (fastify, opts) {
         if (request.validationError) {
             const errors = request.validationError.validation.map(error => {
                 return {
-                    field: error.instancePath.substring(1),
+                    field: error.params.missingProperty || error.instancePath.substring(1),
                     message: error.message
                 };
             });
