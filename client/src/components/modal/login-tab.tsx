@@ -139,7 +139,7 @@ const LoginTab = () => {
                     <LoadingSVG size={23} />
                 ) : (
                     <>
-                        <FcGoogle size={22.5} />
+                        <FcGoogle size={25} />
                         <span>Continue with Google</span>
                     </>
                 )}

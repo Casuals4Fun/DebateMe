@@ -5,6 +5,31 @@
     align-items: center;
 }
 
+.profile__wrapper .loading-skeleton {
+    width: 125px;
+    height: 40px;
+    border-radius: 30px;
+}
+
+.profile__wrapper .login-btn {
+    width: 125px;
+    height: 40px;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 30px;
+    font-size: 17.5px;
+    background-color: var(--explore_input_bg);
+    color: var(--body_color);
+    transition: 0.2s ease-in-out;
+}
+
+.profile__wrapper .login-btn:hover {
+    background-color: var(--body_color);
+    color: var(--body_background);
+}
+
 .profile__image,
 .modal-profile__image {
     width: 40px;
@@ -93,6 +118,22 @@
 }
 
 @media screen and (max-width: 767px) {
+    .profile__wrapper .loading-skeleton {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+    }
+
+    .profile__wrapper .login-btn {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+    }
+
+    .profile__wrapper .login-btn p {
+        display: none;
+    }
+
     .profile__modal {
         left: 15%;
         top: unset;

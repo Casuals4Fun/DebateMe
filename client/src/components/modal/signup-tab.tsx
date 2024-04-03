@@ -1,11 +1,12 @@
 import React, { useState, useCallback } from "react";
 import { RegisterDataProps } from "../../types";
-import { AuthTab, useAuthStore } from "../../store/useAuthStore";
+import { AuthStatus, AuthTab, useAuthStore, useTempStore } from "../../store/useAuthStore";
 import { toast } from "sonner";
 import { FcGoogle } from "react-icons/fc";
 
 const SignupTab: React.FC<RegisterDataProps> = ({ registerData, setRegisterData }) => {
-    const { setAuthTab } = useAuthStore();
+    const { setAuthTab, isAuthenticated } = useAuthStore();
+    const { tempUser } = useTempStore();
 
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [validationState, setValidationState] = useState({
@@ -93,15 +94,23 @@ const SignupTab: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
                     Continue
                 </button>
             </form>
-            <div className='or-divider'>
-                <div className='divider' />
-                <p>or</p>
-                <div className='divider' />
-            </div>
-            <button className='google-btn'>
-                <FcGoogle size={23} />
-                <span>Continue with Google</span>
-            </button>
+            {!tempUser.email && (
+                <>
+                    <div className='or-divider'>
+                        <div className='divider' />
+                        <p>or</p>
+                        <div className='divider' />
+                    </div>
+                    <button
+                        disabled={isAuthenticated === AuthStatus.Authenticating}
+                        className='google-btn'
+                        onClick={() => window.location.href = `${import.meta.env.VITE_SERVER_URL}/api/auth/google`}
+                    >
+                        <FcGoogle size={25} />
+                        <span>Continue with Google</span>
+                    </button>
+                </>
+            )}
         </div>
     );
 };

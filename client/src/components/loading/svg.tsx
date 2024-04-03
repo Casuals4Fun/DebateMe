@@ -1,4 +1,4 @@
-import "./svg.css";
+import "./style.css";
 
 interface Props {
     size: number

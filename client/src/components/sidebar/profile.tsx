@@ -2,16 +2,18 @@ import "./profile.css";
 import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useNavStore } from "../../store/useNavStore";
-import { useAuthStore } from "../../store/useAuthStore";
+import { AuthStatus, AuthTab, useAuthStore } from "../../store/useAuthStore";
 import ToggleTheme from "../button/toggle-theme";
 import useLogout from "../../hooks/useLogout";
 import { IoMdPerson } from "react-icons/io";
 import { PiSignOutBold } from "react-icons/pi";
+import LoadingSkeleton from "../loading/skeleton";
+import { GoPerson } from "react-icons/go";
 
 const Profile = () => {
     const navigate = useNavigate();
     const { expand, setExpand } = useNavStore();
-    const { setIsAuthenticated, user, setUser } = useAuthStore();
+    const { isAuthenticated, setIsAuthenticated, user, setUser, setAuthTab } = useAuthStore();
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
@@ -33,12 +35,21 @@ const Profile = () => {
 
     return (
         <div className='profile__wrapper'>
-            <div
-                className='profile__image'
-                onClick={() => setExpand(!expand)}
-            >
-                <img src={user.avatar || "/user.jpg"} alt="" />
-            </div>
+            {isAuthenticated === AuthStatus.Authenticating ? (
+                <LoadingSkeleton />
+            ) : isAuthenticated === AuthStatus.Authenticated ? (
+                <div
+                    className='profile__image'
+                    onClick={() => setExpand(!expand)}
+                >
+                    <img src={user.avatar || "/user.jpg"} alt="" />
+                </div>
+            ) : (
+                <button className='login-btn' onClick={() => setAuthTab(AuthTab.Login)}>
+                    <GoPerson size={20} />
+                    <p>Login</p>
+                </button>
+            )}
 
             {expand && (
                 <div className='profile__modal'>

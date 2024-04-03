@@ -1,0 +1,39 @@
+:root {
+    --skeleton_bg_0: #d8d8d8;
+    --skeleton_bg_100: #bdbdbd;
+}
+
+[data-theme='dark'] {
+    --skeleton_bg_0: #737373;
+    --skeleton_bg_100: #454545;
+}
+
+.loading-spinner {
+    vertical-align: middle;
+    animation: rotate-anim 1s linear infinite;
+}
+
+@keyframes rotate-anim {
+    0% {
+        rotate: 0deg;
+    }
+
+    100% {
+        rotate: 360deg;
+    }
+}
+
+.loading-skeleton {
+    opacity: 0.5;
+    animation: skeleton-anim 0.75s linear infinite alternate;
+}
+
+@keyframes skeleton-anim {
+    0% {
+        background-color: var(--skeleton_bg_0);
+    }
+
+    100% {
+        background-color: var(--skeleton_bg_100);
+    }
+}
