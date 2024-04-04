@@ -5,15 +5,16 @@ import { useNavStore } from "../../store/useNavStore";
 import { AuthStatus, AuthTab, useAuthStore } from "../../store/useAuthStore";
 import ToggleTheme from "../button/toggle-theme";
 import useLogout from "../../hooks/useLogout";
+import LoadingSkeleton from "../loading/skeleton";
 import { IoMdPerson } from "react-icons/io";
 import { PiSignOutBold } from "react-icons/pi";
-import LoadingSkeleton from "../loading/skeleton";
 import { GoPerson } from "react-icons/go";
+import { FaRegUser } from "react-icons/fa";
 
 const Profile = () => {
     const navigate = useNavigate();
     const { expand, setExpand } = useNavStore();
-    const { isAuthenticated, setIsAuthenticated, user, setUser, setAuthTab } = useAuthStore();
+    const { isAuthenticated, setIsAuthenticated, user, setUser, authTab, setAuthTab } = useAuthStore();
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
@@ -40,12 +41,25 @@ const Profile = () => {
             ) : isAuthenticated === AuthStatus.Authenticated ? (
                 <div
                     className='profile__image'
+                    style={{
+                        borderWidth: '2px',
+                        borderStyle: 'solid',
+                        borderColor: `${expand ? 'var(--body_color)' : 'var(--nav_border)'}`
+                    }}
                     onClick={() => setExpand(!expand)}
                 >
-                    <img src={user.avatar || "/user.jpg"} alt="" />
+                    {user.avatar ? (
+                        <img src={user.avatar} alt="" />
+                    ) : (
+                        <FaRegUser style={{ width: '50%', height: '50%' }} />
+                    )}
                 </div>
             ) : (
-                <button className='login-btn' onClick={() => setAuthTab(AuthTab.Login)}>
+                <button
+                    className='login-btn'
+                    style={{ border: `${authTab !== AuthTab.Closed ? '2px solid var(--body_color)' : ''}` }}
+                    onClick={() => setAuthTab(AuthTab.Login)}
+                >
                     <GoPerson size={20} />
                     <p>Login</p>
                 </button>
@@ -56,7 +70,11 @@ const Profile = () => {
                     <div className='modal-profile__wrapper'>
                         <div className="profile-wrapper">
                             <div className='modal-profile__image'>
-                                <img src={user.avatar || "/user.jpg"} alt="" />
+                                {user.avatar ? (
+                                    <img src={user.avatar} alt="" />
+                                ) : (
+                                    <FaRegUser style={{ width: '50%', height: '50%' }} />
+                                )}
                             </div>
                             <div className='modal-profile__info'>
                                 <p>{user.first_name} {user.last_name}</p>

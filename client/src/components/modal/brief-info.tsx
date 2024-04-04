@@ -38,7 +38,6 @@ const BriefInfo: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
     }, []);
 
     const handleAvatarChange = useFileHandler(5);
-
     const handleFileInputChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const base64String = await handleAvatarChange(e);
         setRegisterData(prevState => ({
@@ -124,7 +123,8 @@ const BriefInfo: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
                 <div className='avatar-username__container'>
                     <div
                         className='avatar__container'
-                        onClick={() => document.getElementById('user-avatar')?.click()}
+                        // onClick={() => document.getElementById('user-avatar')?.click()}
+                        onClick={() => toast.warning('Feature coming soon.')}
                     >
                         <input
                             type="file"

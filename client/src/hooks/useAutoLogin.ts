@@ -30,13 +30,13 @@ const useAutoLogin = (setRoute: SetRoute, setUser: SetUser, setIsAuthenticated: 
                     setAuthTab(AuthTab.Closed);
                 }
                 else {
-                    toast.success(response.message);
+                    toast.success('Session logged out.');
                     setIsAuthenticated(AuthStatus.Failed);
                     localStorage.removeItem('token');
                 }
             })
             .catch(() => {
-                toast.success('Something went wrong.');
+                toast.success('Session logged out.');
                 setIsAuthenticated(AuthStatus.Failed);
                 localStorage.removeItem('token');
             });
