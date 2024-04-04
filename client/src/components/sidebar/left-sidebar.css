@@ -18,8 +18,9 @@
 }
 
 #left-sidebar .profile__container {
+    position: fixed;
+    bottom: 20px;
     display: none;
-    padding-bottom: 20px;
 }
 
 #left-sidebar ul {
@@ -126,7 +127,24 @@
     }
 
     #left-sidebar .profile__container {
-        display: block;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    #left-sidebar .profile__container .theme-btn {
+        display: grid;
+        background-color: transparent;
+    }
+
+    #left-sidebar .profile__container .theme-btn .sun {
+        width: 67.5%;
+        height: 67.5%;
+    }
+
+    #left-sidebar .profile__container .theme-btn .moon {
+        width: 82.5%;
+        height: 82.5%;
     }
 }
 

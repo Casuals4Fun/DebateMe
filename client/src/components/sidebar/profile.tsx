@@ -1,7 +1,7 @@
 import "./profile.css";
 import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useNavStore } from "../../store/useNavStore";
+import { Theme, useNavStore } from "../../store/useNavStore";
 import { AuthStatus, AuthTab, useAuthStore } from "../../store/useAuthStore";
 import ToggleTheme from "../button/toggle-theme";
 import useLogout from "../../hooks/useLogout";
@@ -13,8 +13,14 @@ import { FaRegUser } from "react-icons/fa";
 
 const Profile = () => {
     const navigate = useNavigate();
-    const { expand, setExpand } = useNavStore();
+    const { expand, setExpand, theme, setTheme } = useNavStore();
     const { isAuthenticated, setIsAuthenticated, user, setUser, authTab, setAuthTab } = useAuthStore();
+
+    const handleToggleTheme = () => {
+        const newTheme = theme === Theme.Light ? Theme.Dark : Theme.Light;
+        document.querySelector("body")?.setAttribute('data-theme', newTheme);
+        setTheme(newTheme);
+    }
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
@@ -55,14 +61,23 @@ const Profile = () => {
                     )}
                 </div>
             ) : (
-                <button
-                    className='login-btn'
-                    style={{ border: `${authTab !== AuthTab.Closed ? '2px solid var(--body_color)' : ''}` }}
-                    onClick={() => setAuthTab(AuthTab.Login)}
-                >
-                    <GoPerson size={20} />
-                    <p>Login</p>
-                </button>
+                <>
+                    <button
+                        className='theme-btn'
+                        onClick={handleToggleTheme}
+                        title={theme === Theme.Dark ? 'Switch to Light mode' : 'Switch to Dark mode'}
+                    >
+                        {theme === Theme.Dark ? <img className="sun" src="theme/sun.svg" alt="" /> : <img className="moon" src="theme/moon.png" alt="" />}
+                    </button>
+                    <button
+                        className='login-btn'
+                        style={{ border: `${authTab !== AuthTab.Closed ? '2px solid var(--body_color)' : ''}` }}
+                        onClick={() => setAuthTab(AuthTab.Login)}
+                    >
+                        <GoPerson size={20} />
+                        <p>Login</p>
+                    </button>
+                </>
             )}
 
             {expand && (

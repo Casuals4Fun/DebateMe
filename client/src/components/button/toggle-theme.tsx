@@ -11,7 +11,7 @@ const ToggleTheme = () => {
     }
 
     return (
-        <div className='theme__button'>
+        <div className='theme__button' title={theme === Theme.Dark ? 'Switch to Light mode' : 'Switch to Dark mode'}>
             <input
                 id="toggle"
                 className='toggle-activator'
