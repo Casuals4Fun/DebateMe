@@ -7,7 +7,7 @@ import ToggleTheme from "../button/toggle-theme";
 import useLogout from "../../hooks/useLogout";
 import LoadingSkeleton from "../loading/skeleton";
 import { IoMdPerson } from "react-icons/io";
-import { PiSignOutBold } from "react-icons/pi";
+import { PiBellSimpleFill, PiSignOutBold } from "react-icons/pi";
 import { GoPerson } from "react-icons/go";
 import { FaRegUser } from "react-icons/fa";
 
@@ -45,21 +45,26 @@ const Profile = () => {
             {isAuthenticated === AuthStatus.Authenticating ? (
                 <LoadingSkeleton />
             ) : isAuthenticated === AuthStatus.Authenticated ? (
-                <div
-                    className='profile__image'
-                    style={{
-                        borderWidth: '2px',
-                        borderStyle: 'solid',
-                        borderColor: `${expand ? 'var(--body_color)' : 'var(--nav_border)'}`
-                    }}
-                    onClick={() => setExpand(!expand)}
-                >
-                    {user.avatar ? (
-                        <img src={user.avatar} alt="" />
-                    ) : (
-                        <FaRegUser style={{ width: '50%', height: '50%' }} />
-                    )}
-                </div>
+                <>
+                    <Link to='/notifications' className='notification-btn'>
+                        <PiBellSimpleFill size={20} />
+                    </Link>
+                    <div
+                        className='profile__image'
+                        style={{
+                            borderWidth: '2px',
+                            borderStyle: 'solid',
+                            borderColor: `${expand ? 'var(--body_color)' : 'var(--nav_border)'}`
+                        }}
+                        onClick={() => setExpand(!expand)}
+                    >
+                        {user.avatar ? (
+                            <img src={user.avatar} alt="" />
+                        ) : (
+                            <FaRegUser style={{ width: '50%', height: '50%' }} />
+                        )}
+                    </div>
+                </>
             ) : (
                 <>
                     <button

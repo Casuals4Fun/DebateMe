@@ -51,7 +51,7 @@
     height: 30px;
 }
 
-#left-sidebar li:nth-child(6) {
+#left-sidebar li:nth-child(2) {
     display: none;
 }
 
@@ -121,7 +121,7 @@
         gap: 30px;
     }
 
-    #left-sidebar li:nth-child(6) {
+    #left-sidebar li:nth-child(2) {
         display: inline-flex;
         justify-content: center;
     }

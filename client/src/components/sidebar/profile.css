@@ -25,6 +25,7 @@
 }
 
 .profile__image,
+.notification-btn,
 .theme-btn,
 .modal-profile__image {
     width: 40px;
@@ -38,7 +39,8 @@
 }
 
 
-.theme-btn {
+.theme-btn,
+.notification-btn {
     display: none;
     background-color: var(--explore_input_bg);
 }
@@ -172,7 +174,8 @@
         border-radius: 0;
     }
 
-    .theme-btn {
+    .theme-btn,
+    .notification-btn {
         display: grid;
     }
 }

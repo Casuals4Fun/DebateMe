@@ -9,25 +9,6 @@
     display: none;
 }
 
-#right-sidebar .search-button {
-    display: none;
-    width: 40px;
-    height: 40px;
-    background-color: var(--explore_input_bg);
-    border-radius: 50%;
-    margin-right: 5px;
-    border: 2px solid transparent;
-    transition: border-color 0.2s ease-in-out;
-}
-
-#right-sidebar .search-button a {
-    width: 100%;
-    height: 100%;
-    display: grid;
-    place-items: center;
-    color: var(--body_color);
-}
-
 #right-sidebar .profile-theme__container {
     width: 100%;
     display: flex;
@@ -109,10 +90,6 @@
         display: flex;
         align-items: center;
         background-color: var(--nav-foot__background);
-    }
-
-    #right-sidebar .search-button {
-        display: block;
     }
 
     #right-sidebar .profile-theme__container {

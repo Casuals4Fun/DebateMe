@@ -1,14 +1,12 @@
 import "./right-sidebar.css";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useNavStore } from "../../store/useNavStore";
 import ToggleTheme from "../button/toggle-theme";
 import Profile from "./profile";
 import Explore from "./explore";
-import { IoSearch } from "react-icons/io5";
 
 const RightSidebar = () => {
-  const location = useLocation();
-  const { expand, setExpand } = useNavStore();
+  const { expand } = useNavStore();
 
   return (
     <div id='right-sidebar'>
@@ -18,12 +16,6 @@ const RightSidebar = () => {
         </Link>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
-          <div className='search-button' style={{ borderColor: `${location.pathname === "/search" ? "var(--body_color)" : ""}` }}>
-            <Link to='/search' onClick={() => setExpand(false)}>
-              <IoSearch size={15} />
-            </Link>
-          </div>
-
           <div className='profile-theme__container'>
             <div className={`theme__wrapper`}>
               <ToggleTheme />

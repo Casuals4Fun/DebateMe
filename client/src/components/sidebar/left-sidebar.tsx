@@ -2,6 +2,7 @@ import "./left-sidebar.css";
 import { useLocation, Link, useNavigate } from "react-router-dom";
 import { AuthStatus, AuthTab, useAuthStore } from "../../store/useAuthStore";
 import { Theme, useNavStore } from "../../store/useNavStore";
+import { toast } from "sonner";
 import { leftSidebarLinks } from "../../data/left-sidebar-links";
 import Profile from "./profile";
 import { GoPerson } from "react-icons/go";
@@ -14,13 +15,13 @@ const LeftSidebar = () => {
   const { theme, setTheme } = useNavStore();
 
   const handleLinkClick = (href: string, name: string) => {
-    if (name === "Create Debate") {
+    if (name === "Create Debate" || name === "Notifications") {
       if (isAuthenticated === AuthStatus.Failed) {
-        setRoute('/create');
+        setRoute(href);
         setAuthTab(AuthTab.Login);
       }
       else if (isAuthenticated === AuthStatus.Authenticated) navigate(href);
-      else return // Warning Toast - 'Try again'
+      else return toast.warning('Try again...');
     }
     else navigate(href);
   };

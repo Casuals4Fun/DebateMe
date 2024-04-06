@@ -14,32 +14,32 @@ export const leftSidebarLinks = [
     },
     {
         id: 2,
+        name: "Search",
+        href: "/search",
+        icon: IoSearch
+    },
+    {
+        id: 3,
         name: "Create Debate",
         href: "/create",
         icon: IoMdCreate
     },
     {
-        id: 3,
+        id: 4,
         name: "Hot Topics",
         href: "/hot-topics",
         icon: RiFireFill
     },
     {
-        id: 4,
+        id: 5,
         name: "Open Topics",
         href: "/open-topics",
         icon: FaFeather
     },
     {
-        id: 5,
+        id: 6,
         name: "Notifications",
         href: "/notifications",
         icon: PiBellSimpleFill
-    },
-    {
-        id: 6,
-        name: "Search",
-        href: "/search",
-        icon: IoSearch
     }
 ]
