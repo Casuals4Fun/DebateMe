@@ -5,7 +5,6 @@ import { ProtectedRoute } from "./ProtectedRoute";
 
 import { Theme, useNavStore } from "./store/useNavStore";
 import { AuthTab, useAuthStore } from "./store/useAuthStore";
-import useAutoLogin from "./hooks/useAutoLogin";
 
 import { Toaster } from "sonner";
 import LeftSidebar from "./components/sidebar/left-sidebar";
@@ -19,14 +18,13 @@ import OpenTopicsPage from "./pages/open-topics";
 import AuthModal from "./components/modal/auth-modal";
 
 export default function App() {
-  const { authTab, setAuthTab, setUser, setIsAuthenticated, setRoute } = useAuthStore();
+  const { authTab, autoLogin } = useAuthStore();
   const { expand } = useNavStore();
 
   useEffect(() => {
-    useAutoLogin(setRoute, setUser, setIsAuthenticated, setAuthTab);
-    const savedTheme = localStorage.getItem('theme') || Theme.Dark;
-    document.body.setAttribute('data-theme', savedTheme);
-  }, []);
+    autoLogin();
+    document.body.setAttribute('data-theme', localStorage.getItem('theme') || Theme.Dark);
+  }, [autoLogin]);
 
   return (
     <div id='app'>

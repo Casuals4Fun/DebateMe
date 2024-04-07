@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { toast } from "sonner";
 
 export enum AuthTab {
     Closed = 'closed',
@@ -30,6 +31,7 @@ interface AuthStore {
     setIsAuthenticated: (authenticated: AuthStatus) => void
     user: User
     setUser: (data: User) => void
+    autoLogin: () => void
 }
 
 export const useAuthStore = create<AuthStore>((set) => ({
@@ -46,7 +48,41 @@ export const useAuthStore = create<AuthStore>((set) => ({
         last_name: "",
         avatar: null
     },
-    setUser: (data: User) => set({ user: data })
+    setUser: (data: User) => set({ user: data }),
+    autoLogin: () => {
+        const token = localStorage.getItem('token');
+
+        if (!token) {
+            if (location.pathname !== '/auth') set({ route: location.pathname });
+            set({ isAuthenticated: AuthStatus.Failed });
+        }
+        else {
+            const headers = new Headers();
+            headers.append('Authorization', `Bearer ${token}`);
+
+            fetch(`${import.meta.env.VITE_SERVER_URL}/api/auth/auto-login`, {
+                method: 'GET',
+                headers: headers,
+            })
+                .then(res => res.json())
+                .then(response => {
+                    if (response.success) {
+                        toast.success(response.message);
+                        set({ user: response.data.user, isAuthenticated: AuthStatus.Authenticated, authTab: AuthTab.Closed });
+                    }
+                    else {
+                        toast.success('Session logged out.');
+                        set({ isAuthenticated: AuthStatus.Failed });
+                        localStorage.removeItem('token');
+                    }
+                })
+                .catch(() => {
+                    toast.success('Session logged out.');
+                    set({ isAuthenticated: AuthStatus.Failed });
+                    localStorage.removeItem('token');
+                });
+        }
+    }
 }));
 
 interface TempStore {

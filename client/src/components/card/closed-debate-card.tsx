@@ -1,7 +1,7 @@
 import "./closed-debate-card.css";
 import { Link } from "react-router-dom";
 import DebateBar from "./debate-bar";
-import useFormatNumber from "../../utils/useFormatNumber";
+import useFormatNumber from "../../hooks/useFormatNumber";
 
 const ClosedDebateCard = () => {
     return (

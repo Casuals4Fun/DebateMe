@@ -1,6 +1,6 @@
 import "./debate-bar.css";
 import React from "react";
-import useFormatNumber from "../../utils/useFormatNumber";
+import useFormatNumber from "../../hooks/useFormatNumber";
 
 interface BarProps {
     debateFrom: number;

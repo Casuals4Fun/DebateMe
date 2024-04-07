@@ -4,8 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { Theme, useNavStore } from "../../store/useNavStore";
 import { AuthStatus, AuthTab, useAuthStore } from "../../store/useAuthStore";
 import ToggleTheme from "../button/toggle-theme";
-import useLogout from "../../hooks/useLogout";
 import LoadingSkeleton from "../loading/skeleton";
+import { toast } from "sonner";
 import { IoMdPerson } from "react-icons/io";
 import { PiBellSimpleFill, PiSignOutBold } from "react-icons/pi";
 import { GoPerson } from "react-icons/go";
@@ -21,6 +21,21 @@ const Profile = () => {
         document.querySelector("body")?.setAttribute('data-theme', newTheme);
         setTheme(newTheme);
     }
+
+    const handleLogout = () => {
+        setExpand(false);
+        navigate('/');
+        setIsAuthenticated(AuthStatus.Failed);
+        setUser({
+            username: "",
+            email: "",
+            first_name: "",
+            last_name: "",
+            avatar: ""
+        });
+        localStorage.removeItem('token');
+        toast.success('Logout successful');
+    };
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
@@ -121,10 +136,7 @@ const Profile = () => {
                     </Link>
                     <button
                         className='modal-profile-btn'
-                        onClick={() => {
-                            setExpand(false);
-                            useLogout(navigate, setIsAuthenticated, setUser);
-                        }}
+                        onClick={handleLogout}
                     >
                         <PiSignOutBold size={18} />
                         <p className='underline'>Logout</p>

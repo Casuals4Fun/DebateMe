@@ -1,8 +1,8 @@
-import React, { useState, useCallback } from "react";
+import { useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthStatus, AuthTab, useAuthStore, useTempStore } from "../../store/useAuthStore";
 import { RegisterDataProps } from "../../types";
-import useFileHandler from "../../utils/useFileHandler";
+import useFileHandler from "../../hooks/useFileHandler";
 import { toast } from "sonner";
 import LoadingSVG from "../loading/svg";
 import { IoPersonCircleOutline } from "react-icons/io5";
@@ -35,7 +35,7 @@ const BriefInfo: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
             ...prevState,
             [`is${name.charAt(0).toUpperCase() + name.slice(1)}Valid`]: !!value
         }));
-    }, []);
+    }, [setRegisterData]);
 
     const handleAvatarChange = useFileHandler(5);
     const handleFileInputChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -201,4 +201,4 @@ const BriefInfo: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
     );
 };
 
-export default React.memo(BriefInfo);
+export default BriefInfo;

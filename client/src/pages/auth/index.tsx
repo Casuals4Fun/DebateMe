@@ -5,7 +5,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 export default function AuthPage() {
     const location = useLocation();
     const navigate = useNavigate();
-    const { isAuthenticated, setAuthTab, setUser, setIsAuthenticated } = useAuthStore();
+    const { isAuthenticated, setAuthTab } = useAuthStore();
     const { setTempUser } = useTempStore();
 
     useEffect(() => {
@@ -36,7 +36,7 @@ export default function AuthPage() {
         } else {
             navigate('/', { replace: true });
         }
-    }, [isAuthenticated, location.pathname, navigate, setAuthTab, setUser, setIsAuthenticated]);
+    }, [isAuthenticated, location.pathname, location.search, navigate, setAuthTab, setTempUser]);
 
     return <div />;
 }

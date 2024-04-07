@@ -25,7 +25,7 @@ const SignupTab: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
             ...prevState,
             [`is${name.charAt(0).toUpperCase() + name.slice(1)}Valid`]: !!value
         }));
-    }, []);
+    }, [setRegisterData]);
 
     const handleKeyPress = useCallback((e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === ' ') e.preventDefault();
@@ -55,7 +55,7 @@ const SignupTab: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
             }
             setAuthTab(AuthTab.Info);
         }
-    }, [registerData, setAuthTab]);
+    }, [registerData, setRegisterData, setAuthTab]);
 
     return (
         <div id='signup'>
@@ -115,4 +115,4 @@ const SignupTab: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
     );
 };
 
-export default React.memo(SignupTab);
+export default SignupTab;
