@@ -6,6 +6,7 @@ import { toast } from "sonner";
 import { leftSidebarLinks } from "../../data/left-sidebar-links";
 import Profile from "./profile";
 import { GoPerson } from "react-icons/go";
+import LoadingSkeleton from "../loading/skeleton";
 
 const LeftSidebar = () => {
   const location = useLocation();
@@ -51,9 +52,11 @@ const LeftSidebar = () => {
         ))}
       </ul>
       <div className='profile__container'>
-        {isAuthenticated === AuthStatus.Authenticated ? (
+        {isAuthenticated === AuthStatus.Authenticating ? (
+          <LoadingSkeleton style={{ width: '40px', height: '40px', borderRadius: '50%' }} />
+        ) : isAuthenticated === AuthStatus.Authenticated ? (
           <Profile />
-        ) : (
+        ) : isAuthenticated === AuthStatus.Failed && (
           <>
             <button
               className='theme-btn'

@@ -58,7 +58,7 @@ const Profile = () => {
     return (
         <div className='profile__wrapper'>
             {isAuthenticated === AuthStatus.Authenticating ? (
-                <LoadingSkeleton />
+                <LoadingSkeleton style={{ width: '40px', height: '40px', borderRadius: '50%' }} />
             ) : isAuthenticated === AuthStatus.Authenticated ? (
                 <>
                     <Link
