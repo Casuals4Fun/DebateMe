@@ -30,7 +30,6 @@ interface AuthStore {
     setIsAuthenticated: (authenticated: AuthStatus) => void
     user: User
     setUser: (data: User) => void
-    autoLogin: () => void
 }
 
 export const useAuthStore = create<AuthStore>((set) => ({
@@ -47,38 +46,7 @@ export const useAuthStore = create<AuthStore>((set) => ({
         last_name: "",
         avatar: null
     },
-    setUser: (data: User) => set({ user: data }),
-    autoLogin: () => {
-        const token = localStorage.getItem('token');
-
-        set({ route: location.pathname });
-        if (!token) {
-            set({ isAuthenticated: AuthStatus.Failed });
-        }
-        else {
-            const headers = new Headers();
-            headers.append('Authorization', `Bearer ${token}`);
-
-            fetch(`${import.meta.env.VITE_SERVER_URL}/api/auth/auto-login`, {
-                method: 'GET',
-                headers: headers,
-            })
-                .then(res => res.json())
-                .then(response => {
-                    if (response.success) {
-                        set({ user: response.data.user, isAuthenticated: AuthStatus.Authenticated, authTab: AuthTab.Closed });
-                    }
-                    else {
-                        set({ isAuthenticated: AuthStatus.Failed });
-                        localStorage.removeItem('token');
-                    }
-                })
-                .catch(() => {
-                    set({ isAuthenticated: AuthStatus.Failed });
-                    localStorage.removeItem('token');
-                });
-        }
-    }
+    setUser: (data: User) => set({ user: data })
 }));
 
 interface TempStore {
