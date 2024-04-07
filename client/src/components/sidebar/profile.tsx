@@ -46,7 +46,15 @@ const Profile = () => {
                 <LoadingSkeleton />
             ) : isAuthenticated === AuthStatus.Authenticated ? (
                 <>
-                    <Link to='/notifications' className='notification-btn'>
+                    <Link
+                        to='/notifications'
+                        className='notification-btn'
+                        style={{
+                            borderWidth: '2px',
+                            borderStyle: 'solid',
+                            borderColor: location.pathname === '/notifications' ? 'var(--body_color)' : 'transparent'
+                        }}
+                    >
                         <PiBellSimpleFill size={20} />
                     </Link>
                     <div

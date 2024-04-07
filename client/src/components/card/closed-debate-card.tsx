@@ -1,16 +1,13 @@
 import "./closed-debate-card.css";
-import React from "react";
 import { Link } from "react-router-dom";
 import DebateBar from "./debate-bar";
 import useFormatNumber from "../../utils/useFormatNumber";
 
-interface CardProps { }
-
-const ClosedDebateCard: React.FC<CardProps> = () => {
+const ClosedDebateCard = () => {
     return (
         <div id='closed-card'>
             <div className='left'>
-                <h2>Sony is the best camera</h2>
+                <h2>Sony is the best camera of all time.</h2>
                 <p>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Non labore necessitatibus reiciendis rem ad perferendis.
                 </p>

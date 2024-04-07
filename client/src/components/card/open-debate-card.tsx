@@ -1,10 +1,7 @@
 import "./open-debate-card.css";
-import React from "react";
 import { Link } from "react-router-dom";
 
-interface CardProps { }
-
-const OpenDebateCard: React.FC<CardProps> = () => {
+const OpenDebateCard = () => {
     return (
         <div id='open-card'>
             <div className='debate-header'>
