@@ -20,7 +20,7 @@ export default function SearchPage() {
             const searchValue = termValue ?? categoryValue ?? '';
             setSearchTerm(searchValue);
         }
-    }, [location, navigate]);
+    }, [location.search, navigate]);
 
     const handleClearSearchTerm = () => {
         navigate("/search");

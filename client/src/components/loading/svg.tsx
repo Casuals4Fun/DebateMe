@@ -13,4 +13,14 @@ const LoadingSVG: React.FC<Props> = ({ size }) => {
     )
 }
 
-export default LoadingSVG
+const LoadingComponent = () => {
+    return (
+        <div className="loading-component">
+            <LoadingSVG
+                size={30}
+            />
+        </div>
+    )
+}
+
+export { LoadingSVG, LoadingComponent }

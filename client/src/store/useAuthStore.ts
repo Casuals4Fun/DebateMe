@@ -1,5 +1,4 @@
 import { create } from "zustand";
-import { toast } from "sonner";
 
 export enum AuthTab {
     Closed = 'closed',
@@ -52,8 +51,8 @@ export const useAuthStore = create<AuthStore>((set) => ({
     autoLogin: () => {
         const token = localStorage.getItem('token');
 
+        set({ route: location.pathname });
         if (!token) {
-            if (location.pathname !== '/auth') set({ route: location.pathname });
             set({ isAuthenticated: AuthStatus.Failed });
         }
         else {
@@ -67,17 +66,14 @@ export const useAuthStore = create<AuthStore>((set) => ({
                 .then(res => res.json())
                 .then(response => {
                     if (response.success) {
-                        toast.success(response.message);
                         set({ user: response.data.user, isAuthenticated: AuthStatus.Authenticated, authTab: AuthTab.Closed });
                     }
                     else {
-                        toast.success('Session logged out.');
                         set({ isAuthenticated: AuthStatus.Failed });
                         localStorage.removeItem('token');
                     }
                 })
                 .catch(() => {
-                    toast.success('Session logged out.');
                     set({ isAuthenticated: AuthStatus.Failed });
                     localStorage.removeItem('token');
                 });

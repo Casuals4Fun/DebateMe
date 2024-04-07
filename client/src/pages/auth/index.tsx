@@ -1,19 +1,27 @@
 import { useEffect } from "react";
 import { AuthStatus, AuthTab, useAuthStore, useTempStore } from "../../store/useAuthStore";
 import { useLocation, useNavigate } from "react-router-dom";
+import { LoadingComponent } from "../../components/loading/svg";
 
 export default function AuthPage() {
     const location = useLocation();
     const navigate = useNavigate();
-    const { isAuthenticated, setAuthTab } = useAuthStore();
+    const { route, isAuthenticated, setAuthTab } = useAuthStore();
     const { setTempUser } = useTempStore();
 
     useEffect(() => {
         const params = new URLSearchParams(location.search);
         const type = params.get('type');
+
+        if (isAuthenticated === AuthStatus.Authenticated) {
+            navigate(route === '/auth' || route === '/login' || route === '/signup' ? '/' : route)
+        }
+        else if (isAuthenticated === AuthStatus.Failed) {
+            setAuthTab(type === 'login' ? AuthTab.Login : type === 'signup' ? AuthTab.Signup : AuthTab.Login);
+        }
+
         const userData = params.get('user');
         const token = params.get('token');
-
         const user = userData ? JSON.parse(decodeURIComponent(userData)) : null;
 
         if (type === 'login' && token) localStorage.setItem('token', token);
@@ -28,15 +36,7 @@ export default function AuthPage() {
             setAuthTab(AuthTab.Signup);
             navigate('/auth', { replace: true });
         }
+    }, [isAuthenticated, location.search, navigate, route, setAuthTab, setTempUser]);
 
-        if (isAuthenticated === AuthStatus.Authenticated) {
-            navigate('/', { replace: true });
-        } else if (location.pathname === '/auth') {
-            setAuthTab(type === 'signup' ? AuthTab.Signup : AuthTab.Login);
-        } else {
-            navigate('/', { replace: true });
-        }
-    }, [isAuthenticated, location.pathname, location.search, navigate, setAuthTab, setTempUser]);
-
-    return <div />;
+    return <LoadingComponent />
 }

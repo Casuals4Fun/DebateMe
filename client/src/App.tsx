@@ -33,8 +33,8 @@ export default function App() {
         <Routes>
           <Route path='/' element={<HomePage />} />
           <Route path='/auth' element={<AuthPage />} />
-          <Route path='/login' element={<Navigate to='/auth' />} />
-          <Route path='/signup' element={<Navigate to='/auth' />} />
+          <Route path='/login' element={<Navigate to='/auth?type=login' />} />
+          <Route path='/signup' element={<Navigate to='/auth?type=signup' />} />
           <Route path='/search' element={<SearchPage />} />
           <Route path='/create' element={<ProtectedRoute><CreateDebatePage /></ProtectedRoute>} />
           <Route path='/hot-topics' element={<HotTopicsPage />} />

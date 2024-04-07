@@ -13,6 +13,12 @@
     animation: rotate-anim 1s linear infinite;
 }
 
+.loading-component {
+    height: calc(100dvh - 40px);
+    display: grid;
+    place-items: center;
+}
+
 @keyframes rotate-anim {
     0% {
         rotate: 0deg;
@@ -35,5 +41,11 @@
 
     100% {
         background-color: var(--skeleton_bg_100);
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .loading-component {
+        height: calc(100dvh - 150px);
     }
 }

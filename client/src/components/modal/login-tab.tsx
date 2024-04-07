@@ -2,7 +2,7 @@ import React, { useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthStatus, AuthTab, useAuthStore } from "../../store/useAuthStore";
 import { toast } from "sonner";
-import LoadingSVG from "../loading/svg";
+import { LoadingSVG } from "../loading/svg";
 import { FcGoogle } from "react-icons/fc";
 
 const LoginTab = () => {

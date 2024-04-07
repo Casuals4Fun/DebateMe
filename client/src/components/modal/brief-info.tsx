@@ -4,7 +4,7 @@ import { AuthStatus, AuthTab, useAuthStore, useTempStore } from "../../store/use
 import { RegisterDataProps } from "../../types";
 import useFileHandler from "../../hooks/useFileHandler";
 import { toast } from "sonner";
-import LoadingSVG from "../loading/svg";
+import { LoadingSVG } from "../loading/svg";
 import { IoPersonCircleOutline } from "react-icons/io5";
 import { MdModeEdit } from "react-icons/md";
 import { GrCloudUpload } from "react-icons/gr";
