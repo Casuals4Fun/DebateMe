@@ -9,9 +9,9 @@ module.exports = async function (fastify, opts) {
                 email: { type: 'string', format: 'email', minLength: 1 },
                 password: { type: 'string', minLength: 6 },
                 avatar: { type: 'string', nullable: true },
-                username: { type: 'string', minLength: 1 },
-                first_name: { type: 'string', minLength: 1 },
-                last_name: { type: 'string', minLength: 1 }
+                username: { type: 'string', minLength: 1, pattern: '^[a-zA-Z0-9]+$' },
+                first_name: { type: 'string', minLength: 1, pattern: '^[a-zA-Z0-9]+$' },
+                last_name: { type: 'string', minLength: 1, pattern: '^[a-zA-Z0-9]+$' }
             },
             required: ['email', 'password', 'username', 'first_name', 'last_name']
         }

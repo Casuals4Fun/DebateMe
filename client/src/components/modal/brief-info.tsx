@@ -26,6 +26,11 @@ const BriefInfo: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
 
     const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
+        const specialCharRegex = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
+        if (specialCharRegex.test(value)) {
+            return toast.warning('Special characters not allowed.');
+        }
+
         setRegisterData(prevState => ({
             ...prevState,
             [name]: value
