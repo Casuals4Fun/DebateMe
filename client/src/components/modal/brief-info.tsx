@@ -2,7 +2,6 @@ import { useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthStatus, AuthTab, useAuthStore, useTempStore } from "../../store/useAuthStore";
 import { RegisterDataProps } from "../../types";
-import useFileHandler from "../../hooks/useFileHandler";
 import { toast } from "sonner";
 import { LoadingSVG } from "../loading/svg";
 import { IoPersonCircleOutline } from "react-icons/io5";
@@ -26,6 +25,7 @@ const BriefInfo: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
 
     const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
+        // eslint-disable-next-line no-useless-escape
         const specialCharRegex = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
         if (specialCharRegex.test(value)) {
             return toast.warning('Special characters not allowed.');
@@ -42,14 +42,21 @@ const BriefInfo: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
         }));
     }, [setRegisterData]);
 
-    const handleAvatarChange = useFileHandler(5);
-    const handleFileInputChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-        const base64String = await handleAvatarChange(e);
-        setRegisterData(prevState => ({
-            ...prevState,
-            avatar: base64String || ""
-        }));
+    const handleFileInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (event.target.files && event.target.files.length > 0) {
+            const file = event.target.files[0];
+            if (file) {
+                setRegisterData(prevState => ({
+                    ...prevState,
+                    avatar: file
+                }));
+            }
+        }
     };
+
+    const handleKeyPress = useCallback((e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === ' ') e.preventDefault();
+    }, []);
 
     const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -76,19 +83,18 @@ const BriefInfo: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
 
         if (trimmedUsername && trimmedFirstName && trimmedLastName) {
             setLoading(true);
+
+            const formData = new FormData();
+            formData.append('email', registerData.email);
+            formData.append('password', registerData.password);
+            formData.append('username', trimmedUsername);
+            formData.append('first_name', trimmedFirstName);
+            formData.append('last_name', trimmedLastName);
+            formData.append('avatar', registerData.avatar);
+
             await fetch(`${import.meta.env.VITE_SERVER_URL}/api/auth/register`, {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    email: registerData.email,
-                    password: registerData.password,
-                    avatar: registerData.avatar,
-                    username: trimmedUsername,
-                    first_name: trimmedFirstName,
-                    last_name: trimmedLastName
-                })
+                body: formData
             })
                 .then(res => res.json())
                 .then(response => {
@@ -128,8 +134,7 @@ const BriefInfo: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
                 <div className='avatar-username__container'>
                     <div
                         className='avatar__container'
-                        // onClick={() => document.getElementById('user-avatar')?.click()}
-                        onClick={() => toast.warning('Feature coming soon.')}
+                        onClick={() => document.getElementById('user-avatar')?.click()}
                     >
                         <input
                             type="file"
@@ -138,11 +143,19 @@ const BriefInfo: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
                             onChange={handleFileInputChange}
                         />
                         {registerData.avatar ? (
-                            <img
-                                src={registerData.avatar}
-                                alt="Avatar"
-                                style={{ width: '50px', height: '50px', objectFit: 'cover', border: '2px solid var(--body_color)', borderRadius: '50%' }}
-                            />
+                            typeof registerData.avatar === 'string' ? (
+                                <img
+                                    src={registerData.avatar}
+                                    alt="Avatar"
+                                    style={{ width: '50px', height: '50px', objectFit: 'cover', border: '2px solid var(--body_color)', borderRadius: '50%' }}
+                                />
+                            ) : (
+                                <img
+                                    src={URL.createObjectURL(registerData.avatar)}
+                                    alt="Avatar"
+                                    style={{ width: '50px', height: '50px', objectFit: 'cover', border: '2px solid var(--body_color)', borderRadius: '50%' }}
+                                />
+                            )
                         ) : <IoPersonCircleOutline size={50} />}
                         <div className='upload-btn'>
                             {registerData.avatar ? <MdModeEdit size={15} /> : <GrCloudUpload size={15} />}
@@ -155,6 +168,7 @@ const BriefInfo: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
                             name="username"
                             value={registerData.username}
                             onChange={handleInputChange}
+                            onKeyPress={handleKeyPress}
                             className={`${isSubmitted && !validationState.isUsernameValid ? "shake" : ""}`}
                             style={{ borderColor: isSubmitted && !validationState.isUsernameValid ? "red" : "" }}
                             placeholder={isSubmitted && !validationState.isUsernameValid ? 'Required' : ''}
@@ -168,6 +182,7 @@ const BriefInfo: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
                         name="first_name"
                         value={registerData.first_name}
                         onChange={handleInputChange}
+                        onKeyPress={handleKeyPress}
                         className={`${isSubmitted && !validationState.isFirstNameValid ? "shake" : ""}`}
                         style={{ borderColor: isSubmitted && !validationState.isFirstNameValid ? "red" : "" }}
                         placeholder={isSubmitted && !validationState.isFirstNameValid ? 'Required' : ''}
@@ -180,6 +195,7 @@ const BriefInfo: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
                         name="last_name"
                         value={registerData.last_name}
                         onChange={handleInputChange}
+                        onKeyPress={handleKeyPress}
                         className={`${isSubmitted && !validationState.isLastNameValid ? "shake" : ""}`}
                         style={{ borderColor: isSubmitted && !validationState.isLastNameValid ? "red" : "" }}
                         placeholder={isSubmitted && !validationState.isLastNameValid ? 'Required' : ''}

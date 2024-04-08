@@ -3,15 +3,15 @@ const verifyToken = require('../middleware/verifyToken');
 
 module.exports = async function (fastify, opts) {
     const registerSchema = {
+        consumes: ['multipart/form-data'],
         body: {
             type: 'object',
             properties: {
                 email: { type: 'string', format: 'email', minLength: 1 },
                 password: { type: 'string', minLength: 6 },
-                avatar: { type: 'string', nullable: true },
-                username: { type: 'string', minLength: 1, pattern: '^[a-zA-Z0-9]+$' },
-                first_name: { type: 'string', minLength: 1, pattern: '^[a-zA-Z0-9]+$' },
-                last_name: { type: 'string', minLength: 1, pattern: '^[a-zA-Z0-9]+$' }
+                username: { type: 'string', minLength: 1 },
+                first_name: { type: 'string', minLength: 1 },
+                last_name: { type: 'string', minLength: 1 }
             },
             required: ['email', 'password', 'username', 'first_name', 'last_name']
         }
@@ -34,7 +34,8 @@ module.exports = async function (fastify, opts) {
 
     fastify.post('/register', {
         schema: registerSchema,
-        attachValidation: true
+        attachValidation: true,
+        preValidation: fastify.upload.single('avatar'),
     }, (request, reply) => {
         if (request.validationError) {
             const errors = request.validationError.validation.map(error => {

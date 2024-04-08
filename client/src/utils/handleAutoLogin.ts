@@ -1,4 +1,3 @@
-import { toast } from 'sonner';
 import { User, AuthStatus, AuthTab } from '../store/useAuthStore';
 
 type SetRoute = (navigate: string) => void;
@@ -24,19 +23,16 @@ const handleAutoLogin = (setRoute: SetRoute, setUser: SetUser, setIsAuthenticate
             .then(res => res.json())
             .then(response => {
                 if (response.success) {
-                    toast.success(response.message);
                     setUser(response.data.user);
                     setIsAuthenticated(AuthStatus.Authenticated);
                     setAuthTab(AuthTab.Closed);
                 }
                 else {
-                    toast.success('Session logged out.');
                     setIsAuthenticated(AuthStatus.Failed);
                     localStorage.removeItem('token');
                 }
             })
             .catch(() => {
-                toast.success('Session logged out.');
                 setIsAuthenticated(AuthStatus.Failed);
                 localStorage.removeItem('token');
             });

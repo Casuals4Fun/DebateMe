@@ -1,10 +1,8 @@
-import React from "react";
-
 export interface RegisterDataProps {
     registerData: {
         email: string;
         password: string;
-        avatar: string;
+        avatar: string | File;
         username: string;
         first_name: string;
         last_name: string;
@@ -12,7 +10,7 @@ export interface RegisterDataProps {
     setRegisterData: React.Dispatch<React.SetStateAction<{
         email: string;
         password: string;
-        avatar: string;
+        avatar: string | File;
         username: string;
         first_name: string;
         last_name: string;

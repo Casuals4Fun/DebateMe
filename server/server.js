@@ -1,21 +1,17 @@
-require('dotenv').config();
-const path = require('path');
+require('dotenv').config()
+const path = require('path')
 
-const http = require('http');
-let server;
+const http = require('http')
+let server
 
 const serverFactory = (handler, opts) => {
-    server = http.createServer((req, res) => {
-        handler(req, res);
-    });
-
-    return server;
-};
+    return server = http.createServer((req, res) => handler(req, res))
+}
 
 const fastify = require('fastify')({
     serverFactory: serverFactory,
     bodyLimit: 7 * 1024 * 1024
-});
+})
 
 fastify.register(require('@fastify/cors'), { origin: "*" })
 
@@ -24,7 +20,12 @@ fastify.register(require('@fastify/static'), {
     prefix: '/avatars/',
     wildcard: false,
     redirect: false,
-});
+})
+
+fastify.register(require('@fastify/multipart'))
+const multer = require('fastify-multer')
+const upload = multer({ storage: multer.memoryStorage() })
+fastify.decorate('upload', upload)
 
 fastify.decorate('mysql', require('./db.js'))
 
@@ -42,19 +43,17 @@ fastify.register(require('@fastify/oauth2'), {
     discovery: {
         issuer: 'https://accounts.google.com'
     }
-});
+})
 
 fastify.register(require('./routes/auth'), { prefix: '/api/auth' })
 
 fastify.setNotFoundHandler((request, reply) => {
-    const url = request.raw.url;
-    if (url.startsWith('/avatars/')) return
-    reply.redirect(process.env.FRONTEND_URL);
-});
+    reply.redirect(process.env.FRONTEND_URL)
+})
 
 fastify.ready(() => {
     server.listen({ port: process.env.PORT }, (err) => {
-        if (err) throw err;
-        console.log(`Server running on port ${process.env.PORT}`);
-    });
-});
+        if (err) throw err
+        console.log(`Server running on port ${process.env.PORT}`)
+    })
+})

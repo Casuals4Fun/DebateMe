@@ -16,7 +16,7 @@ export default function AuthPage() {
             setAuthTab(type === 'login' ? AuthTab.Login : type === 'signup' ? AuthTab.Signup : AuthTab.Login);
         }
         else if (isAuthenticated === AuthStatus.Authenticated) {
-            navigate(route === '/auth' || route === '/login' || route === '/signup' ? '/' : route)
+            navigate(route === '/auth' || route === '/login' || route === '/signup' ? '/' : route, { replace: true });
         }
         else if (isAuthenticated === AuthStatus.Failed) {
             setAuthTab(type === 'login' ? AuthTab.Login : type === 'signup' ? AuthTab.Signup : AuthTab.Login);
@@ -36,7 +36,7 @@ export default function AuthPage() {
                 avatar: user.picture || ""
             });
             setAuthTab(AuthTab.Signup);
-            navigate('/auth', { replace: true });
+            navigate('/auth?type=signup', { replace: true });
         }
     }, [isAuthenticated, location.search, navigate, route, setAuthTab, setTempUser]);
 

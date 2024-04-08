@@ -7,12 +7,21 @@ import SignupTab from "./signup-tab";
 import BriefInfo from "./brief-info";
 import { IoClose } from "react-icons/io5";
 
+type RegisterData = {
+    email: string;
+    password: string;
+    avatar: string | File;
+    username: string;
+    first_name: string;
+    last_name: string;
+};
+
 const AuthModal = () => {
     const location = useLocation();
     const { authTab, setAuthTab } = useAuthStore();
     const { tempUser } = useTempStore();
 
-    const [registerData, setRegisterData] = useState(() => ({
+    const [registerData, setRegisterData] = useState<RegisterData>(() => ({
         email: tempUser.email || "",
         password: "",
         avatar: tempUser.avatar || "",
