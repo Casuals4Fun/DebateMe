@@ -3,6 +3,7 @@ import { RegisterDataProps } from "../../types";
 import { AuthStatus, AuthTab, useAuthStore, useTempStore } from "../../store/useAuthStore";
 import { toast } from "sonner";
 import { FcGoogle } from "react-icons/fc";
+import { LoadingSVG } from "../loading/svg";
 
 const SignupTab: React.FC<RegisterDataProps> = ({ registerData, setRegisterData }) => {
     const { setAuthTab, isAuthenticated } = useAuthStore();
@@ -91,7 +92,7 @@ const SignupTab: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
                     />
                 </div>
                 <button type='submit'>
-                    Continue
+                    {isAuthenticated === AuthStatus.Authenticating ? <LoadingSVG size={23} /> : 'Continue'}
                 </button>
             </form>
             {!tempUser.email && (
@@ -106,8 +107,14 @@ const SignupTab: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
                         className='google-btn'
                         onClick={() => window.location.href = `${import.meta.env.VITE_SERVER_URL}/api/auth/google`}
                     >
-                        <FcGoogle size={25} />
-                        <span>Continue with Google</span>
+                        {isAuthenticated === AuthStatus.Authenticating ? (
+                            <LoadingSVG size={23} />
+                        ) : (
+                            <>
+                                <FcGoogle size={25} />
+                                <span>Continue with Google</span>
+                            </>
+                        )}
                     </button>
                 </>
             )}

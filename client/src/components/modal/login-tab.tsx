@@ -122,7 +122,7 @@ const LoginTab = () => {
                     />
                 </div>
                 <button disabled={isAuthenticated === AuthStatus.Authenticating} type='submit'>
-                    {loginData.id && loginData.password && isAuthenticated === AuthStatus.Authenticating ? <LoadingSVG size={23} /> : 'Login'}
+                    {isAuthenticated === AuthStatus.Authenticating ? <LoadingSVG size={23} /> : 'Login'}
                 </button>
             </form>
             <div className='or-divider'>
@@ -135,7 +135,7 @@ const LoginTab = () => {
                 className='google-btn'
                 onClick={() => window.location.href = `${import.meta.env.VITE_SERVER_URL}/api/auth/google`}
             >
-                {!loginData.id && !loginData.password && isAuthenticated === AuthStatus.Authenticating ? (
+                {isAuthenticated === AuthStatus.Authenticating ? (
                     <LoadingSVG size={23} />
                 ) : (
                     <>

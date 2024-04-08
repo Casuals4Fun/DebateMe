@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { AuthStatus, AuthTab, useAuthStore, useTempStore } from "../../store/useAuthStore";
 import { useLocation, useNavigate } from "react-router-dom";
-import { LoadingComponent } from "../../components/loading/svg";
 
 export default function AuthPage() {
     const location = useLocation();
@@ -13,7 +12,10 @@ export default function AuthPage() {
         const params = new URLSearchParams(location.search);
         const type = params.get('type');
 
-        if (isAuthenticated === AuthStatus.Authenticated) {
+        if (isAuthenticated === AuthStatus.Authenticating) {
+            setAuthTab(type === 'login' ? AuthTab.Login : type === 'signup' ? AuthTab.Signup : AuthTab.Login);
+        }
+        else if (isAuthenticated === AuthStatus.Authenticated) {
             navigate(route === '/auth' || route === '/login' || route === '/signup' ? '/' : route)
         }
         else if (isAuthenticated === AuthStatus.Failed) {
@@ -38,5 +40,5 @@ export default function AuthPage() {
         }
     }, [isAuthenticated, location.search, navigate, route, setAuthTab, setTempUser]);
 
-    return <LoadingComponent />
+    return <div />
 }
