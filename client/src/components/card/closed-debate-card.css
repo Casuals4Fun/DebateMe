@@ -25,6 +25,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    overflow: hidden;
 }
 
 #closed-card .divider {
@@ -43,6 +44,10 @@
 }
 
 #closed-card .left p {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
     padding-top: 10px;
     font-size: 16px;
     color: var(--card_color_secondary);
@@ -138,6 +143,7 @@
     }
 
     #closed-card .left p {
+        -webkit-line-clamp: 2;
         font-size: 15px;
     }
 
