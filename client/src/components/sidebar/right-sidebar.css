@@ -86,7 +86,7 @@
 
 @media screen and (max-width: 480px) {
     #right-sidebar .right-sidebar__container {
-        padding: 0 15px;
+        padding: 0 10px;
         display: flex;
         align-items: center;
         background-color: var(--nav-foot__background);

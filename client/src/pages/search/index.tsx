@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Explore from "../../components/sidebar/explore";
 import { IoMdClose } from "react-icons/io";
+import { PiArrowBendUpRightBold } from "react-icons/pi";
 
 export default function SearchPage() {
     const location = useLocation();
@@ -30,7 +31,7 @@ export default function SearchPage() {
         <div id='search'>
             <Explore term={searchTerm} />
 
-            {searchTerm && (
+            {searchTerm ? (
                 <>
                     <div className='search-term'>
                         <h1>
@@ -44,6 +45,11 @@ export default function SearchPage() {
                         </button>
                     </div>
                 </>
+            ) : (
+                <div className='search-here'>
+                    <PiArrowBendUpRightBold size={50} />
+                    <h2>Search here</h2>
+                </div>
             )}
         </div>
     );
