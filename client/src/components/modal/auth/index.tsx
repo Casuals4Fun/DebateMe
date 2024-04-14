@@ -1,7 +1,7 @@
-import "./auth-modal.css";
+import "./index.css";
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
-import { useAuthStore, AuthTab, useTempStore } from "../../store/useAuthStore";
+import { useAuthStore, AuthTab, useTempStore } from "../../../store/useAuthStore";
 import LoginTab from "./login-tab";
 import SignupTab from "./signup-tab";
 import BriefInfo from "./brief-info";

@@ -15,7 +15,7 @@ import CreateDebatePage from "./pages/create-debate";
 import HotTopicsPage from "./pages/hot-topics";
 import OpenTopicsPage from "./pages/open-topics";
 import NotificationPage from "./pages/notifications";
-import AuthModal from "./components/modal/auth-modal";
+import AuthModal from "./components/modal/auth";
 
 export default function App() {
   const { setRoute, setUser, setIsAuthenticated, authTab, setAuthTab } = useAuthStore();
