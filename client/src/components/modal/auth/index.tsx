@@ -2,6 +2,8 @@ import "./index.css";
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useAuthStore, AuthTab, useTempStore } from "../../../store/useAuthStore";
+import Lottie from "lottie-react";
+import WavingHand from "../../../lottie/WavingHand.json";
 import LoginTab from "./login-tab";
 import SignupTab from "./signup-tab";
 import BriefInfo from "./brief-info";
@@ -40,7 +42,11 @@ const AuthModal = () => {
         <div id='auth-modal' onClick={handleBackgroundClick}>
             <div className='auth__container'>
                 <div className='left__container'>
-                    WelcomeTab
+                    <Lottie
+                        animationData={WavingHand}
+                        className="lottie-anim"
+                        loop={true}
+                    />
                 </div>
                 <div className='right__container'>
                     {authTab === AuthTab.Login ? (
@@ -62,7 +68,7 @@ const AuthModal = () => {
                         className='close__btn'
                         onClick={() => setAuthTab(AuthTab.Closed)}
                     >
-                        <IoClose size={25} />
+                        <IoClose size={30} />
                     </button>
                 )}
             </div>
