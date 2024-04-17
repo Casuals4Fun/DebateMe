@@ -299,6 +299,7 @@
 
     .auth__container .right__container {
         padding: 20px;
+        padding-bottom: 40px;
     }
 
     #auth-modal .auth__header h3 {
