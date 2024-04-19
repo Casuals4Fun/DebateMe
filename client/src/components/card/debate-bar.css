@@ -26,15 +26,17 @@
 .debate-bar .from-vote,
 .debate-bar .to-vote {
     position: absolute;
+    display: flex;
+    align-items: center;
     font-size: 15px;
-    font-weight: 500;
+    font-weight: 600;
     color: var(--card_background);
 }
 
 .debate-bar .from-vote {
-    left: 20px;
+    left: 10px;
 }
 
 .debate-bar .to-vote {
-    right: 20px;
+    right: 10px;
 }

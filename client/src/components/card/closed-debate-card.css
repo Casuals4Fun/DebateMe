@@ -117,6 +117,9 @@
 
 #closed-card .right .debate-info p {
     font-size: 14px;
+}
+
+#closed-card .right .debate-info .created-at {
     color: var(--card_color_secondary);
 }
 
