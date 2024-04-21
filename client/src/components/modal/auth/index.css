@@ -293,13 +293,13 @@
     }
 
     .auth__container .left__container .lottie-anim {
-        width: 100%;
+        width: 95%;
         height: auto;
     }
 
     .auth__container .right__container {
         padding: 20px;
-        padding-bottom: 40px;
+        padding-top: 0;
     }
 
     #auth-modal .auth__header h3 {
