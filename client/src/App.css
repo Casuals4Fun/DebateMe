@@ -85,20 +85,10 @@
     #main {
         padding: 10px;
         width: 100%;
-        max-height: calc(100dvh - 120px);
-        margin-top: 60px;
+        padding-top: 70px;
     }
 
     #main.expand {
         filter: blur(4px);
-    }
-
-    #main.full-height {
-        max-height: 100dvh;
-        margin-top: 0;
-    }
-
-    .hide {
-        display: none !important;
     }
 }

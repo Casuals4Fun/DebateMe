@@ -53,7 +53,7 @@ export default function App() {
   return (
     <div id='app'>
       <LeftSidebar isVisible={isScrollingUp} />
-      <main id='main' ref={mainRef} className={`${expand ? 'expand' : ''} ${isScrollingUp ? '' : 'full-height'}`}>
+      <main id='main' ref={mainRef} className={expand ? 'expand' : ''}>
         <Routes>
           <Route path='/' element={<HomePage />} />
           <Route path='/auth' element={<AuthPage />} />

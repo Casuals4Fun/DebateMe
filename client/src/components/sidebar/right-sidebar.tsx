@@ -13,7 +13,7 @@ const RightSidebar: React.FC<SidebarProps> = ({ isVisible }) => {
   const { expand } = useNavStore();
 
   return (
-    <div id='right-sidebar' className={isVisible ? '' : 'hide'}>
+    <div id='right-sidebar' className={isVisible ? 'reveal' : 'hide'}>
       <div className='right-sidebar__container'>
         <Link to='/' className='logo__container'>
           <img src="/logo.png" />

@@ -85,6 +85,16 @@
 }
 
 @media screen and (max-width: 480px) {
+    #right-sidebar.reveal {
+        margin-top: 0;
+        transition: all 0.15s ease-in;
+    }
+
+    #right-sidebar.hide {
+        margin-top: -60px;
+        transition: all 0.3s ease-out;
+    }
+
     #right-sidebar .right-sidebar__container {
         padding: 0 10px;
         display: flex;

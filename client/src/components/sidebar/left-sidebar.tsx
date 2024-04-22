@@ -38,7 +38,7 @@ const LeftSidebar: React.FC<SidebarProps> = ({ isVisible }) => {
   }
 
   return (
-    <div id='left-sidebar' className={isVisible ? '' : 'hide'}>
+    <div id='left-sidebar' className={isVisible ? 'reveal' : 'hide'}>
       <Link to='/' className='logo__wrapper'>
         <img src="/logo.png" alt="" />
       </Link>
