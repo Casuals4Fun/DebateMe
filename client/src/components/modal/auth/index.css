@@ -4,12 +4,14 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 100dvh;
+    max-height: 100dvh;
+    height: 100%;
     backdrop-filter: blur(8px);
     display: flex;
     align-items: center;
     justify-content: center;
     user-select: none;
+    overflow-y: auto;
 }
 
 .auth__container {
