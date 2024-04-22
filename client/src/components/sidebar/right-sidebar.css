@@ -87,7 +87,7 @@
 @media screen and (max-width: 480px) {
     #right-sidebar.reveal {
         margin-top: 0;
-        transition: all 0.15s ease-in;
+        transition: all 0.2s ease-in;
     }
 
     #right-sidebar.hide {

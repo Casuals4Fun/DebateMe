@@ -119,16 +119,6 @@
 }
 
 @media screen and (max-width: 767px) {
-    #left-sidebar.reveal {
-        margin-bottom: 0;
-        transition: all 0.15s ease-in;
-    }
-
-    #left-sidebar.hide {
-        margin-bottom: -60px;
-        transition: all 0.3s ease-out;
-    }
-
     #left-sidebar ul {
         gap: 30px;
     }
@@ -164,6 +154,16 @@
     #left-sidebar {
         padding: 0;
         border-right: none;
+    }
+
+    #left-sidebar.reveal {
+        margin-bottom: 0;
+        transition: all 0.2s ease-in;
+    }
+
+    #left-sidebar.hide {
+        margin-bottom: -60px;
+        transition: all 0.3s ease-out;
     }
 
     #left-sidebar .logo__wrapper,

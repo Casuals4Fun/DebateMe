@@ -34,7 +34,7 @@ export default function App() {
     const handleScroll = () => {
       if (mainRef.current) {
         const st = mainRef.current.scrollTop;
-        if (st > lastScrollTop && st > 200) setIsScrollingUp(false);
+        if (st > lastScrollTop && st > 70) setIsScrollingUp(false);
         else setIsScrollingUp(true);
         lastScrollTop = st <= 0 ? 0 : st;
       }
