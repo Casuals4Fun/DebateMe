@@ -1,5 +1,5 @@
 import "./App.css";
-import { useEffect } from "react";
+import { useRef, useState, useEffect } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { ProtectedRoute } from "./ProtectedRoute";
 import { Theme, useNavStore } from "./store/useNavStore";
@@ -26,10 +26,34 @@ export default function App() {
     handleAutoLogin(setRoute, setUser, setIsAuthenticated, setAuthTab);
   }, [setRoute, setUser, setIsAuthenticated, setAuthTab]);
 
+  const mainRef = useRef<HTMLDivElement>(null);
+  const [isScrollingUp, setIsScrollingUp] = useState<boolean>(true);
+  let lastScrollTop = 0;
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (mainRef.current) {
+        const st = mainRef.current.scrollTop;
+        if (st > lastScrollTop && st > 200) setIsScrollingUp(false);
+        else setIsScrollingUp(true);
+        lastScrollTop = st <= 0 ? 0 : st;
+      }
+    };
+
+    if (mainRef.current) {
+      mainRef.current.addEventListener('scroll', handleScroll, { passive: true });
+    }
+    return () => {
+      if (mainRef.current) {
+        mainRef.current.removeEventListener('scroll', handleScroll);
+      }
+    };
+  }, []);
+
   return (
     <div id='app'>
-      <LeftSidebar />
-      <main id='main' className={`${expand ? 'expand' : ''}`}>
+      <LeftSidebar isVisible={isScrollingUp} />
+      <main id='main' ref={mainRef} className={`${expand ? 'expand' : ''} ${isScrollingUp ? '' : 'full-height'}`}>
         <Routes>
           <Route path='/' element={<HomePage />} />
           <Route path='/auth' element={<AuthPage />} />
@@ -42,7 +66,7 @@ export default function App() {
           <Route path='/notifications' element={<ProtectedRoute><NotificationPage /></ProtectedRoute>} />
         </Routes>
       </main>
-      <RightSidebar />
+      <RightSidebar isVisible={isScrollingUp} />
 
       {authTab !== AuthTab.Closed && <AuthModal />}
 

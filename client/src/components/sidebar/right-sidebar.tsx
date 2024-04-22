@@ -5,11 +5,15 @@ import ToggleTheme from "../button/toggle-theme";
 import Profile from "./profile";
 import Explore from "./explore";
 
-const RightSidebar = () => {
+interface SidebarProps {
+  isVisible: boolean
+}
+
+const RightSidebar: React.FC<SidebarProps> = ({ isVisible }) => {
   const { expand } = useNavStore();
 
   return (
-    <div id='right-sidebar'>
+    <div id='right-sidebar' className={isVisible ? '' : 'hide'}>
       <div className='right-sidebar__container'>
         <Link to='/' className='logo__container'>
           <img src="/logo.png" />

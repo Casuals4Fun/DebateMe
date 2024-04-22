@@ -8,7 +8,11 @@ import Profile from "./profile";
 import { GoPerson } from "react-icons/go";
 import LoadingSkeleton from "../loading/skeleton";
 
-const LeftSidebar = () => {
+interface SidebarProps {
+  isVisible: boolean
+}
+
+const LeftSidebar: React.FC<SidebarProps> = ({ isVisible }) => {
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -34,7 +38,7 @@ const LeftSidebar = () => {
   }
 
   return (
-    <div id='left-sidebar'>
+    <div id='left-sidebar' className={isVisible ? '' : 'hide'}>
       <Link to='/' className='logo__wrapper'>
         <img src="/logo.png" alt="" />
       </Link>

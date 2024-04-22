@@ -92,4 +92,13 @@
     #main.expand {
         filter: blur(4px);
     }
+
+    #main.full-height {
+        max-height: 100dvh;
+        margin-top: 0;
+    }
+
+    .hide {
+        display: none !important;
+    }
 }
