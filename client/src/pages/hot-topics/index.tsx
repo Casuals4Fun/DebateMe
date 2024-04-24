@@ -9,6 +9,26 @@ export default function HotTopicsPage() {
             <ClosedDebateCard />
             <ClosedDebateCard />
             <ClosedDebateCard />
+            <ClosedDebateCard />
+            <ClosedDebateCard />
+            <ClosedDebateCard />
+            <ClosedDebateCard />
+            <ClosedDebateCard />
+            <ClosedDebateCard />
+            <ClosedDebateCard />
+            <ClosedDebateCard />
+            <ClosedDebateCard />
+            <ClosedDebateCard />
+            <ClosedDebateCard />
+            <ClosedDebateCard />
+            <ClosedDebateCard />
+            <ClosedDebateCard />
+            <ClosedDebateCard />
+            <ClosedDebateCard />
+            <ClosedDebateCard />
+            <ClosedDebateCard />
+            <ClosedDebateCard />
+            <ClosedDebateCard />
         </div>
     )
 }

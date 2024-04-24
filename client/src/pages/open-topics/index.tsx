@@ -10,6 +10,30 @@ export default function OpenTopicsPage() {
             <OpenDebateCard />
             <OpenDebateCard />
             <OpenDebateCard />
+            <OpenDebateCard />
+            <OpenDebateCard />
+            <OpenDebateCard />
+            <OpenDebateCard />
+            <OpenDebateCard />
+            <OpenDebateCard />
+            <OpenDebateCard />
+            <OpenDebateCard />
+            <OpenDebateCard />
+            <OpenDebateCard />
+            <OpenDebateCard />
+            <OpenDebateCard />
+            <OpenDebateCard />
+            <OpenDebateCard />
+            <OpenDebateCard />
+            <OpenDebateCard />
+            <OpenDebateCard />
+            <OpenDebateCard />
+            <OpenDebateCard />
+            <OpenDebateCard />
+            <OpenDebateCard />
+            <OpenDebateCard />
+            <OpenDebateCard />
+            <OpenDebateCard />
         </div>
     )
 }

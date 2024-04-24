@@ -10,6 +10,26 @@ export default function HomePage() {
       <ClosedDebateCard />
       <OpenDebateCard />
       <OpenDebateCard />
+      <ClosedDebateCard />
+      <OpenDebateCard />
+      <ClosedDebateCard />
+      <OpenDebateCard />
+      <OpenDebateCard />
+      <ClosedDebateCard />
+      <OpenDebateCard />
+      <ClosedDebateCard />
+      <OpenDebateCard />
+      <OpenDebateCard />
+      <ClosedDebateCard />
+      <OpenDebateCard />
+      <ClosedDebateCard />
+      <OpenDebateCard />
+      <OpenDebateCard />
+      <ClosedDebateCard />
+      <OpenDebateCard />
+      <ClosedDebateCard />
+      <OpenDebateCard />
+      <OpenDebateCard />
     </div>
   )
 }
