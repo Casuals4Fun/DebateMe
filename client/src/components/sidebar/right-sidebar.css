@@ -86,13 +86,13 @@
 
 @media screen and (max-width: 480px) {
     #right-sidebar.reveal {
-        margin-top: 0;
-        transition: all 0.2s ease-in;
+        top: 0;
+        transition: top 0.25s ease-out;
     }
 
     #right-sidebar.hide {
-        margin-top: -60px;
-        transition: all 0.3s ease-out;
+        top: -60px;
+        transition: top 0.4s ease-out;
     }
 
     #right-sidebar .right-sidebar__container {
