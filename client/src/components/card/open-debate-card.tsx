@@ -1,8 +1,8 @@
-import "./open-debate-card.css";
-import { Link } from "react-router-dom";
-import useFormatNumber from "../../hooks/useFormatNumber";
-import { IoCaretUpSharp } from "react-icons/io5";
-import { FaComments } from "react-icons/fa";
+import "./open-debate-card.css"
+import { Link } from "react-router-dom"
+import { FaComments } from "react-icons/fa"
+import { IoCaretUpSharp } from "react-icons/io5"
+import useFormatNumber from "../../hooks/useFormatNumber"
 
 const OpenDebateCard = () => {
     return (

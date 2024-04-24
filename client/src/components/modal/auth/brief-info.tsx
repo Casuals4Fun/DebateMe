@@ -1,12 +1,12 @@
-import { useState, useCallback } from "react";
-import { useNavigate } from "react-router-dom";
-import { AuthStatus, AuthTab, useAuthStore, useTempStore } from "../../../store/useAuthStore";
-import { RegisterDataProps } from "../../../types";
-import { toast } from "sonner";
-import { IoPersonCircleOutline } from "react-icons/io5";
-import { MdModeEdit } from "react-icons/md";
-import { GrCloudUpload } from "react-icons/gr";
-import { LoadingSVG } from "../../loading/svg";
+import { useState, useCallback } from "react"
+import { useNavigate } from "react-router-dom"
+import { toast } from "sonner"
+import { LoadingSVG } from "../../loading/svg"
+import { RegisterDataProps } from "../../../types"
+import { AuthStatus, AuthTab, useAuthStore, useTempStore } from "../../../store/useAuthStore"
+import { MdModeEdit } from "react-icons/md"
+import { GrCloudUpload } from "react-icons/gr"
+import { IoPersonCircleOutline } from "react-icons/io5"
 
 const BriefInfo: React.FC<RegisterDataProps> = ({ registerData, setRegisterData }) => {
     const navigate = useNavigate();

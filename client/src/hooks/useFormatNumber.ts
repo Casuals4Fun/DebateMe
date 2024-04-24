@@ -1,5 +1,5 @@
 const useFormatNumber = (num: number) => {
-    let formattedNum = "";
+    let formattedNum = '';
     if (num >= 1_000_000_000) {
         formattedNum = (num / 1_000_000_000).toFixed(2);
         formattedNum = formattedNum.replace(/\.00$/, '');

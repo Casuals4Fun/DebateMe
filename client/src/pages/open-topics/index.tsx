@@ -1,5 +1,5 @@
-import "./style.css";
-import OpenDebateCard from "../../components/card/open-debate-card";
+import "./style.css"
+import OpenDebateCard from "../../components/card/open-debate-card"
 
 export default function OpenTopicsPage() {
     return (

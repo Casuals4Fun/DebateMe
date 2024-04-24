@@ -1,9 +1,9 @@
-import "./style.css";
-import { useState, useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import Explore from "../../components/sidebar/explore";
-import { IoMdClose } from "react-icons/io";
-import { PiArrowBendUpRightBold } from "react-icons/pi";
+import "./style.css"
+import { useState, useEffect } from "react"
+import { useLocation, useNavigate } from "react-router-dom"
+import Explore from "../../components/sidebar/explore"
+import { IoMdClose } from "react-icons/io"
+import { PiArrowBendUpRightBold } from "react-icons/pi"
 
 export default function SearchPage() {
     const location = useLocation();

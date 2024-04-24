@@ -1,9 +1,9 @@
-import React, { useState, useCallback } from "react";
-import { RegisterDataProps } from "../../../types";
-import { AuthStatus, AuthTab, useAuthStore, useTempStore } from "../../../store/useAuthStore";
-import { toast } from "sonner";
-import { FcGoogle } from "react-icons/fc";
-import { LoadingSVG } from "../../loading/svg";
+import React, { useState, useCallback } from "react"
+import { RegisterDataProps } from "../../../types"
+import { toast } from "sonner"
+import { AuthStatus, AuthTab, useAuthStore, useTempStore } from "../../../store/useAuthStore"
+import { FcGoogle } from "react-icons/fc"
+import { LoadingSVG } from "../../loading/svg"
 
 const SignupTab: React.FC<RegisterDataProps> = ({ registerData, setRegisterData }) => {
     const { setAuthTab, isAuthenticated } = useAuthStore();

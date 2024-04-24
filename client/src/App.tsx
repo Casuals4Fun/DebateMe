@@ -1,21 +1,21 @@
-import "./App.css";
-import { useRef, useState, useEffect } from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
-import { ProtectedRoute } from "./ProtectedRoute";
-import { Theme, useNavStore } from "./store/useNavStore";
-import { AuthTab, useAuthStore } from "./store/useAuthStore";
-import handleAutoLogin from "./utils/handleAutoLogin";
-import { Toaster } from "sonner";
-import LeftSidebar from "./components/sidebar/left-sidebar";
-import RightSidebar from "./components/sidebar/right-sidebar";
-import HomePage from "./pages/home";
-import AuthPage from "./pages/auth";
-import SearchPage from "./pages/search";
-import CreateDebatePage from "./pages/create-debate";
-import HotTopicsPage from "./pages/hot-topics";
-import OpenTopicsPage from "./pages/open-topics";
-import NotificationPage from "./pages/notifications";
-import AuthModal from "./components/modal/auth";
+import "./App.css"
+import { useRef, useState, useEffect } from "react"
+import { Routes, Route, Navigate } from "react-router-dom"
+import { Toaster } from "sonner"
+import { ProtectedRoute } from "./ProtectedRoute"
+import { Theme, useNavStore } from "./store/useNavStore"
+import { AuthTab, useAuthStore } from "./store/useAuthStore"
+import handleAutoLogin from "./utils/handleAutoLogin"
+import LeftSidebar from "./components/sidebar/left-sidebar"
+import RightSidebar from "./components/sidebar/right-sidebar"
+import AuthModal from "./components/modal/auth"
+import HomePage from "./pages/home"
+import AuthPage from "./pages/auth"
+import SearchPage from "./pages/search"
+import CreateDebatePage from "./pages/create-debate"
+import HotTopicsPage from "./pages/hot-topics"
+import OpenTopicsPage from "./pages/open-topics"
+import NotificationPage from "./pages/notifications"
 
 export default function App() {
   const { setRoute, setUser, setIsAuthenticated, authTab, setAuthTab } = useAuthStore();
@@ -27,25 +27,24 @@ export default function App() {
   }, [setRoute, setUser, setIsAuthenticated, setAuthTab]);
 
   const mainRef = useRef<HTMLDivElement>(null);
+  const lastScrollTop = useRef<number>(0);
   const [isScrollingUp, setIsScrollingUp] = useState<boolean>(true);
-  let lastScrollTop = 0;
 
   useEffect(() => {
     const handleScroll = () => {
       if (mainRef.current) {
         const st = mainRef.current.scrollTop;
-        if (st > lastScrollTop && st > 70) setIsScrollingUp(false);
+        if (st > lastScrollTop.current) setIsScrollingUp(false);
         else setIsScrollingUp(true);
-        lastScrollTop = st <= 0 ? 0 : st;
+        lastScrollTop.current = st <= 0 ? 0 : st;
       }
     };
 
-    if (mainRef.current) {
-      mainRef.current.addEventListener('scroll', handleScroll, { passive: true });
-    }
+    const mainElement = mainRef.current;
+    if (mainElement) mainElement.addEventListener('scroll', handleScroll, { passive: true });
     return () => {
-      if (mainRef.current) {
-        mainRef.current.removeEventListener('scroll', handleScroll);
+      if (mainElement) {
+        mainElement.removeEventListener('scroll', handleScroll);
       }
     };
   }, []);

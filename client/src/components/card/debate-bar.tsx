@@ -1,7 +1,7 @@
-import "./debate-bar.css";
-import React from "react";
-import useFormatNumber from "../../hooks/useFormatNumber";
-import { IoCaretUpSharp } from "react-icons/io5";
+import "./debate-bar.css"
+import React from "react"
+import { IoCaretUpSharp } from "react-icons/io5"
+import useFormatNumber from "../../hooks/useFormatNumber"
 
 interface BarProps {
     debateFrom: number;

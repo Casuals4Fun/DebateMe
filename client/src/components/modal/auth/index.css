@@ -234,7 +234,7 @@
 }
 
 #auth-modal .checkbox__conatiner .checkmark:after {
-    content: "";
+    content: '';
     position: absolute;
     display: none;
 }

@@ -1,5 +1,5 @@
-import "./style.css";
-import ClosedDebateCard from "../../components/card/closed-debate-card";
+import "./style.css"
+import ClosedDebateCard from "../../components/card/closed-debate-card"
 
 export default function HotTopicsPage() {
     return (

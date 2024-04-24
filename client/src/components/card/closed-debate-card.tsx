@@ -1,8 +1,8 @@
-import "./closed-debate-card.css";
-import { Link } from "react-router-dom";
-import DebateBar from "./debate-bar";
-import useFormatNumber from "../../hooks/useFormatNumber";
-import { FaComments } from "react-icons/fa";
+import "./closed-debate-card.css"
+import { Link } from "react-router-dom"
+import DebateBar from "./debate-bar"
+import { FaComments } from "react-icons/fa"
+import useFormatNumber from "../../hooks/useFormatNumber"
 
 const ClosedDebateCard = () => {
     return (

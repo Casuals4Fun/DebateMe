@@ -1,9 +1,8 @@
-import { RiHome2Fill } from "react-icons/ri";
-import { RiFireFill } from "react-icons/ri";
-import { FaFeather } from "react-icons/fa6";
-import { IoSearch } from "react-icons/io5";
-import { PiBellSimpleFill } from "react-icons/pi";
-import { IoMdCreate } from "react-icons/io";
+import { RiHome2Fill, RiFireFill } from "react-icons/ri"
+import { FaFeather } from "react-icons/fa6"
+import { IoSearch } from "react-icons/io5"
+import { PiBellSimpleFill } from "react-icons/pi"
+import { IoMdCreate } from "react-icons/io"
 
 export const leftSidebarLinks = [
     {

@@ -1,13 +1,13 @@
-import "./index.css";
-import { useState } from "react";
-import { useLocation } from "react-router-dom";
-import { useAuthStore, AuthTab, useTempStore } from "../../../store/useAuthStore";
-import Lottie from "lottie-react";
-import WavingHand from "../../../lottie/WavingHand.json";
-import LoginTab from "./login-tab";
-import SignupTab from "./signup-tab";
-import BriefInfo from "./brief-info";
-import { IoClose } from "react-icons/io5";
+import "./index.css"
+import { useState } from "react"
+import { useLocation } from "react-router-dom"
+import Lottie from "lottie-react"
+import { useAuthStore, AuthTab, useTempStore } from "../../../store/useAuthStore"
+import WavingHand from "../../../lottie/WavingHand.json"
+import LoginTab from "./login-tab"
+import SignupTab from "./signup-tab"
+import BriefInfo from "./brief-info"
+import { IoClose } from "react-icons/io5"
 
 type RegisterData = {
     email: string;

@@ -1,12 +1,12 @@
-import "./left-sidebar.css";
-import { useLocation, Link, useNavigate } from "react-router-dom";
-import { AuthStatus, AuthTab, useAuthStore } from "../../store/useAuthStore";
-import { Theme, useNavStore } from "../../store/useNavStore";
-import { toast } from "sonner";
-import { leftSidebarLinks } from "../../data/left-sidebar-links";
-import Profile from "./profile";
-import { GoPerson } from "react-icons/go";
-import LoadingSkeleton from "../loading/skeleton";
+import "./left-sidebar.css"
+import { useLocation, Link, useNavigate } from "react-router-dom"
+import { toast } from "sonner"
+import { AuthStatus, AuthTab, useAuthStore } from "../../store/useAuthStore"
+import { Theme, useNavStore } from "../../store/useNavStore"
+import { leftSidebarLinks } from "../../data/left-sidebar-links"
+import Profile from "./profile"
+import { GoPerson } from "react-icons/go"
+import LoadingSkeleton from "../loading/skeleton"
 
 interface SidebarProps {
   isVisible: boolean

@@ -1,15 +1,15 @@
-import "./profile.css";
-import { useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { Theme, useNavStore } from "../../store/useNavStore";
-import { AuthStatus, AuthTab, useAuthStore } from "../../store/useAuthStore";
-import ToggleTheme from "../button/toggle-theme";
-import LoadingSkeleton from "../loading/skeleton";
-import { toast } from "sonner";
-import { IoMdPerson } from "react-icons/io";
-import { PiBellSimpleFill, PiSignOutBold } from "react-icons/pi";
-import { GoPerson } from "react-icons/go";
-import { FaRegUser } from "react-icons/fa";
+import "./profile.css"
+import { useEffect } from "react"
+import { Link, useNavigate } from "react-router-dom"
+import { toast } from "sonner"
+import { Theme, useNavStore } from "../../store/useNavStore"
+import { AuthStatus, AuthTab, useAuthStore } from "../../store/useAuthStore"
+import ToggleTheme from "../button/toggle-theme"
+import LoadingSkeleton from "../loading/skeleton"
+import { IoMdPerson } from "react-icons/io"
+import { PiBellSimpleFill, PiSignOutBold } from "react-icons/pi"
+import { GoPerson } from "react-icons/go"
+import { FaRegUser } from "react-icons/fa"
 
 const Profile = () => {
     const navigate = useNavigate();
@@ -20,6 +20,18 @@ const Profile = () => {
         const newTheme = theme === Theme.Light ? Theme.Dark : Theme.Light;
         document.querySelector("body")?.setAttribute('data-theme', newTheme);
         setTheme(newTheme);
+    }
+
+    const handleToggleMenu = () => {
+        setExpand(!expand);
+        const mainElement = document.querySelector('#main') as HTMLElement;
+        if (mainElement) {
+            if (window.matchMedia("(max-width: 480px)").matches) {
+                if (expand) mainElement.style.overflow = '';
+                else mainElement.style.overflow = 'hidden';
+            }
+            else mainElement.style.overflow = '';
+        }
     }
 
     const handleLogout = () => {
@@ -40,12 +52,10 @@ const Profile = () => {
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
             const target = event.target as HTMLElement;
-            if (
-                expand &&
-                !target.closest(".profile__modal") &&
-                !target.closest(".profile__image")
-            ) {
+            if (expand && !target.closest(".profile__modal") && !target.closest(".profile__image")) {
                 setExpand(false);
+                const mainElement = document.querySelector('#main') as HTMLElement;
+                if (mainElement) mainElement.style.overflow = '';
             }
         };
 
@@ -79,7 +89,7 @@ const Profile = () => {
                             borderStyle: 'solid',
                             borderColor: `${expand ? 'var(--body_color)' : 'var(--nav_border)'}`
                         }}
-                        onClick={() => setExpand(!expand)}
+                        onClick={handleToggleMenu}
                     >
                         {user.avatar ? (
                             <img src={user.avatar} alt="" />
