@@ -1,6 +1,6 @@
 import "./index.css"
 import { useState } from "react"
-import { Link, useLocation, useNavigate } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 import Lottie from "lottie-react"
 import { useAuthStore, AuthTab, useTempStore } from "../../../store/useAuthStore"
 import { Theme, useNavStore } from "../../../store/useNavStore"
@@ -40,7 +40,7 @@ const AuthModal = () => {
         const newTheme = theme === Theme.Light ? Theme.Dark : Theme.Light;
         document.querySelector("body")?.setAttribute('data-theme', newTheme);
         setTheme(newTheme);
-    }
+    };
 
     const handleCloseModal = () => {
         if (location.pathname !== '/auth') setAuthTab(AuthTab.Closed);
@@ -48,7 +48,7 @@ const AuthModal = () => {
             navigate('/');
             setAuthTab(AuthTab.Closed);
         }
-    }
+    };
 
     const handleBackgroundClick = (event: React.MouseEvent<HTMLDivElement>) => {
         if (location.pathname !== '/auth' && event.target === event.currentTarget) {
@@ -82,9 +82,9 @@ const AuthModal = () => {
                     )}
                 </div>
                 <>
-                    <Link to='/' className='logo__wrapper'>
+                    <button onClick={handleCloseModal} className='logo__wrapper'>
                         <img src="/logo.png" alt="" />
-                    </Link>
+                    </button>
                     <button
                         className='theme-btn'
                         onClick={handleToggleTheme}
