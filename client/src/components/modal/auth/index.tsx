@@ -1,6 +1,6 @@
 import "./index.css"
 import { useState } from "react"
-import { Link, useLocation } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 import Lottie from "lottie-react"
 import { useAuthStore, AuthTab, useTempStore } from "../../../store/useAuthStore"
 import { Theme, useNavStore } from "../../../store/useNavStore"
@@ -21,6 +21,8 @@ type RegisterData = {
 
 const AuthModal = () => {
     const location = useLocation();
+    const navigate = useNavigate();
+
     const { authTab, setAuthTab } = useAuthStore();
     const { theme, setTheme } = useNavStore();
     const { tempUser } = useTempStore();
@@ -38,6 +40,14 @@ const AuthModal = () => {
         const newTheme = theme === Theme.Light ? Theme.Dark : Theme.Light;
         document.querySelector("body")?.setAttribute('data-theme', newTheme);
         setTheme(newTheme);
+    }
+
+    const handleCloseModal = () => {
+        if (location.pathname !== '/auth') setAuthTab(AuthTab.Closed);
+        else {
+            navigate('/');
+            setAuthTab(AuthTab.Closed);
+        }
     }
 
     const handleBackgroundClick = (event: React.MouseEvent<HTMLDivElement>) => {
@@ -71,26 +81,24 @@ const AuthModal = () => {
                         />
                     )}
                 </div>
-                {location.pathname !== '/auth' && (
-                    <>
-                        <Link to='/' className='logo__wrapper'>
-                            <img src="/logo.png" alt="" />
-                        </Link>
-                        <button
-                            className='theme-btn'
-                            onClick={handleToggleTheme}
-                            title={theme === Theme.Dark ? 'Switch to Light mode' : 'Switch to Dark mode'}
-                        >
-                            {theme === Theme.Dark ? <img className="sun" src="theme/sun.svg" alt="" /> : <img className="moon" src="theme/moon.png" alt="" />}
-                        </button>
-                        <button
-                            className='close__btn'
-                            onClick={() => setAuthTab(AuthTab.Closed)}
-                        >
-                            <IoClose size={30} />
-                        </button>
-                    </>
-                )}
+                <>
+                    <Link to='/' className='logo__wrapper'>
+                        <img src="/logo.png" alt="" />
+                    </Link>
+                    <button
+                        className='theme-btn'
+                        onClick={handleToggleTheme}
+                        title={theme === Theme.Dark ? 'Switch to Light mode' : 'Switch to Dark mode'}
+                    >
+                        {theme === Theme.Dark ? <img className="sun" src="theme/sun.svg" alt="" /> : <img className="moon" src="theme/moon.png" alt="" />}
+                    </button>
+                    <button
+                        className='close__btn'
+                        onClick={handleCloseModal}
+                    >
+                        <IoClose size={30} />
+                    </button>
+                </>
             </div>
         </div>
     )
