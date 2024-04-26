@@ -1,6 +1,6 @@
 import "./open-debate-card.css"
 import { Link } from "react-router-dom"
-import { FaComments } from "react-icons/fa"
+import { MdModeComment } from "react-icons/md"
 import { IoCaretUpSharp } from "react-icons/io5"
 import useFormatNumber from "../../hooks/useFormatNumber"
 
@@ -26,7 +26,7 @@ const OpenDebateCard = () => {
                     <p>{useFormatNumber(4500)}</p>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
-                    <FaComments size={15} />
+                    <MdModeComment size={15} />
                     <p>{useFormatNumber(1300)}</p>
                 </div>
             </div>

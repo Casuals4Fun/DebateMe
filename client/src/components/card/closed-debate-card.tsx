@@ -1,7 +1,7 @@
 import "./closed-debate-card.css"
 import { Link } from "react-router-dom"
 import DebateBar from "./debate-bar"
-import { FaComments } from "react-icons/fa"
+import { MdModeComment } from "react-icons/md"
 import useFormatNumber from "../../hooks/useFormatNumber"
 
 const ClosedDebateCard = () => {
@@ -33,7 +33,7 @@ const ClosedDebateCard = () => {
                 </div>
                 <div className='debate-info'>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '5px', fontSize: '15px', fontWeight: '600' }}>
-                        <FaComments size={15} />
+                        <MdModeComment size={15} />
                         <p>{useFormatNumber(1300)}</p>
                     </div>
                     <p className='created-at'>5 days ago</p>
