@@ -47,6 +47,8 @@ fastify.register(require('@fastify/oauth2'), {
 
 fastify.register(require('./routes/auth'), { prefix: '/api/auth' })
 
+fastify.get('/test', (request, reply) => reply.code(200).send({ success: true, message: 'Server running...' }))
+
 fastify.setNotFoundHandler((request, reply) => {
     reply.redirect(process.env.FRONTEND_URL)
 })
