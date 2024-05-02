@@ -20,11 +20,11 @@ const ClosedDebateCard = () => {
             <div className='right'>
                 <div className='user-info'>
                     <div className='debate-from'>
-                        <img src="/user1.webp" alt="" />
+                        <img src="/user1.webp" alt="" loading="lazy" />
                         <p>Aniket Das</p>
                     </div>
                     <div className='debate-by'>
-                        <img src="/user2.jpeg" alt="" />
+                        <img src="/user2.jpeg" alt="" loading="lazy" />
                         <p>Pratik Prasad</p>
                     </div>
                 </div>

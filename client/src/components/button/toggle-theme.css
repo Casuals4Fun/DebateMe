@@ -68,7 +68,3 @@
 .theme__button input[type=checkbox]:checked+.display label .circle .moon {
     opacity: 0;
 }
-
-/* .theme__button label:active .circle {
-    width: 50px;
-} */

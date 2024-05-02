@@ -32,7 +32,7 @@
 #open-card .debate-body {
     overflow: hidden;
     display: -webkit-box;
-    -webkit-line-clamp: 5;
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     padding-top: 10px;
     font-size: 16px;
@@ -45,7 +45,6 @@
     gap: 10px;
     font-size: 15px;
     font-weight: 600;
-    /* color: var(--card_color_secondary); */
 }
 
 #open-card .debate-footer {
@@ -104,7 +103,7 @@
     }
 
     #open-card .debate-body {
-        -webkit-line-clamp: 6;
+        -webkit-line-clamp: 5;
     }
 }
 
@@ -123,9 +122,5 @@
 
     #open-card .debate-header a {
         padding-top: 0;
-    }
-
-    #open-card .debate-body {
-        -webkit-line-clamp: 6;
     }
 }

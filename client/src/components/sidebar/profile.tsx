@@ -92,7 +92,7 @@ const Profile = () => {
                         onClick={handleToggleMenu}
                     >
                         {user.avatar ? (
-                            <img src={user.avatar} alt="" />
+                            <img src={user.avatar} alt="" loading="lazy" />
                         ) : (
                             <FaRegUser style={{ width: '50%', height: '50%' }} />
                         )}
@@ -108,12 +108,12 @@ const Profile = () => {
                         {theme === Theme.Dark ? <img className="sun" src="theme/sun.svg" alt="" /> : <img className="moon" src="theme/moon.png" alt="" />}
                     </button>
                     <button
-                        className='login-btn'
+                        className='join-btn'
                         style={{ border: `${authTab !== AuthTab.Closed ? '2px solid var(--body_color)' : ''}` }}
                         onClick={() => setAuthTab(AuthTab.Login)}
                     >
                         <GoPerson size={20} />
-                        <p>Login</p>
+                        <p>Join now</p>
                     </button>
                 </>
             )}
@@ -124,7 +124,7 @@ const Profile = () => {
                         <div className="profile-wrapper">
                             <div className='modal-profile__image'>
                                 {user.avatar ? (
-                                    <img src={user.avatar} alt="" />
+                                    <img src={user.avatar} alt="" loading="lazy" />
                                 ) : (
                                     <FaRegUser style={{ width: '50%', height: '50%' }} />
                                 )}

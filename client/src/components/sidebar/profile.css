@@ -1,3 +1,15 @@
+:root {
+    --text_primary: #0a0a0a;
+    --text_secondary: #AAAAAA;
+    --text_tertiary: #212122;
+}
+
+[data-theme='dark'] {
+    --text_primary: #9f9f9f;
+    --text_secondary: #fff;
+    --text_tertiary: #868686;
+}
+
 .profile__wrapper {
     position: relative;
     display: flex;
@@ -5,17 +17,37 @@
     align-items: center;
 }
 
-.profile__wrapper .login-btn {
-    width: 125px;
+.profile__wrapper .join-btn {
     height: 40px;
     display: flex;
-    gap: 5px;
     align-items: center;
     justify-content: center;
-    border-radius: 30px;
-    font-size: 17.5px;
-    background-color: var(--explore_input_bg);
-    color: var(--body_color);
+    background: linear-gradient(to right, var(--text_primary) 0, var(--text_secondary) 10%, var(--text_tertiary) 20%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shine 10s infinite linear;
+    font-weight: 600;
+    font-size: 20px;
+    font-family: inherit;
+}
+
+@keyframes shine {
+    0% {
+        background-position: 0;
+    }
+
+    60% {
+        background-position: 180px;
+    }
+
+    100% {
+        background-position: 180px;
+    }
+}
+
+.profile__wrapper .join-btn svg {
+    display: none;
 }
 
 .profile__image,
@@ -129,13 +161,18 @@
 }
 
 @media screen and (max-width: 767px) {
-    .profile__wrapper .login-btn {
+    .profile__wrapper .join-btn {
         width: 40px;
         height: 40px;
         border-radius: 50%;
+        background: var(--explore_input_bg);
     }
 
-    .profile__wrapper .login-btn p {
+    .profile__wrapper .join-btn svg {
+        display: block;
+    }
+
+    .profile__wrapper .join-btn p {
         display: none;
     }
 

@@ -32,7 +32,7 @@ const OpenDebateCard = () => {
             </div>
             <div className='debate-footer'>
                 <div className='user-info'>
-                    <img src="/user.jpg" alt="" />
+                    <img src="/user.jpg" alt="" loading="lazy" />
                     <div className='user-detail'>
                         <p>Julie Roberts</p>
                         <p>julieroberts</p>
