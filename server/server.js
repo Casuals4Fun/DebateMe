@@ -15,19 +15,12 @@ const fastify = require('fastify')({
 
 fastify.register(require('@fastify/cors'), { origin: "*" })
 
-fastify.register(require('@fastify/static'), {
-    root: path.join(__dirname, 'avatars'),
-    prefix: '/avatars/',
-    wildcard: false,
-    redirect: false,
-})
-
 fastify.register(require('@fastify/multipart'))
 const multer = require('fastify-multer')
 const upload = multer({ storage: multer.memoryStorage() })
 fastify.decorate('upload', upload)
 
-fastify.decorate('mysql', require('./db.js'))
+fastify.decorate('mysql', require('./db'))
 
 fastify.register(require('@fastify/oauth2'), {
     name: 'googleOAuth2',
