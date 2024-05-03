@@ -108,12 +108,12 @@ const Profile = () => {
                         {theme === Theme.Dark ? <img className="sun" src="theme/sun.svg" alt="" /> : <img className="moon" src="theme/moon.png" alt="" />}
                     </button>
                     <button
-                        className='join-btn'
+                        className='auth-btn'
                         style={{ border: `${authTab !== AuthTab.Closed ? '2px solid var(--body_color)' : ''}` }}
                         onClick={() => setAuthTab(AuthTab.Login)}
                     >
                         <GoPerson size={20} />
-                        <p>Join now</p>
+                        <p>Join Community</p>
                     </button>
                 </>
             )}
