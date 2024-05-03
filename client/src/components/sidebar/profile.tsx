@@ -2,7 +2,7 @@ import "./profile.css"
 import { useEffect } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { toast } from "sonner"
-import { Theme, useNavStore } from "../../store/useNavStore"
+import { useNavStore } from "../../store/useNavStore"
 import { AuthStatus, AuthTab, useAuthStore } from "../../store/useAuthStore"
 import ToggleTheme from "../button/toggle-theme"
 import LoadingSkeleton from "../loading/skeleton"
@@ -13,14 +13,8 @@ import { FaRegUser } from "react-icons/fa"
 
 const Profile = () => {
     const navigate = useNavigate();
-    const { expand, setExpand, theme, setTheme } = useNavStore();
+    const { expand, setExpand } = useNavStore();
     const { isAuthenticated, setIsAuthenticated, user, setUser, authTab, setAuthTab } = useAuthStore();
-
-    const handleToggleTheme = () => {
-        const newTheme = theme === Theme.Light ? Theme.Dark : Theme.Light;
-        document.querySelector("body")?.setAttribute('data-theme', newTheme);
-        setTheme(newTheme);
-    }
 
     const handleToggleMenu = () => {
         setExpand(!expand);
@@ -67,21 +61,21 @@ const Profile = () => {
 
     return (
         <div className='profile__wrapper'>
+            <Link
+                to='/notifications'
+                className='notification-btn'
+                style={{
+                    borderWidth: '2px',
+                    borderStyle: 'solid',
+                    borderColor: location.pathname === '/notifications' ? 'var(--body_color)' : 'transparent'
+                }}
+            >
+                <PiBellSimpleFill size={20} />
+            </Link>
             {isAuthenticated === AuthStatus.Authenticating ? (
                 <LoadingSkeleton style={{ width: '40px', height: '40px', borderRadius: '50%' }} />
             ) : isAuthenticated === AuthStatus.Authenticated ? (
                 <>
-                    <Link
-                        to='/notifications'
-                        className='notification-btn'
-                        style={{
-                            borderWidth: '2px',
-                            borderStyle: 'solid',
-                            borderColor: location.pathname === '/notifications' ? 'var(--body_color)' : 'transparent'
-                        }}
-                    >
-                        <PiBellSimpleFill size={20} />
-                    </Link>
                     <div
                         className='profile__image'
                         style={{
@@ -100,13 +94,6 @@ const Profile = () => {
                 </>
             ) : (
                 <>
-                    <button
-                        className='theme-btn'
-                        onClick={handleToggleTheme}
-                        title={theme === Theme.Dark ? 'Switch to Light mode' : 'Switch to Dark mode'}
-                    >
-                        {theme === Theme.Dark ? <img className="sun" src="theme/sun.svg" alt="" /> : <img className="moon" src="theme/moon.png" alt="" />}
-                    </button>
                     <button
                         className='auth-btn'
                         style={{ border: `${authTab !== AuthTab.Closed ? '2px solid var(--body_color)' : ''}` }}
@@ -158,3 +145,21 @@ const Profile = () => {
 };
 
 export default Profile;
+
+/*
+
+const handleToggleTheme = () => {
+    const newTheme = theme === Theme.Light ? Theme.Dark : Theme.Light;
+    document.querySelector("body")?.setAttribute('data-theme', newTheme);
+    setTheme(newTheme);
+}
+
+<button
+    className='theme-btn'
+    onClick={handleToggleTheme}
+    title={theme === Theme.Dark ? 'Switch to Light mode' : 'Switch to Dark mode'}
+>
+    {theme === Theme.Dark ? <img className="sun" src="theme/sun.svg" alt="" /> : <img className="moon" src="theme/moon.png" alt="" />}
+</button>
+
+*/

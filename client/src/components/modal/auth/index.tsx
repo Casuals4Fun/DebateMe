@@ -3,12 +3,11 @@ import { useState } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
 import Lottie from "lottie-react"
 import { useAuthStore, AuthTab, useTempStore } from "../../../store/useAuthStore"
-import { Theme, useNavStore } from "../../../store/useNavStore"
 import WavingHand from "../../../lottie/WavingHand.json"
 import LoginTab from "./login-tab"
 import SignupTab from "./signup-tab"
 import BriefInfo from "./brief-info"
-import { IoClose } from "react-icons/io5"
+import { IoCloseOutline } from "react-icons/io5"
 
 type RegisterData = {
     email: string;
@@ -24,7 +23,6 @@ const AuthModal = () => {
     const navigate = useNavigate();
 
     const { authTab, setAuthTab } = useAuthStore();
-    const { theme, setTheme } = useNavStore();
     const { tempUser } = useTempStore();
 
     const [registerData, setRegisterData] = useState<RegisterData>(() => ({
@@ -35,12 +33,6 @@ const AuthModal = () => {
         first_name: tempUser.first_name || "",
         last_name: tempUser.last_name || ""
     }));
-
-    const handleToggleTheme = () => {
-        const newTheme = theme === Theme.Light ? Theme.Dark : Theme.Light;
-        document.querySelector("body")?.setAttribute('data-theme', newTheme);
-        setTheme(newTheme);
-    };
 
     const handleCloseModal = () => {
         if (location.pathname !== '/auth') setAuthTab(AuthTab.Closed);
@@ -86,17 +78,10 @@ const AuthModal = () => {
                         <img src="/logo.png" alt="" />
                     </button>
                     <button
-                        className='theme-btn'
-                        onClick={handleToggleTheme}
-                        title={theme === Theme.Dark ? 'Switch to Light mode' : 'Switch to Dark mode'}
-                    >
-                        {theme === Theme.Dark ? <img className="sun" src="theme/sun.svg" alt="" /> : <img className="moon" src="theme/moon.png" alt="" />}
-                    </button>
-                    <button
                         className='close__btn'
                         onClick={handleCloseModal}
                     >
-                        <IoClose size={30} />
+                        <IoCloseOutline size={30} />
                     </button>
                 </>
             </div>
