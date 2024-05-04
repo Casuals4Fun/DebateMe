@@ -64,7 +64,7 @@ const SignupTab: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
                 <h3>Register</h3>
                 <p>Already have an account? <span onClick={() => setAuthTab(AuthTab.Login)}>Log In</span></p>
             </div>
-            <form id='signup' className='form__container' onSubmit={handleNextTab}>
+            <form id='signup-form' className='form__container' onSubmit={handleNextTab}>
                 <div className='input__container'>
                     <p>Email</p>
                     <input

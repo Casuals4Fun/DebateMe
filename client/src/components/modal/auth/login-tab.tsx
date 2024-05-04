@@ -95,7 +95,7 @@ const LoginTab = () => {
                 <h3>Login</h3>
                 <p>New here? <span onClick={() => setAuthTab(AuthTab.Signup)}>Create Account</span></p>
             </div>
-            <form id='login' className='form__container' onSubmit={handleLoginSubmit}>
+            <form id='login-form' className='form__container' onSubmit={handleLoginSubmit}>
                 <div className='input__container'>
                     <p>Email or Username</p>
                     <input

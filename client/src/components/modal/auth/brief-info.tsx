@@ -130,7 +130,7 @@ const BriefInfo: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
                 <h3>Brief Info</h3>
                 <p>Change Email or Password? <span onClick={() => setAuthTab(AuthTab.Signup)}>Go Back</span></p>
             </div>
-            <form id='brief' className='form__container' onSubmit={handleFormSubmit}>
+            <form id='brief-form' className='form__container' onSubmit={handleFormSubmit}>
                 <div className='avatar-username__container'>
                     <div
                         className='avatar__container'
