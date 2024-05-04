@@ -40,7 +40,6 @@
 }
 
 #open-card .debate-info {
-    padding: 15px 0;
     display: flex;
     gap: 10px;
     font-size: 15px;
@@ -55,6 +54,7 @@
 
 #open-card .user-info {
     width: 70%;
+    padding: 10px 0 15px 0;
     display: flex;
     gap: 10px;
     align-items: center;

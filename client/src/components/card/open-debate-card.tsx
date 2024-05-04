@@ -20,22 +20,22 @@ const OpenDebateCard = () => {
                 Fugiat repellat architecto pariatur fugit perspiciatis voluptas quidem autem. Lorem ipsum dolor sit amet consectetur adipisicing elit. Non labore necessitatibus reiciendis rem ad perferendis, id officia omnis voluptas eius veritatis explicabo harum! Vero porro labore quo ab aut. Nesciunt!
                 Fugiat repellat architecto pariatur fugit perspiciatis voluptas quidem autem.
             </p>
-            <div className='debate-info'>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '2px' }}>
-                    <IoCaretUpSharp size={20} />
-                    <p>{useFormatNumber(4500)}</p>
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
-                    <MdModeComment size={15} />
-                    <p>{useFormatNumber(1300)}</p>
+            <div className='user-info'>
+                <img src="/user.jpg" alt="" loading="lazy" />
+                <div className='user-detail'>
+                    <p>Julie Roberts</p>
+                    <p>julieroberts</p>
                 </div>
             </div>
             <div className='debate-footer'>
-                <div className='user-info'>
-                    <img src="/user.jpg" alt="" loading="lazy" />
-                    <div className='user-detail'>
-                        <p>Julie Roberts</p>
-                        <p>julieroberts</p>
+                <div className='debate-info'>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '2px' }}>
+                        <IoCaretUpSharp size={20} />
+                        <p>{useFormatNumber(4500)}</p>
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+                        <MdModeComment size={15} />
+                        <p>{useFormatNumber(1300)}</p>
                     </div>
                 </div>
                 <p className='created-date'>15 mins ago</p>

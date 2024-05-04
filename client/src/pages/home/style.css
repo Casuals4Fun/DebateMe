@@ -7,6 +7,6 @@
 
 @media screen and (max-width: 480px) {
     #home {
-        gap: 15px;
+        gap: 10px;
     }
 }
