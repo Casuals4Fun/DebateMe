@@ -81,7 +81,7 @@ const Profile = () => {
                         style={{
                             borderWidth: '2px',
                             borderStyle: 'solid',
-                            borderColor: `${expand ? 'var(--body_color)' : 'var(--nav_border)'}`
+                            borderColor: `${expand ? 'var(--body_color)' : 'transparent'}`
                         }}
                         onClick={handleToggleMenu}
                     >

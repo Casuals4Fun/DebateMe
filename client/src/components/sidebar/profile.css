@@ -60,6 +60,10 @@
     flex-shrink: 0;
 }
 
+.profile__image,
+.modal-profile__image {
+    background-color: var(--explore_input_bg);
+}
 
 .theme-btn,
 .notification-btn {
