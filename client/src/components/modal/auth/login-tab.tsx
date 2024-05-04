@@ -121,7 +121,7 @@ const LoginTab = () => {
                         placeholder={isSubmitted && !validationState.isPasswordValid ? 'Required' : ''}
                     />
                 </div>
-                <button disabled={isAuthenticated === AuthStatus.Authenticating} type='submit'>
+                <button type='submit' disabled={isAuthenticated === AuthStatus.Authenticating}>
                     {isAuthenticated === AuthStatus.Authenticating ? <LoadingSVG size={23} /> : 'Login'}
                 </button>
             </form>
@@ -135,14 +135,8 @@ const LoginTab = () => {
                 className='google-btn'
                 onClick={() => window.location.href = `${import.meta.env.VITE_SERVER_URL}/api/auth/google`}
             >
-                {isAuthenticated === AuthStatus.Authenticating ? (
-                    <LoadingSVG size={23} />
-                ) : (
-                    <>
-                        <FcGoogle size={25} />
-                        <span>Continue with Google</span>
-                    </>
-                )}
+                <FcGoogle size={25} />
+                <span>Continue with Google</span>
             </button>
         </div>
     );

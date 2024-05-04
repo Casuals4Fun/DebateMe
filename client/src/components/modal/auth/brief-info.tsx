@@ -11,7 +11,7 @@ import { IoPersonCircleOutline } from "react-icons/io5"
 const BriefInfo: React.FC<RegisterDataProps> = ({ registerData, setRegisterData }) => {
     const navigate = useNavigate();
 
-    const { setAuthTab, setUser, setIsAuthenticated } = useAuthStore();
+    const { setAuthTab, setUser, isAuthenticated, setIsAuthenticated } = useAuthStore();
     const { clearTempUser } = useTempStore();
 
     const [term, setTerm] = useState<boolean>(false);
@@ -21,7 +21,6 @@ const BriefInfo: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
         isFirstNameValid: true,
         isLastNameValid: true
     });
-    const [loading, setLoading] = useState<boolean>(false);
 
     const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -82,7 +81,7 @@ const BriefInfo: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
         if (!term) return;
 
         if (trimmedUsername && trimmedFirstName && trimmedLastName) {
-            setLoading(true);
+            setIsAuthenticated(AuthStatus.Authenticating)
 
             const formData = new FormData();
             formData.append('email', registerData.email);
@@ -117,10 +116,7 @@ const BriefInfo: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
                         toast.error(response.message)
                     }
                 })
-                .catch(() => {
-                    setLoading(false);
-                    setIsAuthenticated(AuthStatus.Failed);
-                });
+                .catch(() => setIsAuthenticated(AuthStatus.Failed));
         }
     };
 
@@ -214,8 +210,8 @@ const BriefInfo: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
                     </div>
                     <p>Accept <span>Terms & Conditions</span></p>
                 </div>
-                <button type='submit' disabled={loading}>
-                    {loading ? <LoadingSVG size={23} /> : 'Create my Account'}
+                <button type='submit' disabled={isAuthenticated === AuthStatus.Authenticating}>
+                    {isAuthenticated === AuthStatus.Authenticating ? <LoadingSVG size={23} /> : 'Create my Account'}
                 </button>
             </form>
         </div>

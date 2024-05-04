@@ -91,7 +91,7 @@ const SignupTab: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
                         placeholder={isSubmitted && !validationState.isPasswordValid ? 'Required' : ''}
                     />
                 </div>
-                <button type='submit'>
+                <button type='submit' disabled={isAuthenticated === AuthStatus.Authenticating}>
                     {isAuthenticated === AuthStatus.Authenticating ? <LoadingSVG size={23} /> : 'Continue'}
                 </button>
             </form>
@@ -107,14 +107,8 @@ const SignupTab: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
                         className='google-btn'
                         onClick={() => window.location.href = `${import.meta.env.VITE_SERVER_URL}/api/auth/google`}
                     >
-                        {isAuthenticated === AuthStatus.Authenticating ? (
-                            <LoadingSVG size={23} />
-                        ) : (
-                            <>
-                                <FcGoogle size={25} />
-                                <span>Continue with Google</span>
-                            </>
-                        )}
+                        <FcGoogle size={25} />
+                        <span>Continue with Google</span>
                     </button>
                 </>
             )}

@@ -1,4 +1,5 @@
 #open-card {
+    min-height: 270px;
     padding: 20px 15px;
     background-color: var(--card_background);
     border-radius: 20px;
@@ -17,6 +18,7 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+    cursor: pointer;
 }
 
 #open-card .debate-header a {
@@ -98,6 +100,10 @@
 }
 
 @media screen and (max-width: 1536px) {
+    #open-card {
+        min-height: auto;
+    }
+
     #open-card .debate-body {
         font-size: 15px;
     }
