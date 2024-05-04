@@ -46,7 +46,7 @@
 #closed-card .left p {
     overflow: hidden;
     display: -webkit-box;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 5;
     -webkit-box-orient: vertical;
     padding-top: 10px;
     font-size: 16px;
@@ -100,7 +100,8 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-    font-size: 14px;
+    font-size: 15px;
+    font-weight: 600;
     color: var(--card_color_secondary);
     cursor: pointer;
 }

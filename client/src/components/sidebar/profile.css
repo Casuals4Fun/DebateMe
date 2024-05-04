@@ -1,13 +1,13 @@
 :root {
-    --text_primary: #0a0a0a;
-    --text_secondary: #AAAAAA;
-    --text_tertiary: #212122;
+    --shine_text_primary: #606060;
+    --shine_text_secondary: #000000;
+    --shine_text_tertiary: #606060;
 }
 
 [data-theme='dark'] {
-    --text_primary: #9f9f9f;
-    --text_secondary: #fff;
-    --text_tertiary: #868686;
+    --shine_text_primary: #9f9f9f;
+    --shine_text_secondary: #fff;
+    --shine_text_tertiary: #868686;
 }
 
 .profile__wrapper {
@@ -23,7 +23,7 @@
     align-items: center;
     justify-content: center;
     background-size: 200% 100%;
-    background: linear-gradient(to right, var(--text_primary) 0, var(--text_secondary) 10%, var(--text_tertiary) 20%);
+    background: linear-gradient(to right, var(--shine_text_primary) 0, var(--shine_text_secondary) 10%, var(--shine_text_tertiary) 20%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;

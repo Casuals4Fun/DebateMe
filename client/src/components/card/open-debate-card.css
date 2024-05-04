@@ -32,7 +32,7 @@
 #open-card .debate-body {
     overflow: hidden;
     display: -webkit-box;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 5;
     -webkit-box-orient: vertical;
     padding-top: 10px;
     font-size: 16px;
@@ -100,10 +100,6 @@
 @media screen and (max-width: 1536px) {
     #open-card .debate-body {
         font-size: 15px;
-    }
-
-    #open-card .debate-body {
-        -webkit-line-clamp: 5;
     }
 }
 

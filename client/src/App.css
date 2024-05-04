@@ -83,8 +83,9 @@
     }
 
     #main {
-        padding: 10px;
-        padding-top: 70px;
+        padding: 0 10px;
+        padding-top: 75px;
+        padding-bottom: 15px;
         width: 100%;
     }
 
