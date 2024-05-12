@@ -1,38 +1,28 @@
 import "./style.css"
-import OpenDebateCard from "../../components/card/open-debate-card"
+import { OpenDebateCard, OpenDebateLoadingCard } from "../../components/card/open-debate-card"
 
 export default function OpenTopicsPage() {
     return (
         <div id='open-topics'>
+            <OpenDebateLoadingCard />
             <OpenDebateCard />
+            <OpenDebateLoadingCard />
             <OpenDebateCard />
+            <OpenDebateLoadingCard />
             <OpenDebateCard />
+            <OpenDebateLoadingCard />
             <OpenDebateCard />
+            <OpenDebateLoadingCard />
             <OpenDebateCard />
+            <OpenDebateLoadingCard />
             <OpenDebateCard />
+            <OpenDebateLoadingCard />
             <OpenDebateCard />
+            <OpenDebateLoadingCard />
             <OpenDebateCard />
+            <OpenDebateLoadingCard />
             <OpenDebateCard />
-            <OpenDebateCard />
-            <OpenDebateCard />
-            <OpenDebateCard />
-            <OpenDebateCard />
-            <OpenDebateCard />
-            <OpenDebateCard />
-            <OpenDebateCard />
-            <OpenDebateCard />
-            <OpenDebateCard />
-            <OpenDebateCard />
-            <OpenDebateCard />
-            <OpenDebateCard />
-            <OpenDebateCard />
-            <OpenDebateCard />
-            <OpenDebateCard />
-            <OpenDebateCard />
-            <OpenDebateCard />
-            <OpenDebateCard />
-            <OpenDebateCard />
-            <OpenDebateCard />
+            <OpenDebateLoadingCard />
             <OpenDebateCard />
         </div>
     )

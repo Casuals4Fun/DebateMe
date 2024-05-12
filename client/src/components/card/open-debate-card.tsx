@@ -3,6 +3,7 @@ import { useNavigate, Link } from "react-router-dom"
 import { MdModeComment } from "react-icons/md"
 import { IoCaretUpSharp } from "react-icons/io5"
 import useFormatNumber from "../../hooks/useFormatNumber"
+import LoadingSkeleton from "../loading/skeleton"
 
 const OpenDebateCard = () => {
     const navigate = useNavigate();
@@ -44,4 +45,40 @@ const OpenDebateCard = () => {
     )
 }
 
-export default OpenDebateCard
+const OpenDebateLoadingCard = () => {
+    return (
+        <div id='open-card-loading'>
+            <div className='debate-header'>
+                <LoadingSkeleton />
+                <LoadingSkeleton />
+            </div>
+            <div className='debate-body'>
+                <LoadingSkeleton />
+                <LoadingSkeleton />
+                <LoadingSkeleton />
+                <LoadingSkeleton />
+                <LoadingSkeleton />
+            </div>
+            <div className='user-info'>
+                <div className='img'>
+                    <LoadingSkeleton />
+                </div>
+                <div className='user-detail'>
+                    <LoadingSkeleton />
+                    <LoadingSkeleton />
+                </div>
+            </div>
+            <div className='debate-footer'>
+                <div className='debate-info'>
+                    <LoadingSkeleton />
+                    <LoadingSkeleton />
+                </div>
+                <div className='created-date'>
+                    <LoadingSkeleton />
+                </div>
+            </div>
+        </div>
+    )
+}
+
+export { OpenDebateCard, OpenDebateLoadingCard }
