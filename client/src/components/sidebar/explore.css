@@ -52,20 +52,20 @@
     color: var(--body_background);
 }
 
-#explore ul {
+#explore .explore-btns {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
 }
 
-#explore ul li {
+#explore .explore-btns a {
     padding: 7.5px 20px;
-    background-color: var(--body_background);
+    background-color: var(--card_background);
     border: 1px solid var(--explore_input_bg);
     border-radius: 20px;
 }
 
-#explore ul li:hover {
+#explore .explore-btns a:hover {
     background-color: var(--explore_input_bg);
     transition: background-color 0.2s ease-in-out;
 }

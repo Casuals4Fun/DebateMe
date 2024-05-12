@@ -3,6 +3,7 @@ import { useNavigate, Link } from "react-router-dom"
 import DebateBar from "./debate-bar"
 import { MdModeComment } from "react-icons/md"
 import useFormatNumber from "../../hooks/useFormatNumber"
+import LoadingSkeleton from "../loading/skeleton"
 
 const ClosedDebateCard = () => {
     const navigate = useNavigate();
@@ -49,4 +50,48 @@ const ClosedDebateCard = () => {
     )
 }
 
-export default ClosedDebateCard
+const ClosedDebateLoadingCard = () => {
+    return (
+        <div id='closed-card-loading'>
+            <div className='left'>
+                <div className='topic'>
+                    <LoadingSkeleton />
+                </div>
+                <div className='description'>
+                    <LoadingSkeleton />
+                    <LoadingSkeleton />
+                    <LoadingSkeleton />
+                    <LoadingSkeleton />
+                    <LoadingSkeleton />
+                </div>
+                <div className='view'>
+                    <LoadingSkeleton />
+                </div>
+            </div>
+            <div className='divider' />
+            <div className='right'>
+                <div className='user-info'>
+                    <div className='debater'>
+                        <LoadingSkeleton />
+                        <LoadingSkeleton />
+                        <LoadingSkeleton />
+                    </div>
+                    <div className='debater'>
+                        <LoadingSkeleton />
+                        <LoadingSkeleton />
+                        <LoadingSkeleton />
+                    </div>
+                </div>
+                <div className='debate-bar'>
+                    <LoadingSkeleton />
+                </div>
+                <div className='debate-info'>
+                    <LoadingSkeleton />
+                    <LoadingSkeleton />
+                </div>
+            </div>
+        </div>
+    )
+}
+
+export { ClosedDebateCard, ClosedDebateLoadingCard }

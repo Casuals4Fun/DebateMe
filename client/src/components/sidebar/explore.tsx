@@ -58,15 +58,13 @@ const Explore: React.FC<ExploreProps> = ({ term }) => {
                 </div>
             </form>
             {!term && (
-                <ul>
+                <div className='explore-btns'>
                     {categoriesData.map((item, index) => (
-                        <li key={index}>
-                            <Link to={`/search?category=${item}`}>
-                                {item}
-                            </Link>
-                        </li>
+                        <Link to={`/search?category=${item}`} key={index}>
+                            {item}
+                        </Link>
                     ))}
-                </ul>
+                </div>
             )}
         </div>
     )
