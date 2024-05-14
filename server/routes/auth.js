@@ -1,4 +1,4 @@
-const { handleGoogleAuth, register, login, autoLogin } = require('../controllers/auth');
+const { handleGoogleAuth, register, login, autoLogin, checkUsername } = require('../controllers/auth');
 const verifyToken = require('../middleware/verifyToken');
 
 module.exports = async function (fastify, opts) {
@@ -25,6 +25,16 @@ module.exports = async function (fastify, opts) {
                 password: { type: 'string', minLength: 6 }
             },
             required: ['id', 'password']
+        }
+    };
+
+    const usernameSchema = {
+        body: {
+            type: 'object',
+            properties: {
+                username: { type: 'string', minLength: 1 },
+            },
+            required: ['username']
         }
     };
 
@@ -77,5 +87,21 @@ module.exports = async function (fastify, opts) {
                 return reply.code(500).send({ success: false, message: 'Internal Server Error' });
             }
         }
+    });
+
+    fastify.post('/check-username', {
+        schema: usernameSchema,
+        attachValidation: true
+    }, async (request, reply) => {
+        if (request.validationError) {
+            const errors = request.validationError.validation.map(error => {
+                return {
+                    field: error.params.missingProperty || error.instancePath.substring(1),
+                    message: error.message
+                };
+            });
+            return reply.code(400).send({ success: false, message: 'Validation failed', errors });
+        }
+        return checkUsername(fastify, request, reply);
     });
 }

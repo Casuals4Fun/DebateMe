@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const ErrorHandler = require('../utils/ErrorHandler');
+const { ErrorHandler, catchError } = require('../utils/ErrorHandler');
 
 exports.handleGoogleAuth = async function (fastify, request, reply) {
     try {
@@ -55,18 +55,7 @@ exports.register = async function (fastify, request, reply) {
             });
         } else throw new ErrorHandler(500, false, 'Failed to create user account.');
     } catch (err) {
-        if (err instanceof ErrorHandler) {
-            return reply.code(err.statusCode).send({
-                success: err.success,
-                message: err.message
-            });
-        } else {
-            console.error(err);
-            return reply.code(500).send({
-                success: false,
-                message: 'Internal Server Error'
-            });
-        }
+        return catchError(reply, err);
     }
 }
 
@@ -98,18 +87,7 @@ exports.login = async function (fastify, request, reply) {
             }
         });
     } catch (err) {
-        if (err instanceof ErrorHandler) {
-            return reply.code(err.statusCode).send({
-                success: err.success,
-                message: err.message
-            });
-        } else {
-            console.error(err);
-            return reply.code(500).send({
-                success: false,
-                message: 'Internal Server Error'
-            });
-        }
+        return catchError(reply, err);
     }
 }
 
@@ -132,18 +110,26 @@ exports.autoLogin = async function (fastify, request, reply) {
                 }
             }
         });
-    } catch (error) {
-        if (err instanceof ErrorHandler) {
-            return reply.code(err.statusCode).send({
-                success: err.success,
-                message: err.message
-            });
-        } else {
-            console.error(err);
-            return reply.code(500).send({
-                success: false,
-                message: 'Internal Server Error'
-            });
+    } catch (err) {
+        return catchError(reply, err);
+    }
+}
+
+exports.checkUsername = async function (fastify, request, reply) {
+    try {
+        const { username } = request.body;
+        const query = 'SELECT * FROM users WHERE username =?';
+
+        const [user] = await fastify.mysql.query(query, [username]);
+        if (user.length) {
+            throw new ErrorHandler(400, false, 'Username already taken.');
         }
+
+        return reply.code(200).send({
+            success: true,
+            message: 'Username available.',
+        });
+    } catch (err) {
+        return catchError(reply, err);
     }
 }
