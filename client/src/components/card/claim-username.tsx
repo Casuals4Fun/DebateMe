@@ -17,20 +17,21 @@ const ClaimUsername = () => {
         setTimeout(() => setIsSubmitted(false), 500);
 
         if (username.trim()) {
-            
+
         }
     }
 
     return (
         <form id='claim-username' onSubmit={handleUsernameSubmit}>
             <p>Get Started</p>
-            <div className={`username-input ${isSubmitted && !username.trim() ? "shake" : ""}`}>
+            <div className='username-input'>
                 <span className='domain'>debatehive.com/</span>
                 <input
                     placeholder='johndoe'
                     value={username}
                     onChange={e => setUsername(e.target.value)}
                     onKeyPress={handleKeyPress}
+                    className={isSubmitted && !username.trim() ? "shake" : ""}
                     style={{ border: isSubmitted && !username.trim() ? "2px dotted white" : "" }}
                 />
             </div>
