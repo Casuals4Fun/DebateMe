@@ -9,13 +9,13 @@ const ClaimUsername = () => {
 
     return (
         <form id='claim-username' onSubmit={handleUsernameSubmit}>
-            <p>Claim your own username</p>
+            <p>Get Started</p>
             <div className='username-input'>
                 <span className='domain'>debatehive.com/</span>
                 <input placeholder='johndoe' />
             </div>
             <button className='submit-btn'>
-                <span>CLAIM</span>
+                <span>CLAIM USERNAME</span>
                 <PiArrowUpRightBold size={20} color='#FFFFFF' />
                 {/* <LoadingSVG size={20} color='#FFFFFF' /> */}
             </button>

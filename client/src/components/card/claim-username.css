@@ -40,7 +40,7 @@
     }
 
     100% {
-        background-position: 307.35px;
+        background-position: 140.467px;
     }
 }
 
@@ -101,10 +101,6 @@
 @media screen and (max-width: 480px) {
     #claim-username {
         margin-bottom: 10px;
-    }
-
-    #claim-username p {
-        font-size: 22px;
     }
 
     #claim-username .username-input .domain {
