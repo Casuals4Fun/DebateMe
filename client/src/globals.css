@@ -125,13 +125,14 @@ button {
     font-family: inherit;
 }
 
-ul {
-    list-style: none;
-}
-
 input {
     border: 0;
     outline: 0;
+    font-family: inherit;
+}
+
+ul {
+    list-style: none;
 }
 
 @keyframes shake {
