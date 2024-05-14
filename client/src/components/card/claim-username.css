@@ -9,7 +9,7 @@
 
 [data-theme='dark'] {
     --claim-border: #212122;
-    --username-bg: #1F1F21;
+    --username-bg: #212122;
     --username-color: #FFF;
     --username-input-bg: #0A0A0A;
     --username-input-color: #fff;
@@ -45,7 +45,6 @@
 }
 
 #claim-username .username-input {
-    position: relative;
     width: 100%;
     height: 50px;
     display: flex;
@@ -53,7 +52,6 @@
     border: 3px solid;
     box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px, 5px 5px 0px 0px;
     color: var(--claim-border);
-    overflow: hidden;
 }
 
 #claim-username .username-input .domain {
@@ -80,6 +78,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 5px;
     font-size: 16px;
     font-weight: 600;
     letter-spacing: 1px;

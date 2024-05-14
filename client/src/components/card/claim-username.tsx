@@ -1,5 +1,6 @@
 import "./claim-username.css"
-import { PiArrowUpRightBold } from "react-icons/pi";
+import { PiArrowUpRightBold } from "react-icons/pi"
+// import { LoadingSVG } from "../loading/svg"
 
 const ClaimUsername = () => {
     const handleUsernameSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -16,6 +17,7 @@ const ClaimUsername = () => {
             <button className='submit-btn'>
                 <span>CLAIM</span>
                 <PiArrowUpRightBold size={20} color='#FFFFFF' />
+                {/* <LoadingSVG size={20} color='#FFFFFF' /> */}
             </button>
         </form>
     )
