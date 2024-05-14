@@ -25,8 +25,17 @@ const BriefInfo: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
     const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         // eslint-disable-next-line no-useless-escape
-        const specialCharRegex = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
-        if (specialCharRegex.test(value)) {
+        const specialCharRegex = /[@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
+        const usernameRegex = /^[a-zA-Z0-9_-]+$/;
+
+        let isValid = true;
+        if (name === 'username') {
+            isValid = value.length > 0 && usernameRegex.test(value);
+        } else if (name === 'first_name' || name === 'last_name') {
+            isValid = value.length > 0 && !specialCharRegex.test(value);
+        }
+
+        if (!isValid && value.length > 0) {
             return toast.warning('Special characters not allowed.');
         }
 
@@ -106,6 +115,7 @@ const BriefInfo: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
                         setAuthTab(AuthTab.Closed);
                         setIsAuthenticated(AuthStatus.Authenticated);
 
+                        localStorage.removeItem('username');
                         navigate('/');
                     }
                     else {

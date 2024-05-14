@@ -22,7 +22,7 @@
     gap: 10px;
 }
 
-#claim-username p {
+#claim-username p:first-child {
     width: fit-content;
     background-size: 200% 100%;
     background: linear-gradient(to right, var(--shine_text_primary) 0, var(--shine_text_secondary) 10%, var(--shine_text_tertiary) 20%);

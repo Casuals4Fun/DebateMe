@@ -29,7 +29,7 @@ const AuthModal = () => {
         email: tempUser.email || "",
         password: "",
         avatar: tempUser.avatar || "",
-        username: tempUser.username || "",
+        username: localStorage.getItem("username") || tempUser.username || "",
         first_name: tempUser.first_name || "",
         last_name: tempUser.last_name || ""
     }));
