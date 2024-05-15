@@ -63,6 +63,7 @@ const ClaimUsername = () => {
             <div className='username-input'>
                 <span className='domain'>debatehive.com/</span>
                 <input
+                    name='username'
                     placeholder='johndoe'
                     value={username}
                     onChange={handleUsernameChange}

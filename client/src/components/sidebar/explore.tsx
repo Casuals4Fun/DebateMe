@@ -30,14 +30,10 @@ const Explore: React.FC<ExploreProps> = ({ term }) => {
 
     return (
         <div id='explore'>
-            <form
-                id='explore-form'
-                className='explore-input'
-                onSubmit={handleSearch}
-            >
+            <form id='explore-form' className='explore-input' onSubmit={handleSearch}>
                 <div style={{ flex: '1' }}>
                     <input
-                        id='search-input'
+                        name='search'
                         ref={inputRef}
                         type='text'
                         placeholder='Explore...'
