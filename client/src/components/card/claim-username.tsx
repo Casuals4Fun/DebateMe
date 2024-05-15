@@ -1,6 +1,7 @@
 import "./claim-username.css"
 import { useCallback, useState } from "react"
 import { AuthTab, useAuthStore } from "../../store/useAuthStore"
+import { toast } from "sonner"
 import { PiArrowUpRightBold } from "react-icons/pi"
 import { LoadingSVG } from "../loading/svg"
 
@@ -8,9 +9,9 @@ const ClaimUsername = () => {
     const { setAuthTab } = useAuthStore();
 
     const [isSubmitted, setIsSubmitted] = useState(false);
-    const [username, setUsername] = useState(localStorage.getItem("username") || '');
+    const [username, setUsername] = useState(localStorage.getItem("username") || "");
     const [loading, setLoading] = useState(false);
-    const [errorMessage, setErrorMessage] = useState('');
+    const [message, setMessage] = useState({ type: '', content: '' });
 
     const handleKeyPress = useCallback((e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === ' ') e.preventDefault();
@@ -23,23 +24,38 @@ const ClaimUsername = () => {
         const usernameRegex = /^[a-zA-Z0-9_-]+$/;
         if (inputUsername) {
             if (!usernameRegex.test(inputUsername)) {
-                setErrorMessage('Username can only contain alphanumeric characters, underscores (_) and hyphens (-). No spaces or other special characters are allowed.');
-            } else setErrorMessage('');
+                setMessage({ type: 'error', content: 'Username can only contain alphanumeric characters, underscores (_) and hyphens (-). No spaces or other special characters are allowed.' });
+            } else setMessage({ type: '', content: '' });
         }
-    }
+    };
 
-    const handleUsernameSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleUsernameSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setIsSubmitted(true);
         setTimeout(() => setIsSubmitted(false), 500);
 
-        if (username && !errorMessage) {
+        if (username && message.type !== 'error') {
             setLoading(true);
 
             localStorage.setItem("username", username);
-            setTimeout(() => setAuthTab(AuthTab.Signup), 2000);
+
+            await fetch(`${import.meta.env.VITE_SERVER_URL}/api/auth/check-username`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username })
+            })
+                .then(res => res.json())
+                .then(response => {
+                    if (response.success) {
+                        setAuthTab(AuthTab.Signup);
+                        setMessage({ type: 'success', content: response.message });
+                        toast.success(`${response.message} Register your account to claim username.`);
+                    } else setMessage({ type: 'error', content: response.message });
+                })
+                .catch(() => setMessage({ type: 'error', content: 'Something went wrong. Try again later!' }))
+                .finally(() => setLoading(false));
         }
-    }
+    };
 
     return (
         <form id='claim-username' onSubmit={handleUsernameSubmit}>
@@ -51,8 +67,8 @@ const ClaimUsername = () => {
                     value={username}
                     onChange={handleUsernameChange}
                     onKeyPress={handleKeyPress}
-                    className={isSubmitted && (!username || errorMessage) ? "shake" : ""}
-                    style={{ border: isSubmitted && (!username || errorMessage) ? "2px dotted white" : "" }}
+                    className={isSubmitted && (!username || message.type === 'error') ? "shake" : ""}
+                    style={{ border: isSubmitted && (!username || message.type === 'error') ? "2px dotted white" : "" }}
                 />
             </div>
             <button className='submit-btn' disabled={loading}>
@@ -63,9 +79,9 @@ const ClaimUsername = () => {
                     <LoadingSVG size={20} color='#FFFFFF' />
                 )}
             </button>
-            {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+            {message.content && <p style={{ color: message.type === 'error' ? 'red' : 'green' }}>{message.content}</p>}
         </form>
-    )
-}
+    );
+};
 
-export default ClaimUsername
+export default ClaimUsername;

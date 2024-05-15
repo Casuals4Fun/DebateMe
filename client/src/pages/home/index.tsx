@@ -9,7 +9,7 @@ export default function HomePage() {
 
   return (
     <div id='home'>
-      {isAuthenticated === AuthStatus.Failed && (
+      {(isAuthenticated === AuthStatus.Authenticating || isAuthenticated === AuthStatus.Failed) && (
         <ClaimUsername />
       )}
       <ClosedDebateCard />

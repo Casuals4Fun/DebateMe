@@ -60,9 +60,7 @@ const LoginTab = () => {
             setIsAuthenticated(AuthStatus.Authenticating);
             await fetch(`${import.meta.env.VITE_SERVER_URL}/api/auth/login`, {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ id: trimmedId, password: trimmedPassword })
             })
                 .then(res => res.json())
