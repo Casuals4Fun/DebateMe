@@ -21,12 +21,12 @@ const ToggleTheme = () => {
             />
 
             <div className='display' onClick={handleToggleTheme}>
-                <label className='toggle-background' htmlFor="toggle">
+                <div className='toggle-btn'>
                     <div className='circle'>
                         <img src="/theme/moon.png" className="moon" />
                         <img src="/theme/sun.svg" className="sun" />
                     </div>
-                </label>
+                </div>
             </div>
         </div>
     )

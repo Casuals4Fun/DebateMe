@@ -13,7 +13,7 @@
     justify-content: center;
 }
 
-.theme__button label {
+.theme__button .toggle-btn {
     width: 83px;
     height: 40px;
     border-radius: 20px;
@@ -51,20 +51,20 @@
     opacity: 0;
 }
 
-.theme__button input[type=checkbox]:checked+.display label {
+.theme__button input[type=checkbox]:checked+.display .toggle-btn {
     background: var(--explore_input_bg);
 }
 
-.theme__button input[type=checkbox]:checked+.display label .circle {
+.theme__button input[type=checkbox]:checked+.display .toggle-btn .circle {
     left: 100%;
     transform: translate(-120%, -50%);
     background: white;
 }
 
-.theme__button input[type=checkbox]:checked+.display label .circle .sun {
+.theme__button input[type=checkbox]:checked+.display .toggle-btn .circle .sun {
     opacity: 1;
 }
 
-.theme__button input[type=checkbox]:checked+.display label .circle .moon {
+.theme__button input[type=checkbox]:checked+.display .toggle-btn .circle .moon {
     opacity: 0;
 }

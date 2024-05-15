@@ -65,6 +65,7 @@ const ClaimUsername = () => {
                 <input
                     name='username'
                     placeholder='johndoe'
+                    autoComplete="on"
                     value={username}
                     onChange={handleUsernameChange}
                     onKeyPress={handleKeyPress}
