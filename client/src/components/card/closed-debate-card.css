@@ -52,7 +52,7 @@
 }
 
 #closed-card-loading .left .topic .loading-skeleton {
-    width: 300px;
+    max-width: 300px;
     height: 25px;
     border-radius: 30px;
 }
