@@ -28,7 +28,7 @@ const Profile = () => {
     }
 
     const handleLogout = () => {
-        setExpand(false);
+        handleToggleMenu();
         navigate('/');
         setIsAuthenticated(AuthStatus.Failed);
         setUser({
@@ -45,16 +45,12 @@ const Profile = () => {
         const handleClickOutside = (event: MouseEvent) => {
             const target = event.target as HTMLElement;
             if (expand && !target.closest(".profile__modal") && !target.closest(".profile__image")) {
-                setExpand(false);
-                const mainElement = document.querySelector('#main') as HTMLElement;
-                if (mainElement) mainElement.style.overflow = '';
+                handleToggleMenu();
             }
         };
 
         document.addEventListener("mousedown", handleClickOutside);
-        return () => {
-            document.removeEventListener("mousedown", handleClickOutside);
-        };
+        return () => document.removeEventListener("mousedown", handleClickOutside);
     }, [expand, setExpand]);
 
     return (
@@ -124,7 +120,7 @@ const Profile = () => {
                     <Link
                         to='/'
                         className='modal-profile-btn'
-                        onClick={() => setExpand(false)}
+                        onClick={handleToggleMenu}
                     >
                         <IoMdPerson size={18} />
                         <p className='underline'>Profile</p>
