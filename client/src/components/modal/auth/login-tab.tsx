@@ -66,13 +66,10 @@ const LoginTab = () => {
                 .then(res => res.json())
                 .then(response => {
                     if (response.success) {
-                        toast.success(response.message)
-
                         setUser(response.data.user);
                         setIsAuthenticated(AuthStatus.Authenticated);
                         localStorage.setItem('token', response.data.token);
                         setAuthTab(AuthTab.Closed);
-
                         navigate(route);
                     }
                     else {

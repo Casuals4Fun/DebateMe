@@ -1,7 +1,6 @@
 import "./profile.css"
 import { useEffect } from "react"
 import { Link, useNavigate } from "react-router-dom"
-import { toast } from "sonner"
 import { useNavStore } from "../../store/useNavStore"
 import { AuthStatus, AuthTab, useAuthStore } from "../../store/useAuthStore"
 import ToggleTheme from "../button/toggle-theme"
@@ -40,7 +39,6 @@ const Profile = () => {
             avatar: ""
         });
         localStorage.removeItem('token');
-        toast.success('Logout successful');
     };
 
     useEffect(() => {

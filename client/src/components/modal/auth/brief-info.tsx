@@ -108,8 +108,6 @@ const BriefInfo: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
                 .then(response => {
                     if (response.success) {
                         clearTempUser();
-                        toast.success(response.message);
-
                         setUser(response.data.user);
                         localStorage.setItem('token', response.data.token);
                         setAuthTab(AuthTab.Closed);
