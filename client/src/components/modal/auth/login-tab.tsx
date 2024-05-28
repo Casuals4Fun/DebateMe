@@ -95,8 +95,12 @@ const LoginTab = () => {
                 className='google-btn'
                 onClick={() => window.location.href = `${import.meta.env.VITE_SERVER_URL}/api/auth/google`}
             >
-                <FcGoogle size={25} />
-                <span>Continue with Google</span>
+                {isAuthenticated === AuthStatus.Authenticating ? <LoadingSVG size={23} /> : (
+                    <>
+                        <FcGoogle size={25} />
+                        <span>Continue with Google</span>
+                    </>
+                )}
             </button>
             <div className='or-divider'>
                 <div className='divider' />
