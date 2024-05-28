@@ -95,7 +95,7 @@ const LoginTab = () => {
                 {isAuthenticated === AuthStatus.Authenticating ? <LoadingSVG size={23} /> : (
                     <>
                         <FcGoogle size={25} />
-                        <span>Continue with Google</span>
+                        <span>Signin with Google</span>
                     </>
                 )}
             </button>

@@ -71,7 +71,7 @@ const SignupTab: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
                         {isAuthenticated === AuthStatus.Authenticating ? <LoadingSVG size={23} /> : (
                             <>
                                 <FcGoogle size={25} />
-                                <span>Continue with Google</span>
+                                <span>Signup with Google</span>
                             </>
                         )}
                     </button>
@@ -82,7 +82,7 @@ const SignupTab: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
                     </div>
                 </>
             )}
-            <form id='signup-form' className='form__container' onSubmit={handleNextTab}>
+            <form id='signup-form' className='form__container' style={{ marginTop: tempUser.email ? '20px' : '' }} onSubmit={handleNextTab}>
                 <div className='input__container'>
                     <p>Email</p>
                     <input
