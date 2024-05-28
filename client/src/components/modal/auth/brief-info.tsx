@@ -132,10 +132,7 @@ const BriefInfo: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
 
     return (
         <div id='brief'>
-            <div className='auth__header'>
-                <h3>Brief Info</h3>
-                <p>Change Email or Password? <span onClick={() => setAuthTab(AuthTab.Signup)}>Go Back</span></p>
-            </div>
+            <h3>Brief Info</h3>
             <form id='brief-form' className='form__container' onSubmit={handleFormSubmit}>
                 <div className='avatar-username__container'>
                     <div
@@ -223,6 +220,7 @@ const BriefInfo: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
                 <button type='submit' disabled={isAuthenticated === AuthStatus.Authenticating}>
                     {isAuthenticated === AuthStatus.Authenticating ? <LoadingSVG size={23} /> : 'Create my Account'}
                 </button>
+                <p>Change Email or Password? <span onClick={() => setAuthTab(AuthTab.Signup)}>Go Back</span></p>
             </form>
         </div>
     );

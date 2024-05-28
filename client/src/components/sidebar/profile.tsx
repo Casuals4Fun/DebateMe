@@ -92,7 +92,7 @@ const Profile = () => {
                         )}
                     </div>
                 </>
-            ) : (
+            ) : authTab === AuthTab.Closed && (
                 <>
                     <button
                         className='auth-btn'

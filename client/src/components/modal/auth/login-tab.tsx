@@ -89,9 +89,19 @@ const LoginTab = () => {
 
     return (
         <div id='login'>
-            <div className='auth__header'>
-                <h3>Login</h3>
-                <p>New here? <span onClick={() => setAuthTab(AuthTab.Signup)}>Create Account</span></p>
+            <h3>Login</h3>
+            <button
+                disabled={isAuthenticated === AuthStatus.Authenticating}
+                className='google-btn'
+                onClick={() => window.location.href = `${import.meta.env.VITE_SERVER_URL}/api/auth/google`}
+            >
+                <FcGoogle size={25} />
+                <span>Continue with Google</span>
+            </button>
+            <div className='or-divider'>
+                <div className='divider' />
+                <p>or</p>
+                <div className='divider' />
             </div>
             <form id='login-form' className='form__container' onSubmit={handleLoginSubmit}>
                 <div className='input__container'>
@@ -122,20 +132,8 @@ const LoginTab = () => {
                 <button type='submit' disabled={isAuthenticated === AuthStatus.Authenticating}>
                     {isAuthenticated === AuthStatus.Authenticating ? <LoadingSVG size={23} /> : 'Login'}
                 </button>
+                <p>New here? <span onClick={() => setAuthTab(AuthTab.Signup)}>Create Account</span></p>
             </form>
-            <div className='or-divider'>
-                <div className='divider' />
-                <p>or</p>
-                <div className='divider' />
-            </div>
-            <button
-                disabled={isAuthenticated === AuthStatus.Authenticating}
-                className='google-btn'
-                onClick={() => window.location.href = `${import.meta.env.VITE_SERVER_URL}/api/auth/google`}
-            >
-                <FcGoogle size={25} />
-                <span>Continue with Google</span>
-            </button>
         </div>
     );
 };

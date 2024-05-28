@@ -60,10 +60,24 @@ const SignupTab: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
 
     return (
         <div id='signup'>
-            <div className='auth__header'>
-                <h3>Register</h3>
-                <p>Already have an account? <span onClick={() => setAuthTab(AuthTab.Login)}>Log In</span></p>
-            </div>
+            <h3>Register</h3>
+            {!tempUser.email && (
+                <>
+                    <button
+                        disabled={isAuthenticated === AuthStatus.Authenticating}
+                        className='google-btn'
+                        onClick={() => window.location.href = `${import.meta.env.VITE_SERVER_URL}/api/auth/google`}
+                    >
+                        <FcGoogle size={25} />
+                        <span>Continue with Google</span>
+                    </button>
+                    <div className='or-divider'>
+                        <div className='divider' />
+                        <p>or</p>
+                        <div className='divider' />
+                    </div>
+                </>
+            )}
             <form id='signup-form' className='form__container' onSubmit={handleNextTab}>
                 <div className='input__container'>
                     <p>Email</p>
@@ -94,24 +108,8 @@ const SignupTab: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
                 <button type='submit' disabled={isAuthenticated === AuthStatus.Authenticating}>
                     {isAuthenticated === AuthStatus.Authenticating ? <LoadingSVG size={23} /> : 'Continue'}
                 </button>
+                <p>Already have an account? <span onClick={() => setAuthTab(AuthTab.Login)}>Log In</span></p>
             </form>
-            {!tempUser.email && (
-                <>
-                    <div className='or-divider'>
-                        <div className='divider' />
-                        <p>or</p>
-                        <div className='divider' />
-                    </div>
-                    <button
-                        disabled={isAuthenticated === AuthStatus.Authenticating}
-                        className='google-btn'
-                        onClick={() => window.location.href = `${import.meta.env.VITE_SERVER_URL}/api/auth/google`}
-                    >
-                        <FcGoogle size={25} />
-                        <span>Continue with Google</span>
-                    </button>
-                </>
-            )}
         </div>
     );
 };
