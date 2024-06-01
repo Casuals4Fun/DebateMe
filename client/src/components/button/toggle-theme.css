@@ -14,20 +14,20 @@
 }
 
 .theme__button .toggle-btn {
+    position: relative;
     width: 83px;
     height: 40px;
     border-radius: 20px;
-    background: var(--explore_input_bg);
+    background-color: var(--explore_input_bg);
     cursor: pointer;
-    position: relative;
-    /* transition: 0.3s; */
+    transition: 0.2s ease-in-out;
 }
 
 .theme__button .circle {
     width: 30px;
     height: 30px;
     border-radius: 99px;
-    background: #2C2C2F;
+    background-color: #2C2C2F;
     position: absolute;
     top: 50%;
     left: 4%;
@@ -35,8 +35,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
-    /* transition: 0.3s; */
+    transition: 0.2s ease-in-out;
 }
 
 .theme__button .moon {
@@ -52,13 +51,13 @@
 }
 
 .theme__button input[type=checkbox]:checked+.display .toggle-btn {
-    background: var(--explore_input_bg);
+    background-color: var(--explore_input_bg);
 }
 
 .theme__button input[type=checkbox]:checked+.display .toggle-btn .circle {
     left: 100%;
     transform: translate(-120%, -50%);
-    background: white;
+    background-color: white;
 }
 
 .theme__button input[type=checkbox]:checked+.display .toggle-btn .circle .sun {
