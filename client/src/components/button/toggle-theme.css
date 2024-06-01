@@ -20,7 +20,7 @@
     background: var(--explore_input_bg);
     cursor: pointer;
     position: relative;
-    transition: 0.3s;
+    /* transition: 0.3s; */
 }
 
 .theme__button .circle {
@@ -36,7 +36,7 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    transition: 0.3s;
+    /* transition: 0.3s; */
 }
 
 .theme__button .moon {
