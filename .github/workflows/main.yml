@@ -18,6 +18,12 @@ jobs:
       with:
         node-version: '20.10.0'
 
+    - name: Install dependencies and build
+      run: |
+        cd client
+        npm install
+        npm run build
+
     - name: Install lftp
       run: sudo apt install lftp
 
@@ -30,12 +36,9 @@ jobs:
       run: |
         echo "machine ${{ secrets.FTP_SERVER }} login ${{ secrets.FTP_USERNAME }} password ${{ secrets.FTP_PASSWORD }}" > ~/.netrc
 
-    - name: Build and Upload frontend
+    - name: Upload contents of dist folder
       run: |
-        cd client
-        npm ci
-        npm run build
-        lftp -e "cd debateme.shubhamlal.in; mirror --only-newer --parallel=100 -R./dist/ /" ${{ secrets.FTP_SERVER }}
+        lftp -e "mirror --only-newer --parallel=100 -R ./client/dist/ /debateme.shubhamlal.in/" ${{ secrets.FTP_SERVER }}
 
     - name: Upload backend
       run: |
