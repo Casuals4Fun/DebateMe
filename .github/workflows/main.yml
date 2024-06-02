@@ -42,4 +42,4 @@ jobs:
 
     - name: Upload backend
       run: |
-        lftp -e "mirror --only-newer --parallel=100 -R./server/ /debateme-api/" ${{ secrets.FTP_SERVER }}
+        lftp -e "mirror --only-newer --parallel=100 -R ./server/ /debateme-api/" ${{ secrets.FTP_SERVER }}
