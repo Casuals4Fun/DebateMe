@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - main
-    paths:
-      - 'server/**'
 
 jobs:
   deploy:
@@ -32,6 +30,13 @@ jobs:
       run: |
         echo "machine ${{ secrets.FTP_SERVER }} login ${{ secrets.FTP_USERNAME }} password ${{ secrets.FTP_PASSWORD }}" > ~/.netrc
 
-    - name: Upload backend files
+    - name: Build and Upload frontend
       run: |
-        lftp -e "mirror --only-newer --parallel=100 -R ./server/ /debatehive-api/" ${{ secrets.FTP_SERVER }}
+        cd client
+        npm ci
+        npm run build
+        lftp -e "cd debateme.shubhamlal.in; mirror --only-newer --parallel=100 -R./dist/ /" ${{ secrets.FTP_SERVER }}
+
+    - name: Upload backend
+      run: |
+        lftp -e "mirror --only-newer --parallel=100 -R./server/ /debateme-api/" ${{ secrets.FTP_SERVER }}
