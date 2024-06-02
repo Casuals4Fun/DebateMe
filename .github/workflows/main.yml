@@ -18,14 +18,6 @@ jobs:
       with:
         node-version: '20.10.0'
 
-    - name: Install dependencies and build
-      env:
-        VITE_SERVER_URL: ${{ secrets.VITE_SERVER_URL }}
-      run: |
-        cd client
-        npm install
-        npm run build
-
     - name: Install lftp
       run: sudo apt install lftp
 
@@ -37,6 +29,14 @@ jobs:
     - name: Load Secrets
       run: |
         echo "machine ${{ secrets.FTP_SERVER }} login ${{ secrets.FTP_USERNAME }} password ${{ secrets.FTP_PASSWORD }}" > ~/.netrc
+
+    - name: Install dependencies and build
+      env:
+        VITE_SERVER_URL: ${{ secrets.VITE_SERVER_URL }}
+      run: |
+        cd client
+        npm install
+        npm run build
 
     - name: Upload contents of dist folder
       run: |
