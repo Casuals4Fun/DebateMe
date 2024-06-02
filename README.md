@@ -1,4 +1,4 @@
-# DebateHive | Your opinion is what matters.
+# DebateMe | Your opinion is what matters.
 
 ## 🚀 Tech stack
 1. Frontend
@@ -9,4 +9,4 @@
 - MySQL
 
 ## ⭐ Contributors
-<!-- <img src="https://contributors-img.web.app/image?repo=Shubham-Lal/DebateHive"/> -->
+<!-- <img src="https://contributors-img.web.app/image?repo=Shubham-Lal/DebateMe"/> -->

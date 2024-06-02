@@ -61,7 +61,7 @@ const ClaimUsername = () => {
         <form id='claim-username' onSubmit={handleUsernameSubmit}>
             <p>Get Started</p>
             <div className='username-input'>
-                <span className='domain'>debatehive.com/</span>
+                <span className='domain'>debateme.app/</span>
                 <input
                     name='username'
                     placeholder='johndoe'
