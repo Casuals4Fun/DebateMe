@@ -80,7 +80,8 @@ const LoginTab = () => {
                         toast.error(response.message)
                     }
                 })
-                .catch(() => setIsAuthenticated(AuthStatus.Failed));
+                .catch(() => setIsAuthenticated(AuthStatus.Failed))
+                .finally(() => setIsSubmitted(false));
         }
     };
 
@@ -92,7 +93,7 @@ const LoginTab = () => {
                 className='google-btn'
                 onClick={() => window.location.href = `${import.meta.env.VITE_SERVER_URL}/api/auth/google`}
             >
-                {isAuthenticated === AuthStatus.Authenticating ? <LoadingSVG size={23} /> : (
+                {isAuthenticated === AuthStatus.Authenticating && !isSubmitted ? <LoadingSVG size={23} /> : (
                     <>
                         <FcGoogle size={25} />
                         <span>Signin with Google</span>
@@ -131,7 +132,7 @@ const LoginTab = () => {
                     />
                 </div>
                 <button type='submit' disabled={isAuthenticated === AuthStatus.Authenticating}>
-                    {isAuthenticated === AuthStatus.Authenticating ? <LoadingSVG size={23} /> : 'Login'}
+                    {isAuthenticated === AuthStatus.Authenticating && isSubmitted ? <LoadingSVG size={23} /> : 'Login'}
                 </button>
                 <p>New here? <span onClick={() => setAuthTab(AuthTab.Signup)}>Create Account</span></p>
             </form>
