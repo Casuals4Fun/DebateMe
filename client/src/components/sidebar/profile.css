@@ -27,12 +27,12 @@
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: shine 7.5s infinite linear;
+    animation: shine-join_community 7.5s infinite linear;
     font-weight: 600;
     font-size: 20px;
 }
 
-@keyframes shine {
+@keyframes shine-join_community {
     0% {
         background-position: 0;
     }
