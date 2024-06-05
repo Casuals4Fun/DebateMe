@@ -124,7 +124,8 @@ const BriefInfo: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
                         toast.error(response.message)
                     }
                 })
-                .catch(() => setIsAuthenticated(AuthStatus.Failed));
+                .catch(() => setIsAuthenticated(AuthStatus.Failed))
+                .catch(() => setIsSubmitted(false));
         }
     };
 

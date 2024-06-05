@@ -6,14 +6,14 @@ export default function AuthPage() {
     const location = useLocation();
     const navigate = useNavigate();
     const { route, isAuthenticated, setAuthTab } = useAuthStore();
-    const { setTempUser } = useTempStore();
+    const { tempUser, setTempUser } = useTempStore();
 
     useEffect(() => {
         const params = new URLSearchParams(location.search);
         const type = params.get('type');
 
         if (isAuthenticated === AuthStatus.Authenticating) {
-            setAuthTab(type === 'login' ? AuthTab.Login : type === 'signup' ? AuthTab.Signup : AuthTab.Login);
+            setAuthTab(type === 'login' ? AuthTab.Login : type === 'signup' ? tempUser ? AuthTab.Info : AuthTab.Signup : AuthTab.Login);
         }
         else if (isAuthenticated === AuthStatus.Authenticated) {
             navigate(route === '/auth' || route === '/login' || route === '/signup' ? '/' : route, { replace: true });
