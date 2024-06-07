@@ -2,7 +2,6 @@
 #closed-card-loading {
     min-height: 270px;
     background-color: var(--card_background);
-    border-radius: 20px;
     border: 2px solid var(--card_border);
     display: flex;
     justify-content: space-between;
