@@ -22,6 +22,10 @@
     gap: 10px;
 }
 
+#claim-username.hide {
+    display: none;
+}
+
 #claim-username p:first-child {
     width: fit-content;
     background-size: 200% 100%;
@@ -96,6 +100,12 @@
 
 #claim-username .submit-btn span {
     color: #FFFFFF;
+}
+
+@media screen and (max-width: 1024px) {
+    #claim-username.hide {
+        display: inherit;
+    }
 }
 
 @media screen and (max-width: 480px) {

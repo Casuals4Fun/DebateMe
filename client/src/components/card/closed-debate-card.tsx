@@ -1,5 +1,6 @@
 import "./closed-debate-card.css"
 import { useNavigate, Link } from "react-router-dom"
+import { useNavStore } from "../../store/useNavStore"
 import DebateBar from "./debate-bar"
 import { MdModeComment } from "react-icons/md"
 import useFormatNumber from "../../hooks/useFormatNumber"
@@ -7,12 +8,13 @@ import LoadingSkeleton from "../loading/skeleton"
 
 const ClosedDebateCard = () => {
     const navigate = useNavigate();
+    const { sidebar } = useNavStore();
 
     return (
         <div id='closed-card'>
-            <div className='left'>
+            <div className={`left ${sidebar ? '' : 'flex-unset'}`}>
                 <h2 title='Sony is the best camera of all time.' onClick={() => navigate('/')}>
-                    Sony is the best camera of all time.
+                    Sony is the best camera of all time. Sony is the best camera of all time. Sony is the best camera of all time.
                 </h2>
                 <p>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Non labore necessitatibus reiciendis rem ad perferendis, id officia omnis voluptas eius veritatis explicabo harum! Vero porro labore quo ab aut. Nesciunt!
@@ -22,7 +24,7 @@ const ClosedDebateCard = () => {
                 <Link to='/'>View</Link>
             </div>
             <div className='divider' />
-            <div className='right'>
+            <div className={`right ${sidebar ? '' : 'flex-unset'}`}>
                 <div className='user-info'>
                     <div className='debate-from'>
                         <img src="/user1.webp" alt="" loading="lazy" />
@@ -51,9 +53,11 @@ const ClosedDebateCard = () => {
 }
 
 const ClosedDebateLoadingCard = () => {
+    const { sidebar } = useNavStore();
+
     return (
         <div id='closed-card-loading'>
-            <div className='left'>
+            <div className={`left ${sidebar ? '' : 'flex-unset'}`}>
                 <div className='topic'>
                     <LoadingSkeleton />
                 </div>
@@ -69,7 +73,7 @@ const ClosedDebateLoadingCard = () => {
                 </div>
             </div>
             <div className='divider' />
-            <div className='right'>
+            <div className={`right ${sidebar ? '' : 'flex-unset'}`}>
                 <div className='user-info'>
                     <div className='debater'>
                         <LoadingSkeleton />

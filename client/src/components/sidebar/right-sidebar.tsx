@@ -10,10 +10,10 @@ interface SidebarProps {
 }
 
 const RightSidebar: React.FC<SidebarProps> = ({ isVisible }) => {
-  const { expand } = useNavStore();
+  const { expand, sidebar } = useNavStore();
 
   return (
-    <div id='right-sidebar' className={isVisible ? 'reveal' : 'hide'}>
+    <div id='right-sidebar' className={`${isVisible ? 'reveal' : 'hide'} ${sidebar ? 'open' : 'close'}`}>
       <div className='right-sidebar__container'>
         <Link to='/' className='logo__container'>
           <img src="/logo.png" />

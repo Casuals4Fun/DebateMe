@@ -5,6 +5,14 @@
     justify-content: space-between;
 }
 
+#left-sidebar.open {
+    display: inherit;
+}
+
+#left-sidebar.close {
+    display: none;
+}
+
 #left-sidebar .logo__wrapper {
     position: absolute;
     top: 20px;
@@ -87,6 +95,15 @@
 }
 
 @media screen and (max-width: 1024px) {
+
+    #left-sidebar.open {
+        display: inherit;
+    }
+
+    #left-sidebar.close {
+        display: inherit;
+    }
+
     #left-sidebar .logo__wrapper {
         display: block;
     }
