@@ -238,6 +238,13 @@
         padding-bottom: 20px;
     }
 
+    #closed-card .left.flex-unset,
+    #closed-card-loading .left.flex-unset,
+    #closed-card .right.flex-unset,
+    #closed-card-loading .right.flex-unset {
+        flex: unset;
+    }
+
     #closed-card .left h2 {
         max-width: 350px;
     }
@@ -279,6 +286,7 @@
 }
 
 @media screen and (max-width: 480px) {
+
     #closed-card,
     #closed-card-loading {
         border-width: 1px;

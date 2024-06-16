@@ -4,9 +4,11 @@ import { AuthTab, useAuthStore } from "../../store/useAuthStore"
 import { toast } from "sonner"
 import { PiArrowUpRightBold } from "react-icons/pi"
 import { LoadingSVG } from "../loading/svg"
+import { useNavStore } from "../../store/useNavStore"
 
 const ClaimUsername = () => {
     const { setAuthTab } = useAuthStore();
+    const { sidebar } = useNavStore();
 
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [username, setUsername] = useState(localStorage.getItem("username") || "");
@@ -58,7 +60,7 @@ const ClaimUsername = () => {
     };
 
     return (
-        <form id='claim-username' onSubmit={handleUsernameSubmit}>
+        <form id='claim-username' className={sidebar ? '' : 'hide'} onSubmit={handleUsernameSubmit}>
             <p>Get Started</p>
             <div className='username-input'>
                 <span className='domain'>debateme.app/</span>

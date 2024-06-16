@@ -1,9 +1,12 @@
 import "./style.css"
+import { useNavStore } from "../../store/useNavStore"
 import { ClosedDebateCard, ClosedDebateLoadingCard } from "../../components/card/closed-debate-card"
 
 export default function HotTopicsPage() {
+    const { sidebar } = useNavStore();
+
     return (
-        <div id='hot-topics'>
+        <div className={`debates ${sidebar ? '' : 'grid-debates'}`}>
             <ClosedDebateLoadingCard />
             <ClosedDebateCard />
             <ClosedDebateLoadingCard />

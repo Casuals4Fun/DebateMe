@@ -16,10 +16,11 @@ import CreateDebatePage from "./pages/create-debate"
 import HotTopicsPage from "./pages/hot-topics"
 import OpenTopicsPage from "./pages/open-topics"
 import NotificationPage from "./pages/notifications"
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa"
 
 export default function App() {
   const { setRoute, setUser, setIsAuthenticated, authTab, setAuthTab } = useAuthStore();
-  const { expand } = useNavStore();
+  const { expand, sidebar, setSidebar } = useNavStore();
 
   useEffect(() => {
     document.body.setAttribute('data-theme', localStorage.getItem('theme') || Theme.Dark);
@@ -51,8 +52,13 @@ export default function App() {
 
   return (
     <div id='app'>
-      <LeftSidebar isVisible={isScrollingUp} />
-      <main id='main' ref={mainRef} className={expand ? 'expand' : ''}>
+      <>
+        <LeftSidebar isVisible={isScrollingUp} />
+        <button className='sidebar-btn left' onClick={() => setSidebar(!sidebar)}>
+          {sidebar ? <FaChevronLeft size={20} /> : <FaChevronRight size={20} />}
+        </button>
+      </>
+      <main id='main' ref={mainRef} className={`${expand ? 'expand' : ''} ${sidebar ? '' : 'w-full'}`}>
         <Routes>
           <Route path='/' element={<HomePage />} />
           <Route path='/auth' element={<AuthPage />} />
@@ -65,7 +71,12 @@ export default function App() {
           <Route path='/notifications' element={<NotificationPage />} />
         </Routes>
       </main>
-      <RightSidebar isVisible={isScrollingUp} />
+      <>
+        <RightSidebar isVisible={isScrollingUp} />
+        <button className='sidebar-btn right' onClick={() => setSidebar(!sidebar)}>
+          {sidebar ? <FaChevronRight size={20} /> : <FaChevronLeft size={20} />}
+        </button>
+      </>
 
       {authTab !== AuthTab.Closed && <AuthModal />}
 

@@ -1,3 +1,12 @@
+#right-sidebar.open {
+    display: inherit;
+}
+
+#right-sidebar.close {
+    display: none;
+    width: 0;
+}
+
 #right-sidebar .right-sidebar__container {
     position: relative;
     height: 100%;
@@ -82,9 +91,31 @@
         width: 40px;
         height: 40px;
     }
+
+    #right-sidebar.close {
+        display: block;
+        width: 40%;
+    }
+}
+
+@media screen and (max-width: 767px) {
+
+    #right-sidebar.open {
+        display: none;
+    }
+
+    #right-sidebar.close {
+        display: none;
+    }
 }
 
 @media screen and (max-width: 480px) {
+    #right-sidebar.close,
+    #right-sidebar.open {
+        display: block;
+        width: 100%;
+    }
+
     #right-sidebar.reveal {
         top: 0;
         transition: top 0.25s ease-out;

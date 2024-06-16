@@ -2,6 +2,7 @@ import "./left-sidebar.css"
 import { useLocation, Link, useNavigate } from "react-router-dom"
 import { toast } from "sonner"
 import { AuthStatus, AuthTab, useAuthStore } from "../../store/useAuthStore"
+import { useNavStore } from "../../store/useNavStore"
 import { leftSidebarLinks } from "../../data/left-sidebar-links"
 import Profile from "./profile"
 import { GoPerson } from "react-icons/go"
@@ -16,6 +17,7 @@ const LeftSidebar: React.FC<SidebarProps> = ({ isVisible }) => {
   const navigate = useNavigate();
 
   const { setRoute, isAuthenticated, setAuthTab } = useAuthStore();
+  const { sidebar } = useNavStore();
 
   const handleLinkClick = (href: string, name: string) => {
     if (name === "Create Debate") {
@@ -30,7 +32,7 @@ const LeftSidebar: React.FC<SidebarProps> = ({ isVisible }) => {
   };
 
   return (
-    <div id='left-sidebar' className={isVisible ? 'reveal' : 'hide'}>
+    <div id='left-sidebar' className={`${isVisible ? 'reveal' : 'hide'} ${sidebar ? 'open' : 'close'}`}>
       <Link to='/' className='logo__wrapper'>
         <img src="/logo.png" alt="" />
       </Link>

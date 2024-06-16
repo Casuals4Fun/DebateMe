@@ -10,6 +10,8 @@ interface NavStore {
     setTheme: (theme_data: Theme) => void;
     expand: boolean;
     setExpand: (toggle: boolean) => void;
+    sidebar: boolean;
+    setSidebar: (toggle: boolean) => void;
 }
 
 export const useNavStore = create<NavStore>((set) => {
@@ -23,6 +25,8 @@ export const useNavStore = create<NavStore>((set) => {
             localStorage.setItem('theme', theme_data);
         },
         expand: false,
-        setExpand: (toggle: boolean) => set({ expand: toggle })
+        setExpand: (toggle: boolean) => set({ expand: toggle }),
+        sidebar: true,
+        setSidebar: (toggle: boolean) => set({ sidebar: toggle })
     };
 });
