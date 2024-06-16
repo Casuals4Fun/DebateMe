@@ -23,10 +23,6 @@ export default function SearchPage() {
         }
     }, [location.search, navigate]);
 
-    const handleClearSearchTerm = () => {
-        navigate("/search");
-    }
-
     return (
         <div id='search'>
             <Explore term={searchTerm} />
@@ -37,11 +33,8 @@ export default function SearchPage() {
                         <h1>
                             Showing results for <span>{searchTerm}</span>
                         </h1>
-                        <button className='clear-term'>
-                            <IoMdClose
-                                size={20}
-                                onClick={handleClearSearchTerm}
-                            />
+                        <button className='clear-term' onClick={() => navigate("/search")}>
+                            <IoMdClose size={20} />
                         </button>
                     </div>
                 </>

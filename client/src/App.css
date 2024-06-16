@@ -69,14 +69,20 @@
     user-select: none;
 }
 
-.grid-debates {
+.column-debates {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
 }
 
 @media screen and (max-width: 1880px) {
-    .grid-debates {
-        grid-template-columns: repeat(2, 1fr);
+    .column-debates {
+        display: block;
+        columns: 2;
+    }
+
+    .card-break {
+        break-inside: avoid;
+        margin-bottom: 20px;
     }
 }
 
@@ -98,8 +104,14 @@
         display: none;
     }
 
-    .debates.grid-debates {
+    .debates.column-debates {
+        columns: unset;
         display: flex;
+    }
+
+    .card-break {
+        break-inside: avoid;
+        margin-bottom: 0;
     }
 }
 
