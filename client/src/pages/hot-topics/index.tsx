@@ -6,7 +6,7 @@ export default function HotTopicsPage() {
     const { sidebar } = useNavStore();
 
     return (
-        <div className={`debates ${sidebar ? '' : 'grid-debates'}`}>
+        <div className={`debates ${sidebar ? '' : 'column-debates'}`}>
             <ClosedDebateLoadingCard />
             <ClosedDebateCard />
             <ClosedDebateLoadingCard />

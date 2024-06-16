@@ -10,7 +10,7 @@ export default function HomePage() {
   const { sidebar } = useNavStore();
 
   return (
-    <div className={`debates ${sidebar ? '' : 'grid-debates'}`}>
+    <div className={`debates ${sidebar ? '' : 'column-debates'}`}>
       {(isAuthenticated === AuthStatus.Authenticating || isAuthenticated === AuthStatus.Failed) && (
         <ClaimUsername />
       )}
