@@ -134,7 +134,10 @@ const LoginTab = () => {
                 <button type='submit' disabled={isAuthenticated === AuthStatus.Authenticating}>
                     {isAuthenticated === AuthStatus.Authenticating && isSubmitted ? <LoadingSVG size={23} /> : 'Login'}
                 </button>
-                <p>New here? <span onClick={() => setAuthTab(AuthTab.Signup)}>Create Account</span></p>
+                <div className='extra-btn'>
+                    <p>New here? <span onClick={() => setAuthTab(AuthTab.Signup)}>Create Account</span></p>
+                    <p><span onClick={() => setAuthTab(AuthTab.Forgot)}>Forgot Password</span></p>
+                </div>
             </form>
         </div>
     );

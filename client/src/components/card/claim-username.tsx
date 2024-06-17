@@ -72,15 +72,15 @@ const ClaimUsername = () => {
                     onChange={handleUsernameChange}
                     onKeyPress={handleKeyPress}
                     className={isSubmitted && (!username || message.type === 'error') ? "shake" : ""}
-                    style={{ border: isSubmitted && (!username || message.type === 'error') ? "2px dotted white" : "" }}
+                    style={{ border: isSubmitted && (!username || message.type === 'error') ? "2px dotted var(--username-color)" : "" }}
                 />
             </div>
             <button className='submit-btn' disabled={loading}>
                 <span>CLAIM USERNAME</span>
                 {!loading ? (
-                    <PiArrowUpRightBold size={20} color='#FFFFFF' />
+                    <PiArrowUpRightBold size={20} />
                 ) : (
-                    <LoadingSVG size={20} color='#FFFFFF' />
+                    <LoadingSVG size={20} />
                 )}
             </button>
             {message.content && <p style={{ color: message.type === 'error' ? 'red' : 'green' }}>{message.content}</p>}

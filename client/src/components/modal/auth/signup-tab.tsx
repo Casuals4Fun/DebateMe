@@ -112,7 +112,9 @@ const SignupTab: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
                 <button type='submit' disabled={isAuthenticated === AuthStatus.Authenticating}>
                     {isAuthenticated === AuthStatus.Authenticating ? <LoadingSVG size={23} /> : 'Continue'}
                 </button>
-                <p>Already have an account? <span onClick={() => setAuthTab(AuthTab.Login)}>Log In</span></p>
+                <div className='extra-btn'>
+                    <p>Already have an account? <span onClick={() => setAuthTab(AuthTab.Login)}>Log In</span></p>
+                </div>
             </form>
         </div>
     );

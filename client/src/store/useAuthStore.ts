@@ -4,7 +4,8 @@ export enum AuthTab {
     Closed = 'closed',
     Login = 'login',
     Signup = 'signup',
-    Info = 'info'
+    Info = 'info',
+    Forgot = 'forgot',
 }
 
 export enum AuthStatus {

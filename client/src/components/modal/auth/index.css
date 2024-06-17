@@ -83,11 +83,16 @@
 
 #login,
 #signup,
-#brief {
+#brief,
+#forgot {
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
+}
+
+#forgot {
+    gap: 20px;
 }
 
 #auth-modal h3 {
@@ -182,7 +187,14 @@
     position: absolute;
 }
 
+#auth-modal .form__container .extra-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
 #auth-modal .form__container p {
+    width: fit-content;
     font-size: 17px;
 }
 
@@ -307,6 +319,7 @@
         width: 100%;
         height: 100%;
         flex-direction: column;
+        gap: 10px;
         border: none;
         border-radius: unset;
     }
@@ -328,13 +341,14 @@
     }
 
     .auth__container .left__container {
+        width: 40%;
         display: flex;
         margin: 0 auto;
         overflow-y: unset;
     }
 
     .auth__container .left__container .lottie-anim {
-        width: 95%;
+        width: 100%;
         height: auto;
     }
 
@@ -351,5 +365,11 @@
 
     #auth-modal .auth__header p {
         font-size: 16px;
+    }
+
+    #auth-modal .form__container .extra-btn {
+        /* align-items: flex-start; */
+        gap: 10px;
+        flex-direction: column;
     }
 }
