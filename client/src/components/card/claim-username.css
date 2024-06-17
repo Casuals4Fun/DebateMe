@@ -2,9 +2,9 @@
     --claim-border: #E5E4E2;
     --username-bg: #E5E4E2;
     --username-color: #000;
-    --username-input-bg: #FFF;
+    --username-input-bg: #F9F9F9;
     --username-input-color: #000;
-    --submit-bg: #FFF;
+    --submit-bg: #F9F9F9;
 }
 
 [data-theme='dark'] {
@@ -71,7 +71,6 @@
     padding: 0 20px;
     width: 100%;
     font-size: 16px;
-    font-weight: 600;
     background-color: var(--username-input-bg);
     color: var(--username-input-color);
 }
@@ -114,7 +113,7 @@
 
 @media screen and (max-width: 480px) {
     #claim-username {
-        margin-bottom: 10px;
+        margin-bottom: 5px;
     }
 
     #claim-username .username-input .domain {
