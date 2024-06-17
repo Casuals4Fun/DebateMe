@@ -7,6 +7,7 @@ import WavingHand from "../../../lottie/WavingHand.json"
 import LoginTab from "./login-tab"
 import SignupTab from "./signup-tab"
 import BriefInfo from "./brief-info"
+import ForgotPassword from "./forgot-password"
 import { IoCloseOutline } from "react-icons/io5"
 
 type RegisterData = {
@@ -66,11 +67,13 @@ const AuthModal = () => {
                             registerData={registerData}
                             setRegisterData={setRegisterData}
                         />
-                    ) : authTab === AuthTab.Info && (
+                    ) : authTab === AuthTab.Info ? (
                         <BriefInfo
                             registerData={registerData}
                             setRegisterData={setRegisterData}
                         />
+                    ) : authTab === AuthTab.Forgot && (
+                        <ForgotPassword />
                     )}
                 </div>
                 <>

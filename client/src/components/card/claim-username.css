@@ -1,10 +1,10 @@
 :root {
-    --claim-border: #000;
-    --username-bg: #E8E8E8;
+    --claim-border: #E5E4E2;
+    --username-bg: #E5E4E2;
     --username-color: #000;
     --username-input-bg: #FFF;
     --username-input-color: #000;
-    --submit-bg: #1F1F21;
+    --submit-bg: #FFF;
 }
 
 [data-theme='dark'] {
@@ -99,7 +99,11 @@
 }
 
 #claim-username .submit-btn span {
-    color: #FFFFFF;
+    color: var(--username-color);
+}
+
+#claim-username .submit-btn svg {
+    color: var(--username-color);
 }
 
 @media screen and (max-width: 1024px) {
