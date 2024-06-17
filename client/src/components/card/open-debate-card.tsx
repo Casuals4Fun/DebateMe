@@ -10,10 +10,14 @@ const OpenDebateCard = () => {
     const navigate = useNavigate();
     const { sidebar } = useNavStore();
 
+    const handleProfileClick = (username: string) => {
+        navigate(`/${username}`);
+    }
+
     return (
         <div id='open-card' className={sidebar ? '' : 'card-break'}>
             <div className='debate-header'>
-                <h2 title='Artificial Intelligence – Is AI good for society or not?' onClick={() => navigate('/')}>
+                <h2 title='Artificial Intelligence – Is AI good for society or not? ↗' onClick={() => navigate('/')}>
                     Artificial Intelligence – Is AI good for society or not?
                 </h2>
                 <Link to='/'>Debate</Link>
@@ -24,10 +28,10 @@ const OpenDebateCard = () => {
                 Fugiat repellat architecto pariatur fugit perspiciatis voluptas quidem autem.
             </p>
             <div className='user-info'>
-                <img src="/user.jpg" alt="" loading="lazy" />
+                <img src="/user.jpg" alt="" loading="lazy" onClick={() => handleProfileClick('julieroberts')} />
                 <div className='user-detail'>
-                    <p>Julie Roberts</p>
-                    <p>julieroberts</p>
+                    <p onClick={() => handleProfileClick('julieroberts')}>Julie Roberts</p>
+                    <p onClick={() => handleProfileClick('julieroberts')}>julieroberts</p>
                 </div>
             </div>
             <div className='debate-footer'>

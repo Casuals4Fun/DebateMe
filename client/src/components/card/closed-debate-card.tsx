@@ -10,11 +10,15 @@ const ClosedDebateCard = () => {
     const navigate = useNavigate();
     const { sidebar } = useNavStore();
 
+    const handleProfileClick = (username: string) => {
+        navigate(`/${username}`);
+    }
+
     return (
         <div id='closed-card' className={sidebar ? '' : 'card-break'}>
             <div className={`left ${sidebar ? '' : 'flex-unset'}`}>
-                <h2 title='Sony is the best camera of all time.' onClick={() => navigate('/')}>
-                    Sony is the best camera of all time. Sony is the best camera of all time. Sony is the best camera of all time.
+                <h2 title='Sony is the best camera of all time. ↗' onClick={() => navigate('/')}>
+                    Sony is the best camera of all time.
                 </h2>
                 <p>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Non labore necessitatibus reiciendis rem ad perferendis, id officia omnis voluptas eius veritatis explicabo harum! Vero porro labore quo ab aut. Nesciunt!
@@ -27,14 +31,14 @@ const ClosedDebateCard = () => {
             <div className={`right ${sidebar ? '' : 'flex-unset'}`}>
                 <div className='user-info'>
                     <div className='debate-from'>
-                        <img src="/user1.webp" alt="" loading="lazy" />
-                        <p>Aniket Das</p>
-                        <p>aniketdas</p>
+                        <img src="/user1.webp" alt="" loading="lazy" onClick={() => handleProfileClick('aniketdas')} />
+                        <p onClick={() => handleProfileClick('aniketdas')}>Aniket Das</p>
+                        <p onClick={() => handleProfileClick('aniketdas')}>aniketdas</p>
                     </div>
                     <div className='debate-by'>
-                        <img src="/user2.jpeg" alt="" loading="lazy" />
-                        <p>Pratik Prasad</p>
-                        <p>pratikprasad</p>
+                        <img src="/user2.jpeg" alt="" loading="lazy" onClick={() => handleProfileClick('pratikprasad')} />
+                        <p onClick={() => handleProfileClick('pratikprasad')}>Pratik Prasad</p>
+                        <p onClick={() => handleProfileClick('pratikprasad')}>pratikprasad</p>
                     </div>
                 </div>
                 <div className='debate-bar__container'>
