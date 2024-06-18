@@ -40,7 +40,7 @@
 }
 
 #open-card .debate-header a {
-    padding-top: 3px;
+    padding-top: 3.1px;
     width: fit-content;
     height: fit-content;
     color: var(--card_color_secondary);

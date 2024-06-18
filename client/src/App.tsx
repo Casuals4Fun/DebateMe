@@ -23,7 +23,7 @@ export default function App() {
   const { expand, sidebar, setSidebar } = useNavStore();
 
   useEffect(() => {
-    document.body.setAttribute('data-theme', localStorage.getItem('theme') || Theme.Dark);
+    document.body.setAttribute('data-theme', localStorage.getItem('theme') === Theme.Light? Theme.Light : Theme.Dark);
     handleAutoLogin(setRoute, setUser, setIsAuthenticated, setAuthTab);
   }, [setRoute, setUser, setIsAuthenticated, setAuthTab]);
 
