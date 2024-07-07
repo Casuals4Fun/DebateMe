@@ -115,6 +115,7 @@ const BriefInfo: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
 
                         localStorage.removeItem('username');
                         navigate('/');
+                        toast.success(response.message);
                     }
                     else {
                         setIsAuthenticated(AuthStatus.Failed);
@@ -216,7 +217,11 @@ const BriefInfo: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
                     </div>
                     <p>Accept <span>Terms & Conditions</span></p>
                 </div>
-                <button type='submit' disabled={isAuthenticated === AuthStatus.Authenticating}>
+                <button
+                    type='submit'
+                    disabled={isAuthenticated === AuthStatus.Authenticating}
+                    style={{ cursor: `${isAuthenticated === AuthStatus.Authenticating ? 'not-allowed' : ''}` }}
+                >
                     {isAuthenticated === AuthStatus.Authenticating ? <LoadingSVG size={23} /> : 'Create my Account'}
                 </button>
                 <p>Change Email or Password? <span onClick={() => setAuthTab(AuthTab.Signup)}>Go Back</span></p>

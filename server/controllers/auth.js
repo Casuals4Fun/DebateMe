@@ -24,14 +24,10 @@ exports.handleGoogleAuth = async function (fastify, request, reply) {
 exports.register = async function (fastify, request, reply) {
     try {
         const { email, password, username, first_name, last_name } = request.body;
-        let avatar = null;
 
-        if (request.body.avatar) {
-            avatar = request.body.avatar;
-        }
-        else if (request.file) {
-            avatar = request.file;
-        }
+        let avatar = null;
+        if (request.body.avatar) avatar = request.body.avatar;
+        else if (request.file) avatar = null;
 
         const [emailExists] = await fastify.mysql.query('SELECT * FROM users WHERE email = ?', [email]);
         if (emailExists.length > 0) throw new ErrorHandler(400, false, 'Account already exists.');
@@ -41,15 +37,18 @@ exports.register = async function (fastify, request, reply) {
 
         const hashedPassword = await bcrypt.hash(password, 10);
 
-        const [result] = await fastify.mysql.query('INSERT INTO users (email, password, username, first_name, last_name, avatar) VALUES (?, ?, ?, ?, ?, ?)', [email, hashedPassword, username, first_name, last_name, null]);
+        const [result] = await fastify.mysql.query(
+            'INSERT INTO users (email, password, username, first_name, last_name, avatar) VALUES (?, ?, ?, ?, ?, ?)',
+            [email, hashedPassword, username, first_name, last_name, avatar]
+        );
 
         if (result.affectedRows > 0) {
             const token = jwt.sign({ userId: username }, process.env.JWT_SECRET, { expiresIn: '12h' });
             return reply.code(201).send({
                 success: true,
-                message: 'Account created successfully.',
+                message: 'Account created successfully',
                 data: {
-                    user: { email, avatar: null, username, first_name, last_name },
+                    user: { email, avatar, username, first_name, last_name },
                     token
                 }
             });
@@ -78,7 +77,7 @@ exports.login = async function (fastify, request, reply) {
 
         return reply.code(200).send({
             success: true,
-            message: 'Login successful.',
+            message: 'Login successful',
             data: {
                 user: {
                     ...(({ password, ...rest }) => rest)(userData)
@@ -103,7 +102,7 @@ exports.autoLogin = async function (fastify, request, reply) {
 
         return reply.code(200).send({
             success: true,
-            message: 'Login successful.',
+            message: 'Login successful',
             data: {
                 user: {
                     ...(({ password, ...rest }) => rest)(userData)
@@ -127,7 +126,7 @@ exports.checkUsername = async function (fastify, request, reply) {
 
         return reply.code(200).send({
             success: true,
-            message: 'Username available.',
+            message: 'Username available',
         });
     } catch (err) {
         return catchError(reply, err);
