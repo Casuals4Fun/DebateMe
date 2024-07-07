@@ -71,6 +71,7 @@ const LoginTab = () => {
                         localStorage.setItem('token', response.data.token);
                         setAuthTab(AuthTab.Closed);
                         navigate(route);
+                        toast.success(response.message);
                     }
                     else {
                         setIsAuthenticated(AuthStatus.Failed);
@@ -131,7 +132,11 @@ const LoginTab = () => {
                         placeholder={isSubmitted && !validationState.isPasswordValid ? 'Required' : ''}
                     />
                 </div>
-                <button type='submit' disabled={isAuthenticated === AuthStatus.Authenticating}>
+                <button
+                    type='submit'
+                    disabled={isAuthenticated === AuthStatus.Authenticating}
+                    style={{ cursor: `${isAuthenticated === AuthStatus.Authenticating ? 'not-allowed' : ''}` }}
+                >
                     {isAuthenticated === AuthStatus.Authenticating && isSubmitted ? <LoadingSVG size={23} /> : 'Login'}
                 </button>
                 <div className='extra-btn'>
