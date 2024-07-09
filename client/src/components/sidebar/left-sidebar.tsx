@@ -1,6 +1,6 @@
 import "./left-sidebar.css"
 import { useLocation, Link, useNavigate } from "react-router-dom"
-import { toast } from "sonner"
+// import { toast } from "sonner"
 import { AuthStatus, AuthTab, useAuthStore } from "../../store/useAuthStore"
 import { useNavStore } from "../../store/useNavStore"
 import { leftSidebarLinks } from "../../data/left-sidebar-links"
@@ -16,10 +16,12 @@ const LeftSidebar: React.FC<SidebarProps> = ({ isVisible }) => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const { setRoute, isAuthenticated, setAuthTab } = useAuthStore();
+  // const { setRoute, isAuthenticated, setAuthTab } = useAuthStore();
+  const { isAuthenticated, setAuthTab } = useAuthStore();
   const { sidebar } = useNavStore();
 
-  const handleLinkClick = (href: string, name: string) => {
+  // const handleLinkClick = (href: string, name: string) => {
+  const handleLinkClick = (href: string) => {
     // if (name === "Create Debate") {
     //   if (isAuthenticated === AuthStatus.Failed) {
     //     setRoute(href);
@@ -40,7 +42,8 @@ const LeftSidebar: React.FC<SidebarProps> = ({ isVisible }) => {
       <ul>
         {leftSidebarLinks.map(item => (
           <li key={item.id} title={item.name}>
-            <div onClick={() => handleLinkClick(item.href, item.name)} className='links__wrapper'>
+            {/* <div onClick={() => handleLinkClick(item.href, item.name)} className='links__wrapper'> */}
+            <div onClick={() => handleLinkClick(item.href)} className='links__wrapper'>
               <item.icon />
               <p className={`${location.pathname === item.href ? 'name-active' : ''} underline`}>
                 {item.name}
