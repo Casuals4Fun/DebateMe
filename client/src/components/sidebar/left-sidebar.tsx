@@ -20,15 +20,16 @@ const LeftSidebar: React.FC<SidebarProps> = ({ isVisible }) => {
   const { sidebar } = useNavStore();
 
   const handleLinkClick = (href: string, name: string) => {
-    if (name === "Create Debate") {
-      if (isAuthenticated === AuthStatus.Failed) {
-        setRoute(href);
-        setAuthTab(AuthTab.Login);
-      }
-      else if (isAuthenticated === AuthStatus.Authenticated) navigate(href);
-      else return toast.warning('Try again...');
-    }
-    else navigate(href);
+    // if (name === "Create Debate") {
+    //   if (isAuthenticated === AuthStatus.Failed) {
+    //     setRoute(href);
+    //     setAuthTab(AuthTab.Login);
+    //   }
+    //   else if (isAuthenticated === AuthStatus.Authenticated) navigate(href);
+    //   else return toast.warning('Try again...');
+    // }
+    // else navigate(href);
+    navigate(href);
   };
 
   return (
