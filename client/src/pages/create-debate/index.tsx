@@ -1,15 +1,15 @@
-import { useState } from 'react';
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
-import './styles.css';
-import { useNavStore } from '../../store/useNavStore';
+import "./styles.css"
+import { useState } from "react"
+import ReactQuill from "react-quill"
+import "react-quill/dist/quill.snow.css"
+import { useNavStore } from "../../store/useNavStore"
 
 export default function CreateDebatePage() {
     const { sidebar } = useNavStore();
 
     const [value, setValue] = useState('');
 
-    console.log(value)
+    console.log(value);
 
     return (
         <ReactQuill
@@ -17,48 +17,31 @@ export default function CreateDebatePage() {
             theme="snow"
             value={value}
             onChange={setValue}
-            modules={
-                {
-                    toolbar: [
-                        // [{ 'font': [] }, { size: [] }],
-                        // [{ 'header': [1, 2, 3, 4, 5, 6] }],
-                        // ['bold', 'italic', 'underline', 'strike', 'blockquote'],
-                        // [{ 'color': [] }, { 'background': [] }],
-                        // [{ 'list': 'ordered' }, { 'list': 'bullet' },
-                        // { 'indent': '-1' }, { 'indent': '+1' }],
-                        // ['link'],
-                        // ['clean'],
+            modules={{
+                toolbar: [
+                    ['bold', 'italic', 'underline', 'strike'],
+                    ['blockquote', 'code-block'],
+                    ['link', 'formula'],
 
-                        ['bold', 'italic', 'underline', 'strike'],
-                        ['blockquote', 'code-block'],
-                        ['link', 'formula'],
+                    [{ 'header': 1 }, { 'header': 2 }],
+                    [{ 'list': 'ordered' }, { 'list': 'bullet' }, { 'list': 'check' }],
+                    [{ 'script': 'sub' }, { 'script': 'super' }],
+                    [{ 'indent': '-1' }, { 'indent': '+1' }],
+                    [{ 'direction': 'rtl' }],
 
-                        [{ 'header': 1 }, { 'header': 2 }],
-                        [{ 'list': 'ordered' }, { 'list': 'bullet' }, { 'list': 'check' }],
-                        [{ 'script': 'sub' }, { 'script': 'super' }],
-                        [{ 'indent': '-1' }, { 'indent': '+1' }],
-                        [{ 'direction': 'rtl' }],
+                    [{ 'size': ['small', false, 'large', 'huge'] }],
+                    [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
 
-                        [{ 'size': ['small', false, 'large', 'huge'] }],
-                        [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+                    [{ 'color': [] }, { 'background': [] }],
+                    [{ 'font': [] }],
+                    [{ 'align': [] }],
 
-                        [{ 'color': [] }, { 'background': [] }],
-                        [{ 'font': [] }],
-                        [{ 'align': [] }],
-
-                        ['clean']
-                    ],
-                    clipboard: {
-                        matchVisual: false,
-                    }
+                    ['clean']
+                ],
+                clipboard: {
+                    matchVisual: false,
                 }
-            }
-        // formats={[
-        //     'header', 'font', 'size',
-        //     'bold', 'italic', 'underline', 'strike', 'blockquote',
-        //     'list', 'bullet', 'indent',
-        //     'link', 'color', 'background'
-        // ]}
+            }}
         />
     );
 }
