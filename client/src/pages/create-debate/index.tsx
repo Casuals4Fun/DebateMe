@@ -10,17 +10,17 @@ export default function CreateDebatePage() {
             try {
                 const link = document.createElement('link');
                 link.rel = 'stylesheet';
-                link.href = '/src/sceditor/minified/themes/default.min.css';
+                link.href = '/sceditor/minified/themes/default.min.css';
                 document.head.appendChild(link);
 
                 const sceditorScript = document.createElement('script');
-                sceditorScript.src = '/src/sceditor/minified/sceditor.min.js';
+                sceditorScript.src = '/sceditor/minified/sceditor.min.js';
                 sceditorScript.onload = () => {
                     const formatScript = document.createElement('script');
-                    formatScript.src = '/src/sceditor/minified/formats/xhtml.js';
+                    formatScript.src = '/sceditor/minified/formats/xhtml.js';
                     formatScript.onload = () => {
                         if (textareaRef.current) {
-                            fetch('/src/pages/create-debate/emoticons.json')
+                            fetch('/sceditor/emoticons/emoticons.json')
                                 .then(response => response.json())
                                 .then((emoticons: string[]) => {
                                     const emoticonsConfig: { dropdown: { [key: string]: string } } = { dropdown: {} };
@@ -32,8 +32,8 @@ export default function CreateDebatePage() {
 
                                     (window as any).sceditor.create(textareaRef.current, {
                                         format: 'xhtml',
-                                        style: '/src/sceditor/minified/themes/default.min.css',
-                                        emoticonsRoot: '/src/sceditor/emoticons/',
+                                        style: '/sceditor/minified/themes/default.min.css',
+                                        emoticonsRoot: '/sceditor/emoticons/',
                                         emoticons: emoticonsConfig
                                     });
 
