@@ -10,14 +10,14 @@ export default function CreateDebatePage() {
             try {
                 const link = document.createElement('link');
                 link.rel = 'stylesheet';
-                link.href = 'node_modules/sceditor/minified/themes/default.min.css';
+                link.href = '/src/sceditor/minified/themes/default.min.css';
                 document.head.appendChild(link);
 
                 const sceditorScript = document.createElement('script');
-                sceditorScript.src = 'node_modules/sceditor/minified/sceditor.min.js';
+                sceditorScript.src = '/src/sceditor/minified/sceditor.min.js';
                 sceditorScript.onload = () => {
                     const formatScript = document.createElement('script');
-                    formatScript.src = 'node_modules/sceditor/minified/formats/xhtml.js';
+                    formatScript.src = '/src/sceditor/minified/formats/xhtml.js';
                     formatScript.onload = () => {
                         if (textareaRef.current) {
                             fetch('/src/pages/create-debate/emoticons.json')
@@ -32,8 +32,8 @@ export default function CreateDebatePage() {
 
                                     (window as any).sceditor.create(textareaRef.current, {
                                         format: 'xhtml',
-                                        style: 'node_modules/sceditor/minified/themes/default.min.css',
-                                        emoticonsRoot: 'node_modules/sceditor/emoticons/',
+                                        style: '/src/sceditor/minified/themes/default.min.css',
+                                        emoticonsRoot: '/src/sceditor/emoticons/',
                                         emoticons: emoticonsConfig
                                     });
 

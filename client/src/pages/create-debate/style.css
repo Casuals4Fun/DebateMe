@@ -4,8 +4,8 @@
 
 #create .sceditor-container {
     width: 100% !important;
-    height: 500px !important;
-    /* height: calc(100dvh - 40px) !important; */
+    /* height: 500px !important; */
+    height: calc(100dvh - 40px) !important;
 }
 
 .sceditor-button-print,
