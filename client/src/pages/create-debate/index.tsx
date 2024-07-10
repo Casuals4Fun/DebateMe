@@ -1,49 +1,66 @@
 import "./style.css"
-import { useState } from "react"
-import ReactQuill from "react-quill"
-import "react-quill/dist/quill.snow.css"
-import { useNavStore } from "../../store/useNavStore"
+import { useEffect, useRef, useState } from "react"
 
 export default function CreateDebatePage() {
-    const { sidebar } = useNavStore();
+    const textareaRef = useRef<HTMLTextAreaElement>(null);
+    const [editorLoaded, setEditorLoaded] = useState(false);
 
-    const [value, setValue] = useState('');
-    console.log(value);
+    useEffect(() => {
+        const loadSCEditor = async () => {
+            try {
+                const link = document.createElement('link');
+                link.rel = 'stylesheet';
+                link.href = 'node_modules/sceditor/minified/themes/default.min.css';
+                document.head.appendChild(link);
+
+                const sceditorScript = document.createElement('script');
+                sceditorScript.src = 'node_modules/sceditor/minified/sceditor.min.js';
+                sceditorScript.onload = () => {
+                    const formatScript = document.createElement('script');
+                    formatScript.src = 'node_modules/sceditor/minified/formats/xhtml.js';
+                    formatScript.onload = () => {
+                        if (textareaRef.current) {
+                            fetch('/src/pages/create-debate/emoticons.json')
+                                .then(response => response.json())
+                                .then((emoticons: string[]) => {
+                                    const emoticonsConfig: { dropdown: { [key: string]: string } } = { dropdown: {} };
+
+                                    emoticons.forEach(emoticon => {
+                                        const name = `:${emoticon.split('.')[0]}`;
+                                        emoticonsConfig.dropdown[name] = emoticon;
+                                    });
+
+                                    (window as any).sceditor.create(textareaRef.current, {
+                                        format: 'xhtml',
+                                        style: 'node_modules/sceditor/minified/themes/default.min.css',
+                                        emoticonsRoot: 'node_modules/sceditor/emoticons/',
+                                        emoticons: emoticonsConfig
+                                    });
+
+                                    setEditorLoaded(true);
+                                });
+                        }
+                    };
+                    document.body.appendChild(formatScript);
+                };
+                document.body.appendChild(sceditorScript);
+            } catch (error) {
+                console.error('Failed to load SCEditor:', error);
+            }
+        };
+
+        loadSCEditor();
+
+        return () => {
+            if (textareaRef.current && (window as any).sceditor) {
+                (window as any).sceditor.instance(textareaRef.current).destroy();
+            }
+        };
+    }, []);
 
     return (
-        <div id="create">
-            <ReactQuill
-                className={sidebar ? '' : 'h-full'}
-                theme="snow"
-                value={value}
-                onChange={setValue}
-                modules={{
-                    toolbar: [
-                        ['bold', 'italic', 'underline', 'strike'],
-                        ['blockquote', 'code-block'],
-                        ['link', 'formula'],
-
-                        [{ 'header': 1 }, { 'header': 2 }],
-                        [{ 'list': 'ordered' }, { 'list': 'bullet' }, { 'list': 'check' }],
-                        [{ 'script': 'sub' }, { 'script': 'super' }],
-                        [{ 'indent': '-1' }, { 'indent': '+1' }],
-                        [{ 'direction': 'rtl' }],
-
-                        [{ 'size': ['small', false, 'large', 'huge'] }],
-                        [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-
-                        [{ 'color': [] }, { 'background': [] }],
-                        [{ 'font': [] }],
-                        [{ 'align': [] }],
-
-                        ['clean']
-                    ],
-                    clipboard: {
-                        matchVisual: false,
-                    }
-                }}
-                bounds={`#create`}
-            />
-        </div >
-    );
+        <div id='create'>
+            <textarea ref={textareaRef} className={editorLoaded ? '' : 'hidden'}></textarea>
+        </div>
+    )
 }

@@ -1,110 +1,20 @@
-.quill {
-    border-radius: 5px;
-    overflow: hidden;
+.hidden {
+    display: none;
 }
 
-.ql-toolbar.ql-snow {
-    background-color: #eaecec;
+#create .sceditor-container {
+    width: 100% !important;
+    height: 500px !important;
+    /* height: calc(100dvh - 40px) !important; */
 }
 
-.ql-editor {
-    min-height: calc(100dvh - 40px - 67px);
-    background: #fefcfc;
-    color: #000000;
-}
-
-@media screen and (max-width: 1597px) {
-    .ql-editor {
-        min-height: calc(100dvh - 40px - 91px);
-    }
-}
-
-@media screen and (min-width: 1188px) {
-    .quill.h-full .ql-editor {
-        min-height: calc(100dvh - 40px - 43px);
-    }
-}
-
-@media screen and (max-width: 1138px) {
-    .ql-editor {
-        min-height: calc(100dvh - 40px - 115px);
-    }
-}
-
-@media screen and (min-width: 1024px) and (max-width: 1187px) {
-    .quill.h-full .ql-editor {
-        min-height: calc(100dvh - 40px - 67px);
-    }
-}
-
-@media screen and (max-width: 1024px) {
-    .ql-editor {
-        min-height: calc(100dvh - 40px - 91px);
-    }
-}
-
-@media screen and (max-width: 910px) {
-    .ql-editor {
-        min-height: calc(100dvh - 40px - 115px);
-    }
-}
-
-@media screen and (max-width: 767px) {
-    .ql-editor {
-        min-height: calc(100dvh - 40px - 67px);
-    }
-}
-
-@media screen and (max-width: 752px) {
-    .ql-editor {
-        min-height: calc(100dvh - 40px - 91px);
-    }
-}
-
-@media screen and (max-width: 535px) {
-    .ql-editor {
-        min-height: calc(100dvh - 40px - 115px);
-    }
+.sceditor-button-print,
+.sceditor-button-maximize {
+    display: none !important;
 }
 
 @media screen and (max-width: 480px) {
-    .ql-editor {
-        min-height: calc(100dvh - 70px - 70px - 91px);
-    }
-}
-
-@media screen and (max-width: 434px) {
-    .ql-editor {
-        min-height: calc(100dvh - 70px - 70px - 115px);
-    }
-}
-
-@media screen and (max-width: 350px) {
-    .ql-editor {
-        min-height: calc(100dvh - 70px - 70px - 139px);
-    }
-}
-
-@media screen and (max-width: 306px) {
-    .ql-editor {
-        min-height: calc(100dvh - 70px - 70px - 163px);
-    }
-}
-
-@media screen and (max-width: 264px) {
-    .ql-editor {
-        min-height: calc(100dvh - 70px - 70px - 187px);
-    }
-}
-
-@media screen and (max-width: 246px) {
-    .ql-editor {
-        min-height: calc(100dvh - 70px - 70px - 211px);
-    }
-}
-
-@media screen and (max-width: 221px) {
-    .ql-editor {
-        min-height: calc(100dvh - 70px - 70px - 235px);
+    #create .sceditor-container {
+        height: calc(100dvh - 70px - 70px) !important;
     }
 }
