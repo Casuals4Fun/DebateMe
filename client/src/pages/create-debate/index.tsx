@@ -1,5 +1,5 @@
 export default function CreateDebatePage() {
     return (
-        <div>Create Debate</div>
+        <div id='create'></div>
     )
 }
