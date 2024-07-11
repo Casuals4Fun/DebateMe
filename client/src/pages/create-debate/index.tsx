@@ -1,5 +1,5 @@
 import "./style.css"
-import { useRef } from "react"
+import { useRef, useState } from "react"
 import {
     RichTextEditorComponent,
     Toolbar,
@@ -14,14 +14,13 @@ import {
     Video,
     Audio,
     FormatPainter,
-    PasteCleanup
+    PasteCleanup,
 } from "@syncfusion/ej2-react-richtexteditor"
 
 function CreateDebatePage() {
     const editorRef = useRef<RichTextEditorComponent>(null);
-    // const [editorContent, setEditorContent] = useState<string>('');
+    const [editorContent, setEditorContent] = useState<string>('');
     const rteValue = ``;
-    const hostUrl = 'https://services.syncfusion.com/react/production/';
     const items = [
         'Undo',
         'Redo',
@@ -80,18 +79,12 @@ function CreateDebatePage() {
         showOnRightClick: true,
     };
 
-    const insertImageSettings = {
-        saveUrl: hostUrl + 'api/RichTextEditor/SaveFile',
-        removeUrl: hostUrl + 'api/RichTextEditor/DeleteFile',
-        path: hostUrl + 'RichTextEditor/',
-    };
-
-    // const saveEditorContent = () => {
-    //     if (editorRef.current) {
-    //         const content = editorRef.current.value;
-    //         setEditorContent(content);
-    //     }
-    // };
+    const saveEditorContent = () => {
+        if (editorRef.current) {
+            const content = editorRef.current.value;
+            setEditorContent(content);
+        }
+    }; console.log(editorContent);
 
     return (
         <div className="control-pane">
@@ -105,7 +98,6 @@ function CreateDebatePage() {
                         toolbarSettings={toolbarSettings}
                         quickToolbarSettings={quickToolbarSettings}
                         enableTabKey={true}
-                        insertImageSettings={insertImageSettings}
                         enableXhtml={true}
                         placeholder="Type something here..."
                     >
@@ -128,7 +120,7 @@ function CreateDebatePage() {
                     </RichTextEditorComponent>
                 </div>
             </div>
-            {/* <button onClick={saveEditorContent}>Save</button> */}
+            <button onClick={saveEditorContent}>Save</button>
         </div>
     );
 }
