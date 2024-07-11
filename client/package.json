@@ -11,6 +11,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@syncfusion/ej2-base": "^26.1.37",
+    "@syncfusion/ej2-react-inputs": "^26.1.41",
+    "@syncfusion/ej2-react-richtexteditor": "^26.1.41",
     "lottie-react": "^2.4.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -20,7 +23,6 @@
     "zustand": "^4.5.1"
   },
   "devDependencies": {
-    "@types/aos": "^3.0.7",
     "@types/react": "^18.2.56",
     "@types/react-dom": "^18.2.19",
     "@typescript-eslint/eslint-plugin": "^7.0.2",
