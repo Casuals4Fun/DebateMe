@@ -1,83 +1,11 @@
 import "./style.css"
 import { useRef, useState } from "react"
-import {
-    RichTextEditorComponent,
-    Toolbar,
-    Inject,
-    Image,
-    Link,
-    HtmlEditor,
-    Count,
-    QuickToolbar,
-    Table,
-    EmojiPicker,
-    Video,
-    Audio,
-    FormatPainter,
-    PasteCleanup,
-} from "@syncfusion/ej2-react-richtexteditor"
+import { RichTextEditorComponent } from "@syncfusion/ej2-react-richtexteditor"
+import Editor from "./editor";
 
 function CreateDebatePage() {
     const editorRef = useRef<RichTextEditorComponent>(null);
     const [editorContent, setEditorContent] = useState<string>('');
-    const rteValue = ``;
-    const items = [
-        'Undo',
-        'Redo',
-        '|',
-        'Bold',
-        'Italic',
-        'Underline',
-        'StrikeThrough',
-        'SuperScript',
-        'SubScript',
-        '|',
-        'FontName',
-        'FontSize',
-        'FontColor',
-        'BackgroundColor',
-        '|',
-        'LowerCase',
-        'UpperCase',
-        '|',
-        'Formats',
-        'Alignments',
-        'Blockquote',
-        '|',
-        'NumberFormatList',
-        'BulletFormatList',
-        '|',
-        'Outdent',
-        'Indent',
-        '|',
-        'CreateLink',
-        'Image',
-        'Video',
-        'Audio',
-        'CreateTable',
-        '|',
-        'FormatPainter',
-        'ClearFormat',
-        '|',
-        'EmojiPicker',
-    ];
-    const toolbarSettings = {
-        items: items,
-    };
-    const quickToolbarSettings = {
-        table: [
-            'TableHeader',
-            'TableRows',
-            'TableColumns',
-            'TableCell',
-            '-',
-            'BackgroundColor',
-            'TableRemove',
-            'TableCellVerticalAlign',
-            'Styles',
-        ],
-        showOnRightClick: true,
-    };
 
     const saveEditorContent = () => {
         if (editorRef.current) {
@@ -87,41 +15,25 @@ function CreateDebatePage() {
     }; console.log(editorContent);
 
     return (
-        <div className="control-pane">
-            <div className="control-section" id="rteTools">
-                <div className="rte-control-section">
-                    <RichTextEditorComponent
-                        id="toolsRTE"
-                        ref={editorRef}
-                        value={rteValue}
-                        showCharCount={true}
-                        toolbarSettings={toolbarSettings}
-                        quickToolbarSettings={quickToolbarSettings}
-                        enableTabKey={true}
-                        enableXhtml={true}
-                        placeholder="Type something here..."
-                    >
-                        <Inject
-                            services={[
-                                Toolbar,
-                                Image,
-                                Link,
-                                HtmlEditor,
-                                Count,
-                                QuickToolbar,
-                                Table,
-                                EmojiPicker,
-                                Video,
-                                Audio,
-                                FormatPainter,
-                                PasteCleanup,
-                            ]}
-                        />
-                    </RichTextEditorComponent>
-                </div>
+        <form id='create'>
+            <div className='vertical-space'>
+                <h2>Title</h2>
+                <textarea
+                    className='title__input'
+                    placeholder='Your debate topic'
+                />
             </div>
-            {/* <button onClick={saveEditorContent}>Save</button> */}
-        </div>
+            <div className='vertical-space'>
+                <h2>Body</h2>
+                <Editor
+                    editorRef={editorRef}
+                    rteValue=""
+                />
+            </div>
+            <div>
+                <button type='button' onClick={saveEditorContent}></button>
+            </div>
+        </form>
     );
 }
 
