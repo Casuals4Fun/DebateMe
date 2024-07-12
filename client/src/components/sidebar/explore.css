@@ -63,9 +63,9 @@
     background-color: var(--card_background);
     border: 1px solid var(--explore_input_bg);
     border-radius: 20px;
+    transition: background-color 0.2s ease-in-out;
 }
 
 #explore .explore-btns a:hover {
     background-color: var(--explore_input_bg);
-    transition: background-color 0.2s ease-in-out;
 }

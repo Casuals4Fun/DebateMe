@@ -66,7 +66,7 @@ export default function App() {
           <Route path='/signup' element={<Navigate to='/auth?type=signup' />} />
           <Route path='/search' element={<SearchPage />} />
           {/* <Route path='/create' element={<ProtectedRoute><CreateDebatePage /></ProtectedRoute>} /> */}
-          <Route path='/create' element={<CreateDebatePage />} />
+          <Route path='/create' element={<CreateDebatePage isVisible={isScrollingUp} />} />
           <Route path='/hot-topics' element={<HotTopicsPage />} />
           <Route path='/open-topics' element={<OpenTopicsPage />} />
           <Route path='/notifications' element={<NotificationPage />} />
