@@ -120,7 +120,7 @@ function CreateDebatePage() {
                     </RichTextEditorComponent>
                 </div>
             </div>
-            <button onClick={saveEditorContent}>Save</button>
+            {/* <button onClick={saveEditorContent}>Save</button> */}
         </div>
     );
 }
