@@ -65,12 +65,12 @@
 }
 
 .e-richtexteditor .e-resize-handle.e-south-east {
-    z-index: 2;
+    z-index: 0 !important;
     cursor: ns-resize;
 }
 
 .e-richtexteditor .e-rte-character-count {
-    z-index: 2;
+    z-index: 0 !important;
 }
 
 .debate-btns {
@@ -93,11 +93,11 @@
     font-size: 20px;
     border: 1px solid var(--explore_input_bg);
     border-radius: 5px;
-    transition: background-color 0.2s ease-in-out;
 }
 
 .debate-btns button:hover {
     background-color: var(--explore_input_bg);
+    transition: background-color 0.2s ease-in-out;
 }
 
 .space {

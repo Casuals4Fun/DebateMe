@@ -2,9 +2,10 @@
 #closed-card-loading {
     min-height: 270px;
     background-color: var(--card_background);
-    border: 2px solid var(--card_border);
+    border: 1px solid var(--card_border);
     display: flex;
     justify-content: space-between;
+    /* border-radius: 8px; */
 }
 
 #closed-card .left,
@@ -35,9 +36,10 @@
 
 #closed-card .divider,
 #closed-card-loading .divider {
-    margin: 15px 0;
+    /* margin: 15px 0;
     width: 2px;
-    background: linear-gradient(transparent, var(--card_divider), var(--card_divider), transparent);
+    background: linear-gradient(transparent, var(--card_divider), var(--card_divider), transparent); */
+    border-left: 1px solid var(--card_border);
 }
 
 #closed-card .left h2 {
@@ -302,12 +304,6 @@
 } */
 
 @media screen and (max-width: 480px) {
-
-    #closed-card,
-    #closed-card-loading {
-        border-width: 1px;
-    }
-
     #closed-card .left h2 {
         /* max-width: 100%; */
         font-size: 18px;

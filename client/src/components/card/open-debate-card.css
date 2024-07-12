@@ -3,7 +3,8 @@
     min-height: 270px;
     padding: 20px 15px;
     background-color: var(--card_background);
-    border: 2px solid var(--card_border);
+    border: 1px solid var(--card_border);
+    /* border-radius: 8px; */
 }
 
 #open-card .debate-header,
@@ -203,12 +204,6 @@
 }
 
 @media screen and (max-width: 480px) {
-
-    #open-card,
-    #open-card-loading {
-        border-width: 1px;
-    }
-
     #open-card .debate-header {
         gap: 10px;
     }

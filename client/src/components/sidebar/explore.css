@@ -59,13 +59,16 @@
 }
 
 #explore .explore-btns a {
-    padding: 7.5px 20px;
+    /* padding: 7.5px 20px;
     background-color: var(--card_background);
-    border: 1px solid var(--explore_input_bg);
+    border: 1px solid var(--explore_input_bg); */
+    padding: 7.5px 10px;
+    background-color: var(--body_background);
     border-radius: 20px;
-    transition: background-color 0.2s ease-in-out;
+    text-transform: lowercase;
 }
 
 #explore .explore-btns a:hover {
     background-color: var(--explore_input_bg);
+    transition: background-color 0.2s ease-in-out;
 }
