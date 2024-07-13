@@ -1,0 +1,96 @@
+.e-rte-container {
+    border: none;
+}
+
+.e-richtexteditor {
+    min-width: 100%;
+    max-width: 100%;
+    min-height: 40vh !important;
+    background-color: var(--bg_primary);
+    color: var(--color_primary);
+    border: 1px solid var(--border_color);
+    overflow-x: hidden;
+}
+
+.e-toolbar.e-extended-toolbar {
+    overflow-x: auto;
+}
+
+.e-richtexteditor .e-toolbar-wrapper.e-rte-tb-float,
+.e-richtexteditor .e-toolbar-container.e-rte-tb-float {
+    top: -20px !important;
+}
+
+.e-richtexteditor .e-toolbar-wrapper {
+    z-index: 4 !important;
+    background-color: var(--bg_secondary);
+}
+
+.e-toolbar,
+.e-toolbar .e-toolbar-item.e-overlay,
+.e-toolbar .e-toolbar-items,
+.e-toolbar .e-toolbar-item .e-tbar-btn,
+.e-toolbar.e-extended-toolbar .e-toolbar-pop,
+.e-toolbar .e-toolbar-pop .e-toolbar-item:not(.e-separator),
+.e-toolbar.e-extended-toolbar .e-toolbar-extended .e-toolbar-item .e-tbar-btn {
+    background-color: var(--bg_secondary);
+    color: #6c757d;
+}
+
+.e-toolbar .e-toolbar-item.e-separator,
+.e-toolbar.e-extended-toolbar .e-toolbar-extended .e-toolbar-item.e-separator {
+    border-color: var(--color_secondary);
+}
+
+.e-toolbar .e-hor-nav {
+    background: var(--bg_secondary);
+}
+
+.e-toolbar .e-popup-down-icon.e-icons {
+    color: var(--color_primary);
+}
+
+.e-richtexteditor .e-rte-content .e-content {
+    min-height: 40vh;
+}
+
+.e-richtexteditor .e-rte-content {
+    z-index: 0 !important;
+    background-color: transparent;
+    color: inherit;
+}
+
+.e-toolbar-wrapper {
+    border-bottom-color: var(--border_color);
+}
+
+.e-richtexteditor .rte-placeholder,
+.e-richtexteditor .e-rte-character-count {
+    color: var(--color_primary);
+}
+
+.e-img-uploadwrap,
+.e-droparea {
+    display: none;
+}
+
+.e-dlg-content {
+    padding-top: 0 !important;
+}
+
+.e-richtexteditor .e-resize-handle.e-south-east {
+    z-index: 0 !important;
+    cursor: ns-resize;
+}
+
+.e-richtexteditor .e-rte-character-count {
+    z-index: 0 !important;
+}
+
+@media screen and (max-width: 480px) {
+
+    .e-richtexteditor .e-toolbar-wrapper.e-rte-tb-float,
+    .e-richtexteditor .e-toolbar-container.e-rte-tb-float {
+        top: -70px !important;
+    }
+}
