@@ -5,9 +5,10 @@ import Editor from "./editor";
 
 interface CreateProps {
     isVisible: boolean
+    isFullscreen: boolean
 }
 
-const CreateDebatePage: React.FC<CreateProps> = ({ isVisible }) => {
+const CreateDebatePage: React.FC<CreateProps> = ({ isVisible, isFullscreen }) => {
     const editorRef = useRef<RichTextEditorComponent>(null);
     const [editorContent, setEditorContent] = useState<string>('');
 
@@ -35,9 +36,9 @@ const CreateDebatePage: React.FC<CreateProps> = ({ isVisible }) => {
                 />
             </div>
             <div className='space' />
-            <div className={`debate-btns ${isVisible ? 'reveal' : 'hide'}`}>
-                <button type='button' onClick={saveEditorContent}>Preview</button>
-                <button type='submit' onClick={() => { }}>Publish</button>
+            <div className={`debate-btns ${isVisible ? 'reveal' : 'hide'} ${isFullscreen ? 'w-full' : ''}`}>
+                <button type='button' onClick={saveEditorContent}>PREVIEW</button>
+                <button type='submit' onClick={() => { }}>PUBLISH</button>
             </div>
         </form>
     );

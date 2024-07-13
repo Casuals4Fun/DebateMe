@@ -20,7 +20,7 @@
 }
 
 #main {
-    padding: 20px;
+    /* padding: 20px; */
     width: 40%;
     height: 100dvh;
     overflow-y: auto;
@@ -66,6 +66,7 @@
 }
 
 .debates {
+    padding: 20px;
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -118,22 +119,37 @@
     }
 }
 
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+
+    #main,
+    #main.w-full {
+        border-left: 1px solid var(--explore_input_bg);
+        border-right: 1px solid var(--explore_input_bg);
+    }
+}
+
 @media screen and (max-width: 767px) {
     #left-sidebar {
         width: 15%;
     }
 
-    #main {
-        border-right: unset;
-    }
-
     #main,
     #main.w-full {
         width: 85%;
+        border-right: unset;
     }
 
     #right-sidebar {
         display: none;
+    }
+}
+
+@media screen and (min-width: 481px) and (max-width: 767px) {
+
+    #main,
+    #main.w-full {
+        border-left: 1px solid var(--explore_input_bg);
+        border-right: unset;
     }
 }
 
@@ -163,7 +179,6 @@
 
     #main,
     #main.w-full {
-        padding: 10px;
         padding-top: 70px;
         width: 100%;
     }
@@ -173,6 +188,8 @@
     }
 
     .debates {
+        padding: 10px;
+        padding-top: 0;
         gap: 10px;
     }
 }
