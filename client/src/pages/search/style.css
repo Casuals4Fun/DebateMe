@@ -1,4 +1,5 @@
 #search {
+    padding: 20px;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -47,10 +48,15 @@
 
     #search .search-here {
         display: none;
-    } 
+    }
 }
 
 @media screen and (max-width: 480px) {
+    #search {
+        padding: 10px;
+        padding-top: 0;
+    }
+
     #search #explore {
         gap: 10px;
     }

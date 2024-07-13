@@ -15,18 +15,21 @@ interface NavStore {
 }
 
 export const useNavStore = create<NavStore>((set) => {
-    const savedTheme = localStorage.getItem('theme') || Theme.Dark;
-    set({ theme: savedTheme as Theme });
+    const savedTheme = (localStorage.getItem('theme') as Theme) || Theme.Dark;
+    const savedSidebar = localStorage.getItem('sidebar') === 'true' || false;
 
     return {
-        theme: savedTheme as Theme,
+        theme: savedTheme,
         setTheme: (theme_data: Theme) => {
             set({ theme: theme_data });
             localStorage.setItem('theme', theme_data);
         },
         expand: false,
         setExpand: (toggle: boolean) => set({ expand: toggle }),
-        sidebar: true,
-        setSidebar: (toggle: boolean) => set({ sidebar: toggle })
+        sidebar: savedSidebar,
+        setSidebar: (toggle: boolean) => {
+            set({ sidebar: toggle });
+            localStorage.setItem('sidebar', toggle.toString());
+        }
     };
 });

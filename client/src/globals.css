@@ -63,7 +63,8 @@
     --card_background: #f4f4f4;
     --card_color_primary: #111111;
     --card_color_secondary: #606060;
-    --card_border: #e5e4e2;
+    /* --card_border: #e5e4e2; */
+    --card_border: #e8e8e8;
     --card_divider: #a0a0a041;
     --debate_from: #5b5b5b;
     --debate_by: #000000;
@@ -81,7 +82,8 @@
     --card_background: #121212;
     --card_color_primary: #ffffff;
     --card_color_secondary: #a5a5a5;
-    --card_border: #212122;
+    --card_border: #1f1f21;
+    /* --card_border: #212122; */
     --card_divider: #ffffff1a;
     --debate_from: #AAAAAA;
     --debate_by: #ffffff;

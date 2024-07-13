@@ -20,7 +20,7 @@
 }
 
 #main {
-    padding: 20px;
+    /* padding: 20px; */
     width: 40%;
     height: 100dvh;
     overflow-y: auto;
@@ -32,10 +32,13 @@
         linear-gradient(90deg, var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
         linear-gradient(var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
         var(--dot-color);
+    border-left: 1px solid var(--explore_input_bg);
+    border-right: 1px solid var(--explore_input_bg);
 }
 
 #main.w-full {
     width: 100%;
+    border: unset;
 }
 
 .sidebar-btn {
@@ -63,6 +66,7 @@
 }
 
 .debates {
+    padding: 20px;
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -115,6 +119,15 @@
     }
 }
 
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+
+    #main,
+    #main.w-full {
+        border-left: 1px solid var(--explore_input_bg);
+        border-right: 1px solid var(--explore_input_bg);
+    }
+}
+
 @media screen and (max-width: 767px) {
     #left-sidebar {
         width: 15%;
@@ -123,10 +136,20 @@
     #main,
     #main.w-full {
         width: 85%;
+        border-right: unset;
     }
 
     #right-sidebar {
         display: none;
+    }
+}
+
+@media screen and (min-width: 481px) and (max-width: 767px) {
+
+    #main,
+    #main.w-full {
+        border-left: 1px solid var(--explore_input_bg);
+        border-right: unset;
     }
 }
 
@@ -150,9 +173,12 @@
         background: var(--body_background);
     }
 
+    #main {
+        border: unset;
+    }
+
     #main,
     #main.w-full {
-        padding: 10px;
         padding-top: 70px;
         width: 100%;
     }
@@ -162,6 +188,8 @@
     }
 
     .debates {
+        padding: 10px;
+        padding-top: 0;
         gap: 10px;
     }
 }

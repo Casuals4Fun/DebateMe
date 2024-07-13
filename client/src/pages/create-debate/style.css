@@ -1,4 +1,7 @@
 #create {
+    padding: 20px 0;
+    position: relative;
+    min-height: calc(100dvh - 40px);
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -20,13 +23,10 @@
 }
 
 #create .vertical-space {
+    padding: 0 20px;
     display: flex;
     flex-direction: column;
     gap: 8px;
-}
-
-.e-rte-content {
-    border-radius: 20px !important;
 }
 
 .e-rte-container {
@@ -36,8 +36,9 @@
 .e-richtexteditor {
     min-width: 100%;
     max-width: 100%;
-    min-height: 50vh !important;
+    min-height: 40vh !important;
     border: 1px solid #dee2e6;
+    overflow-x: hidden;
 }
 
 .e-richtexteditor .e-toolbar-wrapper.e-rte-tb-float,
@@ -47,6 +48,14 @@
 
 .e-richtexteditor .e-toolbar-wrapper {
     z-index: 4 !important;
+}
+
+.e-richtexteditor .e-rte-content .e-content {
+    min-height: 40vh;
+}
+
+.e-richtexteditor .e-rte-content {
+    z-index: 0 !important;
 }
 
 .e-img-uploadwrap,
@@ -59,13 +68,100 @@
 }
 
 .e-richtexteditor .e-resize-handle.e-south-east {
+    z-index: 0 !important;
     cursor: ns-resize;
 }
 
+.e-richtexteditor .e-rte-character-count {
+    z-index: 0 !important;
+}
+
+.debate-btns {
+    position: fixed;
+    z-index: 3;
+    bottom: 0;
+    width: calc(40% - 2px);
+    padding: 20px;
+    background-color: var(--body_background);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid var(--explore_input_bg);
+}
+
+.debate-btns button {
+    padding: 7.5px 20px;
+    background-color: var(--card_background);
+    font-size: 20px;
+    border: 1px solid var(--explore_input_bg);
+    border-radius: 5px;
+}
+
+.debate-btns button:hover {
+    background-color: var(--explore_input_bg);
+    transition: background-color 0.2s ease-in-out;
+}
+
+.space {
+    width: 100%;
+    height: 63px;
+}
+
+@media screen and (min-width: 1921px) {
+    .debate-btns {
+        width: 766px;
+    }
+}
+
+@media screen and (min-width: 1025px) {
+    .debate-btns.w-full {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .debate-btns {
+        width: calc(50% - 2px);
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .debate-btns {
+        width: calc(85% - 1px);
+    }
+}
+
 @media screen and (max-width: 480px) {
+    #create {
+        padding: 0;
+        min-height: calc(100dvh - 140px);
+    }
+
+    #create .vertical-space {
+        padding: 0 10px;
+    }
 
     .e-richtexteditor .e-toolbar-wrapper.e-rte-tb-float,
     .e-richtexteditor .e-toolbar-container.e-rte-tb-float {
         top: -70px !important;
+    }
+
+    .debate-btns {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .debate-btns.reveal {
+        bottom: 60px;
+        transition: bottom 0.25s ease-out;
+    }
+
+    .debate-btns.hide {
+        bottom: 0;
+        transition: bottom 0.4s ease-out;
+    }
+
+    .space {
+        height: 53px;
     }
 }

@@ -57,7 +57,7 @@ const Explore: React.FC<ExploreProps> = ({ term }) => {
                 <div className='explore-btns'>
                     {categoriesData.map((item, index) => (
                         <Link to={`/search?category=${item}`} key={index}>
-                            {item}
+                            #{item}
                         </Link>
                     ))}
                 </div>

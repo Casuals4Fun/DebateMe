@@ -3,7 +3,12 @@ import { useRef, useState } from "react"
 import { RichTextEditorComponent } from "@syncfusion/ej2-react-richtexteditor"
 import Editor from "./editor";
 
-function CreateDebatePage() {
+interface CreateProps {
+    isVisible: boolean
+    isFullscreen: boolean
+}
+
+const CreateDebatePage: React.FC<CreateProps> = ({ isVisible, isFullscreen }) => {
     const editorRef = useRef<RichTextEditorComponent>(null);
     const [editorContent, setEditorContent] = useState<string>('');
 
@@ -30,8 +35,10 @@ function CreateDebatePage() {
                     rteValue=""
                 />
             </div>
-            <div>
-                <button type='button' onClick={saveEditorContent}></button>
+            <div className='space' />
+            <div className={`debate-btns ${isVisible ? 'reveal' : 'hide'} ${isFullscreen ? 'w-full' : ''}`}>
+                <button type='button' onClick={saveEditorContent}>PREVIEW</button>
+                <button type='submit' onClick={() => { }}>PUBLISH</button>
             </div>
         </form>
     );

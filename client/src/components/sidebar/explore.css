@@ -55,14 +55,17 @@
 #explore .explore-btns {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 5px;
 }
 
 #explore .explore-btns a {
-    padding: 7.5px 20px;
+    /* padding: 7.5px 20px;
     background-color: var(--card_background);
-    border: 1px solid var(--explore_input_bg);
+    border: 1px solid var(--explore_input_bg); */
+    padding: 7.5px 15px;
+    background-color: var(--body_background);
     border-radius: 20px;
+    text-transform: lowercase;
 }
 
 #explore .explore-btns a:hover {
