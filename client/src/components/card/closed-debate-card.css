@@ -1,18 +1,20 @@
 #closed-card,
 #closed-card-loading {
-    min-height: 270px;
+    /* min-height: 270px; */
     background-color: var(--card_background);
     border: 1px solid var(--card_border);
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
-    /* border-radius: 8px; */
+    border-radius: 8px;
 }
 
 #closed-card .left,
 #closed-card-loading .left,
 #closed-card .right,
 #closed-card-loading .right {
-    padding: 20px 15px;
+    padding: 15px 15px 0 15px;
+    /* padding: 20px 15px 0 15px; */
 }
 
 #closed-card .left,
@@ -25,8 +27,10 @@
 
 #closed-card .right,
 #closed-card-loading .right {
-    padding-top: 30px;
-    padding-bottom: 30px;
+    padding-top: 10px;
+    padding-bottom: 15px;
+    /* padding-top: 30px;
+    padding-bottom: 30px; */
     flex: 0.8;
     display: flex;
     flex-direction: column;
@@ -45,9 +49,6 @@
 #closed-card .left h2 {
     font-size: 20px;
     font-weight: 600;
-    /* max-width: 300px;
-    text-overflow: ellipsis;
-    white-space: nowrap;  */
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -194,11 +195,13 @@
 }
 
 #closed-card .debate-bar__container {
-    padding-top: 15px;
+    padding-top: 10px;
+    /* padding-top: 15px; */
 }
 
 #closed-card-loading .right .debate-bar {
-    margin-top: 15px;
+    margin-top: 10px;
+    /* margin-top: 15px; */
 }
 
 #closed-card-loading .right .debate-bar .loading-skeleton {
@@ -208,7 +211,8 @@
 
 #closed-card .right .debate-info,
 #closed-card-loading .right .debate-info {
-    padding-top: 20px;
+    padding-top: 10px;
+    /* padding-top: 20px; */
     display: flex;
     justify-content: space-between;
 }
@@ -253,7 +257,7 @@
     #closed-card .right,
     #closed-card-loading .right {
         padding-top: 10px;
-        padding-bottom: 20px;
+        /* padding-bottom: 20px; */
     }
 
     #closed-card .left.flex-unset,
@@ -262,10 +266,6 @@
     #closed-card-loading .right.flex-unset {
         flex: unset;
     }
-
-    /* #closed-card .left h2 {
-        max-width: 350px;
-    } */
 
     #closed-card .left p {
         font-size: 15px;
@@ -297,15 +297,8 @@
     }
 }
 
-/* @media screen and (max-width: 767px) {
-    #closed-card .left h2 {
-        max-width: 400px;
-    }
-} */
-
 @media screen and (max-width: 480px) {
     #closed-card .left h2 {
-        /* max-width: 100%; */
         font-size: 18px;
     }
 

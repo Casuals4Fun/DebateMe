@@ -75,8 +75,15 @@
 }
 
 .column-debates {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    /* display: grid;
+    grid-template-columns: repeat(3, 1fr); */
+    display: block;
+    columns: 3;
+}
+
+.card-break {
+    break-inside: avoid;
+    margin-bottom: 20px;
 }
 
 @media screen and (max-width: 1880px) {
@@ -85,10 +92,10 @@
         columns: 2;
     }
 
-    .card-break {
+    /* .card-break {
         break-inside: avoid;
         margin-bottom: 20px;
-    }
+    } */
 }
 
 @media screen and (max-width: 1024px) {

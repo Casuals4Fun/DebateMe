@@ -1,5 +1,5 @@
 import "./closed-debate-card.css"
-import { useNavigate, Link } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { useNavStore } from "../../store/useNavStore"
 import DebateBar from "./debate-bar"
 import { MdModeComment } from "react-icons/md"
@@ -20,12 +20,12 @@ const ClosedDebateCard = () => {
                 <h2 title='Sony is the best camera of all time. ↗' onClick={() => navigate('/')}>
                     Sony is the best camera of all time.
                 </h2>
-                <p>
+                {/* <p>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Non labore necessitatibus reiciendis rem ad perferendis, id officia omnis voluptas eius veritatis explicabo harum! Vero porro labore quo ab aut. Nesciunt!
                     Fugiat repellat architecto pariatur fugit perspiciatis voluptas quidem autem. Lorem ipsum dolor sit amet consectetur adipisicing elit. Non labore necessitatibus reiciendis rem ad perferendis, id officia omnis voluptas eius veritatis explicabo harum! Vero porro labore quo ab aut. Nesciunt!
                     Fugiat repellat architecto pariatur fugit perspiciatis voluptas quidem autem.
                 </p>
-                <Link to='/'>View</Link>
+                <Link to='/'>View</Link> */}
             </div>
             <div className='divider' />
             <div className={`right ${sidebar ? '' : 'flex-unset'}`}>
@@ -65,7 +65,7 @@ const ClosedDebateLoadingCard = () => {
                 <div className='topic'>
                     <LoadingSkeleton />
                 </div>
-                <div className='description'>
+                {/* <div className='description'>
                     <LoadingSkeleton />
                     <LoadingSkeleton />
                     <LoadingSkeleton />
@@ -74,7 +74,7 @@ const ClosedDebateLoadingCard = () => {
                 </div>
                 <div className='view'>
                     <LoadingSkeleton />
-                </div>
+                </div> */}
             </div>
             <div className='divider' />
             <div className={`right ${sidebar ? '' : 'flex-unset'}`}>

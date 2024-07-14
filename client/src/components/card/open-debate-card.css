@@ -1,10 +1,11 @@
 #open-card,
 #open-card-loading {
-    min-height: 270px;
-    padding: 20px 15px;
+    /* min-height: 270px; */
+    padding: 15px;
+    /* padding: 20px 15px; */
     background-color: var(--card_background);
     border: 1px solid var(--card_border);
-    /* border-radius: 8px; */
+    border-radius: 8px;
 }
 
 #open-card .debate-header,
@@ -21,8 +22,6 @@
 #open-card .debate-header h2 {
     font-size: 20px;
     font-weight: 600;
-    /* text-overflow: ellipsis;
-    white-space: nowrap; */
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -97,7 +96,8 @@
 #open-card .user-info,
 #open-card-loading .user-info {
     width: 70%;
-    padding: 10px 0 15px 0;
+    padding: 10px 0;
+    /* padding: 10px 0 15px 0; */
     display: flex;
     gap: 10px;
     align-items: center;
@@ -185,13 +185,9 @@
 
 @media screen and (max-width: 1536px) {
 
-    #open-card,
+    /* #open-card,
     #open-card-loading {
         min-height: auto;
-    }
-
-    /* #open-card .debate-header h2 {
-        max-width: 350px;
     } */
 
     #open-card .debate-body {
@@ -213,7 +209,6 @@
     }
 
     #open-card .debate-header h2 {
-        /* max-width: 100%; */
         font-size: 18px;
     }
 
