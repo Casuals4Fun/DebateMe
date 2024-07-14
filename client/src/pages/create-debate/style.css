@@ -1,79 +1,98 @@
+:root {
+    --bg_primary: #ffffff;
+    --bg_secondary: #f8f9fa;
+    --color_primary: #000;
+    --color_secondary: #dee2e6;
+    --border_color: #dee2e6;
+}
+
+[data-theme='dark'] {
+    --bg_primary: #121212;
+    --bg_secondary: #1f1f21;
+    --color_primary: #fff;
+    --color_secondary: #6c757d;
+    --border_color: #1f1f21;
+}
+
 #create {
-    padding: 20px 0;
     position: relative;
-    min-height: calc(100dvh - 40px);
+    overflow: hidden;
+}
+
+#create-debate {
+    padding: 20px 0;
+    height: calc(100svh - 82px);
     display: flex;
     flex-direction: column;
     gap: 20px;
+    overflow-y: auto;
 }
 
-#create h1,
+#create-debate.shift-left {
+    position: relative;
+    top: 0;
+    left: -100%;
+    transition: left 250ms ease-in-out;
+}
+
+#create-debate.shift-right {
+    position: relative;
+    top: 0;
+    left: 0;
+    transition: left 250ms ease-in-out;
+}
+
+.preview {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    padding: 20px;
+    background-color: var(--body_background);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    overflow-y: auto;
+}
+
+.preview.shift-left {
+    left: 0;
+    transition: left 250ms ease-in-out;
+}
+
+.preview.shift-right {
+    left: 100%;
+    transition: left 250ms ease-in-out;
+}
+
+#create h1 {
+    font-size: 30px;
+    font-weight: 600;
+}
+
 #create h2 {
-    font-weight: 500;
+    font-weight: 600;
 }
 
-#create .title__input {
+#create-debate .title__input {
     min-height: 56px;
     resize: vertical;
     padding: 5px 10px;
+    background-color: var(--bg_primary);
+    color: var(--color_primary);
     font-family: inherit;
     font-size: 17px;
-    border: 1px solid #dee2e6;
+    border: 1px solid var(--border_color);
     border-radius: 5px;
+    outline: none;
 }
 
-#create .vertical-space {
+#create-debate .vertical-space {
     padding: 0 20px;
     display: flex;
     flex-direction: column;
-    gap: 8px;
-}
-
-.e-rte-container {
-    border: none;
-}
-
-.e-richtexteditor {
-    min-width: 100%;
-    max-width: 100%;
-    min-height: 40vh !important;
-    border: 1px solid #dee2e6;
-    overflow-x: hidden;
-}
-
-.e-richtexteditor .e-toolbar-wrapper.e-rte-tb-float,
-.e-richtexteditor .e-toolbar-container.e-rte-tb-float {
-    top: -20px !important;
-}
-
-.e-richtexteditor .e-toolbar-wrapper {
-    z-index: 4 !important;
-}
-
-.e-richtexteditor .e-rte-content .e-content {
-    min-height: 40vh;
-}
-
-.e-richtexteditor .e-rte-content {
-    z-index: 0 !important;
-}
-
-.e-img-uploadwrap,
-.e-droparea {
-    display: none;
-}
-
-.e-dlg-content {
-    padding-top: 0 !important;
-}
-
-.e-richtexteditor .e-resize-handle.e-south-east {
-    z-index: 0 !important;
-    cursor: ns-resize;
-}
-
-.e-richtexteditor .e-rte-character-count {
-    z-index: 0 !important;
+    gap: 10px;
 }
 
 .debate-btns {
@@ -90,21 +109,38 @@
 }
 
 .debate-btns button {
-    padding: 7.5px 20px;
-    background-color: var(--card_background);
-    font-size: 20px;
+    padding: 8px 0;
+    width: 125px;
+    background-color: var(--bg_secondary);
+    font-size: 18px;
     border: 1px solid var(--explore_input_bg);
     border-radius: 5px;
 }
 
 .debate-btns button:hover {
-    background-color: var(--explore_input_bg);
+    background-color: var(--bg_primary);
     transition: background-color 0.2s ease-in-out;
 }
 
-.space {
-    width: 100%;
-    height: 63px;
+.preview #toolsRTE_toolbar_wrapper {
+    display: none;
+}
+
+.preview .e-richtexteditor,
+.preview .e-richtexteditor .e-rte-content .e-content {
+    min-height: fit-content !important;
+    height: fit-content !important;
+    background-color: var(--body_background);
+    border: none;
+}
+
+.preview .e-richtexteditor .e-rte-content {
+    transition: none;
+}
+
+.preview .e-richtexteditor .e-rte-content .e-content {
+    padding-top: 0;
+    padding-bottom: 0;
 }
 
 @media screen and (min-width: 1921px) {
@@ -132,18 +168,13 @@
 }
 
 @media screen and (max-width: 480px) {
-    #create {
-        padding: 0;
-        min-height: calc(100dvh - 140px);
+    #create-debate {
+        padding: 10px 0;
+        height: calc(100svh - 120px - 62px);
     }
 
-    #create .vertical-space {
+    #create-debate .vertical-space {
         padding: 0 10px;
-    }
-
-    .e-richtexteditor .e-toolbar-wrapper.e-rte-tb-float,
-    .e-richtexteditor .e-toolbar-container.e-rte-tb-float {
-        top: -70px !important;
     }
 
     .debate-btns {
@@ -161,7 +192,8 @@
         transition: bottom 0.4s ease-out;
     }
 
-    .space {
-        height: 53px;
+    .preview {
+        padding: 10px;
+        gap: 10px;
     }
 }

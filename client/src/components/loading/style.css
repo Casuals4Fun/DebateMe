@@ -14,7 +14,8 @@
 }
 
 .loading-component {
-    height: calc(100dvh - 40px);
+    /* height: calc(100dvh - 40px); */
+    height: calc(100svh - 40px);
     display: grid;
     place-items: center;
 }
@@ -46,6 +47,7 @@
 
 @media screen and (max-width: 480px) {
     .loading-component {
-        height: calc(100dvh - 150px);
+        /* height: calc(100dvh - 150px); */
+        height: calc(100svh - 150px);
     }
 }
