@@ -1,5 +1,5 @@
 import "./profile.css"
-import { useEffect } from "react"
+import React, { useEffect } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { useNavStore } from "../../store/useNavStore"
 import { AuthStatus, AuthTab, useAuthStore } from "../../store/useAuthStore"
@@ -10,7 +10,11 @@ import { PiBellSimpleFill, PiSignOutBold } from "react-icons/pi"
 import { GoPerson } from "react-icons/go"
 import { FaRegUser } from "react-icons/fa"
 
-const Profile = () => {
+interface ProfileProps {
+    isVisible?: boolean
+}
+
+const Profile: React.FC<ProfileProps> = ({ isVisible }) => {
     const navigate = useNavigate();
     const { expand, setExpand } = useNavStore();
     const { isAuthenticated, setIsAuthenticated, user, setUser, authTab, setAuthTab } = useAuthStore();
@@ -100,25 +104,25 @@ const Profile = () => {
             )}
 
             {expand && (
-                <div className='profile__modal'>
+                <div className={`profile__modal ${isVisible ? 'shift-down' : 'shift-up'}`}>
                     <div className='modal-profile__wrapper'>
                         <div className="profile-wrapper">
-                            <div className='modal-profile__image'>
+                            <Link to={user.username} className='modal-profile__image' onClick={handleToggleMenu}>
                                 {user.avatar ? (
                                     <img src={user.avatar} alt="" loading="lazy" />
                                 ) : (
                                     <FaRegUser style={{ width: '50%', height: '50%' }} />
                                 )}
-                            </div>
+                            </Link>
                             <div className='modal-profile__info'>
-                                <p>{user.first_name} {user.last_name}</p>
-                                <p>{user.username}</p>
+                                <Link to={user.username} onClick={handleToggleMenu}>{user.first_name} {user.last_name}</Link>
+                                <Link to={user.username} onClick={handleToggleMenu}>{user.username}</Link>
                             </div>
                         </div>
                         <ToggleTheme />
                     </div>
                     <Link
-                        to='/'
+                        to={user.username}
                         className='modal-profile-btn'
                         onClick={handleToggleMenu}
                     >

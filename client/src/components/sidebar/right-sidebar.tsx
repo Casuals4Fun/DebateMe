@@ -25,7 +25,7 @@ const RightSidebar: React.FC<SidebarProps> = ({ isVisible }) => {
               <ToggleTheme />
             </div>
 
-            <Profile />
+            <Profile isVisible={isVisible} />
           </div>
         </div>
 

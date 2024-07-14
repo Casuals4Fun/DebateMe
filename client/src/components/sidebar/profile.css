@@ -97,25 +97,36 @@
 }
 
 .modal-profile__info {
+    padding-top: 5px;
     display: flex;
     flex-direction: column;
 }
 
-.modal-profile__info {
-    padding-top: 5px;
+.modal-profile__info a {
+    width: fit-content;
+    max-width: 100%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
-.modal-profile__info p:nth-child(1) {
+.modal-profile__info a:nth-child(1) {
     font-size: 18px;
     font-weight: 600;
     color: var(--body_color);
     cursor: pointer;
 }
 
-.modal-profile__info p:nth-child(2) {
-    font-size: 13px;
+.modal-profile__info a:nth-child(2) {
+    font-size: 14px;
     color: var(--nav_profile_username);
     cursor: pointer;
+}
+
+.modal-profile__image:hover~.modal-profile__info a:nth-child(2),
+.modal-profile__info a:nth-child(1):hover~a:nth-child(2),
+.modal-profile__info a:nth-child(2):hover {
+    text-decoration: underline;
 }
 
 .profile__modal {
@@ -129,7 +140,7 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
-    border: 2px solid var(--nav_border);
+    border: 2px solid var(--explore_input_bg);
     border-radius: 20px;
 }
 
@@ -142,13 +153,6 @@
 
 .profile-wrapper {
     width: 70%;
-}
-
-.modal-profile__info p {
-    max-width: 100%;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
 }
 
 .modal-profile-btn {
@@ -180,6 +184,10 @@
         left: 15%;
         top: unset;
         bottom: 20px;
+        border-width: 1px;
+        border-radius: 0;
+        border-top-right-radius: 20px;
+        border-bottom-right-radius: 20px;
     }
 
     .modal-profile__info {
@@ -192,11 +200,20 @@
         padding-top: 10px;
         padding-bottom: 15px;
         width: 100%;
-        top: 60px;
         left: 0;
         border: 0;
-        border-bottom: 1px solid var(--nav_border);
+        border-bottom: 1px solid var(--explore_input_bg);
         border-radius: 0;
+    }
+
+    .profile__modal.shift-up {
+        top: 0;
+        transition: top 0.25s ease-out;
+    }
+
+    .profile__modal.shift-down {
+        top: 60px;
+        transition: top 0.25s ease-out;
     }
 
     .theme-btn,

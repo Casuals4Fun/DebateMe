@@ -2,7 +2,7 @@ import "./App.css"
 import { useRef, useState, useEffect } from "react"
 import { Routes, Route, Navigate } from "react-router-dom"
 import { Toaster } from "sonner"
-// import { ProtectedRoute } from "./ProtectedRoute"
+import { ProtectedRoute } from "./ProtectedRoute"
 import { Theme, useNavStore } from "./store/useNavStore"
 import { AuthTab, useAuthStore } from "./store/useAuthStore"
 import handleAutoLogin from "./utils/handleAutoLogin"
@@ -61,15 +61,15 @@ export default function App() {
       <main id='main' ref={mainRef} className={`${expand ? 'expand' : ''} ${sidebar ? '' : 'w-full'}`}>
         <Routes>
           <Route path='/' element={<HomePage />} />
-          <Route path='/auth' element={<AuthPage />} />
+          <Route path='/auth' element={<AuthPage />} />isScrollingUp
           <Route path='/login' element={<Navigate to='/auth?type=login' />} />
           <Route path='/signup' element={<Navigate to='/auth?type=signup' />} />
           <Route path='/search' element={<SearchPage />} />
-          {/* <Route path='/create' element={<ProtectedRoute><CreateDebatePage isVisible={isScrollingUp} isFullscreen={!sidebar} /></ProtectedRoute>} /> */}
-          <Route path='/create' element={<CreateDebatePage isVisible={isScrollingUp} isFullscreen={!sidebar} />} />
+          <Route path='/create' element={<ProtectedRoute><CreateDebatePage isVisible={isScrollingUp} isFullscreen={!sidebar} /></ProtectedRoute>} />
           <Route path='/hot-topics' element={<HotTopicsPage />} />
           <Route path='/open-topics' element={<OpenTopicsPage />} />
           <Route path='/notifications' element={<NotificationPage />} />
+          <Route path=':username' element={<>Profile Page</>} />
         </Routes>
       </main>
       <>
