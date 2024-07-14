@@ -1,7 +1,7 @@
 import "./style.css"
 import { AuthStatus, useAuthStore } from "../../store/useAuthStore"
-import { useNavStore } from "../../store/useNavStore";
-import ClaimUsername from "../../components/card/claim-username";
+import { useNavStore } from "../../store/useNavStore"
+import ClaimUsername from "../../components/card/claim-username"
 import { ClosedDebateCard } from "../../components/card/closed-debate-card"
 import { OpenDebateCard } from "../../components/card/open-debate-card"
 

@@ -22,8 +22,8 @@ interface EditorProps {
     rteValue?: string
     isEditable: boolean
     setDebateData?: React.Dispatch<React.SetStateAction<{
-        title: string;
-        body: string;
+        title: string
+        body: string
     }>>
 }
 

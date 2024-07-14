@@ -16,13 +16,12 @@
 
 #create {
     position: relative;
-    height: fit-content;
     overflow: hidden;
 }
 
 #create-debate {
     padding: 20px 0;
-    height: calc(100dvh - 83px);
+    height: calc(100svh - 82px);
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -33,14 +32,14 @@
     position: relative;
     top: 0;
     left: -100%;
-    transition: left 500ms ease-in-out;
+    transition: left 250ms ease-in-out;
 }
 
 #create-debate.shift-right {
     position: relative;
     top: 0;
     left: 0;
-    transition: left 500ms ease-in-out;
+    transition: left 250ms ease-in-out;
 }
 
 .preview {
@@ -59,12 +58,12 @@
 
 .preview.shift-left {
     left: 0;
-    transition: left 500ms ease-in-out;
+    transition: left 250ms ease-in-out;
 }
 
 .preview.shift-right {
     left: 100%;
-    transition: left 500ms ease-in-out;
+    transition: left 250ms ease-in-out;
 }
 
 #create h1 {
@@ -123,11 +122,6 @@
     transition: background-color 0.2s ease-in-out;
 }
 
-.space {
-    width: 100%;
-    height: 50px;
-}
-
 .preview #toolsRTE_toolbar_wrapper {
     display: none;
 }
@@ -176,7 +170,7 @@
 @media screen and (max-width: 480px) {
     #create-debate {
         padding: 10px 0;
-        height: calc(100dvh - 120px - 62px);
+        height: calc(100svh - 120px - 62px);
     }
 
     #create-debate .vertical-space {
@@ -196,10 +190,6 @@
     .debate-btns.hide {
         bottom: 0;
         transition: bottom 0.4s ease-out;
-    }
-
-    .space {
-        height: 30px;
     }
 
     .preview {

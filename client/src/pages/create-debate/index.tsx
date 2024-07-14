@@ -1,8 +1,9 @@
-import "./style.css";
-import { useRef, useState } from "react";
-import { RichTextEditorComponent } from "@syncfusion/ej2-react-richtexteditor";
-import Editor from "./editor";
-import Preview from "./preview";
+import "./style.css"
+import { useRef, useState } from "react"
+import { RichTextEditorComponent } from "@syncfusion/ej2-react-richtexteditor"
+import { toast } from "sonner"
+import Editor from "./editor"
+import Preview from "./preview"
 
 interface CreateProps {
     isVisible: boolean;
@@ -11,7 +12,7 @@ interface CreateProps {
 
 const CreateDebatePage: React.FC<CreateProps> = ({ isVisible, isFullscreen }) => {
     const editorRef = useRef<RichTextEditorComponent>(null);
-    const [debateData, setDebateData] = useState({ title: 'Sony is the best camera of all time', body: '' });
+    const [debateData, setDebateData] = useState({ title: '', body: '' });
     const [isPreview, setIsPreview] = useState<boolean>(false);
 
     const handlePreviewToggle = () => {
@@ -21,6 +22,17 @@ const CreateDebatePage: React.FC<CreateProps> = ({ isVisible, isFullscreen }) =>
                 setDebateData({ ...debateData, body: content });
             }
         }
+
+        if (!debateData.title.trim()) return toast.warning("Enter debate title");
+
+        const tempDiv = document.createElement("div");
+        tempDiv.innerHTML = editorRef.current?.value || '';
+        const bodyText = tempDiv.textContent?.replace(/\u200B/g, '').trim();
+
+        if (!bodyText || bodyText === '<br>' || bodyText === '<br><br>' || bodyText === '<br><br><br>') {
+            return toast.warning("Enter debate body");
+        }
+
         setIsPreview(!isPreview);
     };
 
@@ -45,7 +57,6 @@ const CreateDebatePage: React.FC<CreateProps> = ({ isVisible, isFullscreen }) =>
                         setDebateData={setDebateData}
                     />
                 </div>
-                <div className='space' />
             </form>
 
             <Preview isPreview={isPreview} editorRef={editorRef} debateData={debateData} />
@@ -57,7 +68,9 @@ const CreateDebatePage: React.FC<CreateProps> = ({ isVisible, isFullscreen }) =>
                 >
                     {isPreview ? 'BACK' : 'PREVIEW'}
                 </button>
-                <button type='submit' onClick={() => { }}>PUBLISH</button>
+                <button type='submit' onClick={() => toast.warning("Currently under development")}>
+                    PUBLISH
+                </button>
             </div>
         </div>
     );

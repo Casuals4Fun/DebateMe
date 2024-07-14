@@ -16,13 +16,14 @@
 }
 
 #right-sidebar {
-    max-height: 100dvh;
+    /* max-height: 100dvh; */
+    max-height: 100svh;
 }
 
 #main {
-    /* padding: 20px; */
     width: 40%;
-    height: 100dvh;
+    /* height: 100dvh; */
+    height: 100svh;
     overflow-y: auto;
     --dot-bg: var(--body_background);
     --dot-color: #4C4E52;
