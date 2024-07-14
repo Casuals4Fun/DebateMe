@@ -3,7 +3,7 @@ import { AuthStatus, useAuthStore } from "./store/useAuthStore"
 import { LoadingComponent } from "./components/loading/svg"
 
 interface ProtectedRouteProps {
-    children: React.ReactNode;
+    children: React.ReactNode
 }
 
 export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {

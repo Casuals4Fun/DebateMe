@@ -4,8 +4,8 @@ import { IoCaretUpSharp } from "react-icons/io5"
 import useFormatNumber from "../../hooks/useFormatNumber"
 
 interface BarProps {
-    debateFrom: number;
-    debateBy: number;
+    debateFrom: number
+    debateBy: number
 }
 
 const DebateBar: React.FC<BarProps> = ({ debateFrom, debateBy }) => {

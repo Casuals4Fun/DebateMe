@@ -6,8 +6,8 @@ import Editor from "./editor"
 import Preview from "./preview"
 
 interface CreateProps {
-    isVisible: boolean;
-    isFullscreen: boolean;
+    isVisible: boolean
+    isFullscreen: boolean
 }
 
 const CreateDebatePage: React.FC<CreateProps> = ({ isVisible, isFullscreen }) => {

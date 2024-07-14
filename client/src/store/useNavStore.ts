@@ -6,12 +6,12 @@ export enum Theme {
 }
 
 interface NavStore {
-    theme: Theme;
-    setTheme: (theme_data: Theme) => void;
-    expand: boolean;
-    setExpand: (toggle: boolean) => void;
-    sidebar: boolean;
-    setSidebar: (toggle: boolean) => void;
+    theme: Theme
+    setTheme: (theme_data: Theme) => void
+    expand: boolean
+    setExpand: (toggle: boolean) => void
+    sidebar: boolean
+    setSidebar: (toggle: boolean) => void
 }
 
 export const useNavStore = create<NavStore>((set) => {
