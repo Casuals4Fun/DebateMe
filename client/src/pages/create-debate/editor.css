@@ -50,10 +50,6 @@
     color: var(--color_primary);
 }
 
-.e-richtexteditor .e-rte-content .e-content {
-    min-height: 40vh;
-}
-
 .e-richtexteditor .e-rte-content {
     z-index: 0 !important;
     background-color: transparent;

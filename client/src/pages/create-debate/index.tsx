@@ -1,46 +1,65 @@
-import "./style.css"
-import { useRef, useState } from "react"
-import { RichTextEditorComponent } from "@syncfusion/ej2-react-richtexteditor"
+import "./style.css";
+import { useRef, useState } from "react";
+import { RichTextEditorComponent } from "@syncfusion/ej2-react-richtexteditor";
 import Editor from "./editor";
+import Preview from "./preview";
 
 interface CreateProps {
-    isVisible: boolean
-    isFullscreen: boolean
+    isVisible: boolean;
+    isFullscreen: boolean;
 }
 
 const CreateDebatePage: React.FC<CreateProps> = ({ isVisible, isFullscreen }) => {
     const editorRef = useRef<RichTextEditorComponent>(null);
-    const [editorContent, setEditorContent] = useState<string>('');
+    const [debateData, setDebateData] = useState({ title: 'Sony is the best camera of all time', body: '' });
+    const [isPreview, setIsPreview] = useState<boolean>(false);
 
-    const saveEditorContent = () => {
-        if (editorRef.current) {
-            const content = editorRef.current.value;
-            setEditorContent(content);
+    const handlePreviewToggle = () => {
+        if (!isPreview) {
+            if (editorRef.current) {
+                const content = editorRef.current.getHtml();
+                setDebateData({ ...debateData, body: content });
+            }
         }
-    }; console.log(editorContent);
+        setIsPreview(!isPreview);
+    };
 
     return (
-        <form id='create'>
-            <div className='vertical-space'>
-                <h2>Title</h2>
-                <textarea
-                    className='title__input'
-                    placeholder='Your debate topic'
-                />
-            </div>
-            <div className='vertical-space'>
-                <h2>Body</h2>
-                <Editor
-                    editorRef={editorRef}
-                    rteValue=""
-                />
-            </div>
-            <div className='space' />
+        <div id='create'>
+            <form id='create-debate' className={isPreview ? 'shift-left' : 'shift-right'}>
+                <div className='vertical-space'>
+                    <h2>Title</h2>
+                    <textarea
+                        name='title'
+                        className='title__input'
+                        placeholder='Your debate topic'
+                        value={debateData.title}
+                        onChange={e => setDebateData({ ...debateData, title: e.target.value })}
+                    />
+                </div>
+                <div className='vertical-space'>
+                    <h2>Body</h2>
+                    <Editor
+                        editorRef={editorRef}
+                        isEditable={true}
+                        setDebateData={setDebateData}
+                    />
+                </div>
+                <div className='space' />
+            </form>
+
+            <Preview isPreview={isPreview} editorRef={editorRef} debateData={debateData} />
+
             <div className={`debate-btns ${isVisible ? 'reveal' : 'hide'} ${isFullscreen ? 'w-full' : ''}`}>
-                <button type='button' onClick={saveEditorContent}>PREVIEW</button>
+                <button
+                    type='button'
+                    onClick={handlePreviewToggle}
+                >
+                    {isPreview ? 'BACK' : 'PREVIEW'}
+                </button>
                 <button type='submit' onClick={() => { }}>PUBLISH</button>
             </div>
-        </form>
+        </div>
     );
 }
 

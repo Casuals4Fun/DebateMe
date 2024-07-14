@@ -43,7 +43,7 @@
 
 .sidebar-btn {
     position: absolute;
-    z-index: 2;
+    z-index: 5;
     top: 50%;
     transform: translateY(-50%);
 }
@@ -179,7 +179,7 @@
 
     #main,
     #main.w-full {
-        padding-top: 70px;
+        padding-top: 60px;
         width: 100%;
     }
 
@@ -189,7 +189,6 @@
 
     .debates {
         padding: 10px;
-        padding-top: 0;
         gap: 10px;
     }
 }

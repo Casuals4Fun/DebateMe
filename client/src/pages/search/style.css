@@ -54,7 +54,6 @@
 @media screen and (max-width: 480px) {
     #search {
         padding: 10px;
-        padding-top: 0;
     }
 
     #search #explore {

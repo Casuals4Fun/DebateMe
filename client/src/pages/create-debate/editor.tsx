@@ -19,10 +19,15 @@ import {
 
 interface EditorProps {
     editorRef: React.RefObject<RichTextEditorComponent>
-    rteValue: string
+    rteValue?: string
+    isEditable: boolean
+    setDebateData?: React.Dispatch<React.SetStateAction<{
+        title: string;
+        body: string;
+    }>>
 }
 
-const Editor: React.FC<EditorProps> = ({ editorRef, rteValue }) => {
+const Editor: React.FC<EditorProps> = ({ editorRef, rteValue, isEditable, setDebateData }) => {
     const items = [
         'Undo',
         'Redo',
@@ -86,13 +91,22 @@ const Editor: React.FC<EditorProps> = ({ editorRef, rteValue }) => {
             id="toolsRTE"
             ref={editorRef}
             value={rteValue}
-            showCharCount={true}
-            toolbarSettings={toolbarSettings}
-            quickToolbarSettings={quickToolbarSettings}
-            enableTabKey={true}
-            enableXhtml={true}
+            showCharCount={isEditable}
+            toolbarSettings={isEditable ? toolbarSettings : undefined}
+            quickToolbarSettings={isEditable ? quickToolbarSettings : undefined}
+            enableTabKey={isEditable}
+            enableXhtml={isEditable}
             placeholder="Your debate body"
-            enableResize={true}
+            enableResize={isEditable}
+            readonly={!isEditable}
+            change={(e: { value: string }) => {
+                if (isEditable && setDebateData) {
+                    setDebateData(prevState => ({
+                        ...prevState,
+                        body: e.value
+                    }));
+                }
+            }}
         >
             <Inject
                 services={[
