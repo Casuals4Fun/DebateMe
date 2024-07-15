@@ -22,11 +22,11 @@ const OpenDebateCard = () => {
                 </h2>
                 <Link to='/'>Debate</Link>
             </div>
-            {/* <p className='debate-body'>
+            <p className='debate-body'>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Non labore necessitatibus reiciendis rem ad perferendis, id officia omnis voluptas eius veritatis explicabo harum! Vero porro labore quo ab aut. Nesciunt!
                 Fugiat repellat architecto pariatur fugit perspiciatis voluptas quidem autem. Lorem ipsum dolor sit amet consectetur adipisicing elit. Non labore necessitatibus reiciendis rem ad perferendis, id officia omnis voluptas eius veritatis explicabo harum! Vero porro labore quo ab aut. Nesciunt!
                 Fugiat repellat architecto pariatur fugit perspiciatis voluptas quidem autem.
-            </p> */}
+            </p>
             <div className='user-info'>
                 <img src="/user.jpg" alt="" loading="lazy" onClick={() => handleProfileClick('julieroberts')} />
                 <div className='user-detail'>
@@ -47,26 +47,27 @@ const OpenDebateCard = () => {
                 </div>
                 <p className='created-date'>15 mins ago</p>
             </div>
+            <div className='divider' />
         </div>
     )
 }
 
 const OpenDebateLoadingCard = () => {
     const { sidebar } = useNavStore();
-    
+
     return (
         <div id='open-card-loading' className={sidebar ? '' : 'card-break'}>
             <div className='debate-header'>
                 <LoadingSkeleton />
                 <LoadingSkeleton />
             </div>
-            {/* <div className='debate-body'>
+            <div className='debate-body'>
                 <LoadingSkeleton />
                 <LoadingSkeleton />
                 <LoadingSkeleton />
                 <LoadingSkeleton />
                 <LoadingSkeleton />
-            </div> */}
+            </div>
             <div className='user-info'>
                 <div className='img'>
                     <LoadingSkeleton />
@@ -85,6 +86,7 @@ const OpenDebateLoadingCard = () => {
                     <LoadingSkeleton />
                 </div>
             </div>
+            <div className='divider' />
         </div>
     )
 }

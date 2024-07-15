@@ -154,7 +154,6 @@
 
     #right-sidebar .expand-menu__background.expand {
         z-index: 1;
-        /* height: 100dvh; */
         height: 100svh;
     }
 

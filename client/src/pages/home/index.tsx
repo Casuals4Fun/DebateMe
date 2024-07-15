@@ -11,7 +11,7 @@ export default function HomePage() {
 
   return (
     <div className={`debates ${sidebar ? '' : 'column-debates'}`}>
-      {(isAuthenticated === AuthStatus.Authenticating || isAuthenticated === AuthStatus.Failed) && (
+      {isAuthenticated === AuthStatus.Failed && (
         <ClaimUsername />
       )}
       <ClosedDebateCard />

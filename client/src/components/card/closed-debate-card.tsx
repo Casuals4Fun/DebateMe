@@ -20,14 +20,12 @@ const ClosedDebateCard = () => {
                 <h2 title='Sony is the best camera of all time. ↗' onClick={() => navigate('/')}>
                     Sony is the best camera of all time.
                 </h2>
-                {/* <p>
+                <p>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Non labore necessitatibus reiciendis rem ad perferendis, id officia omnis voluptas eius veritatis explicabo harum! Vero porro labore quo ab aut. Nesciunt!
                     Fugiat repellat architecto pariatur fugit perspiciatis voluptas quidem autem. Lorem ipsum dolor sit amet consectetur adipisicing elit. Non labore necessitatibus reiciendis rem ad perferendis, id officia omnis voluptas eius veritatis explicabo harum! Vero porro labore quo ab aut. Nesciunt!
                     Fugiat repellat architecto pariatur fugit perspiciatis voluptas quidem autem.
                 </p>
-                <Link to='/'>View</Link> */}
             </div>
-            <div className='divider' />
             <div className={`right ${sidebar ? '' : 'flex-unset'}`}>
                 <div className='user-info'>
                     <div className='debate-from'>
@@ -52,6 +50,7 @@ const ClosedDebateCard = () => {
                     <p className='created-at'>5 days ago</p>
                 </div>
             </div>
+            <div className='divider' />
         </div>
     )
 }
@@ -65,18 +64,14 @@ const ClosedDebateLoadingCard = () => {
                 <div className='topic'>
                     <LoadingSkeleton />
                 </div>
-                {/* <div className='description'>
+                <div className='description'>
                     <LoadingSkeleton />
                     <LoadingSkeleton />
                     <LoadingSkeleton />
                     <LoadingSkeleton />
                     <LoadingSkeleton />
                 </div>
-                <div className='view'>
-                    <LoadingSkeleton />
-                </div> */}
             </div>
-            <div className='divider' />
             <div className={`right ${sidebar ? '' : 'flex-unset'}`}>
                 <div className='user-info'>
                     <div className='debater'>
@@ -98,6 +93,7 @@ const ClosedDebateLoadingCard = () => {
                     <LoadingSkeleton />
                 </div>
             </div>
+            <div className='divider' />
         </div>
     )
 }
