@@ -16,23 +16,13 @@
 }
 
 #right-sidebar {
-    /* max-height: 100dvh; */
     max-height: 100svh;
 }
 
 #main {
     width: 40%;
-    /* height: 100dvh; */
     height: 100svh;
     overflow-y: auto;
-    --dot-bg: var(--body_background);
-    --dot-color: #4C4E52;
-    --dot-size: 1px;
-    --dot-space: 15px;
-    background:
-        linear-gradient(90deg, var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
-        linear-gradient(var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
-        var(--dot-color);
     border-left: 1px solid var(--explore_input_bg);
     border-right: 1px solid var(--explore_input_bg);
 }
@@ -70,24 +60,24 @@
     padding: 20px;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 30px;
     user-select: none;
 }
 
 .column-debates {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: block;
+    columns: 3;
+}
+
+.card-break {
+    break-inside: avoid;
+    margin-bottom: 20px;
 }
 
 @media screen and (max-width: 1880px) {
     .column-debates {
         display: block;
         columns: 2;
-    }
-
-    .card-break {
-        break-inside: avoid;
-        margin-bottom: 20px;
     }
 }
 
@@ -189,7 +179,7 @@
     }
 
     .debates {
-        padding: 10px;
-        gap: 10px;
+        padding: 20px 10px;
+        gap: 20px;
     }
 }

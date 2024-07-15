@@ -4,7 +4,6 @@
     top: 0;
     left: 0;
     right: 0;
-    /* height: 100dvh; */
     height: 100svh;
     backdrop-filter: blur(8px);
     display: flex;
@@ -369,7 +368,6 @@
     }
 
     #auth-modal .form__container .extra-btn {
-        /* align-items: flex-start; */
         gap: 10px;
         flex-direction: column;
     }

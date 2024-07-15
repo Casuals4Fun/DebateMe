@@ -59,9 +59,6 @@
 }
 
 #explore .explore-btns a {
-    /* padding: 7.5px 20px;
-    background-color: var(--card_background);
-    border: 1px solid var(--explore_input_bg); */
     padding: 7.5px 15px;
     background-color: var(--body_background);
     border-radius: 20px;

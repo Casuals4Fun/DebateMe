@@ -47,13 +47,14 @@ const OpenDebateCard = () => {
                 </div>
                 <p className='created-date'>15 mins ago</p>
             </div>
+            <div className='divider' />
         </div>
     )
 }
 
 const OpenDebateLoadingCard = () => {
     const { sidebar } = useNavStore();
-    
+
     return (
         <div id='open-card-loading' className={sidebar ? '' : 'card-break'}>
             <div className='debate-header'>
@@ -85,6 +86,7 @@ const OpenDebateLoadingCard = () => {
                     <LoadingSkeleton />
                 </div>
             </div>
+            <div className='divider' />
         </div>
     )
 }
