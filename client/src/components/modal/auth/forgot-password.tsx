@@ -1,47 +1,87 @@
-import { useState } from "react"
-import { useAuthStore, AuthTab } from "../../../store/useAuthStore"
-// import { LoadingSVG } from "../../loading/svg"
+import { useState, useCallback } from "react";
+import { useAuthStore, AuthTab } from "../../../store/useAuthStore";
 
 const ForgotPassword = () => {
     const { setAuthTab } = useAuthStore();
 
-    const [id, setID] = useState('');
+    const [forgotData, setForgotData] = useState({
+        email: "",
+        username: ""
+    });
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [validationState, setValidationState] = useState({
-        isIdValid: true,
-        isOtpValid: true,
-        isPasswordValid: true
+        isEmailValid: true,
+        isUsernameValid: true
     });
+
+    const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
+        setForgotData(prevState => ({
+            ...prevState,
+            [name]: value
+        }));
+
+        setValidationState(prevState => ({
+            ...prevState,
+            [`is${name.charAt(0).toUpperCase() + name.slice(1)}Valid`]: !!value
+        }));
+    }, []);
 
     const handleForgotSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setIsSubmitted(true);
 
-        const trimmedId = id.trim();
-        setID(trimmedId);
-        setValidationState(prevState => ({
+        const trimmedEmail = forgotData.email.trim();
+        const trimmedUsername = forgotData.username.trim();
+
+        setForgotData(prevState => ({
             ...prevState,
-            isIdValid: !!trimmedId
+            email: trimmedEmail,
+            username: trimmedUsername
         }));
-    }
+
+        setValidationState({
+            isEmailValid: !!trimmedEmail,
+            isUsernameValid: !!trimmedUsername
+        });
+
+        if (trimmedEmail || trimmedUsername) {
+            // Perform further actions for forgot password
+        }
+    };
 
     return (
         <div id='forgot'>
             <h3>Account Recover</h3>
             <form id='forgot-form' className='form__container' onSubmit={handleForgotSubmit}>
                 <div className='input__container'>
-                    <p>Email or Username</p>
+                    <p>Email</p>
                     <input
-                        name="id"
-                        value={id}
-                        onChange={e => setID(e.target.value)}
-                        className={`${isSubmitted && !validationState.isIdValid ? "shake" : ""}`}
-                        style={{ borderColor: isSubmitted && !validationState.isIdValid ? "red" : "" }}
-                        placeholder='Enter your email or username'
+                        name="email"
+                        value={forgotData.email}
+                        onChange={handleInputChange}
+                        className={`${isSubmitted && !validationState.isEmailValid ? "shake" : ""}`}
+                        style={{ borderColor: isSubmitted && !validationState.isEmailValid ? "red" : "" }}
+                        placeholder='Enter your email'
+                    />
+                </div>
+                <div className='or-divider'>
+                    <div className='divider' />
+                    <p>or</p>
+                    <div className='divider' />
+                </div>
+                <div className='input__container'>
+                    <p>Username</p>
+                    <input
+                        name="username"
+                        value={forgotData.username}
+                        onChange={handleInputChange}
+                        className={`${isSubmitted && !validationState.isUsernameValid ? "shake" : ""}`}
+                        style={{ borderColor: isSubmitted && !validationState.isUsernameValid ? "red" : "" }}
+                        placeholder='Enter your username'
                     />
                 </div>
                 <button type='submit'>
-                    {/* <LoadingSVG size={23} /> */}
                     Check
                 </button>
                 <div className='extra-btn'>

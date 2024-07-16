@@ -17,6 +17,7 @@
 #create {
     position: relative;
     overflow: hidden;
+    overscroll-behavior: none;
 }
 
 #create-debate {
@@ -126,8 +127,7 @@
     display: none;
 }
 
-.preview .e-richtexteditor,
-.preview .e-richtexteditor .e-rte-content .e-content {
+.preview .e-richtexteditor {
     min-height: fit-content !important;
     height: fit-content !important;
     background-color: var(--body_background);
@@ -139,6 +139,8 @@
 }
 
 .preview .e-richtexteditor .e-rte-content .e-content {
+    min-height: fit-content !important;
+    height: fit-content !important;
     padding-top: 0;
     padding-bottom: 0;
 }

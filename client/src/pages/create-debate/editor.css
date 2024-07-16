@@ -3,6 +3,7 @@
 }
 
 .e-richtexteditor {
+    position: relative;
     min-width: 100%;
     max-width: 100%;
     min-height: 40vh !important;
@@ -14,11 +15,6 @@
 
 .e-toolbar.e-extended-toolbar {
     overflow-x: auto;
-}
-
-.e-richtexteditor .e-toolbar-wrapper.e-rte-tb-float,
-.e-richtexteditor .e-toolbar-container.e-rte-tb-float {
-    top: -20px !important;
 }
 
 .e-richtexteditor .e-toolbar-wrapper {
@@ -81,12 +77,4 @@
 
 .e-richtexteditor .e-rte-character-count {
     z-index: 0 !important;
-}
-
-@media screen and (max-width: 480px) {
-
-    .e-richtexteditor .e-toolbar-wrapper.e-rte-tb-float,
-    .e-richtexteditor .e-toolbar-container.e-rte-tb-float {
-        top: -70px !important;
-    }
 }
