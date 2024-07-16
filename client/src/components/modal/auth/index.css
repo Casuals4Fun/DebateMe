@@ -133,6 +133,10 @@
     font-weight: 600;
 }
 
+#forgot .or-divider {
+    margin: 0;
+}
+
 #auth-modal #brief-form {
     margin-top: 20px;
 }

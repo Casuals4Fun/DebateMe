@@ -212,6 +212,10 @@
         display: none;
     }
 
+    #left-sidebar .links__wrapper p {
+        display: none;
+    }
+
     #left-sidebar .footer-active {
         position: absolute;
         bottom: 0;
@@ -222,12 +226,6 @@
     }
 
     #left-sidebar .underline::after {
-        display: none;
-    }
-}
-
-@media screen and (max-width: 420px) {
-    #left-sidebar .links__wrapper p {
         display: none;
     }
 }
