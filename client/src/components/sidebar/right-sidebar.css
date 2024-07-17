@@ -130,7 +130,6 @@
         padding: 0 10px;
         display: flex;
         align-items: center;
-        background-color: var(--nav-foot__background);
     }
 
     #right-sidebar .profile-theme__container {
