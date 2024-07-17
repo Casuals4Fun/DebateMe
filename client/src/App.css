@@ -1,4 +1,5 @@
 #app {
+    position: relative;
     display: flex;
 }
 
@@ -146,7 +147,7 @@
 
 @media screen and (max-width: 480px) {
     body {
-        background: var(--nav-foot__background);
+        background-color: var(--nav-foot__background);
     }
 
     #left-sidebar {
@@ -156,7 +157,7 @@
         width: 100%;
         bottom: 0;
         height: 60px;
-        background: var(--body_background);
+        background-color: var(--body_background);
         border-top: 1px solid var(--nav_border);
     }
 
@@ -165,7 +166,7 @@
         position: fixed;
         width: 100%;
         height: 60px;
-        background: var(--body_background);
+        background-color: var(--body_background);
     }
 
     #main {

@@ -53,9 +53,9 @@
 }
 
 :root {
-    --body_background: #fafafa;
+    --body_background: #ffffff;
     --body_color: rgb(1, 1, 1);
-    --nav-foot__background: #ffffff;
+    --nav-foot__background: #fafafa;
     --nav_border: #ebebeb;
     --nav_profile_username: #a6a6a6;
     --explore_input_bg: #dee2e6;

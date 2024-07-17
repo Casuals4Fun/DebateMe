@@ -201,6 +201,7 @@
         padding-bottom: 15px;
         width: 100%;
         left: 0;
+        background-color: var(--body_background);
         border: 0;
         border-bottom: 1px solid var(--explore_input_bg);
         border-radius: 0;
