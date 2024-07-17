@@ -2,7 +2,7 @@ import "./style.css"
 
 interface Props {
     size: number
-    color ?: string
+    color?: string
 }
 
 const LoadingSVG: React.FC<Props> = ({ size, color }) => {
@@ -17,9 +17,7 @@ const LoadingSVG: React.FC<Props> = ({ size, color }) => {
 const LoadingComponent = () => {
     return (
         <div className="loading-component">
-            <LoadingSVG
-                size={30}
-            />
+            <LoadingSVG size={30} />
         </div>
     )
 }

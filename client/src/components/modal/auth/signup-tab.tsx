@@ -4,6 +4,7 @@ import { toast } from "sonner"
 import { AuthStatus, AuthTab, useAuthStore, useTempStore } from "../../../store/useAuthStore"
 import { FcGoogle } from "react-icons/fc"
 import { LoadingSVG } from "../../loading/svg"
+import { emailRegex } from "../../../data/regex"
 
 const SignupTab: React.FC<RegisterDataProps> = ({ registerData, setRegisterData }) => {
     const { setAuthTab, isAuthenticated } = useAuthStore();
@@ -51,8 +52,11 @@ const SignupTab: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
         });
 
         if (trimmedEmail && trimmedPassword) {
+            if (!emailRegex.test(trimmedEmail)) {
+                return toast.warning('Invalid email address');
+            }
             if (trimmedPassword.length < 6) {
-                return toast.warning('Password should be atleast 6 digits')
+                return toast.warning('Password should be atleast 6 digits');
             }
             setAuthTab(AuthTab.Info);
         }
@@ -109,7 +113,11 @@ const SignupTab: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
                         placeholder={isSubmitted && !validationState.isPasswordValid ? 'Required' : ''}
                     />
                 </div>
-                <button type='submit' disabled={isAuthenticated === AuthStatus.Authenticating}>
+                <button
+                    type='submit'
+                    disabled={isAuthenticated === AuthStatus.Authenticating}
+                    style={{ cursor: `${isAuthenticated === AuthStatus.Authenticating ? 'not-allowed' : ''}` }}
+                >
                     {isAuthenticated === AuthStatus.Authenticating ? <LoadingSVG size={23} /> : 'Continue'}
                 </button>
                 <div className='extra-btn'>

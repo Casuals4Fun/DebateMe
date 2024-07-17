@@ -60,7 +60,6 @@
 
 #explore .explore-btns a {
     padding: 7.5px 15px;
-    background-color: var(--body_background);
     border-radius: 20px;
     text-transform: lowercase;
 }
