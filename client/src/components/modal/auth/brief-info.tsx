@@ -7,6 +7,7 @@ import { AuthStatus, AuthTab, useAuthStore, useTempStore } from "../../../store/
 import { MdModeEdit } from "react-icons/md"
 import { GrCloudUpload } from "react-icons/gr"
 import { IoPersonCircleOutline } from "react-icons/io5"
+import { specialCharRegex, usernameRegex } from "../../../data/regex"
 
 const BriefInfo: React.FC<RegisterDataProps> = ({ registerData, setRegisterData }) => {
     const navigate = useNavigate();
@@ -24,9 +25,6 @@ const BriefInfo: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
 
     const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
-        // eslint-disable-next-line no-useless-escape
-        const specialCharRegex = /[@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
-        const usernameRegex = /^[a-zA-Z0-9_-]+$/;
 
         let isValid = true;
         if (name === 'username') {

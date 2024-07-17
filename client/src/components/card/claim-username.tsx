@@ -5,6 +5,7 @@ import { toast } from "sonner"
 import { PiArrowUpRightBold } from "react-icons/pi"
 import { LoadingSVG } from "../loading/svg"
 import { useNavStore } from "../../store/useNavStore"
+import { usernameRegex } from "../../data/regex"
 
 const ClaimUsername = () => {
     const { setAuthTab } = useAuthStore();
@@ -23,7 +24,6 @@ const ClaimUsername = () => {
         const inputUsername = e.target.value;
         setUsername(inputUsername);
 
-        const usernameRegex = /^[a-zA-Z0-9_-]+$/;
         if (inputUsername) {
             if (!usernameRegex.test(inputUsername)) {
                 setMessage({ type: 'error', content: 'Username can only contain alphanumeric characters, underscores (_) and hyphens (-). No spaces or other special characters are allowed.' });
