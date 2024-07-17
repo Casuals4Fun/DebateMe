@@ -89,6 +89,11 @@
     --modal_header_color: rgb(60 130 246);
 }
 
+html,
+body {
+    overscroll-behavior-y: contain;
+}
+
 * {
     margin: 0;
     padding: 0;

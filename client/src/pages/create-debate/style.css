@@ -17,7 +17,6 @@
 #create {
     position: relative;
     overflow: hidden;
-    overscroll-behavior: contain;
 }
 
 #create-debate {
