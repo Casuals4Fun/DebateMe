@@ -38,6 +38,19 @@ fastify.register(require('@fastify/oauth2'), {
     }
 })
 
+fastify.register(require('fastify-mailer'), {
+    defaults: { from: `${process.env.EMAIL_USER} <${process.env.EMAIL_ADDRESS}>` },
+    transport: {
+        host: 'smtp.gmail.com',
+        port: 465,
+        secure: true,
+        auth: {
+            user: process.env.EMAIL_ADDRESS,
+            pass: process.env.EMAIL_PASSWORD
+        }
+    }
+})
+
 fastify.register(require('./routes/auth'), { prefix: '/api/auth' })
 
 fastify.get('/test', (request, reply) => reply.code(200).send({ success: true, message: 'Server running...' }))

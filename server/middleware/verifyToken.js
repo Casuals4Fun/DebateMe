@@ -1,4 +1,4 @@
-const jwt = require('jsonwebtoken');
+const { verify } = require('jsonwebtoken');
 
 async function verifyToken(request, reply) {
     const authHeader = request.headers.authorization;
@@ -8,8 +8,13 @@ async function verifyToken(request, reply) {
 
     const token = authHeader.split(' ')[1];
     try {
-        const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        request.user = decoded;
+        const data = await new Promise((resolve, reject) => {
+            verify(token, process.env.JWT_SECRET, (err, payload) => {
+                if (err) reject(err);
+                else resolve(payload);
+            });
+        });
+        request.user = data;
     } catch (err) {
         throw new Error('Invalid token');
     }

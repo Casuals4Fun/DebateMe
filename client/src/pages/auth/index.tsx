@@ -19,7 +19,12 @@ export default function AuthPage() {
             navigate(route === '/auth' || route === '/login' || route === '/signup' ? '/' : route, { replace: true });
         }
         else if (isAuthenticated === AuthStatus.Failed) {
-            setAuthTab(type === 'login' ? AuthTab.Login : type === 'signup' ? AuthTab.Signup : AuthTab.Login);
+            setAuthTab(
+                type === 'login' ? AuthTab.Login
+                    : type === 'signup' ? AuthTab.Signup
+                        : type === 'forgot' ? AuthTab.Forgot
+                            : type === 'reset' && new URLSearchParams(location.search).get('token') ? AuthTab.Reset
+                                : AuthTab.Login);
         }
 
         const userData = params.get('user');
