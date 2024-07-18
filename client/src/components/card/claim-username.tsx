@@ -60,7 +60,7 @@ const ClaimUsername = () => {
     };
 
     return (
-        <form id='claim-username' className={sidebar ? '' : 'hide'} onSubmit={handleUsernameSubmit}>
+        <form id='claim-username' className={sidebar ? 'hide' : ''} onSubmit={handleUsernameSubmit}>
             <p>Get Started</p>
             <div className='username-input'>
                 <span className='domain'>debateme.app/</span>
