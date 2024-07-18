@@ -17,7 +17,6 @@
 #create {
     position: relative;
     overflow: hidden;
-    overscroll-behavior: contain;
 }
 
 #create-debate {
@@ -182,6 +181,7 @@
     .debate-btns {
         width: 100%;
         padding: 10px;
+        background-color: var(--body_background);
     }
 
     .debate-btns.reveal {

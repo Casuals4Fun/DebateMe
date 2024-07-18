@@ -1,17 +1,23 @@
 const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
+const { sign } = require('jsonwebtoken');
 const { ErrorHandler, catchError } = require('../utils/ErrorHandler');
+const crypto = require('crypto');
+const sendMail = require('../utils/sendMail');
 
 exports.handleGoogleAuth = async function (fastify, request, reply) {
     try {
         const { token } = await fastify.googleOAuth2.getAccessTokenFromAuthorizationCodeFlow(request, reply);
         const userinfo = await fastify.googleOAuth2.userinfo(token.access_token);
 
-        const [user] = await fastify.mysql.query('SELECT * FROM users WHERE email = ?', [userinfo.email]);
+        const [user] = await fastify.mysql.query('SELECT * FROM users WHERE email=?', [userinfo.email]);
 
         if (user.length > 0) {
-            const token = jwt.sign({ userId: user[0].username }, process.env.JWT_SECRET, { expiresIn: '12h' });
-
+            const token = await new Promise((resolve, reject) => {
+                sign({ userId: user[0].username }, process.env.JWT_SECRET, { expiresIn: '12h' }, (err, token) => {
+                    if (err) reject(err);
+                    else resolve(token)
+                });
+            });
             reply.redirect(`${process.env.FRONTEND_URL}/auth?type=login&token=${token}`);
         } else {
             reply.redirect(`${process.env.FRONTEND_URL}/auth?type=signup&user=${encodeURIComponent(JSON.stringify(userinfo))}`);
@@ -29,11 +35,11 @@ exports.register = async function (fastify, request, reply) {
         if (request.body.avatar) avatar = request.body.avatar;
         else if (request.file) avatar = null;
 
-        const [emailExists] = await fastify.mysql.query('SELECT * FROM users WHERE email = ?', [email]);
-        if (emailExists.length > 0) throw new ErrorHandler(400, false, 'Account already exists.');
+        const [emailExists] = await fastify.mysql.query('SELECT * FROM users WHERE email=?', [email]);
+        if (emailExists.length > 0) throw new ErrorHandler(400, false, 'Account already exists');
 
-        const [usernameExists] = await fastify.mysql.query('SELECT * FROM users WHERE username = ?', [username]);
-        if (usernameExists.length > 0) throw new ErrorHandler(400, false, 'Username already exists.');
+        const [usernameExists] = await fastify.mysql.query('SELECT * FROM users WHERE username=?', [username]);
+        if (usernameExists.length > 0) throw new ErrorHandler(400, false, 'Username already exists');
 
         const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -43,7 +49,12 @@ exports.register = async function (fastify, request, reply) {
         );
 
         if (result.affectedRows > 0) {
-            const token = jwt.sign({ userId: username }, process.env.JWT_SECRET, { expiresIn: '12h' });
+            const token = await new Promise((resolve, reject) => {
+                sign({ userId: username }, process.env.JWT_SECRET, { expiresIn: '12h' }, (err, token) => {
+                    if (err) reject(err);
+                    else resolve(token)
+                });
+            });
             return reply.code(201).send({
                 success: true,
                 message: 'Account created successfully',
@@ -52,7 +63,7 @@ exports.register = async function (fastify, request, reply) {
                     token
                 }
             });
-        } else throw new ErrorHandler(500, false, 'Failed to create user account.');
+        } else throw new ErrorHandler(400, false, 'Failed to create user account');
     } catch (err) {
         return catchError(reply, err);
     }
@@ -62,26 +73,26 @@ exports.login = async function (fastify, request, reply) {
     try {
         const { id, password } = request.body;
 
-        const isEmail = id.includes('@');
-        const query = isEmail ? 'SELECT * FROM users WHERE email = ?' : 'SELECT * FROM users WHERE username = ?';
+        const query = `SELECT * FROM users WHERE ${id.includes('@') ? 'email=?' : 'username=?'}`;
 
-        const [user] = await fastify.mysql.query(query, [id]);
-        if (!user.length) throw new ErrorHandler(400, false, 'Invalid credentials.');
+        const [user] = await fastify.mysql.query(query, [id, id]);
+        if (!user.length) throw new ErrorHandler(400, false, "Account doesn't exists");
 
-        const userData = user[0];
-        const isPasswordValid = await bcrypt.compare(password, userData.password);
+        const isPasswordValid = await bcrypt.compare(password, user[0].password);
+        if (!isPasswordValid) throw new ErrorHandler(400, false, 'Incorrect password');
 
-        if (!isPasswordValid) throw new ErrorHandler(400, false, 'Incorrect password.');
-
-        const token = jwt.sign({ userId: userData.username }, process.env.JWT_SECRET, { expiresIn: '12h' });
+        const token = await new Promise((resolve, reject) => {
+            sign({ userId: user[0].username }, process.env.JWT_SECRET, { expiresIn: '12h' }, (err, token) => {
+                if (err) reject(err);
+                else resolve(token)
+            });
+        });
 
         return reply.code(200).send({
             success: true,
             message: 'Login successful',
             data: {
-                user: {
-                    ...(({ password, ...rest }) => rest)(userData)
-                },
+                user: { ...(({ password, ...rest }) => rest)(user[0]) },
                 token
             }
         });
@@ -93,19 +104,17 @@ exports.login = async function (fastify, request, reply) {
 exports.autoLogin = async function (fastify, request, reply) {
     try {
         const id = request.user.userId;
-        const query = 'SELECT * FROM users WHERE username = ?';
+        const query = 'SELECT * FROM users WHERE username=?';
 
         const [user] = await fastify.mysql.query(query, [id]);
-        if (!user.length) throw new ErrorHandler(400, false, 'Invalid credentials.');
-
-        const userData = user[0];
+        if (!user.length) throw new ErrorHandler(400, false, 'Invalid credentials');
 
         return reply.code(200).send({
             success: true,
             message: 'Login successful',
             data: {
                 user: {
-                    ...(({ password, ...rest }) => rest)(userData)
+                    ...(({ password, ...rest }) => rest)(user[0])
                 }
             }
         });
@@ -117,11 +126,11 @@ exports.autoLogin = async function (fastify, request, reply) {
 exports.checkUsername = async function (fastify, request, reply) {
     try {
         const { username } = request.body;
-        const query = 'SELECT * FROM users WHERE username =?';
+        const query = 'SELECT * FROM users WHERE username=?';
 
         const [user] = await fastify.mysql.query(query, [username]);
         if (user.length) {
-            throw new ErrorHandler(400, false, 'Username already taken.');
+            throw new ErrorHandler(400, false, 'Username already taken');
         }
 
         return reply.code(200).send({
@@ -132,3 +141,54 @@ exports.checkUsername = async function (fastify, request, reply) {
         return catchError(reply, err);
     }
 }
+
+exports.recoverAccount = async function (fastify, request, reply) {
+    try {
+        const { email, username } = request.body;
+        const { mailer } = fastify;
+
+        const [user] = await fastify.mysql.query('SELECT * FROM users WHERE email=? OR username=?', [email, username]);
+        if (!user.length) throw new ErrorHandler(400, false, "Account doesn't exist");
+
+        const token = crypto.randomBytes(32).toString('hex');
+        const tokenExpiry = new Date(Date.now() + 3600000);
+
+        await fastify.mysql.query('UPDATE users SET reset_token=?, reset_token_expiry=? WHERE username=?', [token, tokenExpiry, user[0].username]);
+
+        await sendMail(mailer, {
+            to: user[0].email,
+            subject: 'DebateMe',
+            html: `<p>You requested to reset your password. Click the link to reset:</p><p><a href="${`${process.env.FRONTEND_URL}/auth?type=reset&token=${token}`}">${`${process.env.FRONTEND_URL}/auth?type=reset&token=${token}`}</a></p>`
+        })
+            .then(info => {
+                reply.status(200).send({
+                    success: true,
+                    message: `Activation link sent to your email${username ? (': ' + user[0].email) : ''}`
+                });
+            })
+            .catch(errors => { throw new ErrorHandler(400, false, 'Something went wrong') });
+
+    } catch (err) {
+        return catchError(reply, err);
+    }
+};
+
+exports.resetPassword = async (fastify, request, reply) => {
+    try {
+        const { token, password } = request.body;
+
+        const [user] = await fastify.mysql.query('SELECT * FROM users WHERE reset_token=? AND reset_token_expiry>?', [token, new Date()]);
+        if (!user.length) throw new ErrorHandler(400, false, "Invalid or expired token");
+
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        await fastify.mysql.query('UPDATE users SET password=?, reset_token=NULL, reset_token_expiry=NULL WHERE username=?', [hashedPassword, user[0].username]);
+
+        reply.status(200).send({
+            success: true,
+            message: 'Password reset successfully'
+        });
+    } catch (err) {
+        return catchError(reply, err);
+    }
+};

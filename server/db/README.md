@@ -7,6 +7,8 @@ CREATE TABLE users (
     first_name VARCHAR(30) NOT NULL,
     last_name VARCHAR(30) NOT NULL,
     avatar VARCHAR(255),
+    reset_token VARCHAR(255),
+    reset_token_expiry DATETIME,
     PRIMARY KEY (username)
 );
 ```

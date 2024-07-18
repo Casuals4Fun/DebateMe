@@ -40,33 +40,42 @@ const ForgotPassword = () => {
 
         setValidationState(!!trimmedEmail || !!trimmedUsername);
 
-        if (!emailRegex.test(trimmedEmail)) {
+        if (trimmedEmail && !emailRegex.test(trimmedEmail)) {
             setIsSubmitted(false);
             return toast.warning('Invalid email address');
         }
 
         if (trimmedEmail || trimmedUsername) {
-            await fetch(`${import.meta.env.VITE_SERVER_URL}/api/auth/recover-account`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(trimmedEmail ? { email: trimmedEmail } : { username: trimmedUsername })
-            })
-                .then(res => res.json())
-                .then(response => {
-                    if (response.success) toast.success(response.message);
-                    else {
-                        if (response.message === 'Validation failed') {
-                            return toast.error(`${response.errors[0].message.charAt(0).toUpperCase() + response.errors[0].message.slice(1)}`)
-                        }
-                        toast.error(response.message)
-                    };
-                }).finally(() => setIsSubmitted(false));
-        } else setTimeout(() => setIsSubmitted(false), 500);
+            try {
+                const res = await fetch(`${import.meta.env.VITE_SERVER_URL}/api/auth/recover-account`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(trimmedEmail ? { email: trimmedEmail } : { username: trimmedUsername })
+                });
+
+                const response = await res.json();
+                if (response.success) {
+                    toast.success(response.message);
+                } else {
+                    if (response.message === 'Validation failed') {
+                        toast.error(`${response.errors[0].message.charAt(0).toUpperCase() + response.errors[0].message.slice(1)}`);
+                    } else {
+                        toast.error(response.message);
+                    }
+                }
+            } catch (error) {
+                toast.error('Something went wrong');
+            } finally {
+                setIsSubmitted(false);
+            }
+        } else {
+            setTimeout(() => setIsSubmitted(false), 500);
+        }
     };
 
     return (
         <div id='forgot'>
-            <h3>Account Recover</h3>
+            <h3>Recover Account</h3>
             <form id='forgot-form' className='form__container' onSubmit={handleForgotSubmit}>
                 <div className='input__container'>
                     <p>Email</p>
@@ -76,7 +85,6 @@ const ForgotPassword = () => {
                         onChange={handleInputChange}
                         className={`${isSubmitted && !validationState ? "shake" : ""}`}
                         style={{ borderColor: isSubmitted && !validationState ? "red" : "" }}
-                        placeholder='Enter your email'
                     />
                 </div>
                 <div className='or-divider'>
@@ -92,7 +100,6 @@ const ForgotPassword = () => {
                         onChange={handleInputChange}
                         className={`${isSubmitted && !validationState ? "shake" : ""}`}
                         style={{ borderColor: isSubmitted && !validationState ? "red" : "" }}
-                        placeholder='Enter your username'
                     />
                 </div>
                 <button

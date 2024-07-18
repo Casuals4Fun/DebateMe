@@ -4,7 +4,7 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 100svh;
+    height: 100dvh;
     backdrop-filter: blur(8px);
     display: flex;
     align-items: center;
@@ -84,14 +84,16 @@
 #login,
 #signup,
 #brief,
-#forgot {
+#forgot,
+#reset {
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
-#forgot {
+#forgot,
+#reset {
     gap: 20px;
 }
 
@@ -324,6 +326,7 @@
         height: 100%;
         flex-direction: column;
         gap: 10px;
+        background-color: var(--body_background);
         border: none;
         border-radius: unset;
     }
@@ -374,5 +377,9 @@
     #auth-modal .form__container .extra-btn {
         gap: 10px;
         flex-direction: column;
+    }
+
+    #auth-modal .form__container .input__container p {
+        background-color: var(--body_background);
     }
 }

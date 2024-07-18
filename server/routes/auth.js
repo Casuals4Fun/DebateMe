@@ -1,13 +1,15 @@
-const { handleGoogleAuth, register, login, autoLogin, checkUsername } = require('../controllers/auth');
+const { handleGoogleAuth, register, login, autoLogin, checkUsername, recoverAccount, resetPassword } = require('../controllers/auth');
 const verifyToken = require('../middleware/verifyToken');
 
 module.exports = async function (fastify, opts) {
+    const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+(com|org|net|gov|mil|biz|info|mobi|name|aero|jobs|museum|in|space)))$/;
+
     const registerSchema = {
         consumes: ['multipart/form-data'],
         body: {
             type: 'object',
             properties: {
-                email: { type: 'string', format: 'email', minLength: 1 },
+                email: { type: 'string', minLength: 1, pattern: emailRegex.source },
                 password: { type: 'string', minLength: 6 },
                 username: { type: 'string', minLength: 1 },
                 first_name: { type: 'string', minLength: 1 },
@@ -35,6 +37,31 @@ module.exports = async function (fastify, opts) {
                 username: { type: 'string', minLength: 1 },
             },
             required: ['username']
+        }
+    };
+
+    const recoverSchema = {
+        body: {
+            type: 'object',
+            properties: {
+                email: { type: 'string', minLength: 1, pattern: emailRegex.source },
+                username: { type: 'string', minLength: 1 }
+            },
+            anyOf: [
+                { required: ['email'] },
+                { required: ['username'] }
+            ]
+        }
+    };
+
+    const resetSchema = {
+        body: {
+            type: 'object',
+            properties: {
+                token: { type: 'string', minLength: 1 },
+                password: { type: 'string', minLength: 1 },
+            },
+            required: ['token', 'password']
         }
     };
 
@@ -103,5 +130,37 @@ module.exports = async function (fastify, opts) {
             return reply.code(400).send({ success: false, message: 'Validation failed', errors });
         }
         return checkUsername(fastify, request, reply);
+    });
+
+    fastify.post('/recover-account', {
+        schema: recoverSchema,
+        attachValidation: true
+    }, async (request, reply) => {
+        if (request.validationError) {
+            const errors = request.validationError.validation.map(error => {
+                return {
+                    field: error.params.missingProperty || error.instancePath.substring(1),
+                    message: error.message
+                };
+            });
+            return reply.code(400).send({ success: false, message: 'Validation failed', errors });
+        }
+        return recoverAccount(fastify, request, reply);
+    });
+
+    fastify.post('/reset-password', {
+        schema: resetSchema,
+        attachValidation: true
+    }, async (request, reply) => {
+        if (request.validationError) {
+            const errors = request.validationError.validation.map(error => {
+                return {
+                    field: error.params.missingProperty || error.instancePath.substring(1),
+                    message: error.message
+                };
+            });
+            return reply.code(400).send({ success: false, message: 'Validation failed', errors });
+        }
+        return resetPassword(fastify, request, reply);
     });
 }

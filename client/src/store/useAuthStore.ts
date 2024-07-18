@@ -6,6 +6,7 @@ export enum AuthTab {
     Signup = 'signup',
     Info = 'info',
     Forgot = 'forgot',
+    Reset = 'reset'
 }
 
 export enum AuthStatus {
