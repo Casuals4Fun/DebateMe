@@ -166,13 +166,7 @@ exports.recoverAccount = async function (fastify, request, reply) {
                     message: `Activation link sent to your email${username ? (': ' + user[0].email) : ''}`
                 });
             })
-            .catch(errors => {
-                reply.status(400).send({
-                    success: false,
-                    message: 'Something went wrong',
-                    errors
-                });
-            });
+            .catch(errors => { throw new ErrorHandler(400, false, 'Something went wrong') });
     } catch (err) {
         return catchError(reply, err);
     }

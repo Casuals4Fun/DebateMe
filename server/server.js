@@ -51,6 +51,8 @@ fastify.register(require('fastify-mailer'), {
     }
 })
 
+fastify.get('/api', (request, reply) => reply.code(200).send('DebateMe server running...'))
+
 fastify.register(require('./routes/auth'), { prefix: '/api/auth' })
 
 fastify.setNotFoundHandler((request, reply) => {
