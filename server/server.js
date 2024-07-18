@@ -22,31 +22,6 @@ fastify.decorate('upload', upload)
 
 fastify.decorate('mysql', require('./db'))
 
-const logs = [];
-fastify.addHook('onRequest', async (request, reply) => {
-    request.logEntry = {
-        method: request.method,
-        url: request.url,
-        headers: request.headers,
-        body: request.body,
-        timestamp: new Date().toISOString()
-    };
-});
-fastify.addHook('onSend', async (request, reply, payload) => {
-    const responseLog = {
-        statusCode: reply.statusCode,
-        headers: reply.getHeaders(),
-        payload: payload,
-        timestamp: new Date().toISOString()
-    };
-    logs.push({ request: request.logEntry, response: responseLog });
-
-    if (logs.length > 1000) logs.shift();
-});
-fastify.get('/logs', (request, reply) => {
-    reply.send(logs);
-});
-
 fastify.register(require('@fastify/oauth2'), {
     name: 'googleOAuth2',
     scope: 'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email',
@@ -67,17 +42,16 @@ fastify.register(require('fastify-mailer'), {
     defaults: { from: `${process.env.EMAIL_USER} <${process.env.EMAIL_ADDRESS}>` },
     transport: {
         host: 'smtp.gmail.com',
-        port: 587,
-        secure: false,
+        port: 465,
+        secure: true,
         auth: {
             user: process.env.EMAIL_ADDRESS,
             pass: process.env.EMAIL_PASSWORD
-        },
-        tls: {
-            rejectUnauthorized: true
         }
     }
 })
+
+fastify.get('/api', (request, reply) => reply.code(200).send('DebateMe server running...'))
 
 fastify.register(require('./routes/auth'), { prefix: '/api/auth' })
 
