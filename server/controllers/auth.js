@@ -157,7 +157,7 @@ exports.recoverAccount = async function (fastify, request, reply) {
 
         await sendMail(mailer, {
             to: user[0].email,
-            subject: 'DebateMe',
+            subject: 'Reset Password',
             html: `<p>You requested to reset your password. Click the link to reset:</p><p><a href="${`${process.env.FRONTEND_URL}/auth?type=reset&token=${token}`}">${`${process.env.FRONTEND_URL}/auth?type=reset&token=${token}`}</a></p>`
         })
             .then(info => {
@@ -166,8 +166,13 @@ exports.recoverAccount = async function (fastify, request, reply) {
                     message: `Activation link sent to your email${username ? (': ' + user[0].email) : ''}`
                 });
             })
-            .catch(errors => { throw new ErrorHandler(400, false, 'Something went wrong') });
-
+            .catch(errors => {
+                reply.status(400).send({
+                    success: false,
+                    message: 'Something went wrong',
+                    errors
+                });
+            });
     } catch (err) {
         return catchError(reply, err);
     }
