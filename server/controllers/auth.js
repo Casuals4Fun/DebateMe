@@ -1,8 +1,8 @@
 const bcrypt = require('bcrypt');
 const { sign } = require('jsonwebtoken');
-const { ErrorHandler, catchError } = require('../utils/ErrorHandler');
+const { ErrorHandler, catchError } = require('../utils/error');
 const crypto = require('crypto');
-const sendMail = require('../utils/sendMail');
+const { sendMail } = require('../utils/mail');
 
 exports.handleGoogleAuth = async function (fastify, request, reply) {
     try {
