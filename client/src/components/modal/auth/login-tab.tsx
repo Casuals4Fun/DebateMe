@@ -140,8 +140,8 @@ const LoginTab = () => {
                     {isAuthenticated === AuthStatus.Authenticating && isSubmitted ? <LoadingSVG size={23} /> : 'Login'}
                 </button>
                 <div className='extra-btn'>
-                    <p>New here? <span onClick={() => setAuthTab(AuthTab.Signup)}>Create Account</span></p>
-                    <p><span onClick={() => setAuthTab(AuthTab.Forgot)}>Forgot Password</span></p>
+                    <p>New here? <span onClick={() => navigate('/auth?type=signup')}>Create Account</span></p>
+                    <p><span onClick={() => navigate('/auth?type=forgot')}>Forgot Password</span></p>
                 </div>
             </form>
         </div>

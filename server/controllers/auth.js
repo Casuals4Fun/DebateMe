@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt');
 const { sign } = require('jsonwebtoken');
 const { ErrorHandler, catchError } = require('../utils/error');
-const crypto = require('crypto');
+const crypto = require('node:crypto');
 const { sendMail } = require('../utils/mail');
 
 exports.handleGoogleAuth = async function (fastify, request, reply) {
@@ -29,7 +29,7 @@ exports.handleGoogleAuth = async function (fastify, request, reply) {
 
 exports.register = async function (fastify, request, reply) {
     try {
-        const { email, password, username, first_name, last_name } = request.body;
+        const { email, username, first_name, last_name } = request.body;
 
         let avatar = null;
         if (request.body.avatar) avatar = request.body.avatar;
@@ -41,27 +41,15 @@ exports.register = async function (fastify, request, reply) {
         const [usernameExists] = await fastify.mysql.query('SELECT * FROM users WHERE username=?', [username]);
         if (usernameExists.length > 0) throw new ErrorHandler(400, false, 'Username already exists');
 
-        const hashedPassword = await bcrypt.hash(password, 10);
-
         const [result] = await fastify.mysql.query(
-            'INSERT INTO users (email, password, username, first_name, last_name, avatar) VALUES (?, ?, ?, ?, ?, ?)',
-            [email, hashedPassword, username, first_name, last_name, avatar]
+            'INSERT INTO users (email, username, first_name, last_name, avatar) VALUES (?, ?, ?, ?, ?)',
+            [email, username, first_name, last_name, avatar]
         );
 
         if (result.affectedRows > 0) {
-            const token = await new Promise((resolve, reject) => {
-                sign({ userId: username }, process.env.JWT_SECRET, { expiresIn: '12h' }, (err, token) => {
-                    if (err) reject(err);
-                    else resolve(token)
-                });
-            });
             return reply.code(201).send({
                 success: true,
-                message: 'Account created successfully',
-                data: {
-                    user: { email, avatar, username, first_name, last_name },
-                    token
-                }
+                message: 'Account created successfully'
             });
         } else throw new ErrorHandler(400, false, 'Failed to create user account');
     } catch (err) {

@@ -83,7 +83,6 @@
 
 #login,
 #signup,
-#brief,
 #forgot,
 #reset {
     height: 100%;
@@ -93,7 +92,8 @@
 }
 
 #forgot,
-#reset {
+#reset,
+#signup {
     gap: 20px;
 }
 
@@ -137,10 +137,6 @@
 
 #forgot .or-divider {
     margin: 0;
-}
-
-#auth-modal #brief-form {
-    margin-top: 20px;
 }
 
 #auth-modal .form__container {
@@ -211,7 +207,7 @@
     cursor: pointer;
 }
 
-#auth-modal .avatar-username__container {
+#auth-modal .flex {
     display: flex;
     align-items: center;
     gap: 20px;

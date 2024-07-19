@@ -1,11 +1,11 @@
 import { useState, useCallback } from "react"
-import { useAuthStore, AuthTab } from "../../../store/useAuthStore"
+import { useNavigate } from "react-router-dom"
 import { toast } from "sonner"
 import { LoadingSVG } from "../../loading/svg";
 import { emailRegex } from "../../../data/regex"
 
 const ForgotPassword = () => {
-    const { setAuthTab } = useAuthStore();
+    const navigate = useNavigate();
 
     const [forgotData, setForgotData] = useState({
         email: "",
@@ -110,7 +110,7 @@ const ForgotPassword = () => {
                     {isSubmitted ? <LoadingSVG size={23} /> : 'Check'}
                 </button>
                 <div className='extra-btn'>
-                    <p><span onClick={() => setAuthTab(AuthTab.Login)}>Go Back</span></p>
+                    <p><span onClick={() => navigate('/auth?type=login')}>Go Back</span></p>
                 </div>
             </form>
         </div>
