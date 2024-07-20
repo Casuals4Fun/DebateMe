@@ -1,4 +1,4 @@
-const bcrypt = require('bcrypt');
+const { hash, compare } = require('bcrypt');
 const { sign } = require('jsonwebtoken');
 const { ErrorHandler, catchError } = require('../utils/error');
 const { randomBytes } = require('node:crypto');
@@ -35,16 +35,19 @@ exports.register = async function (fastify, request, reply) {
         if (request.body.avatar) avatar = request.body.avatar;
         else if (request.file) avatar = null;
 
-        const [emailExists] = await fastify.mysql.query('SELECT * FROM users WHERE email=?', [email]);
-        if (emailExists.length > 0) throw new ErrorHandler(400, false, 'Account already exists');
-
-        const [usernameExists] = await fastify.mysql.query('SELECT * FROM users WHERE username=?', [username]);
-        if (usernameExists.length > 0) throw new ErrorHandler(400, false, 'Username already exists');
+        const [existingUser] = await fastify.mysql.query('SELECT * FROM users WHERE email=? OR username=?', [email, username]);
+        if (existingUser.length > 0) {
+            if (existingUser[0].email === email) {
+                throw new ErrorHandler(400, false, 'Account already exists');
+            } else if (existingUser[0].username === username) {
+                throw new ErrorHandler(400, false, 'Username already taken');
+            }
+        }
 
         const token = randomBytes(32).toString('hex');
         const tokenExpiry = new Date(Date.now() + 3600000);
 
-        const tempPassword = await bcrypt.hash(randomBytes(32).toString('hex'), 10);
+        const tempPassword = await hash(randomBytes(32).toString('hex'), 10);
 
         const [result] = await fastify.mysql.query(
             'INSERT INTO users (email, username, first_name, last_name, avatar, password, reset_token, reset_token_expiry) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
@@ -64,9 +67,9 @@ exports.register = async function (fastify, request, reply) {
                         message: 'Please check your email to activate your account.'
                     });
                 })
-                .catch(errors => { throw new ErrorHandler(400, false, 'Something went wrong') });
+                .catch(errors => { throw new ErrorHandler(400, false, 'Failed to send activate mail') });
         } else {
-            throw new ErrorHandler(400, false, 'Failed to create user account');
+            throw new ErrorHandler(400, false, 'Failed to create account');
         }
     } catch (err) {
         return catchError(reply, err);
@@ -77,12 +80,10 @@ exports.login = async function (fastify, request, reply) {
     try {
         const { id, password } = request.body;
 
-        const query = `SELECT * FROM users WHERE ${id.includes('@') ? 'email=?' : 'username=?'}`;
-
-        const [user] = await fastify.mysql.query(query, [id, id]);
+        const [user] = await fastify.mysql.query(`SELECT * FROM users WHERE ${id.includes('@') ? 'email=?' : 'username=?'}`, [id, id]);
         if (!user.length) throw new ErrorHandler(400, false, "Account doesn't exists");
 
-        const isPasswordValid = await bcrypt.compare(password, user[0].password);
+        const isPasswordValid = await compare(password, user[0].password);
         if (!isPasswordValid) throw new ErrorHandler(400, false, 'Incorrect password');
 
         const token = await new Promise((resolve, reject) => {
@@ -108,9 +109,8 @@ exports.login = async function (fastify, request, reply) {
 exports.autoLogin = async function (fastify, request, reply) {
     try {
         const id = request.user.userId;
-        const query = 'SELECT * FROM users WHERE username=?';
 
-        const [user] = await fastify.mysql.query(query, [id]);
+        const [user] = await fastify.mysql.query('SELECT * FROM users WHERE username=?', [id]);
         if (!user.length) throw new ErrorHandler(400, false, 'Invalid credentials');
 
         return reply.code(200).send({
@@ -130,9 +130,8 @@ exports.autoLogin = async function (fastify, request, reply) {
 exports.checkUsername = async function (fastify, request, reply) {
     try {
         const { username } = request.body;
-        const query = 'SELECT * FROM users WHERE username=?';
 
-        const [user] = await fastify.mysql.query(query, [username]);
+        const [user] = await fastify.mysql.query('SELECT * FROM users WHERE username=?', [username]);
         if (user.length) {
             throw new ErrorHandler(400, false, 'Username already taken');
         }
@@ -149,7 +148,6 @@ exports.checkUsername = async function (fastify, request, reply) {
 exports.recoverAccount = async function (fastify, request, reply) {
     try {
         const { email, username } = request.body;
-        const { mailer } = fastify;
 
         const [user] = await fastify.mysql.query('SELECT * FROM users WHERE email=? OR username=?', [email, username]);
         if (!user.length) throw new ErrorHandler(400, false, "Account doesn't exist");
@@ -159,7 +157,7 @@ exports.recoverAccount = async function (fastify, request, reply) {
 
         await fastify.mysql.query('UPDATE users SET reset_token=?, reset_token_expiry=? WHERE username=?', [token, tokenExpiry, user[0].username]);
 
-        await sendMail(mailer, {
+        await sendMail(fastify.mailer, {
             to: user[0].email,
             subject: 'Reset Password',
             html: `<p>You requested to reset your password. Click the link to reset:</p>
@@ -168,10 +166,10 @@ exports.recoverAccount = async function (fastify, request, reply) {
             .then(info => {
                 reply.status(200).send({
                     success: true,
-                    message: `Activation link sent to your email${username ? (': ' + user[0].email) : ''}`
+                    message: `Reset password link sent to your email${username ? (': ' + user[0].email) : ''}`
                 });
             })
-            .catch(errors => { throw new ErrorHandler(400, false, 'Something went wrong') });
+            .catch(errors => { throw new ErrorHandler(400, false, 'Failed to send reset password mail') });
     } catch (err) {
         return catchError(reply, err);
     }
@@ -184,7 +182,7 @@ exports.resetPassword = async (fastify, request, reply) => {
         const [user] = await fastify.mysql.query('SELECT * FROM users WHERE reset_token=? AND reset_token_expiry>?', [token, new Date()]);
         if (!user.length) throw new ErrorHandler(400, false, "Invalid or expired token");
 
-        const hashedPassword = await bcrypt.hash(password, 10);
+        const hashedPassword = await hash(password, 10);
 
         const [result] = await fastify.mysql.query('UPDATE users SET password=?, reset_token=NULL, reset_token_expiry=NULL WHERE username=?', [hashedPassword, user[0].username]);
 
