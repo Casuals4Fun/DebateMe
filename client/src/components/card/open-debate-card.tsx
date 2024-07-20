@@ -28,7 +28,7 @@ const OpenDebateCard = () => {
                 Fugiat repellat architecto pariatur fugit perspiciatis voluptas quidem autem.
             </p>
             <div className='user-info'>
-                <img src="/user.jpg" alt="" loading="lazy" onClick={() => handleProfileClick('julieroberts')} />
+                <img src='/user.jpg' alt='' loading='lazy' onClick={() => handleProfileClick('julieroberts')} />
                 <div className='user-detail'>
                     <p onClick={() => handleProfileClick('julieroberts')}>Julie Roberts</p>
                     <p onClick={() => handleProfileClick('julieroberts')}>julieroberts</p>

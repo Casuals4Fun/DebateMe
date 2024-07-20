@@ -1,8 +1,8 @@
 import { useState, useCallback } from "react"
 import { useNavigate } from "react-router-dom"
 import { toast } from "sonner"
-import { LoadingSVG } from "../../loading/svg";
 import { emailRegex } from "../../../data/regex"
+import { LoadingSVG } from "../../loading/svg"
 
 const ForgotPassword = () => {
     const navigate = useNavigate();
@@ -80,11 +80,11 @@ const ForgotPassword = () => {
                 <div className='input__container'>
                     <p>Email</p>
                     <input
-                        name="email"
+                        name='email'
                         value={forgotData.email}
                         onChange={handleInputChange}
-                        className={`${isSubmitted && !validationState ? "shake" : ""}`}
-                        style={{ borderColor: isSubmitted && !validationState ? "red" : "" }}
+                        className={`${isSubmitted && !validationState ? 'shake' : ''}`}
+                        style={{ borderColor: isSubmitted && !validationState ? 'red' : '' }}
                     />
                 </div>
                 <div className='or-divider'>
@@ -95,11 +95,11 @@ const ForgotPassword = () => {
                 <div className='input__container'>
                     <p>Username</p>
                     <input
-                        name="username"
+                        name='username'
                         value={forgotData.username}
                         onChange={handleInputChange}
-                        className={`${isSubmitted && !validationState ? "shake" : ""}`}
-                        style={{ borderColor: isSubmitted && !validationState ? "red" : "" }}
+                        className={`${isSubmitted && !validationState ? 'shake' : ''}`}
+                        style={{ borderColor: isSubmitted && !validationState ? 'red' : '' }}
                     />
                 </div>
                 <button

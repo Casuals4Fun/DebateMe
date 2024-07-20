@@ -13,7 +13,7 @@ export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
         return <LoadingComponent />
     }
     else if (isAuthenticated === AuthStatus.Failed) {
-        return <Navigate to="/auth" replace />;
+        return <Navigate to='/auth' replace />;
     }
 
     return <>{children}</>;

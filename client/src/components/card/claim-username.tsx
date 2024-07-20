@@ -67,12 +67,12 @@ const ClaimUsername = () => {
                 <input
                     name='username'
                     placeholder='johndoe'
-                    autoComplete="on"
+                    autoComplete='on'
                     value={username}
                     onChange={handleUsernameChange}
                     onKeyPress={handleKeyPress}
-                    className={isSubmitted && (!username || message.type === 'error') ? "shake" : ""}
-                    style={{ border: isSubmitted && (!username || message.type === 'error') ? "2px dotted var(--username-color)" : "" }}
+                    className={isSubmitted && (!username || message.type === 'error') ? 'shake' : ''}
+                    style={{ border: isSubmitted && (!username || message.type === 'error') ? '2px dotted var(--username-color)' : '' }}
                 />
             </div>
             <button className='submit-btn' disabled={loading}>

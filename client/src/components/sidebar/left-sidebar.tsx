@@ -34,7 +34,7 @@ const LeftSidebar: React.FC<SidebarProps> = ({ isVisible }) => {
   return (
     <div id='left-sidebar' className={`${isVisible ? 'reveal' : 'hide'} ${sidebar ? 'close' : 'open'}`}>
       <Link to='/' className='logo__wrapper'>
-        <img src="/logo.png" alt="" />
+        <img src='/logo.png' alt='' />
       </Link>
       <ul>
         {leftSidebarLinks.map(item => (
@@ -81,7 +81,7 @@ const handleToggleTheme = () => {
   onClick={handleToggleTheme}
   title={theme === Theme.Dark ? 'Switch to Light mode' : 'Switch to Dark mode'}
 >
-  {theme === Theme.Dark ? <img className="sun" src="theme/sun.svg" alt="" /> : <img className="moon" src="theme/moon.png" alt="" />}
+  {theme === Theme.Dark ? <img className='sun' src='theme/sun.svg' alt='' /> : <img className='moon' src='theme/moon.png' alt='' />}
 </button>
 
 */

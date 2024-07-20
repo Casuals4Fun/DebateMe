@@ -55,16 +55,20 @@
 #explore .explore-btns {
     display: flex;
     flex-wrap: wrap;
-    gap: 5px;
+    gap: 25px;
 }
 
 #explore .explore-btns a {
-    padding: 7.5px 15px;
     border-radius: 20px;
     text-transform: lowercase;
 }
 
 #explore .explore-btns a:hover {
-    background-color: var(--explore_input_bg);
-    transition: background-color 0.2s ease-in-out;
+    text-decoration: underline;
+}
+
+@media screen and (max-width: 480px) {
+    #explore .explore-btns {
+        gap: 20px;
+    }
 }

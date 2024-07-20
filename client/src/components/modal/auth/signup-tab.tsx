@@ -13,7 +13,7 @@ const SignupTab: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
     const navigate = useNavigate();
 
     const { setAuthTab } = useAuthStore();
-    const { tempUser, clearTempUser } = useTempStore();
+    const { clearTempUser } = useTempStore();
 
     const [term, setTerm] = useState<boolean>(false);
     const [isSubmitted, setIsSubmitted] = useState(false);
@@ -132,16 +132,16 @@ const SignupTab: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
     return (
         <div id='signup'>
             <h3>Register</h3>
-            <form id='signup-form' className='form__container' style={{ marginTop: tempUser.email ? '20px' : '' }} onSubmit={handleFormSubmit}>
+            <form id='signup-form' className='form__container' onSubmit={handleFormSubmit}>
                 <div className='flex'>
                     <div
                         className='avatar__container'
                         onClick={() => document.getElementById('user-avatar')?.click()}
                     >
                         <input
-                            type="file"
-                            id="user-avatar"
-                            accept="image/*"
+                            type='file'
+                            id='user-avatar'
+                            accept='image/*'
                             style={{ display: 'none' }}
                             onChange={handleFileInputChange}
                         />
@@ -149,13 +149,13 @@ const SignupTab: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
                             typeof registerData.avatar === 'string' ? (
                                 <img
                                     src={registerData.avatar}
-                                    alt="Avatar"
+                                    alt='avatar'
                                     style={{ width: '50px', height: '50px', objectFit: 'cover', border: '2px solid var(--body_color)', borderRadius: '50%' }}
                                 />
                             ) : (
                                 <img
                                     src={URL.createObjectURL(registerData.avatar)}
-                                    alt="Avatar"
+                                    alt='avatar'
                                     style={{ width: '50px', height: '50px', objectFit: 'cover', border: '2px solid var(--body_color)', borderRadius: '50%' }}
                                 />
                             )
@@ -167,13 +167,13 @@ const SignupTab: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
                     <div className='input__container'>
                         <p>Username</p>
                         <input
-                            type="text"
-                            name="username"
+                            type='text'
+                            name='username'
                             value={registerData.username}
                             onChange={handleInputChange}
                             onKeyPress={handleKeyPress}
-                            className={`${isSubmitted && !validationState.isUsernameValid ? "shake" : ""}`}
-                            style={{ borderColor: isSubmitted && !validationState.isUsernameValid ? "red" : "" }}
+                            className={`${isSubmitted && !validationState.isUsernameValid ? 'shake' : ''}`}
+                            style={{ borderColor: isSubmitted && !validationState.isUsernameValid ? 'red' : '' }}
                             placeholder={isSubmitted && !validationState.isUsernameValid ? 'Required' : ''}
                         />
                     </div>
@@ -181,39 +181,39 @@ const SignupTab: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
                 <div className='input__container'>
                     <p>First Name</p>
                     <input
-                        type="text"
-                        name="first_name"
+                        type='text'
+                        name='first_name'
                         value={registerData.first_name}
                         onChange={handleInputChange}
                         onKeyPress={handleKeyPress}
-                        className={`${isSubmitted && !validationState.isFirstNameValid ? "shake" : ""}`}
-                        style={{ borderColor: isSubmitted && !validationState.isFirstNameValid ? "red" : "" }}
+                        className={`${isSubmitted && !validationState.isFirstNameValid ? 'shake' : ''}`}
+                        style={{ borderColor: isSubmitted && !validationState.isFirstNameValid ? 'red' : '' }}
                         placeholder={isSubmitted && !validationState.isFirstNameValid ? 'Required' : ''}
                     />
                 </div>
                 <div className='input__container'>
                     <p>Last Name</p>
                     <input
-                        type="text"
-                        name="last_name"
+                        type='text'
+                        name='last_name'
                         value={registerData.last_name}
                         onChange={handleInputChange}
                         onKeyPress={handleKeyPress}
-                        className={`${isSubmitted && !validationState.isLastNameValid ? "shake" : ""}`}
-                        style={{ borderColor: isSubmitted && !validationState.isLastNameValid ? "red" : "" }}
+                        className={`${isSubmitted && !validationState.isLastNameValid ? 'shake' : ''}`}
+                        style={{ borderColor: isSubmitted && !validationState.isLastNameValid ? 'red' : '' }}
                         placeholder={isSubmitted && !validationState.isLastNameValid ? 'Required' : ''}
                     />
                 </div>
                 <div className='input__container'>
                     <p>Email</p>
                     <input
-                        type="email"
-                        name="email"
+                        type='email'
+                        name='email'
                         value={registerData.email}
                         onChange={handleInputChange}
                         onKeyPress={handleKeyPress}
-                        className={`${isSubmitted && !validationState.isEmailValid ? "shake" : ""}`}
-                        style={{ borderColor: isSubmitted && !validationState.isEmailValid ? "red" : "" }}
+                        className={`${isSubmitted && !validationState.isEmailValid ? 'shake' : ''}`}
+                        style={{ borderColor: isSubmitted && !validationState.isEmailValid ? 'red' : '' }}
                         placeholder={isSubmitted && !validationState.isEmailValid ? 'Required' : ''}
                     />
                 </div>
@@ -224,8 +224,8 @@ const SignupTab: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
                             readOnly
                         />
                         <span
-                            className={`checkmark ${isSubmitted && !term ? "shake" : ""}`}
-                            style={{ borderColor: isSubmitted && !term ? "red" : "" }}
+                            className={`checkmark ${isSubmitted && !term ? 'shake' : ''}`}
+                            style={{ borderColor: isSubmitted && !term ? 'red' : '' }}
                         />
                     </div>
                     <p>Accept <span>Terms & Conditions</span></p>

@@ -84,7 +84,7 @@ const Profile: React.FC<ProfileProps> = ({ isVisible }) => {
                         onClick={handleToggleMenu}
                     >
                         {user.avatar ? (
-                            <img src={user.avatar} alt="" loading="lazy" />
+                            <img src={user.avatar} alt='' loading='lazy' />
                         ) : (
                             <FaRegUser style={{ width: '50%', height: '50%' }} />
                         )}
@@ -106,10 +106,10 @@ const Profile: React.FC<ProfileProps> = ({ isVisible }) => {
             {expand && (
                 <div className={`profile__modal ${isVisible ? 'shift-down' : 'shift-up'}`}>
                     <div className='modal-profile__wrapper'>
-                        <div className="profile-wrapper">
+                        <div className='profile-wrapper'>
                             <Link to={user.username} className='modal-profile__image' onClick={handleToggleMenu}>
                                 {user.avatar ? (
-                                    <img src={user.avatar} alt="" loading="lazy" />
+                                    <img src={user.avatar} alt='' loading='lazy' />
                                 ) : (
                                     <FaRegUser style={{ width: '50%', height: '50%' }} />
                                 )}
@@ -157,7 +157,7 @@ const handleToggleTheme = () => {
     onClick={handleToggleTheme}
     title={theme === Theme.Dark ? 'Switch to Light mode' : 'Switch to Dark mode'}
 >
-    {theme === Theme.Dark ? <img className="sun" src="theme/sun.svg" alt="" /> : <img className="moon" src="theme/moon.png" alt="" />}
+    {theme === Theme.Dark ? <img className='sun' src='theme/sun.svg' alt='' /> : <img className='moon' src='theme/moon.png' alt='' />}
 </button>
 
 */

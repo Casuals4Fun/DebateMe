@@ -7,7 +7,7 @@ import WavingHand from "../../../lottie/WavingHand.json"
 import LoginTab from "./login-tab"
 import SignupTab from "./signup-tab"
 import ForgotPassword from "./forgot-password"
-import ResetPassword from "./reset-password"
+import ResetPassword from "./set-password"
 import { IoCloseOutline } from "react-icons/io5"
 
 type RegisterData = {
@@ -53,7 +53,7 @@ const AuthModal = () => {
                 <div className='left__container'>
                     <Lottie
                         animationData={WavingHand}
-                        className="lottie-anim"
+                        className='lottie-anim'
                         loop={true}
                     />
                 </div>
@@ -73,7 +73,7 @@ const AuthModal = () => {
                 </div>
                 <>
                     <button onClick={handleCloseModal} className='logo__wrapper'>
-                        <img src="/logo.png" alt="" />
+                        <img src='/logo.png' alt='' />
                     </button>
                     <button
                         className='close__btn'

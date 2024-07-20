@@ -9,4 +9,4 @@
 - MySQL
 
 ## ⭐ Contributors
-<!-- <img src="https://contributors-img.web.app/image?repo=Shubham-Lal/DebateMe"/> -->
+<img src='https://contributors-img.web.app/image?repo=Casuals4Fun/DebateMe'/>

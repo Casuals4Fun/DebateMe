@@ -42,8 +42,8 @@ const Explore: React.FC<ExploreProps> = ({ term }) => {
                             setSearchTerm(e.target.value);
                             setFormSubmitted(false);
                         }}
-                        style={{ borderColor: formSubmitted && searchTerm.trim() === "" ? "var(--body_color)" : "" }}
-                        className={formSubmitted && searchTerm.trim() === "" ? "shake" : ""}
+                        style={{ borderColor: formSubmitted && searchTerm.trim() === '' ? 'var(--body_color)' : '' }}
+                        className={formSubmitted && searchTerm.trim() === '' ? 'shake' : ''}
                         autoFocus={location.pathname === '/search'}
                     />
                 </div>

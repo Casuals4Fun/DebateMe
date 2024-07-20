@@ -41,21 +41,37 @@ exports.register = async function (fastify, request, reply) {
         const [usernameExists] = await fastify.mysql.query('SELECT * FROM users WHERE username=?', [username]);
         if (usernameExists.length > 0) throw new ErrorHandler(400, false, 'Username already exists');
 
+        const token = crypto.randomBytes(32).toString('hex');
+        const tokenExpiry = new Date(Date.now() + 3600000);
+
+        const tempPassword = await bcrypt.hash(crypto.randomBytes(32).toString('hex'), 10);
+
         const [result] = await fastify.mysql.query(
-            'INSERT INTO users (email, username, first_name, last_name, avatar) VALUES (?, ?, ?, ?, ?)',
-            [email, username, first_name, last_name, avatar]
+            'INSERT INTO users (email, username, first_name, last_name, avatar, password, reset_token, reset_token_expiry) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
+            [email, username, first_name, last_name, avatar, tempPassword, token, tokenExpiry]
         );
 
         if (result.affectedRows > 0) {
-            return reply.code(201).send({
-                success: true,
-                message: 'Account created successfully'
-            });
-        } else throw new ErrorHandler(400, false, 'Failed to create user account');
+            await sendMail(fastify.mailer, {
+                to: email,
+                subject: 'Account Activation',
+                html: `<p>Click the link to activate your account:</p>
+                       <p><a href="${process.env.FRONTEND_URL}/auth?type=reset&token=${token}">${process.env.FRONTEND_URL}/auth?type=reset&token=${token}</a></p>`
+            })
+                .then(info => {
+                    reply.status(200).send({
+                        success: true,
+                        message: 'Please check your email to activate your account.'
+                    });
+                })
+                .catch(errors => { throw new ErrorHandler(400, false, 'Something went wrong') });
+        } else {
+            throw new ErrorHandler(400, false, 'Failed to create user account');
+        }
     } catch (err) {
         return catchError(reply, err);
     }
-}
+};
 
 exports.login = async function (fastify, request, reply) {
     try {
@@ -146,7 +162,8 @@ exports.recoverAccount = async function (fastify, request, reply) {
         await sendMail(mailer, {
             to: user[0].email,
             subject: 'Reset Password',
-            html: `<p>You requested to reset your password. Click the link to reset:</p><p><a href="${`${process.env.FRONTEND_URL}/auth?type=reset&token=${token}`}">${`${process.env.FRONTEND_URL}/auth?type=reset&token=${token}`}</a></p>`
+            html: `<p>You requested to reset your password. Click the link to reset:</p>
+                   <p><a href="${`${process.env.FRONTEND_URL}/auth?type=reset&token=${token}`}">${`${process.env.FRONTEND_URL}/auth?type=reset&token=${token}`}</a></p>`
         })
             .then(info => {
                 reply.status(200).send({
@@ -169,12 +186,16 @@ exports.resetPassword = async (fastify, request, reply) => {
 
         const hashedPassword = await bcrypt.hash(password, 10);
 
-        await fastify.mysql.query('UPDATE users SET password=?, reset_token=NULL, reset_token_expiry=NULL WHERE username=?', [hashedPassword, user[0].username]);
+        const [result] = await fastify.mysql.query('UPDATE users SET password=?, reset_token=NULL, reset_token_expiry=NULL WHERE username=?', [hashedPassword, user[0].username]);
 
-        reply.status(200).send({
-            success: true,
-            message: 'Password reset successfully'
-        });
+        if (result.affectedRows > 0) {
+            reply.status(200).send({
+                success: true,
+                message: 'Password set successfully'
+            });
+        } else {
+            throw new ErrorHandler(400, false, 'Failed to reset password');
+        }
     } catch (err) {
         return catchError(reply, err);
     }

@@ -29,12 +29,12 @@ const ClosedDebateCard = () => {
             <div className={`right ${sidebar ? 'flex-unset' : ''}`}>
                 <div className='user-info'>
                     <div className='debate-from'>
-                        <img src="/user1.webp" alt="" loading="lazy" onClick={() => handleProfileClick('aniketdas')} />
+                        <img src='/user1.webp' alt='' loading='lazy' onClick={() => handleProfileClick('aniketdas')} />
                         <p onClick={() => handleProfileClick('aniketdas')}>Aniket Das</p>
                         <p onClick={() => handleProfileClick('aniketdas')}>aniketdas</p>
                     </div>
                     <div className='debate-by'>
-                        <img src="/user2.jpeg" alt="" loading="lazy" onClick={() => handleProfileClick('pratikprasad')} />
+                        <img src='/user2.jpeg' alt='' loading='lazy' onClick={() => handleProfileClick('pratikprasad')} />
                         <p onClick={() => handleProfileClick('pratikprasad')}>Pratik Prasad</p>
                         <p onClick={() => handleProfileClick('pratikprasad')}>pratikprasad</p>
                     </div>

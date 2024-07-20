@@ -84,7 +84,7 @@ export default function App() {
 
       <Toaster
         duration={3000}
-        position="top-center"
+        position='top-center'
         theme={(localStorage.getItem('theme') as Theme) || Theme.Dark}
       />
     </div>
