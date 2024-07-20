@@ -1,10 +1,13 @@
 import { useCallback, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { toast } from "sonner"
+import { AuthStatus, AuthTab, useAuthStore } from "../../../store/useAuthStore"
 import { LoadingSVG } from "../../loading/svg"
 
 const SetPassword = () => {
   const navigate = useNavigate();
+
+  const { setUser, setIsAuthenticated, setAuthTab } = useAuthStore();
 
   const [resetData, setResetData] = useState({
     new: "",
@@ -49,12 +52,12 @@ const SetPassword = () => {
     });
 
     if (trimmedNew !== trimmedConfirm) {
-      setIsSubmitted(false);
+      setTimeout(() => setIsSubmitted(false), 500);
       return toast.error("Password doesn't match");
     }
     else {
       if (trimmedNew.length < 6) {
-        setIsSubmitted(false);
+        setTimeout(() => setIsSubmitted(false), 500);
         return toast.warning('Password should be atleast 6 digits');
       }
 
@@ -65,14 +68,18 @@ const SetPassword = () => {
       }).then(res => res.json())
         .then(response => {
           if (response.success) {
-            navigate('/auth?type=login');
+            setUser(response.data.user);
+            setIsAuthenticated(AuthStatus.Authenticated);
+            localStorage.setItem('token', response.data.token);
+            setAuthTab(AuthTab.Closed);
+            navigate('/');
             toast.success(response.message);
           }
           else {
             if (response.message === 'Validation failed') {
-              return toast.error(`${response.errors[0].field.charAt(0).toUpperCase() + response.errors[0].field.slice(1)} ${response.errors[0].message}`)
+              return toast.error(`${response.errors[0].field.charAt(0).toUpperCase() + response.errors[0].field.slice(1)} ${response.errors[0].message}`);
             }
-            toast.error(response.message)
+            toast.error(response.message);
           }
         })
         .finally(() => setIsSubmitted(false));
@@ -110,7 +117,7 @@ const SetPassword = () => {
           disabled={isSubmitted}
           style={{ cursor: `${isSubmitted ? 'not-allowed' : ''}` }}
         >
-          {isSubmitted ? <LoadingSVG size={23} /> : 'Change'}
+          {isSubmitted ? <LoadingSVG size={23} /> : 'Proceed'}
         </button>
         <div className='extra-btn'>
           <p>

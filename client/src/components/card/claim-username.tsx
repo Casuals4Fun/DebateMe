@@ -51,7 +51,7 @@ const ClaimUsername = () => {
                     if (response.success) {
                         setAuthTab(AuthTab.Signup);
                         setMessage({ type: 'success', content: response.message });
-                        toast.success(`${response.message} Register your account to claim username.`);
+                        toast.success(`${response.message} Register your account to claim username`);
                     } else setMessage({ type: 'error', content: response.message });
                 })
                 .catch(() => setMessage({ type: 'error', content: 'Something went wrong. Try again later!' }))

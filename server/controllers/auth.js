@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt');
 const { sign } = require('jsonwebtoken');
 const { ErrorHandler, catchError } = require('../utils/error');
-const crypto = require('node:crypto');
+const { randomBytes } = require('node:crypto');
 const { sendMail } = require('../utils/mail');
 
 exports.handleGoogleAuth = async function (fastify, request, reply) {
@@ -41,10 +41,10 @@ exports.register = async function (fastify, request, reply) {
         const [usernameExists] = await fastify.mysql.query('SELECT * FROM users WHERE username=?', [username]);
         if (usernameExists.length > 0) throw new ErrorHandler(400, false, 'Username already exists');
 
-        const token = crypto.randomBytes(32).toString('hex');
+        const token = randomBytes(32).toString('hex');
         const tokenExpiry = new Date(Date.now() + 3600000);
 
-        const tempPassword = await bcrypt.hash(crypto.randomBytes(32).toString('hex'), 10);
+        const tempPassword = await bcrypt.hash(randomBytes(32).toString('hex'), 10);
 
         const [result] = await fastify.mysql.query(
             'INSERT INTO users (email, username, first_name, last_name, avatar, password, reset_token, reset_token_expiry) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
@@ -154,7 +154,7 @@ exports.recoverAccount = async function (fastify, request, reply) {
         const [user] = await fastify.mysql.query('SELECT * FROM users WHERE email=? OR username=?', [email, username]);
         if (!user.length) throw new ErrorHandler(400, false, "Account doesn't exist");
 
-        const token = crypto.randomBytes(32).toString('hex');
+        const token = randomBytes(32).toString('hex');
         const tokenExpiry = new Date(Date.now() + 3600000);
 
         await fastify.mysql.query('UPDATE users SET reset_token=?, reset_token_expiry=? WHERE username=?', [token, tokenExpiry, user[0].username]);
@@ -189,9 +189,20 @@ exports.resetPassword = async (fastify, request, reply) => {
         const [result] = await fastify.mysql.query('UPDATE users SET password=?, reset_token=NULL, reset_token_expiry=NULL WHERE username=?', [hashedPassword, user[0].username]);
 
         if (result.affectedRows > 0) {
+            const token = await new Promise((resolve, reject) => {
+                sign({ userId: user[0].username }, process.env.JWT_SECRET, { expiresIn: '12h' }, (err, token) => {
+                    if (err) reject(err);
+                    else resolve(token)
+                });
+            });
+
             reply.status(200).send({
                 success: true,
-                message: 'Password set successfully'
+                message: 'Password set successfully',
+                data: {
+                    user: { ...(({ password, ...rest }) => rest)(user[0]) },
+                    token
+                }
             });
         } else {
             throw new ErrorHandler(400, false, 'Failed to reset password');
