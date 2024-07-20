@@ -60,19 +60,19 @@ const ClaimUsername = () => {
     };
 
     return (
-        <form id='claim-username' className={sidebar ? '' : 'hide'} onSubmit={handleUsernameSubmit}>
+        <form id='claim-username' className={sidebar ? 'hide' : ''} onSubmit={handleUsernameSubmit}>
             <p>Get Started</p>
             <div className='username-input'>
                 <span className='domain'>debateme.app/</span>
                 <input
                     name='username'
                     placeholder='johndoe'
-                    autoComplete="on"
+                    autoComplete='on'
                     value={username}
                     onChange={handleUsernameChange}
                     onKeyPress={handleKeyPress}
-                    className={isSubmitted && (!username || message.type === 'error') ? "shake" : ""}
-                    style={{ border: isSubmitted && (!username || message.type === 'error') ? "2px dotted var(--username-color)" : "" }}
+                    className={isSubmitted && (!username || message.type === 'error') ? 'shake' : ''}
+                    style={{ border: isSubmitted && (!username || message.type === 'error') ? '2px dotted var(--username-color)' : '' }}
                 />
             </div>
             <button className='submit-btn' disabled={loading}>

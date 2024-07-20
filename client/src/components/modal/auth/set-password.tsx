@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom"
 import { toast } from "sonner"
 import { LoadingSVG } from "../../loading/svg"
 
-const ResetPassword = () => {
+const SetPassword = () => {
   const navigate = useNavigate();
 
   const [resetData, setResetData] = useState({
@@ -81,28 +81,28 @@ const ResetPassword = () => {
 
   return (
     <div id='reset'>
-      <h3>Reset Password</h3>
+      <h3>Set Password</h3>
       <form id='forgot-form' className='form__container' onSubmit={handleResetSubmit}>
         <div className='input__container'>
           <p>New Password</p>
           <input
-            name="new"
-            type="password"
+            name='new'
+            type='password'
             value={resetData.new}
             onChange={handleInputChange}
-            className={`${isSubmitted && !validationState.isNewValid ? "shake" : ""}`}
-            style={{ borderColor: isSubmitted && !validationState.isNewValid ? "red" : "" }}
+            className={`${isSubmitted && !validationState.isNewValid ? 'shake' : ''}`}
+            style={{ borderColor: isSubmitted && !validationState.isNewValid ? 'red' : '' }}
           />
         </div>
         <div className='input__container'>
           <p>Confirm Password</p>
           <input
-            name="confirm"
-            type="password"
+            name='confirm'
+            type='password'
             value={resetData.confirm}
             onChange={handleInputChange}
-            className={`${isSubmitted && !validationState.isConfirmValid ? "shake" : ""}`}
-            style={{ borderColor: isSubmitted && !validationState.isConfirmValid ? "red" : "" }}
+            className={`${isSubmitted && !validationState.isConfirmValid ? 'shake' : ''}`}
+            style={{ borderColor: isSubmitted && !validationState.isConfirmValid ? 'red' : '' }}
           />
         </div>
         <button
@@ -124,4 +124,4 @@ const ResetPassword = () => {
   )
 }
 
-export default ResetPassword
+export default SetPassword

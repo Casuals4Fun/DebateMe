@@ -97,7 +97,7 @@ const LoginTab = () => {
                 {isAuthenticated === AuthStatus.Authenticating && !isSubmitted ? <LoadingSVG size={23} /> : (
                     <>
                         <FcGoogle size={25} />
-                        <span>Signin with Google</span>
+                        <span>Continue with Google</span>
                     </>
                 )}
             </button>
@@ -110,25 +110,25 @@ const LoginTab = () => {
                 <div className='input__container'>
                     <p>Email or Username</p>
                     <input
-                        name="id"
+                        name='id'
                         value={loginData.id}
                         onChange={handleInputChange}
                         onKeyPress={handleKeyPress}
-                        className={`${isSubmitted && !validationState.isIdValid ? "shake" : ""}`}
-                        style={{ borderColor: isSubmitted && !validationState.isIdValid ? "red" : "" }}
+                        className={`${isSubmitted && !validationState.isIdValid ? 'shake' : ''}`}
+                        style={{ borderColor: isSubmitted && !validationState.isIdValid ? 'red' : '' }}
                         placeholder={isSubmitted && !validationState.isIdValid ? 'Required' : ''}
                     />
                 </div>
                 <div className='input__container'>
                     <p>Password</p>
                     <input
-                        type="password"
-                        name="password"
+                        type='password'
+                        name='password'
                         value={loginData.password}
                         onChange={handleInputChange}
                         onKeyPress={handleKeyPress}
-                        className={`${isSubmitted && !validationState.isPasswordValid ? "shake" : ""}`}
-                        style={{ borderColor: isSubmitted && !validationState.isPasswordValid ? "red" : "" }}
+                        className={`${isSubmitted && !validationState.isPasswordValid ? 'shake' : ''}`}
+                        style={{ borderColor: isSubmitted && !validationState.isPasswordValid ? 'red' : '' }}
                         placeholder={isSubmitted && !validationState.isPasswordValid ? 'Required' : ''}
                     />
                 </div>
@@ -140,8 +140,8 @@ const LoginTab = () => {
                     {isAuthenticated === AuthStatus.Authenticating && isSubmitted ? <LoadingSVG size={23} /> : 'Login'}
                 </button>
                 <div className='extra-btn'>
-                    <p>New here? <span onClick={() => setAuthTab(AuthTab.Signup)}>Create Account</span></p>
-                    <p><span onClick={() => setAuthTab(AuthTab.Forgot)}>Forgot Password</span></p>
+                    <p>New here? <span onClick={() => navigate('/auth?type=signup')}>Create Account</span></p>
+                    <p><span onClick={() => navigate('/auth?type=forgot')}>Forgot Password</span></p>
                 </div>
             </form>
         </div>

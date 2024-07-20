@@ -55,10 +55,10 @@ export default function App() {
       <>
         <LeftSidebar isVisible={isScrollingUp} />
         <button className='sidebar-btn left' onClick={() => setSidebar(!sidebar)}>
-          {sidebar ? <FaChevronLeft size={20} /> : <FaChevronRight size={20} />}
+          {sidebar ? <FaChevronRight size={20} /> : <FaChevronLeft size={20} />}
         </button>
       </>
-      <main id='main' ref={mainRef} className={`${expand ? 'expand' : ''} ${sidebar ? '' : 'w-full'}`}>
+      <main id='main' ref={mainRef} className={`${expand ? 'expand' : ''} ${sidebar ? 'w-full' : ''}`}>
         <Routes>
           <Route path='/' element={<HomePage />} />
           <Route path='/auth' element={<AuthPage />} />isScrollingUp
@@ -76,7 +76,7 @@ export default function App() {
       <>
         <RightSidebar isVisible={isScrollingUp} />
         <button className='sidebar-btn right' onClick={() => setSidebar(!sidebar)}>
-          {sidebar ? <FaChevronRight size={20} /> : <FaChevronLeft size={20} />}
+          {sidebar ? <FaChevronLeft size={20} /> : <FaChevronRight size={20} />}
         </button>
       </>
 
@@ -84,7 +84,7 @@ export default function App() {
 
       <Toaster
         duration={3000}
-        position="top-center"
+        position='top-center'
         theme={(localStorage.getItem('theme') as Theme) || Theme.Dark}
       />
     </div>

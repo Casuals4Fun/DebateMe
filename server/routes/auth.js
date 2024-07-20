@@ -10,12 +10,11 @@ module.exports = async function (fastify, opts) {
             type: 'object',
             properties: {
                 email: { type: 'string', minLength: 1, pattern: emailRegex.source },
-                password: { type: 'string', minLength: 6 },
                 username: { type: 'string', minLength: 1 },
                 first_name: { type: 'string', minLength: 1 },
-                last_name: { type: 'string', minLength: 1 }
+                last_name: { type: 'string', minLength: 1 },
             },
-            required: ['email', 'password', 'username', 'first_name', 'last_name']
+            required: ['email', 'username', 'first_name', 'last_name']
         }
     };
 

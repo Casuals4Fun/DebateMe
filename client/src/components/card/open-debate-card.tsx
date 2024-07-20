@@ -15,7 +15,7 @@ const OpenDebateCard = () => {
     }
 
     return (
-        <div id='open-card' className={sidebar ? '' : 'card-break'}>
+        <div id='open-card' className={sidebar ? 'card-break' : ''}>
             <div className='debate-header'>
                 <h2 title='Artificial Intelligence – Is AI good for society or not? ↗' onClick={() => navigate('/')}>
                     Artificial Intelligence – Is AI good for society or not?
@@ -28,7 +28,7 @@ const OpenDebateCard = () => {
                 Fugiat repellat architecto pariatur fugit perspiciatis voluptas quidem autem.
             </p>
             <div className='user-info'>
-                <img src="/user.jpg" alt="" loading="lazy" onClick={() => handleProfileClick('julieroberts')} />
+                <img src='/user.jpg' alt='' loading='lazy' onClick={() => handleProfileClick('julieroberts')} />
                 <div className='user-detail'>
                     <p onClick={() => handleProfileClick('julieroberts')}>Julie Roberts</p>
                     <p onClick={() => handleProfileClick('julieroberts')}>julieroberts</p>
@@ -56,7 +56,7 @@ const OpenDebateLoadingCard = () => {
     const { sidebar } = useNavStore();
 
     return (
-        <div id='open-card-loading' className={sidebar ? '' : 'card-break'}>
+        <div id='open-card-loading' className={sidebar ? 'card-break' : ''}>
             <div className='debate-header'>
                 <LoadingSkeleton />
                 <LoadingSkeleton />

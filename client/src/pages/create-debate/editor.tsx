@@ -88,7 +88,7 @@ const Editor: React.FC<EditorProps> = ({ editorRef, rteValue, isEditable, setDeb
 
     return (
         <RichTextEditorComponent
-            id="toolsRTE"
+            id='toolsRTE'
             ref={editorRef}
             value={rteValue}
             showCharCount={isEditable}
@@ -96,7 +96,7 @@ const Editor: React.FC<EditorProps> = ({ editorRef, rteValue, isEditable, setDeb
             quickToolbarSettings={isEditable ? quickToolbarSettings : undefined}
             enableTabKey={isEditable}
             enableXhtml={isEditable}
-            placeholder="Your debate body"
+            placeholder='Your debate body'
             enableResize={isEditable}
             readonly={!isEditable}
             change={(e: { value: string }) => {

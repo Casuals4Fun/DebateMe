@@ -71,7 +71,7 @@
 
 .card-break {
     break-inside: avoid;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 @media screen and (max-width: 1880px) {

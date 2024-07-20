@@ -6,18 +6,16 @@ import { useAuthStore, AuthTab, useTempStore } from "../../../store/useAuthStore
 import WavingHand from "../../../lottie/WavingHand.json"
 import LoginTab from "./login-tab"
 import SignupTab from "./signup-tab"
-import BriefInfo from "./brief-info"
 import ForgotPassword from "./forgot-password"
-import ResetPassword from "./reset-password"
+import ResetPassword from "./set-password"
 import { IoCloseOutline } from "react-icons/io5"
 
 type RegisterData = {
-    email: string;
-    password: string;
     avatar: string | File;
     username: string;
     first_name: string;
     last_name: string;
+    email: string;
 };
 
 const AuthModal = () => {
@@ -28,12 +26,11 @@ const AuthModal = () => {
     const { tempUser } = useTempStore();
 
     const [registerData, setRegisterData] = useState<RegisterData>(() => ({
-        email: tempUser.email || "",
-        password: "",
         avatar: tempUser.avatar || "",
         username: localStorage.getItem("username") || tempUser.username || "",
         first_name: tempUser.first_name || "",
-        last_name: tempUser.last_name || ""
+        last_name: tempUser.last_name || "",
+        email: tempUser.email || ""
     }));
 
     const handleCloseModal = () => {
@@ -56,7 +53,7 @@ const AuthModal = () => {
                 <div className='left__container'>
                     <Lottie
                         animationData={WavingHand}
-                        className="lottie-anim"
+                        className='lottie-anim'
                         loop={true}
                     />
                 </div>
@@ -68,11 +65,6 @@ const AuthModal = () => {
                             registerData={registerData}
                             setRegisterData={setRegisterData}
                         />
-                    ) : authTab === AuthTab.Info ? (
-                        <BriefInfo
-                            registerData={registerData}
-                            setRegisterData={setRegisterData}
-                        />
                     ) : authTab === AuthTab.Forgot ? (
                         <ForgotPassword />
                     ) : authTab === AuthTab.Reset && (
@@ -81,7 +73,7 @@ const AuthModal = () => {
                 </div>
                 <>
                     <button onClick={handleCloseModal} className='logo__wrapper'>
-                        <img src="/logo.png" alt="" />
+                        <img src='/logo.png' alt='' />
                     </button>
                     <button
                         className='close__btn'

@@ -4,7 +4,6 @@ export enum AuthTab {
     Closed = 'closed',
     Login = 'login',
     Signup = 'signup',
-    Info = 'info',
     Forgot = 'forgot',
     Reset = 'reset'
 }

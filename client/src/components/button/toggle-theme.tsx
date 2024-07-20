@@ -23,8 +23,8 @@ const ToggleTheme = () => {
             <div className='display' onClick={handleToggleTheme}>
                 <div className='toggle-btn'>
                     <div className='circle'>
-                        <img src="/theme/moon.png" className="moon" />
-                        <img src="/theme/sun.svg" className="sun" />
+                        <img src='/theme/moon.png' className='moon' />
+                        <img src='/theme/sun.svg' className='sun' />
                     </div>
                 </div>
             </div>
