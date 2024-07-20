@@ -242,7 +242,7 @@ const SignupTab: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
                 </div>
             </form>
         </div>
-    );
-};
+    )
+}
 
-export default SignupTab;
+export default SignupTab

@@ -114,7 +114,7 @@ const ForgotPassword = () => {
                 </div>
             </form>
         </div>
-    );
-};
+    )
+}
 
-export default ForgotPassword;
+export default ForgotPassword

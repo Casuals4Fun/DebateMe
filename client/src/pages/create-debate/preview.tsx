@@ -16,7 +16,7 @@ const Preview: React.FC<PreviewProps> = ({ isPreview, editorRef, debateData }) =
             <h1>{debateData.title}</h1>
             <Editor editorRef={editorRef} rteValue={debateData.body} isEditable={false} />
         </div>
-    );
-};
+    )
+}
 
-export default Preview;
+export default Preview

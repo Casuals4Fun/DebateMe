@@ -85,7 +85,7 @@ const ClaimUsername = () => {
             </button>
             {message.content && <p style={{ color: message.type === 'error' ? 'red' : 'green' }}>{message.content}</p>}
         </form>
-    );
-};
+    )
+}
 
-export default ClaimUsername;
+export default ClaimUsername

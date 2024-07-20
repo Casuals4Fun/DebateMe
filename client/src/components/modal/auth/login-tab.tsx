@@ -145,7 +145,7 @@ const LoginTab = () => {
                 </div>
             </form>
         </div>
-    );
-};
+    )
+}
 
-export default LoginTab;
+export default LoginTab

@@ -14,6 +14,6 @@ const useFormatNumber = (num: number) => {
         return `${formattedNum}k+`;
     }
     return num;
-};
+}
 
-export default useFormatNumber;
+export default useFormatNumber

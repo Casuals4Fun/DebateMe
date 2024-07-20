@@ -22,32 +22,25 @@ export default function App() {
   const { setRoute, setUser, setIsAuthenticated, authTab, setAuthTab } = useAuthStore();
   const { expand, sidebar, setSidebar } = useNavStore();
 
-  useEffect(() => {
-    document.body.setAttribute('data-theme', localStorage.getItem('theme') === Theme.Light ? Theme.Light : Theme.Dark);
-    handleAutoLogin(setRoute, setUser, setIsAuthenticated, setAuthTab);
-  }, [setRoute, setUser, setIsAuthenticated, setAuthTab]);
-
   const mainRef = useRef<HTMLDivElement>(null);
   const lastScrollTop = useRef<number>(0);
   const [isScrollingUp, setIsScrollingUp] = useState<boolean>(true);
 
   useEffect(() => {
+    document.body.setAttribute('data-theme', localStorage.getItem('theme') === Theme.Light ? Theme.Light : Theme.Dark);
+
+    handleAutoLogin(setRoute, setUser, setIsAuthenticated, setAuthTab);
+
     const handleScroll = () => {
-      if (mainRef.current) {
-        const st = mainRef.current.scrollTop;
-        if (st > lastScrollTop.current) setIsScrollingUp(false);
-        else setIsScrollingUp(true);
-        lastScrollTop.current = st <= 0 ? 0 : st;
-      }
+      const st = mainRef.current?.scrollTop ?? 0;
+      setIsScrollingUp(st <= lastScrollTop.current);
+      lastScrollTop.current = Math.max(st, 0);
     };
 
     const mainElement = mainRef.current;
-    if (mainElement) mainElement.addEventListener('scroll', handleScroll, { passive: true });
-    return () => {
-      if (mainElement) {
-        mainElement.removeEventListener('scroll', handleScroll);
-      }
-    };
+    mainElement?.addEventListener('scroll', handleScroll, { passive: true });
+    return () => mainElement?.removeEventListener('scroll', handleScroll);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -85,8 +78,9 @@ export default function App() {
       <Toaster
         duration={3000}
         position='top-center'
+        richColors
         theme={(localStorage.getItem('theme') as Theme) || Theme.Dark}
       />
     </div>
-  );
+  )
 }

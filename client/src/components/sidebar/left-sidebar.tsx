@@ -38,14 +38,12 @@ const LeftSidebar: React.FC<SidebarProps> = ({ isVisible }) => {
       </Link>
       <ul>
         {leftSidebarLinks.map(item => (
-          <li key={item.id} title={item.name}>
+          <li key={item.id} title={item.name} className={location.pathname === item.href ? 'active' : ''}>
             <div onClick={() => handleLinkClick(item.href, item.name)} className='links__wrapper'>
               <item.icon />
-              <p className={`${location.pathname === item.href ? 'name-active' : ''} underline`}>
-                {item.name}
-              </p>
+              <p className="underline">{item.name}</p>
             </div>
-            <div className={`${location.pathname === item.href ? 'footer-active' : ''}`} />
+            <div className="footer" />
           </li>
         ))}
       </ul>
@@ -67,21 +65,3 @@ const LeftSidebar: React.FC<SidebarProps> = ({ isVisible }) => {
 }
 
 export default LeftSidebar
-
-/*
-
-const handleToggleTheme = () => {
-  const newTheme = theme === Theme.Light ? Theme.Dark : Theme.Light;
-  document.querySelector("body")?.setAttribute('data-theme', newTheme);
-  setTheme(newTheme);
-}
-
-<button
-  className='theme-btn'
-  onClick={handleToggleTheme}
-  title={theme === Theme.Dark ? 'Switch to Light mode' : 'Switch to Dark mode'}
->
-  {theme === Theme.Dark ? <img className='sun' src='theme/sun.svg' alt='' /> : <img className='moon' src='theme/moon.png' alt='' />}
-</button>
-
-*/

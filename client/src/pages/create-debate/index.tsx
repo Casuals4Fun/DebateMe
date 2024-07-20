@@ -73,7 +73,7 @@ const CreateDebatePage: React.FC<CreateProps> = ({ isVisible, isFullscreen }) =>
                 </button>
             </div>
         </div>
-    );
+    )
 }
 
-export default CreateDebatePage;
+export default CreateDebatePage
