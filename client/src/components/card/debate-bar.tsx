@@ -39,7 +39,7 @@ const DebateBar: React.FC<BarProps> = ({ debateFrom, debateBy }) => {
                 </div>
             </>
         </div>
-    );
-};
+    )
+}
 
-export default DebateBar;
+export default DebateBar

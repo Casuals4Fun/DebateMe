@@ -51,7 +51,7 @@ const ClaimUsername = () => {
                     if (response.success) {
                         setAuthTab(AuthTab.Signup);
                         setMessage({ type: 'success', content: response.message });
-                        toast.success(`${response.message} Register your account to claim username.`);
+                        toast.success(`${response.message} Register your account to claim username`);
                     } else setMessage({ type: 'error', content: response.message });
                 })
                 .catch(() => setMessage({ type: 'error', content: 'Something went wrong. Try again later!' }))
@@ -85,7 +85,7 @@ const ClaimUsername = () => {
             </button>
             {message.content && <p style={{ color: message.type === 'error' ? 'red' : 'green' }}>{message.content}</p>}
         </form>
-    );
-};
+    )
+}
 
-export default ClaimUsername;
+export default ClaimUsername

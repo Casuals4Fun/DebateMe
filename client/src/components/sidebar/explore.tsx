@@ -66,4 +66,4 @@ const Explore: React.FC<ExploreProps> = ({ term }) => {
     )
 }
 
-export default Explore;
+export default Explore

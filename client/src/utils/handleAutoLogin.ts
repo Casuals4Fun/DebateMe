@@ -37,6 +37,6 @@ const handleAutoLogin = (setRoute: SetRoute, setUser: SetUser, setIsAuthenticate
                 localStorage.removeItem('token');
             });
     }
-};
+}
 
-export default handleAutoLogin;
+export default handleAutoLogin

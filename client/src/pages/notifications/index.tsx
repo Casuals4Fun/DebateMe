@@ -5,5 +5,5 @@ export default function NotificationPage() {
         <div id='notification'>
             No notifications yet
         </div>
-    );
+    )
 }

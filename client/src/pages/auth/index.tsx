@@ -1,6 +1,7 @@
 import { useEffect } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
 import { AuthStatus, AuthTab, useAuthStore, useTempStore } from "../../store/useAuthStore"
+import { toast } from "sonner"
 
 export default function AuthPage() {
     const location = useLocation();
@@ -30,8 +31,15 @@ export default function AuthPage() {
         const userData = params.get('user');
         const token = params.get('token');
         const user = userData ? JSON.parse(decodeURIComponent(userData)) : null;
+        const error = params.get('error');
 
-        if (type === 'login' && token) localStorage.setItem('token', token);
+        if (type === 'login') {
+            if (token) localStorage.setItem('token', token);
+            else if (error) {
+                navigate('/auth?type=login', { replace: true });
+                toast.error(error);
+            }
+        }
         else if (type === 'signup' && user) {
             setTempUser({
                 username: "",

@@ -7,8 +7,17 @@ CREATE TABLE users (
     first_name VARCHAR(30) NOT NULL,
     last_name VARCHAR(30) NOT NULL,
     avatar VARCHAR(255),
-    reset_token VARCHAR(255),
-    reset_token_expiry DATETIME,
     PRIMARY KEY (username)
+);
+```
+
+## Table `reset`
+```
+CREATE TABLE reset (
+    username VARCHAR(15) NOT NULL,
+    token VARCHAR(64) NOT NULL,
+    expiry DATETIME NOT NULL,
+    PRIMARY KEY (username),
+    FOREIGN KEY (username) REFERENCES users(username) ON DELETE CASCADE
 );
 ```

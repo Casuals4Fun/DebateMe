@@ -1,5 +1,5 @@
 import "./profile.css"
-import React, { useEffect } from "react"
+import React, { useCallback, useEffect } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { useNavStore } from "../../store/useNavStore"
 import { AuthStatus, AuthTab, useAuthStore } from "../../store/useAuthStore"
@@ -19,7 +19,7 @@ const Profile: React.FC<ProfileProps> = ({ isVisible }) => {
     const { expand, setExpand } = useNavStore();
     const { isAuthenticated, setIsAuthenticated, user, setUser, authTab, setAuthTab } = useAuthStore();
 
-    const handleToggleMenu = () => {
+    const handleToggleMenu = useCallback(() => {
         setExpand(!expand);
         const mainElement = document.querySelector('#main') as HTMLElement;
         if (mainElement) {
@@ -29,7 +29,7 @@ const Profile: React.FC<ProfileProps> = ({ isVisible }) => {
             }
             else mainElement.style.overflow = '';
         }
-    }
+    }, [expand, setExpand]);
 
     const handleLogout = () => {
         handleToggleMenu();
@@ -55,7 +55,7 @@ const Profile: React.FC<ProfileProps> = ({ isVisible }) => {
 
         document.addEventListener("mousedown", handleClickOutside);
         return () => document.removeEventListener("mousedown", handleClickOutside);
-    }, [expand, setExpand]);
+    }, [expand, handleToggleMenu]);
 
     return (
         <div className='profile__wrapper'>
@@ -139,25 +139,7 @@ const Profile: React.FC<ProfileProps> = ({ isVisible }) => {
                 </div>
             )}
         </div>
-    );
-};
-
-export default Profile;
-
-/*
-
-const handleToggleTheme = () => {
-    const newTheme = theme === Theme.Light ? Theme.Dark : Theme.Light;
-    document.querySelector("body")?.setAttribute('data-theme', newTheme);
-    setTheme(newTheme);
+    )
 }
 
-<button
-    className='theme-btn'
-    onClick={handleToggleTheme}
-    title={theme === Theme.Dark ? 'Switch to Light mode' : 'Switch to Dark mode'}
->
-    {theme === Theme.Dark ? <img className='sun' src='theme/sun.svg' alt='' /> : <img className='moon' src='theme/moon.png' alt='' />}
-</button>
-
-*/
+export default Profile

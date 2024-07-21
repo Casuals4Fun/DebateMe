@@ -1,11 +1,9 @@
 require('dotenv').config()
-const path = require('path')
 
-const http = require('http')
+const { createServer } = require('http')
 let server
-
 const serverFactory = (handler, opts) => {
-    return server = http.createServer((req, res) => handler(req, res))
+    return server = createServer((req, res) => handler(req, res))
 }
 
 const fastify = require('fastify')({
@@ -21,6 +19,8 @@ const upload = multer({ storage: multer.memoryStorage() })
 fastify.decorate('upload', upload)
 
 fastify.decorate('mysql', require('./db'))
+
+fastify.register(require('@fastify/caching'));
 
 fastify.register(require('@fastify/oauth2'), {
     name: 'googleOAuth2',

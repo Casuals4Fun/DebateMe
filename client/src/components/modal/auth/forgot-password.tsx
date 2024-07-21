@@ -64,7 +64,7 @@ const ForgotPassword = () => {
                     }
                 }
             } catch (error) {
-                toast.error('Something went wrong');
+                toast.error('Something went wrong. Try again later!');
             } finally {
                 setIsSubmitted(false);
             }
@@ -114,7 +114,7 @@ const ForgotPassword = () => {
                 </div>
             </form>
         </div>
-    );
-};
+    )
+}
 
-export default ForgotPassword;
+export default ForgotPassword
