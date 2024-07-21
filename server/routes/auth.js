@@ -9,10 +9,10 @@ module.exports = async function (fastify, opts) {
         body: {
             type: 'object',
             properties: {
-                email: { type: 'string', minLength: 1, pattern: emailRegex.source },
-                username: { type: 'string', minLength: 1 },
-                first_name: { type: 'string', minLength: 1 },
-                last_name: { type: 'string', minLength: 1 },
+                email: { type: 'string', minLength: 1, maxLength: 255, pattern: emailRegex.source },
+                username: { type: 'string', minLength: 1, maxLength: 15 },
+                first_name: { type: 'string', minLength: 1, maxLength: 30 },
+                last_name: { type: 'string', minLength: 1, maxLength: 30 },
             },
             required: ['email', 'username', 'first_name', 'last_name']
         }
@@ -22,8 +22,8 @@ module.exports = async function (fastify, opts) {
         body: {
             type: 'object',
             properties: {
-                id: { type: 'string', minLength: 1 },
-                password: { type: 'string', minLength: 6 }
+                id: { type: 'string', minLength: 1, maxLength: 255 },
+                password: { type: 'string', minLength: 6, maxLength: 255 }
             },
             required: ['id', 'password']
         }
@@ -33,7 +33,7 @@ module.exports = async function (fastify, opts) {
         body: {
             type: 'object',
             properties: {
-                username: { type: 'string', minLength: 1 },
+                username: { type: 'string', minLength: 1, maxLength: 15 },
             },
             required: ['username']
         }
@@ -43,8 +43,8 @@ module.exports = async function (fastify, opts) {
         body: {
             type: 'object',
             properties: {
-                email: { type: 'string', minLength: 1, pattern: emailRegex.source },
-                username: { type: 'string', minLength: 1 }
+                email: { type: 'string', minLength: 1, maxLength: 255, pattern: emailRegex.source },
+                username: { type: 'string', minLength: 1, maxLength: 15 }
             },
             anyOf: [
                 { required: ['email'] },
@@ -58,7 +58,7 @@ module.exports = async function (fastify, opts) {
             type: 'object',
             properties: {
                 token: { type: 'string', minLength: 1 },
-                password: { type: 'string', minLength: 1 },
+                password: { type: 'string', minLength: 1, maxLength: 255 },
             },
             required: ['token', 'password']
         }

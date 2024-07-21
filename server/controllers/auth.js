@@ -1,6 +1,6 @@
-const { hash, compare } = require('bcrypt');
-const { sign } = require('jsonwebtoken');
 const { ErrorHandler, catchError } = require('../utils/error');
+const { sign } = require('jsonwebtoken');
+const { hash, compare } = require('bcrypt');
 const { randomBytes } = require('node:crypto');
 const { sendMail } = require('../utils/mail');
 
@@ -15,14 +15,11 @@ exports.handleGoogleAuth = async function (fastify, request, reply) {
         await fastify.cache.get(cacheKey, async (err, cachedUser) => {
             if (err) throw new ErrorHandler(400, false, 'Failed to get data from cache');
 
-            if (cachedUser) {
-                user = cachedUser.item;
-                console.log("Getting cache google-auth");
-            } else {
+            if (cachedUser) user = cachedUser.item;
+            else {
                 const [db_user] = await fastify.mysql.query('SELECT * FROM users WHERE email=?', [userinfo.email]);
 
                 if (db_user.length > 0) {
-                    console.log("Setting cache google-auth");
                     await fastify.cache.set(cacheKey, db_user[0], 432000, (err) => {
                         if (err) throw new ErrorHandler(400, false, 'Failed to set data in cache');
                     });
@@ -70,11 +67,16 @@ exports.register = async function (fastify, request, reply) {
         const tempPassword = await hash(randomBytes(32).toString('hex'), 10);
 
         const [result] = await fastify.mysql.query(
-            'INSERT INTO users (email, username, first_name, last_name, avatar, password, reset_token, reset_token_expiry) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
-            [email, username, first_name, last_name, avatar, `temp:${tempPassword}`, token, tokenExpiry]
+            'INSERT INTO users (email, username, first_name, last_name, avatar, password) VALUES (?, ?, ?, ?, ?, ?)',
+            [email, username, first_name, last_name, avatar, `temp:${tempPassword}`]
         );
 
         if (result.affectedRows > 0) {
+            await fastify.mysql.query(
+                'INSERT INTO reset (username, token, expiry) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE token=?, expiry=?',
+                [username, token, tokenExpiry, token, tokenExpiry]
+            );
+
             await sendMail(fastify.mailer, {
                 to: email,
                 subject: 'Account Activation',
@@ -99,21 +101,17 @@ exports.register = async function (fastify, request, reply) {
 exports.login = async function (fastify, request, reply) {
     try {
         const { id, password } = request.body;
-
-        let user;
         const cacheKey = `user:${id}`;
+        let user = null;
 
         await fastify.cache.get(cacheKey, async (err, cachedUser) => {
             if (err) throw new ErrorHandler(400, false, 'Failed to get data from cache');
 
-            if (cachedUser) {
-                user = cachedUser.item;
-                console.log("Getting cache login");
-            } else {
+            if (cachedUser) user = cachedUser.item;
+            else {
                 const [db_user] = await fastify.mysql.query(`SELECT * FROM users WHERE ${id.includes('@') ? 'email=?' : 'username=?'}`, [id, id]);
                 if (!db_user.length) throw new ErrorHandler(400, false, "Account doesn't exist");
 
-                console.log("Setting cache login");
                 await fastify.cache.set(cacheKey, db_user[0], 432000, (err) => {
                     if (err) throw new ErrorHandler(400, false, 'Failed to set data in cache');
                 });
@@ -148,21 +146,17 @@ exports.login = async function (fastify, request, reply) {
 exports.autoLogin = async function (fastify, request, reply) {
     try {
         const id = request.user.userId;
-
         const cacheKey = `user:${id}`;
         let user = null;
 
         await fastify.cache.get(cacheKey, async (err, cachedUser) => {
             if (err) throw new ErrorHandler(400, false, 'Failed to get data from cache');
 
-            if (cachedUser) {
-                user = cachedUser.item;
-                console.log("Getting cache auto-login");
-            } else {
+            if (cachedUser) user = cachedUser.item;
+            else {
                 const [db_user] = await fastify.mysql.query('SELECT * FROM users WHERE username=?', [id]);
                 if (!db_user.length) throw new ErrorHandler(400, false, 'Invalid credentials');
 
-                console.log("Setting cache auto-login");
                 await fastify.cache.set(cacheKey, db_user[0], 432000, (err) => {
                     if (err) throw new ErrorHandler(400, false, 'Failed to set data in cache');
                 });
@@ -187,9 +181,7 @@ exports.checkUsername = async function (fastify, request, reply) {
         const { username } = request.body;
 
         const [user] = await fastify.mysql.query('SELECT * FROM users WHERE username=?', [username]);
-        if (user.length) {
-            throw new ErrorHandler(400, false, 'Username already taken');
-        }
+        if (user.length) throw new ErrorHandler(400, false, 'Username already taken');
 
         return reply.code(200).send({
             success: true,
@@ -210,7 +202,10 @@ exports.recoverAccount = async function (fastify, request, reply) {
         const token = randomBytes(32).toString('hex');
         const tokenExpiry = new Date(Date.now() + 3600000);
 
-        await fastify.mysql.query('UPDATE users SET reset_token=?, reset_token_expiry=? WHERE username=?', [token, tokenExpiry, user[0].username]);
+        await fastify.mysql.query(
+            'INSERT INTO reset (username, token, expiry) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE token=?, expiry=?',
+            [user[0].username, token, tokenExpiry, token, tokenExpiry]
+        );
 
         await sendMail(fastify.mailer, {
             to: user[0].email,
@@ -234,25 +229,28 @@ exports.resetPassword = async (fastify, request, reply) => {
     try {
         const { token, password } = request.body;
 
-        const [user] = await fastify.mysql.query('SELECT * FROM users WHERE reset_token=? AND reset_token_expiry>?', [token, new Date()]);
-        if (!user.length) throw new ErrorHandler(400, false, "Invalid or expired token");
+        const [reset] = await fastify.mysql.query('SELECT * FROM reset WHERE token=? AND expiry>?', [token, new Date()]);
+        if (!reset.length) throw new ErrorHandler(400, false, "Invalid or expired token");
 
         const hashedPassword = await hash(password, 10);
 
-        const [result] = await fastify.mysql.query('UPDATE users SET password=?, reset_token=NULL, reset_token_expiry=NULL WHERE username=?', [hashedPassword, user[0].username]);
+        const [result] = await fastify.mysql.query('UPDATE users SET password=? WHERE username=?', [hashedPassword, reset[0].username]);
 
         if (result.affectedRows > 0) {
-            const updatedUser = { ...user[0], password: hashedPassword };
-            const cacheKeys = [`user:${updatedUser.username}`, `user:${updatedUser.email}`];
+            await fastify.mysql.query('DELETE FROM reset WHERE username=?', [reset[0].username]);
 
+            const [updatedUser] = await fastify.mysql.query('SELECT * FROM users WHERE username=?', [reset[0].username]);
+            if (!updatedUser.length) throw new ErrorHandler(400, false, "Account doesn't exists");
+
+            const cacheKeys = [`user:${updatedUser[0].username}`, `user:${updatedUser[0].email}`];
             await Promise.all(cacheKeys.map(cacheKey =>
-                fastify.cache.set(cacheKey, updatedUser, 432000, (err) => {
+                fastify.cache.set(cacheKey, updatedUser[0], 432000, (err) => {
                     if (err) throw new ErrorHandler(400, false, 'Failed to set data in cache');
                 })
             ));
 
             const token = await new Promise((resolve, reject) => {
-                sign({ userId: updatedUser.username }, process.env.JWT_SECRET, { expiresIn: '12h' }, (err, token) => {
+                sign({ userId: updatedUser[0].username }, process.env.JWT_SECRET, { expiresIn: '12h' }, (err, token) => {
                     if (err) reject(err);
                     else resolve(token);
                 });
@@ -262,7 +260,7 @@ exports.resetPassword = async (fastify, request, reply) => {
                 success: true,
                 message: 'Password set successfully',
                 data: {
-                    user: { ...(({ password, reset_token, reset_token_expiry, ...rest }) => rest)(updatedUser) },
+                    user: { ...(({ password, ...rest }) => rest)(updatedUser[0]) },
                     token
                 }
             });

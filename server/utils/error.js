@@ -14,7 +14,6 @@ function catchError(reply, err) {
             message: err.message
         });
     } else {
-        console.log(err);
         return reply.code(500).send({
             success: false,
             message: 'Internal Server Error'
