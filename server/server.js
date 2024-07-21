@@ -20,6 +20,8 @@ fastify.decorate('upload', upload)
 
 fastify.decorate('mysql', require('./db'))
 
+fastify.register(require('@fastify/caching'));
+
 fastify.register(require('@fastify/oauth2'), {
     name: 'googleOAuth2',
     scope: 'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email',
