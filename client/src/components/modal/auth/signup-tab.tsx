@@ -149,6 +149,7 @@ const SignupTab: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
                             typeof registerData.avatar === 'string' ? (
                                 <img
                                     src={registerData.avatar}
+                                    referrerPolicy='no-referrer'
                                     alt='avatar'
                                     style={{ width: '50px', height: '50px', objectFit: 'cover', border: '2px solid var(--body_color)', borderRadius: '50%' }}
                                 />
