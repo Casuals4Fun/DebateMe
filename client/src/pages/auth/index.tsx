@@ -52,4 +52,6 @@ export default function AuthPage() {
             navigate('/auth?type=signup', { replace: true });
         }
     }, [isAuthenticated, location.search, navigate, route, setAuthTab, setTempUser]);
+
+    return <></>
 }
