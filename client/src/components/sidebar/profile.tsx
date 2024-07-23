@@ -84,7 +84,7 @@ const Profile: React.FC<ProfileProps> = ({ isVisible }) => {
                         onClick={handleToggleMenu}
                     >
                         {user.avatar ? (
-                            <img src={user.avatar} alt='' loading='lazy' />
+                            <img src={user.avatar} alt='' loading='lazy' referrerPolicy='no-referrer' />
                         ) : (
                             <FaRegUser style={{ width: '50%', height: '50%' }} />
                         )}
@@ -109,7 +109,7 @@ const Profile: React.FC<ProfileProps> = ({ isVisible }) => {
                         <div className='profile-wrapper'>
                             <Link to={user.username} className='modal-profile__image' onClick={handleToggleMenu}>
                                 {user.avatar ? (
-                                    <img src={user.avatar} alt='' loading='lazy' />
+                                    <img src={user.avatar} alt='' loading='lazy' referrerPolicy='no-referrer' />
                                 ) : (
                                     <FaRegUser style={{ width: '50%', height: '50%' }} />
                                 )}

@@ -61,7 +61,7 @@ const CreateDebatePage: React.FC<CreateProps> = ({ isVisible, isFullscreen }) =>
 
             <Preview isPreview={isPreview} editorRef={editorRef} debateData={debateData} />
 
-            <div className={`debate-btns ${isVisible ? 'reveal' : 'hide'} ${isFullscreen ? 'w-full' : ''}`}>
+            <div className={`debate-btns ${isVisible ? 'reveal' : 'hide'} ${isFullscreen ? '' : 'w-full'}`}>
                 <button
                     type='button'
                     onClick={handlePreviewToggle}
