@@ -1,5 +1,5 @@
 import "./open-debate-card.css"
-import { useNavigate, Link } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { useNavStore } from "../../store/useNavStore"
 import { MdModeComment } from "react-icons/md"
 import { IoCaretUpSharp } from "react-icons/io5"
@@ -7,11 +7,11 @@ import useFormatNumber from "../../hooks/useFormatNumber"
 import LoadingSkeleton from "../loading/skeleton"
 
 const OpenDebateCard = () => {
-    const navigate = useNavigate();
-    const { sidebar } = useNavStore();
+    const navigate = useNavigate()
+    const { sidebar } = useNavStore()
 
     const handleProfileClick = (username: string) => {
-        navigate(`/${username}`);
+        navigate(`/${username}`)
     }
 
     return (
@@ -20,7 +20,6 @@ const OpenDebateCard = () => {
                 <h2 title='Artificial Intelligence – Is AI good for society or not? ↗' onClick={() => navigate('/')}>
                     Artificial Intelligence – Is AI good for society or not?
                 </h2>
-                <Link to='/'>Debate</Link>
             </div>
             <p className='debate-body'>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Non labore necessitatibus reiciendis rem ad perferendis, id officia omnis voluptas eius veritatis explicabo harum! Vero porro labore quo ab aut. Nesciunt!
@@ -53,12 +52,11 @@ const OpenDebateCard = () => {
 }
 
 const OpenDebateLoadingCard = () => {
-    const { sidebar } = useNavStore();
+    const { sidebar } = useNavStore()
 
     return (
         <div id='open-card-loading' className={sidebar ? 'card-break' : ''}>
             <div className='debate-header'>
-                <LoadingSkeleton />
                 <LoadingSkeleton />
             </div>
             <div className='debate-body'>

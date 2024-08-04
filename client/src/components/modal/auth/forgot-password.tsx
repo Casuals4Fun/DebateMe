@@ -5,44 +5,44 @@ import { emailRegex } from "../../../data/regex"
 import { LoadingSVG } from "../../loading/svg"
 
 const ForgotPassword = () => {
-    const navigate = useNavigate();
+    const navigate = useNavigate()
 
     const [forgotData, setForgotData] = useState({
         email: "",
         username: ""
-    });
-    const [isSubmitted, setIsSubmitted] = useState(false);
-    const [validationState, setValidationState] = useState(true);
+    })
+    const [isSubmitted, setIsSubmitted] = useState(false)
+    const [validationState, setValidationState] = useState(true)
 
     const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target;
+        const { name, value } = e.target
 
         setForgotData(() => ({
             email: name === "email" ? value : "",
             username: name === "username" ? value : ""
-        }));
+        }))
 
-        setValidationState(!!value);
-    }, []);
+        setValidationState(!!value)
+    }, [])
 
     const handleForgotSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        setIsSubmitted(true);
+        e.preventDefault()
+        setIsSubmitted(true)
 
-        const trimmedEmail = forgotData.email.trim();
-        const trimmedUsername = forgotData.username.trim();
+        const trimmedEmail = forgotData.email.trim()
+        const trimmedUsername = forgotData.username.trim()
 
         setForgotData(prevState => ({
             ...prevState,
             email: trimmedEmail,
             username: trimmedUsername
-        }));
+        }))
 
-        setValidationState(!!trimmedEmail || !!trimmedUsername);
+        setValidationState(!!trimmedEmail || !!trimmedUsername)
 
         if (trimmedEmail && !emailRegex.test(trimmedEmail)) {
-            setIsSubmitted(false);
-            return toast.warning('Invalid email address');
+            setIsSubmitted(false)
+            return toast.warning('Invalid email address')
         }
 
         if (trimmedEmail || trimmedUsername) {
@@ -51,27 +51,27 @@ const ForgotPassword = () => {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(trimmedEmail ? { email: trimmedEmail } : { username: trimmedUsername })
-                });
+                })
 
-                const response = await res.json();
+                const response = await res.json()
                 if (response.success) {
-                    toast.success(response.message);
+                    toast.success(response.message)
                 } else {
                     if (response.message === 'Validation failed') {
-                        toast.error(`${response.errors[0].message.charAt(0).toUpperCase() + response.errors[0].message.slice(1)}`);
+                        toast.error(`${response.errors[0].message.charAt(0).toUpperCase() + response.errors[0].message.slice(1)}`)
                     } else {
-                        toast.error(response.message);
+                        toast.error(response.message)
                     }
                 }
             } catch (error) {
-                toast.error('Something went wrong. Try again later!');
+                toast.error('Something went wrong. Try again later!')
             } finally {
-                setIsSubmitted(false);
+                setIsSubmitted(false)
             }
         } else {
-            setTimeout(() => setIsSubmitted(false), 500);
+            setTimeout(() => setIsSubmitted(false), 500)
         }
-    };
+    }
 
     return (
         <div id='forgot'>

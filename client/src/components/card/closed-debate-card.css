@@ -30,11 +30,12 @@
 }
 
 #closed-card .left h2 {
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 600;
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 2;
+    line-clamp: 2;
     -webkit-box-orient: vertical;
     cursor: pointer;
 }
@@ -45,7 +46,7 @@
 
 #closed-card-loading .left .topic .loading-skeleton {
     max-width: 300px;
-    height: 25px;
+    height: 28px;
     border-radius: 30px;
 }
 
@@ -58,7 +59,7 @@
 
 #closed-card-loading .left .description .loading-skeleton {
     width: 100%;
-    height: 17px;
+    height: 18px;
     border-radius: 30px;
 }
 
@@ -66,9 +67,10 @@
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 5;
+    line-clamp: 5;
     -webkit-box-orient: vertical;
     padding-top: 10px;
-    font-size: 16px;
+    font-size: 17px;
     color: var(--card_color_secondary);
 }
 
@@ -183,6 +185,7 @@
 
 #closed-card-loading .right .debate-bar {
     margin-top: 10px;
+    gap: 2.5px;
 }
 
 #closed-card-loading .right .debate-bar .loading-skeleton {
@@ -234,14 +237,6 @@
         padding-top: 10px;
     }
 
-    #closed-card .left p {
-        font-size: 15px;
-    }
-
-    #closed-card-loading .left .description .loading-skeleton {
-        height: 16px;
-    }
-
     #closed-card .left a,
     #closed-card-loading .left .view .loading-skeleton {
         display: none;
@@ -265,14 +260,6 @@
 }
 
 @media screen and (max-width: 480px) {
-    #closed-card .left h2 {
-        font-size: 18px;
-    }
-
-    #closed-card-loading .left .topic .loading-skeleton {
-        height: 23px;
-    }
-
     #closed-card .divider,
     #closed-card-loading .divider {
         margin-top: 20px;

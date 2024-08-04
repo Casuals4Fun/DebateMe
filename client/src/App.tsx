@@ -19,29 +19,29 @@ import NotificationPage from "./pages/notifications"
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa"
 
 export default function App() {
-  const { setRoute, setUser, setIsAuthenticated, authTab, setAuthTab } = useAuthStore();
-  const { expand, sidebar, setSidebar } = useNavStore();
+  const { setRoute, setUser, setIsAuthenticated, authTab, setAuthTab } = useAuthStore()
+  const { expand, sidebar, setSidebar } = useNavStore()
 
-  const mainRef = useRef<HTMLDivElement>(null);
-  const lastScrollTop = useRef<number>(0);
-  const [isScrollingUp, setIsScrollingUp] = useState<boolean>(true);
+  const mainRef = useRef<HTMLDivElement>(null)
+  const lastScrollTop = useRef<number>(0)
+  const [isScrollingUp, setIsScrollingUp] = useState<boolean>(true)
 
   useEffect(() => {
-    document.body.setAttribute('data-theme', localStorage.getItem('theme') === Theme.Light ? Theme.Light : Theme.Dark);
+    document.body.setAttribute('data-theme', localStorage.getItem('theme') === Theme.Light ? Theme.Light : Theme.Dark)
 
-    handleAutoLogin(setRoute, setUser, setIsAuthenticated, setAuthTab);
+    handleAutoLogin(setRoute, setUser, setIsAuthenticated, setAuthTab)
 
     const handleScroll = () => {
-      const st = mainRef.current?.scrollTop ?? 0;
-      setIsScrollingUp(st <= lastScrollTop.current);
-      lastScrollTop.current = Math.max(st, 0);
-    };
+      const st = mainRef.current?.scrollTop ?? 0
+      setIsScrollingUp(st <= lastScrollTop.current)
+      lastScrollTop.current = Math.max(st, 0)
+    }
 
-    const mainElement = mainRef.current;
-    mainElement?.addEventListener('scroll', handleScroll, { passive: true });
-    return () => mainElement?.removeEventListener('scroll', handleScroll);
+    const mainElement = mainRef.current
+    mainElement?.addEventListener('scroll', handleScroll, { passive: true })
+    return () => mainElement?.removeEventListener('scroll', handleScroll)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [])
 
   return (
     <div id='app'>

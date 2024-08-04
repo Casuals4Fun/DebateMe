@@ -56,7 +56,6 @@
 #left-sidebar .links__wrapper svg {
     width: 30px;
     height: 30px;
-    transition: color 0.15s ease-in-out;
 }
 
 #left-sidebar .links__wrapper p {

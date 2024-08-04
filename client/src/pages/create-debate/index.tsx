@@ -11,30 +11,30 @@ interface CreateProps {
 }
 
 const CreateDebatePage: React.FC<CreateProps> = ({ isVisible, isFullscreen }) => {
-    const editorRef = useRef<RichTextEditorComponent>(null);
-    const [debateData, setDebateData] = useState({ title: '', body: '' });
-    const [isPreview, setIsPreview] = useState<boolean>(false);
+    const editorRef = useRef<RichTextEditorComponent>(null)
+    const [debateData, setDebateData] = useState({ title: '', body: '' })
+    const [isPreview, setIsPreview] = useState<boolean>(false)
 
     const handlePreviewToggle = () => {
         if (!isPreview) {
             if (editorRef.current) {
-                const content = editorRef.current.getHtml();
-                setDebateData({ ...debateData, body: content });
+                const content = editorRef.current.getHtml()
+                setDebateData({ ...debateData, body: content })
             }
         }
 
-        if (!debateData.title.trim()) return toast.warning("Enter debate title");
+        if (!debateData.title.trim()) return toast.warning("Enter debate title")
 
-        const tempDiv = document.createElement("div");
-        tempDiv.innerHTML = editorRef.current?.value || '';
-        const bodyText = tempDiv.textContent?.replace(/\u200B/g, '').trim();
+        const tempDiv = document.createElement("div")
+        tempDiv.innerHTML = editorRef.current?.value || ''
+        const bodyText = tempDiv.textContent?.replace(/\u200B/g, '').trim()
 
         if (!bodyText || bodyText === '<br>' || bodyText === '<br><br>' || bodyText === '<br><br><br>') {
-            return toast.warning("Enter debate body");
+            return toast.warning("Enter debate body")
         }
 
-        setIsPreview(!isPreview);
-    };
+        setIsPreview(!isPreview)
+    }
 
     return (
         <div id='create'>

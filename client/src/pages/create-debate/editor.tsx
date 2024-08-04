@@ -67,10 +67,10 @@ const Editor: React.FC<EditorProps> = ({ editorRef, rteValue, isEditable, setDeb
         'ClearFormat',
         '|',
         'EmojiPicker',
-    ];
+    ]
     const toolbarSettings = {
         items: items,
-    };
+    }
     const quickToolbarSettings = {
         table: [
             'TableHeader',
@@ -84,7 +84,7 @@ const Editor: React.FC<EditorProps> = ({ editorRef, rteValue, isEditable, setDeb
             'Styles',
         ],
         showOnRightClick: true,
-    };
+    }
 
     return (
         <RichTextEditorComponent
@@ -104,7 +104,7 @@ const Editor: React.FC<EditorProps> = ({ editorRef, rteValue, isEditable, setDeb
                     setDebateData(prevState => ({
                         ...prevState,
                         body: e.value
-                    }));
+                    }))
                 }
             }}
         >

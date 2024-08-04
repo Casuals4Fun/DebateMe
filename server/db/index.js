@@ -1,4 +1,4 @@
-const { createPool } = require('mysql2/promise');
+const { createPool } = require('mysql2/promise')
 
 const pool = createPool({
     host: process.env.DB_HOST,
@@ -12,6 +12,6 @@ const pool = createPool({
     queueLimit: 0,
     enableKeepAlive: true,
     keepAliveInitialDelay: 0
-});
+})
 
-module.exports = pool;
+module.exports = pool

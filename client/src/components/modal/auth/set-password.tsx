@@ -5,60 +5,60 @@ import { AuthStatus, AuthTab, useAuthStore } from "../../../store/useAuthStore"
 import { LoadingSVG } from "../../loading/svg"
 
 const SetPassword = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
-  const { setUser, setIsAuthenticated, setAuthTab } = useAuthStore();
+  const { setUser, setIsAuthenticated, setAuthTab } = useAuthStore()
 
   const [resetData, setResetData] = useState({
     new: "",
     confirm: ""
-  });
+  })
 
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false)
   const [validationState, setValidationState] = useState({
     isNewValid: true,
     isConfirmValid: true
-  });
+  })
 
   const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
+    const { name, value } = e.target
     setResetData(prevState => ({
       ...prevState,
       [name]: value
-    }));
+    }))
 
     setValidationState(prevState => ({
       ...prevState,
       [`is${name.charAt(0).toUpperCase() + name.slice(1)}Valid`]: !!value
-    }));
-  }, []);
+    }))
+  }, [])
 
   const handleResetSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setIsSubmitted(true);
+    e.preventDefault()
+    setIsSubmitted(true)
 
-    const trimmedNew = resetData.new.trim();
-    const trimmedConfirm = resetData.confirm.trim();
+    const trimmedNew = resetData.new.trim()
+    const trimmedConfirm = resetData.confirm.trim()
 
     setResetData(prevState => ({
       ...prevState,
       new: trimmedNew,
       confirm: trimmedConfirm
-    }));
+    }))
 
     setValidationState({
       isNewValid: !!trimmedNew,
       isConfirmValid: !!trimmedConfirm
-    });
+    })
 
     if (trimmedNew !== trimmedConfirm) {
-      setTimeout(() => setIsSubmitted(false), 500);
-      return toast.error("Password doesn't match");
+      setTimeout(() => setIsSubmitted(false), 500)
+      return toast.error("Password doesn't match")
     }
     else {
       if (trimmedNew.length < 6) {
-        setTimeout(() => setIsSubmitted(false), 500);
-        return toast.warning('Password should be atleast 6 digits');
+        setTimeout(() => setIsSubmitted(false), 500)
+        return toast.warning('Password should be atleast 6 digits')
       }
 
       await fetch(`${import.meta.env.VITE_SERVER_URL}/api/auth/reset-password`, {
@@ -68,21 +68,21 @@ const SetPassword = () => {
       }).then(res => res.json())
         .then(response => {
           if (response.success) {
-            setUser(response.data.user);
-            setIsAuthenticated(AuthStatus.Authenticated);
-            localStorage.setItem('token', response.data.token);
-            setAuthTab(AuthTab.Closed);
-            navigate('/');
-            toast.success(response.message);
+            setUser(response.data.user)
+            setIsAuthenticated(AuthStatus.Authenticated)
+            localStorage.setItem('token', response.data.token)
+            setAuthTab(AuthTab.Closed)
+            navigate('/')
+            toast.success(response.message)
           }
           else {
             if (response.message === 'Validation failed') {
-              return toast.error(`${response.errors[0].field.charAt(0).toUpperCase() + response.errors[0].field.slice(1)} ${response.errors[0].message}`);
+              return toast.error(`${response.errors[0].field.charAt(0).toUpperCase() + response.errors[0].field.slice(1)} ${response.errors[0].message}`)
             }
-            toast.error(response.message);
+            toast.error(response.message)
           }
         })
-        .finally(() => setIsSubmitted(false));
+        .finally(() => setIsSubmitted(false))
     }
   }
 

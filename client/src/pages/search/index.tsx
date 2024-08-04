@@ -6,22 +6,22 @@ import { IoMdClose } from "react-icons/io"
 import { PiArrowBendUpRightBold } from "react-icons/pi"
 
 export default function SearchPage() {
-    const location = useLocation();
-    const navigate = useNavigate();
+    const location = useLocation()
+    const navigate = useNavigate()
 
-    const [searchTerm, setSearchTerm] = useState("");
+    const [searchTerm, setSearchTerm] = useState("")
 
     useEffect(() => {
-        const urlParams = new URLSearchParams(location.search);
-        const termValue = urlParams.get('term');
-        const categoryValue = urlParams.get('category');
+        const urlParams = new URLSearchParams(location.search)
+        const termValue = urlParams.get('term')
+        const categoryValue = urlParams.get('category')
 
-        if (termValue === "" || categoryValue === "") navigate("/");
+        if (termValue === "" || categoryValue === "") navigate("/")
         else {
-            const searchValue = termValue ?? categoryValue ?? '';
-            setSearchTerm(searchValue);
+            const searchValue = termValue ?? categoryValue ?? ''
+            setSearchTerm(searchValue)
         }
-    }, [location.search, navigate]);
+    }, [location.search, navigate])
 
     return (
         <div id='search'>
@@ -37,6 +37,7 @@ export default function SearchPage() {
                             <IoMdClose size={20} />
                         </button>
                     </div>
+                    <p>No debates found</p>
                 </>
             ) : (
                 <div className='search-here'>

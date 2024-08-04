@@ -15,47 +15,47 @@ interface ProfileProps {
 }
 
 const Profile: React.FC<ProfileProps> = ({ isVisible }) => {
-    const navigate = useNavigate();
-    const { expand, setExpand } = useNavStore();
-    const { isAuthenticated, setIsAuthenticated, user, setUser, authTab, setAuthTab } = useAuthStore();
+    const navigate = useNavigate()
+    const { expand, setExpand } = useNavStore()
+    const { isAuthenticated, setIsAuthenticated, user, setUser, authTab, setAuthTab } = useAuthStore()
 
     const handleToggleMenu = useCallback(() => {
-        setExpand(!expand);
-        const mainElement = document.querySelector('#main') as HTMLElement;
+        setExpand(!expand)
+        const mainElement = document.querySelector('#main') as HTMLElement
         if (mainElement) {
             if (window.matchMedia("(max-width: 480px)").matches) {
-                if (expand) mainElement.style.overflow = '';
-                else mainElement.style.overflow = 'hidden';
+                if (expand) mainElement.style.overflow = ''
+                else mainElement.style.overflow = 'hidden'
             }
-            else mainElement.style.overflow = '';
+            else mainElement.style.overflow = ''
         }
-    }, [expand, setExpand]);
+    }, [expand, setExpand])
 
     const handleLogout = () => {
-        handleToggleMenu();
-        navigate('/');
-        setIsAuthenticated(AuthStatus.Failed);
+        handleToggleMenu()
+        navigate('/')
+        setIsAuthenticated(AuthStatus.Failed)
         setUser({
             username: "",
             email: "",
             first_name: "",
             last_name: "",
             avatar: ""
-        });
-        localStorage.removeItem('token');
-    };
+        })
+        localStorage.removeItem('token')
+    }
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
-            const target = event.target as HTMLElement;
+            const target = event.target as HTMLElement
             if (expand && !target.closest(".profile__modal") && !target.closest(".profile__image")) {
-                handleToggleMenu();
+                handleToggleMenu()
             }
-        };
+        }
 
-        document.addEventListener("mousedown", handleClickOutside);
-        return () => document.removeEventListener("mousedown", handleClickOutside);
-    }, [expand, handleToggleMenu]);
+        document.addEventListener("mousedown", handleClickOutside)
+        return () => document.removeEventListener("mousedown", handleClickOutside)
+    }, [expand, handleToggleMenu])
 
     return (
         <div className='profile__wrapper'>

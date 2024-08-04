@@ -55,7 +55,7 @@
 #explore .explore-btns {
     display: flex;
     flex-wrap: wrap;
-    gap: 25px;
+    gap: 20px;
 }
 
 #explore .explore-btns a {
@@ -65,10 +65,4 @@
 
 #explore .explore-btns a:hover {
     text-decoration: underline;
-}
-
-@media screen and (max-width: 480px) {
-    #explore .explore-btns {
-        gap: 20px;
-    }
 }

@@ -11,19 +11,19 @@ import ResetPassword from "./set-password"
 import { IoCloseOutline } from "react-icons/io5"
 
 type RegisterData = {
-    avatar: string | File;
-    username: string;
-    first_name: string;
-    last_name: string;
-    email: string;
-};
+    avatar: string | File
+    username: string
+    first_name: string
+    last_name: string
+    email: string
+}
 
 const AuthModal = () => {
-    const location = useLocation();
-    const navigate = useNavigate();
+    const location = useLocation()
+    const navigate = useNavigate()
 
-    const { authTab, setAuthTab } = useAuthStore();
-    const { tempUser } = useTempStore();
+    const { authTab, setAuthTab } = useAuthStore()
+    const { tempUser } = useTempStore()
 
     const [registerData, setRegisterData] = useState<RegisterData>(() => ({
         avatar: tempUser.avatar || "",
@@ -31,21 +31,21 @@ const AuthModal = () => {
         first_name: tempUser.first_name || "",
         last_name: tempUser.last_name || "",
         email: tempUser.email || ""
-    }));
+    }))
 
     const handleCloseModal = () => {
-        if (location.pathname !== '/auth') setAuthTab(AuthTab.Closed);
+        if (location.pathname !== '/auth') setAuthTab(AuthTab.Closed)
         else {
-            navigate('/');
-            setAuthTab(AuthTab.Closed);
+            navigate('/')
+            setAuthTab(AuthTab.Closed)
         }
-    };
+    }
 
     const handleBackgroundClick = (event: React.MouseEvent<HTMLDivElement>) => {
         if (location.pathname !== '/auth' && event.target === event.currentTarget) {
-            setAuthTab(AuthTab.Closed);
+            setAuthTab(AuthTab.Closed)
         }
-    };
+    }
 
     return (
         <div id='auth-modal' onClick={handleBackgroundClick}>
