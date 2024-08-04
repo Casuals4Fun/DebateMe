@@ -9,9 +9,9 @@ interface BarProps {
 }
 
 const DebateBar: React.FC<BarProps> = ({ debateFrom, debateBy }) => {
-    const totalVotes = debateFrom + debateBy;
-    const leftPercentage = (debateFrom / totalVotes) * 100;
-    const rightPercentage = (debateBy / totalVotes) * 100;
+    const totalVotes = debateFrom + debateBy
+    const leftPercentage = (debateFrom / totalVotes) * 100
+    const rightPercentage = (debateBy / totalVotes) * 100
 
     return (
         <div className='debate-bar'>

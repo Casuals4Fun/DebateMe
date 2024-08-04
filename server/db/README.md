@@ -8,7 +8,7 @@ CREATE TABLE users (
     last_name VARCHAR(30) NOT NULL,
     avatar VARCHAR(255),
     PRIMARY KEY (username)
-);
+)
 ```
 
 ## Table `reset`
@@ -19,5 +19,5 @@ CREATE TABLE reset (
     expiry DATETIME NOT NULL,
     PRIMARY KEY (username),
     FOREIGN KEY (username) REFERENCES users(username) ON DELETE CASCADE
-);
+)
 ```

@@ -13,23 +13,23 @@ interface SidebarProps {
 }
 
 const LeftSidebar: React.FC<SidebarProps> = ({ isVisible }) => {
-  const location = useLocation();
-  const navigate = useNavigate();
+  const location = useLocation()
+  const navigate = useNavigate()
 
-  const { setRoute, isAuthenticated, setAuthTab } = useAuthStore();
-  const { sidebar } = useNavStore();
+  const { setRoute, isAuthenticated, setAuthTab } = useAuthStore()
+  const { sidebar } = useNavStore()
 
   const handleLinkClick = (href: string, name: string) => {
     if (name === "Create Debate") {
       if (isAuthenticated === AuthStatus.Failed) {
-        setRoute(href);
-        setAuthTab(AuthTab.Login);
+        setRoute(href)
+        setAuthTab(AuthTab.Login)
       }
-      else if (isAuthenticated === AuthStatus.Authenticated) navigate(href);
-      else return toast.warning('Try again...');
+      else if (isAuthenticated === AuthStatus.Authenticated) navigate(href)
+      else return toast.warning('Try again...')
     }
-    else navigate(href);
-  };
+    else navigate(href)
+  }
 
   return (
     <div id='left-sidebar' className={`${isVisible ? 'reveal' : 'hide'} ${sidebar ? 'close' : 'open'}`}>

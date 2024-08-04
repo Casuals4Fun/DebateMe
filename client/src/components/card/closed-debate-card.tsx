@@ -7,11 +7,11 @@ import useFormatNumber from "../../hooks/useFormatNumber"
 import LoadingSkeleton from "../loading/skeleton"
 
 const ClosedDebateCard = () => {
-    const navigate = useNavigate();
-    const { sidebar } = useNavStore();
+    const navigate = useNavigate()
+    const { sidebar } = useNavStore()
 
     const handleProfileClick = (username: string) => {
-        navigate(`/${username}`);
+        navigate(`/${username}`)
     }
 
     return (
@@ -56,7 +56,7 @@ const ClosedDebateCard = () => {
 }
 
 const ClosedDebateLoadingCard = () => {
-    const { sidebar } = useNavStore();
+    const { sidebar } = useNavStore()
 
     return (
         <div id='closed-card-loading' className={sidebar ? 'card-break' : ''}>
@@ -86,6 +86,7 @@ const ClosedDebateLoadingCard = () => {
                     </div>
                 </div>
                 <div className='debate-bar'>
+                    <LoadingSkeleton />
                     <LoadingSkeleton />
                 </div>
                 <div className='debate-info'>

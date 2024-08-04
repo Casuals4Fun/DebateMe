@@ -6,58 +6,58 @@ import { FcGoogle } from "react-icons/fc"
 import { LoadingSVG } from "../../loading/svg"
 
 const LoginTab = () => {
-    const navigate = useNavigate();
+    const navigate = useNavigate()
 
-    const { route, setAuthTab, isAuthenticated, setIsAuthenticated, setUser } = useAuthStore();
+    const { route, setAuthTab, isAuthenticated, setIsAuthenticated, setUser } = useAuthStore()
 
     const [loginData, setLoginData] = useState({
         id: "",
         password: ""
-    });
+    })
 
-    const [isSubmitted, setIsSubmitted] = useState(false);
+    const [isSubmitted, setIsSubmitted] = useState(false)
     const [validationState, setValidationState] = useState({
         isIdValid: true,
         isPasswordValid: true
-    });
+    })
 
     const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target;
+        const { name, value } = e.target
         setLoginData(prevState => ({
             ...prevState,
             [name]: value
-        }));
+        }))
 
         setValidationState(prevState => ({
             ...prevState,
             [`is${name.charAt(0).toUpperCase() + name.slice(1)}Valid`]: !!value
-        }));
-    }, []);
+        }))
+    }, [])
 
     const handleKeyPress = useCallback((e: React.KeyboardEvent<HTMLInputElement>) => {
-        if (e.key === ' ') e.preventDefault();
-    }, []);
+        if (e.key === ' ') e.preventDefault()
+    }, [])
 
     const handleLoginSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        setIsSubmitted(true);
+        e.preventDefault()
+        setIsSubmitted(true)
 
-        const trimmedId = loginData.id.trim();
-        const trimmedPassword = loginData.password.trim();
+        const trimmedId = loginData.id.trim()
+        const trimmedPassword = loginData.password.trim()
 
         setLoginData(prevState => ({
             ...prevState,
             id: trimmedId,
             password: trimmedPassword
-        }));
+        }))
 
         setValidationState({
             isIdValid: !!trimmedId,
             isPasswordValid: !!trimmedPassword
-        });
+        })
 
         if (trimmedId && trimmedPassword) {
-            setIsAuthenticated(AuthStatus.Authenticating);
+            setIsAuthenticated(AuthStatus.Authenticating)
             await fetch(`${import.meta.env.VITE_SERVER_URL}/api/auth/login`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -66,15 +66,15 @@ const LoginTab = () => {
                 .then(res => res.json())
                 .then(response => {
                     if (response.success) {
-                        setUser(response.data.user);
-                        setIsAuthenticated(AuthStatus.Authenticated);
-                        localStorage.setItem('token', response.data.token);
-                        setAuthTab(AuthTab.Closed);
-                        navigate(route);
-                        toast.success(response.message);
+                        setUser(response.data.user)
+                        setIsAuthenticated(AuthStatus.Authenticated)
+                        localStorage.setItem('token', response.data.token)
+                        setAuthTab(AuthTab.Closed)
+                        navigate(route)
+                        toast.success(response.message)
                     }
                     else {
-                        setIsAuthenticated(AuthStatus.Failed);
+                        setIsAuthenticated(AuthStatus.Failed)
                         if (response.message === 'Validation failed') {
                             return toast.error(`${response.errors[0].field.charAt(0).toUpperCase() + response.errors[0].field.slice(1)} ${response.errors[0].message}`)
                         }
@@ -82,9 +82,9 @@ const LoginTab = () => {
                     }
                 })
                 .catch(() => setIsAuthenticated(AuthStatus.Failed))
-                .finally(() => setIsSubmitted(false));
+                .finally(() => setIsSubmitted(false))
         }
-    };
+    }
 
     return (
         <div id='login'>

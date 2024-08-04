@@ -9,24 +9,24 @@ interface ExploreProps {
 }
 
 const Explore: React.FC<ExploreProps> = ({ term }) => {
-    const navigate = useNavigate();
+    const navigate = useNavigate()
 
-    const inputRef = useRef<HTMLInputElement | null>(null);
-    const [searchTerm, setSearchTerm] = useState("");
-    const [formSubmitted, setFormSubmitted] = useState(false);
+    const inputRef = useRef<HTMLInputElement | null>(null)
+    const [searchTerm, setSearchTerm] = useState("")
+    const [formSubmitted, setFormSubmitted] = useState(false)
 
     const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
+        e.preventDefault()
 
         if (!searchTerm.trim()) {
-            setFormSubmitted(true);
-            setTimeout(() => setFormSubmitted(false), 500);
-            return;
+            setFormSubmitted(true)
+            setTimeout(() => setFormSubmitted(false), 500)
+            return
         }
-        navigate(`/search?term=${searchTerm.trim()}`);
-        setFormSubmitted(true);
-        inputRef.current?.blur();
-    };
+        navigate(`/search?term=${searchTerm.trim()}`)
+        setFormSubmitted(true)
+        inputRef.current?.blur()
+    }
 
     return (
         <div id='explore'>
@@ -39,8 +39,8 @@ const Explore: React.FC<ExploreProps> = ({ term }) => {
                         placeholder='Explore...'
                         value={searchTerm}
                         onChange={e => {
-                            setSearchTerm(e.target.value);
-                            setFormSubmitted(false);
+                            setSearchTerm(e.target.value)
+                            setFormSubmitted(false)
                         }}
                         style={{ borderColor: formSubmitted && searchTerm.trim() === '' ? 'var(--body_color)' : '' }}
                         className={formSubmitted && searchTerm.trim() === '' ? 'shake' : ''}
@@ -57,7 +57,7 @@ const Explore: React.FC<ExploreProps> = ({ term }) => {
                 <div className='explore-btns'>
                     {categoriesData.map((item, index) => (
                         <Link to={`/search?category=${item}`} key={index}>
-                            #{item}
+                            {item}
                         </Link>
                     ))}
                 </div>

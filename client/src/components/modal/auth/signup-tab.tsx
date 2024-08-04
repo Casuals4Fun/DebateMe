@@ -10,69 +10,69 @@ import { GrCloudUpload } from "react-icons/gr"
 import { IoPersonCircleOutline } from "react-icons/io5"
 
 const SignupTab: React.FC<RegisterDataProps> = ({ registerData, setRegisterData }) => {
-    const navigate = useNavigate();
+    const navigate = useNavigate()
 
-    const { setAuthTab } = useAuthStore();
-    const { clearTempUser } = useTempStore();
+    const { setAuthTab } = useAuthStore()
+    const { clearTempUser } = useTempStore()
 
-    const [term, setTerm] = useState<boolean>(false);
-    const [isSubmitted, setIsSubmitted] = useState(false);
+    const [term, setTerm] = useState<boolean>(false)
+    const [isSubmitted, setIsSubmitted] = useState(false)
     const [validationState, setValidationState] = useState({
         isUsernameValid: true,
         isFirstNameValid: true,
         isLastNameValid: true,
         isEmailValid: true,
-    });
+    })
 
     const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target;
+        const { name, value } = e.target
 
-        let isValid = true;
+        let isValid = true
         if (name === 'username') {
-            isValid = value.length > 0 && usernameRegex.test(value);
+            isValid = value.length > 0 && usernameRegex.test(value)
         } else if (name === 'first_name' || name === 'last_name') {
-            isValid = value.length > 0 && !specialCharRegex.test(value);
+            isValid = value.length > 0 && !specialCharRegex.test(value)
         }
 
         if (!isValid && value.length > 0) {
-            return toast.warning('Special characters not allowed.');
+            return toast.warning('Special characters not allowed.')
         }
 
         setRegisterData(prevState => ({
             ...prevState,
             [name]: value
-        }));
+        }))
 
         setValidationState(prevState => ({
             ...prevState,
             [`is${name.charAt(0).toUpperCase() + name.slice(1)}Valid`]: !!value
-        }));
-    }, [setRegisterData]);
+        }))
+    }, [setRegisterData])
 
     const handleKeyPress = useCallback((e: React.KeyboardEvent<HTMLInputElement>) => {
-        if (e.key === ' ') e.preventDefault();
-    }, []);
+        if (e.key === ' ') e.preventDefault()
+    }, [])
 
-    const handleFileInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        if (event.target.files && event.target.files.length > 0) {
-            const file = event.target.files[0];
-            if (file) {
-                setRegisterData(prevState => ({
-                    ...prevState,
-                    avatar: file
-                }));
-            }
-        }
-    };
+    // const handleFileInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    //     if (event.target.files && event.target.files.length > 0) {
+    //         const file = event.target.files[0]
+    //         if (file) {
+    //             setRegisterData(prevState => ({
+    //                 ...prevState,
+    //                 avatar: file
+    //             }))
+    //         }
+    //     }
+    // }
 
     const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        setIsSubmitted(true);
+        e.preventDefault()
+        setIsSubmitted(true)
 
-        const trimmedUsername = registerData.username.trim();
-        const trimmedFirstName = registerData.first_name.trim();
-        const trimmedLastName = registerData.last_name.trim();
-        const trimmedEmail = registerData.email.trim();
+        const trimmedUsername = registerData.username.trim()
+        const trimmedFirstName = registerData.first_name.trim()
+        const trimmedLastName = registerData.last_name.trim()
+        const trimmedEmail = registerData.email.trim()
 
         setRegisterData(prev => ({
             ...prev,
@@ -80,27 +80,27 @@ const SignupTab: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
             first_name: trimmedFirstName,
             last_name: trimmedLastName,
             email: trimmedEmail
-        }));
+        }))
 
         setValidationState({
             isUsernameValid: !!trimmedUsername,
             isFirstNameValid: !!trimmedFirstName,
             isLastNameValid: !!trimmedLastName,
             isEmailValid: !!trimmedEmail
-        });
+        })
 
         if (trimmedUsername && trimmedFirstName && trimmedLastName && trimmedEmail && term) {
             if (!emailRegex.test(trimmedEmail)) {
-                setTimeout(() => setIsSubmitted(false), 500);
-                return toast.warning('Invalid email address');
+                setTimeout(() => setIsSubmitted(false), 500)
+                return toast.warning('Invalid email address')
             }
 
-            const formData = new FormData();
-            formData.append('avatar', registerData.avatar);
-            formData.append('username', trimmedUsername);
-            formData.append('first_name', trimmedFirstName);
-            formData.append('last_name', trimmedLastName);
-            formData.append('email', trimmedEmail);
+            const formData = new FormData()
+            formData.append('avatar', registerData.avatar)
+            formData.append('username', trimmedUsername)
+            formData.append('first_name', trimmedFirstName)
+            formData.append('last_name', trimmedLastName)
+            formData.append('email', trimmedEmail)
 
             await fetch(`${import.meta.env.VITE_SERVER_URL}/api/auth/register`, {
                 method: 'POST',
@@ -109,11 +109,11 @@ const SignupTab: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
                 .then(res => res.json())
                 .then(response => {
                     if (response.success) {
-                        clearTempUser();
-                        setAuthTab(AuthTab.Login);
-                        localStorage.removeItem('username');
-                        toast.success(response.message);
-                        navigate('/');
+                        clearTempUser()
+                        setAuthTab(AuthTab.Login)
+                        localStorage.removeItem('username')
+                        toast.success(response.message)
+                        navigate('/')
                     }
                     else {
                         if (response.message === 'Validation failed') {
@@ -122,12 +122,12 @@ const SignupTab: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
                         toast.error(response.message)
                     }
                 })
-                .finally(() => setIsSubmitted(false));
+                .finally(() => setIsSubmitted(false))
         } else {
-            setTimeout(() => setIsSubmitted(false), 500);
-            return;
+            setTimeout(() => setIsSubmitted(false), 500)
+            return
         }
-    };
+    }
 
     return (
         <div id='signup'>
@@ -139,11 +139,12 @@ const SignupTab: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
                         onClick={() => document.getElementById('user-avatar')?.click()}
                     >
                         <input
-                            type='file'
+                            // type='file'
                             id='user-avatar'
-                            accept='image/*'
+                            // accept='image/*'
                             style={{ display: 'none' }}
-                            onChange={handleFileInputChange}
+                            // onChange={handleFileInputChange}
+                            onClick={() => toast.warning('Currenty under development')}
                         />
                         {registerData.avatar ? (
                             typeof registerData.avatar === 'string' ? (

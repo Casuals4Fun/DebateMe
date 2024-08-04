@@ -10,7 +10,7 @@ interface SidebarProps {
 }
 
 const RightSidebar: React.FC<SidebarProps> = ({ isVisible }) => {
-  const { expand, sidebar } = useNavStore();
+  const { expand, sidebar } = useNavStore()
 
   return (
     <div id='right-sidebar' className={`${isVisible ? 'reveal' : 'hide'} ${sidebar ? 'close' : 'open'}`}>

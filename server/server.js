@@ -11,7 +11,7 @@ const fastify = require('fastify')({
     bodyLimit: 7 * 1024 * 1024
 })
 
-fastify.register(require('@fastify/cors'), { origin: "*" })
+fastify.register(require('@fastify/cors'), { origin: '*' })
 
 fastify.register(require('@fastify/multipart'))
 const multer = require('fastify-multer')
@@ -20,7 +20,7 @@ fastify.decorate('upload', upload)
 
 fastify.decorate('mysql', require('./db'))
 
-fastify.register(require('@fastify/caching'));
+fastify.register(require('@fastify/caching'))
 
 fastify.register(require('@fastify/oauth2'), {
     name: 'googleOAuth2',

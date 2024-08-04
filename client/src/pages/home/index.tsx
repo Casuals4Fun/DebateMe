@@ -6,8 +6,8 @@ import { ClosedDebateCard } from "../../components/card/closed-debate-card"
 import { OpenDebateCard } from "../../components/card/open-debate-card"
 
 export default function HomePage() {
-  const { isAuthenticated } = useAuthStore();
-  const { sidebar } = useNavStore();
+  const { isAuthenticated } = useAuthStore()
+  const { sidebar } = useNavStore()
 
   return (
     <div className={`debates ${sidebar ? 'column-debates' : ''}`}>

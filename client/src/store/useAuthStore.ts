@@ -48,7 +48,7 @@ export const useAuthStore = create<AuthStore>((set) => ({
         avatar: null
     },
     setUser: (data: User) => set({ user: data })
-}));
+}))
 
 interface TempStore {
     tempUser: User
@@ -74,4 +74,4 @@ export const useTempStore = create<TempStore>((set) => ({
             avatar: null
         }
     })
-}));
+}))

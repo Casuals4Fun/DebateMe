@@ -21,4 +21,4 @@ export const categoriesData = [
     "Technology",
     "Travel",
     "Writing"
-];
+]
