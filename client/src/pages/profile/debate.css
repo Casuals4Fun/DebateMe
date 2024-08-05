@@ -138,6 +138,7 @@
 #comment .comment-box .content {
     padding: 15px 0;
     font-size: 20px;
+    line-height: 1.25;
 }
 
 #comment .comment-box .comment-btns {
