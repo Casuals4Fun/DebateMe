@@ -196,7 +196,8 @@
 
 #auth-modal .form__container p {
     width: fit-content;
-    font-size: 17px;
+    font-size: 18px;
+    text-align: center;
 }
 
 #auth-modal .form__container p span {

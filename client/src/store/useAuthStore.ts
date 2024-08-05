@@ -1,4 +1,4 @@
-import { create } from "zustand"
+import { create } from 'zustand'
 
 export enum AuthTab {
     Closed = 'closed',
@@ -34,17 +34,17 @@ interface AuthStore {
 }
 
 export const useAuthStore = create<AuthStore>((set) => ({
-    route: "",
+    route: '',
     setRoute: (navigate: string) => set({ route: navigate }),
     authTab: AuthTab.Closed,
     setAuthTab: (tab: AuthTab) => set({ authTab: tab }),
     isAuthenticated: AuthStatus.Authenticating,
     setIsAuthenticated: (authenticated: AuthStatus) => set({ isAuthenticated: authenticated }),
     user: {
-        username: "",
-        email: "",
-        first_name: "",
-        last_name: "",
+        username: '',
+        email: '',
+        first_name: '',
+        last_name: '',
         avatar: null
     },
     setUser: (data: User) => set({ user: data })
@@ -58,19 +58,19 @@ interface TempStore {
 
 export const useTempStore = create<TempStore>((set) => ({
     tempUser: {
-        username: "",
-        email: "",
-        first_name: "",
-        last_name: "",
+        username: '',
+        email: '',
+        first_name: '',
+        last_name: '',
         avatar: null
     },
     setTempUser: (data: User) => set({ tempUser: data }),
     clearTempUser: () => set({
         tempUser: {
-            username: "",
-            email: "",
-            first_name: "",
-            last_name: "",
+            username: '',
+            email: '',
+            first_name: '',
+            last_name: '',
             avatar: null
         }
     })

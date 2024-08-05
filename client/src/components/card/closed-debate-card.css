@@ -70,18 +70,8 @@
     line-clamp: 5;
     -webkit-box-orient: vertical;
     padding-top: 10px;
-    font-size: 17px;
+    font-size: 18px;
     color: var(--card_color_secondary);
-}
-
-#closed-card .left a {
-    padding-top: 10px;
-    width: fit-content;
-    color: var(--card_color_secondary);
-    text-decoration: underline;
-    font-size: 15px;
-    font-weight: 700;
-    cursor: pointer;
 }
 
 #closed-card-loading .left .view .loading-skeleton {
@@ -185,7 +175,6 @@
 
 #closed-card-loading .right .debate-bar {
     margin-top: 10px;
-    gap: 2.5px;
 }
 
 #closed-card-loading .right .debate-bar .loading-skeleton {

@@ -1,6 +1,6 @@
-import "./style.css"
-import { useNavStore } from "../../store/useNavStore"
-import { ClosedDebateCard, ClosedDebateLoadingCard } from "../../components/card/closed-debate-card"
+import './style.css'
+import { useNavStore } from '../../store/useNavStore'
+import { ClosedDebateCard, ClosedDebateLoadingCard } from '../../components/card/closed-debate-card'
 
 export default function HotTopicsPage() {
     const { sidebar } = useNavStore()

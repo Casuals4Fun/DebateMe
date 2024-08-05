@@ -1,9 +1,9 @@
-import "./style.css"
-import { useRef, useState } from "react"
-import { RichTextEditorComponent } from "@syncfusion/ej2-react-richtexteditor"
-import { toast } from "sonner"
-import Editor from "./editor"
-import Preview from "./preview"
+import './style.css'
+import { useRef, useState } from 'react'
+import { RichTextEditorComponent } from '@syncfusion/ej2-react-richtexteditor'
+import { toast } from 'sonner'
+import Editor from './editor'
+import Preview from './preview'
 
 interface CreateProps {
     isVisible: boolean
@@ -23,14 +23,14 @@ const CreateDebatePage: React.FC<CreateProps> = ({ isVisible, isFullscreen }) =>
             }
         }
 
-        if (!debateData.title.trim()) return toast.warning("Enter debate title")
+        if (!debateData.title.trim()) return toast.warning('Enter debate title')
 
-        const tempDiv = document.createElement("div")
+        const tempDiv = document.createElement('div')
         tempDiv.innerHTML = editorRef.current?.value || ''
         const bodyText = tempDiv.textContent?.replace(/\u200B/g, '').trim()
 
         if (!bodyText || bodyText === '<br>' || bodyText === '<br><br>' || bodyText === '<br><br><br>') {
-            return toast.warning("Enter debate body")
+            return toast.warning('Enter debate body')
         }
 
         setIsPreview(!isPreview)
@@ -68,7 +68,7 @@ const CreateDebatePage: React.FC<CreateProps> = ({ isVisible, isFullscreen }) =>
                 >
                     {isPreview ? 'BACK' : 'PREVIEW'}
                 </button>
-                <button type='submit' onClick={() => toast.warning("Currently under development")}>
+                <button type='submit' onClick={() => toast.warning('Currently under development')}>
                     PUBLISH
                 </button>
             </div>

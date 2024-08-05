@@ -110,7 +110,7 @@ exports.login = async function (fastify, request, reply) {
             if (cachedUser) user = cachedUser.item
             else {
                 const [db_user] = await fastify.mysql.query(`SELECT * FROM users WHERE ${id.includes('@') ? 'email=?' : 'username=?'}`, [id, id])
-                if (!db_user.length) throw new ErrorHandler(400, false, "Account doesn't exist")
+                if (!db_user.length) throw new ErrorHandler(400, false, 'Account does not exist')
 
                 await fastify.cache.set(cacheKey, db_user[0], 432000, (err) => {
                     if (err) throw new ErrorHandler(400, false, 'Failed to set data in cache')
@@ -197,7 +197,7 @@ exports.recoverAccount = async function (fastify, request, reply) {
         const { email, username } = request.body
 
         const [user] = await fastify.mysql.query('SELECT * FROM users WHERE email=? OR username=?', [email, username])
-        if (!user.length) throw new ErrorHandler(400, false, "Account doesn't exist")
+        if (!user.length) throw new ErrorHandler(400, false, 'Account does not exist')
 
         const token = randomBytes(32).toString('hex')
         const tokenExpiry = new Date(Date.now() + 3600000)
@@ -240,7 +240,7 @@ exports.resetPassword = async (fastify, request, reply) => {
             await fastify.mysql.query('DELETE FROM reset WHERE username=?', [reset[0].username])
 
             const [updatedUser] = await fastify.mysql.query('SELECT * FROM users WHERE username=?', [reset[0].username])
-            if (!updatedUser.length) throw new ErrorHandler(400, false, "Account doesn't exists")
+            if (!updatedUser.length) throw new ErrorHandler(400, false, 'Account does not exists')
 
             const cacheKeys = [`user:${updatedUser[0].username}`, `user:${updatedUser[0].email}`]
             await Promise.all(cacheKeys.map(cacheKey =>

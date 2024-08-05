@@ -1,8 +1,8 @@
-import { useCallback, useState } from "react"
-import { useNavigate } from "react-router-dom"
-import { toast } from "sonner"
-import { AuthStatus, AuthTab, useAuthStore } from "../../../store/useAuthStore"
-import { LoadingSVG } from "../../loading/svg"
+import { useCallback, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { toast } from 'sonner'
+import { AuthStatus, AuthTab, useAuthStore } from '../../../store/useAuthStore'
+import { LoadingSVG } from '../../loading/svg'
 
 const SetPassword = () => {
   const navigate = useNavigate()
@@ -10,8 +10,8 @@ const SetPassword = () => {
   const { setUser, setIsAuthenticated, setAuthTab } = useAuthStore()
 
   const [resetData, setResetData] = useState({
-    new: "",
-    confirm: ""
+    new: '',
+    confirm: ''
   })
 
   const [isSubmitted, setIsSubmitted] = useState(false)
@@ -53,7 +53,7 @@ const SetPassword = () => {
 
     if (trimmedNew !== trimmedConfirm) {
       setTimeout(() => setIsSubmitted(false), 500)
-      return toast.error("Password doesn't match")
+      return toast.error('Password does not match')
     }
     else {
       if (trimmedNew.length < 6) {

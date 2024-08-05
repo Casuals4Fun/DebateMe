@@ -1,22 +1,22 @@
-import "./style.css"
-import { useState, useEffect } from "react"
-import { useLocation, useNavigate } from "react-router-dom"
-import Explore from "../../components/sidebar/explore"
-import { IoMdClose } from "react-icons/io"
-import { PiArrowBendUpRightBold } from "react-icons/pi"
+import './style.css'
+import { useState, useEffect } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
+import Explore from '../../components/sidebar/explore'
+import { IoMdClose } from 'react-icons/io'
+import { PiArrowBendUpRightBold } from 'react-icons/pi'
 
 export default function SearchPage() {
     const location = useLocation()
     const navigate = useNavigate()
 
-    const [searchTerm, setSearchTerm] = useState("")
+    const [searchTerm, setSearchTerm] = useState('')
 
     useEffect(() => {
         const urlParams = new URLSearchParams(location.search)
         const termValue = urlParams.get('term')
         const categoryValue = urlParams.get('category')
 
-        if (termValue === "" || categoryValue === "") navigate("/")
+        if (termValue === '' || categoryValue === '') navigate('/')
         else {
             const searchValue = termValue ?? categoryValue ?? ''
             setSearchTerm(searchValue)
@@ -33,7 +33,7 @@ export default function SearchPage() {
                         <h1>
                             Showing results for <span>{searchTerm}</span>
                         </h1>
-                        <button className='clear-term' onClick={() => navigate("/search")}>
+                        <button className='clear-term' onClick={() => navigate('/search')}>
                             <IoMdClose size={20} />
                         </button>
                     </div>

@@ -1,13 +1,13 @@
-import React, { useState, useCallback } from "react"
-import { useNavigate } from "react-router-dom"
-import { RegisterDataProps } from "../../../types"
-import { toast } from "sonner"
-import { AuthTab, useAuthStore, useTempStore } from "../../../store/useAuthStore"
-import { LoadingSVG } from "../../loading/svg"
-import { specialCharRegex, usernameRegex, emailRegex } from "../../../data/regex"
-import { MdModeEdit } from "react-icons/md"
-import { GrCloudUpload } from "react-icons/gr"
-import { IoPersonCircleOutline } from "react-icons/io5"
+import React, { useState, useCallback } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { RegisterDataProps } from '../../../types'
+import { toast } from 'sonner'
+import { AuthTab, useAuthStore, useTempStore } from '../../../store/useAuthStore'
+import { LoadingSVG } from '../../loading/svg'
+import { specialCharRegex, usernameRegex, emailRegex } from '../../../data/regex'
+import { MdModeEdit } from 'react-icons/md'
+import { GrCloudUpload } from 'react-icons/gr'
+import { IoPersonCircleOutline } from 'react-icons/io5'
 
 const SignupTab: React.FC<RegisterDataProps> = ({ registerData, setRegisterData }) => {
     const navigate = useNavigate()

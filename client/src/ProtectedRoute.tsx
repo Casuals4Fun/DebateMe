@@ -1,6 +1,6 @@
-import { Navigate } from "react-router-dom"
-import { AuthStatus, useAuthStore } from "./store/useAuthStore"
-import { LoadingComponent } from "./components/loading/svg"
+import { Navigate } from 'react-router-dom'
+import { AuthStatus, useAuthStore } from './store/useAuthStore'
+import { LoadingComponent } from './components/loading/svg'
 
 interface ProtectedRouteProps {
     children: React.ReactNode

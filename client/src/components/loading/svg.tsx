@@ -1,4 +1,4 @@
-import "./style.css"
+import './style.css'
 
 interface Props {
     size: number
