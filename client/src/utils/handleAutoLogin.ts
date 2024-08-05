@@ -1,4 +1,4 @@
-import { User, AuthStatus, AuthTab } from "../store/useAuthStore"
+import { User, AuthStatus, AuthTab } from '../store/useAuthStore'
 
 type SetRoute = (navigate: string) => void
 type SetUser = (user: User) => void

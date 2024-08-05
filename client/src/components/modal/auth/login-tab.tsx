@@ -1,9 +1,9 @@
-import React, { useState, useCallback } from "react"
-import { useNavigate } from "react-router-dom"
-import { toast } from "sonner"
-import { AuthStatus, AuthTab, useAuthStore } from "../../../store/useAuthStore"
-import { FcGoogle } from "react-icons/fc"
-import { LoadingSVG } from "../../loading/svg"
+import React, { useState, useCallback } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { toast } from 'sonner'
+import { AuthStatus, AuthTab, useAuthStore } from '../../../store/useAuthStore'
+import { FcGoogle } from 'react-icons/fc'
+import { LoadingSVG } from '../../loading/svg'
 
 const LoginTab = () => {
     const navigate = useNavigate()
@@ -11,8 +11,8 @@ const LoginTab = () => {
     const { route, setAuthTab, isAuthenticated, setIsAuthenticated, setUser } = useAuthStore()
 
     const [loginData, setLoginData] = useState({
-        id: "",
-        password: ""
+        id: '',
+        password: ''
     })
 
     const [isSubmitted, setIsSubmitted] = useState(false)

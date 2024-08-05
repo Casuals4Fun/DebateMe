@@ -22,14 +22,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-size: 200% 100%;
     background: linear-gradient(to right, var(--shine_text_primary) 0, var(--shine_text_secondary) 10%, var(--shine_text_tertiary) 20%);
-    -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
     animation: shine-join_community 7.5s infinite linear;
     font-weight: 600;
-    font-size: 20px;
+    font-size: 22px;
 }
 
 @keyframes shine-join_community {

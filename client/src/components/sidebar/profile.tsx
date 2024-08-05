@@ -1,14 +1,14 @@
-import "./profile.css"
-import React, { useCallback, useEffect } from "react"
-import { Link, useNavigate } from "react-router-dom"
-import { useNavStore } from "../../store/useNavStore"
-import { AuthStatus, AuthTab, useAuthStore } from "../../store/useAuthStore"
-import ToggleTheme from "../button/toggle-theme"
-import LoadingSkeleton from "../loading/skeleton"
-import { IoMdPerson } from "react-icons/io"
-import { PiBellSimpleFill, PiSignOutBold } from "react-icons/pi"
-import { GoPerson } from "react-icons/go"
-import { FaRegUser } from "react-icons/fa"
+import './profile.css'
+import React, { useCallback, useEffect } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { useNavStore } from '../../store/useNavStore'
+import { AuthStatus, AuthTab, useAuthStore } from '../../store/useAuthStore'
+import ToggleTheme from '../button/toggle-theme'
+import LoadingSkeleton from '../loading/skeleton'
+import { IoMdPerson } from 'react-icons/io'
+import { PiBellSimpleFill, PiSignOutBold } from 'react-icons/pi'
+import { GoPerson } from 'react-icons/go'
+import { FaRegUser } from 'react-icons/fa'
 
 interface ProfileProps {
     isVisible?: boolean
@@ -23,7 +23,7 @@ const Profile: React.FC<ProfileProps> = ({ isVisible }) => {
         setExpand(!expand)
         const mainElement = document.querySelector('#main') as HTMLElement
         if (mainElement) {
-            if (window.matchMedia("(max-width: 480px)").matches) {
+            if (window.matchMedia('(max-width: 480px)').matches) {
                 if (expand) mainElement.style.overflow = ''
                 else mainElement.style.overflow = 'hidden'
             }
@@ -36,11 +36,11 @@ const Profile: React.FC<ProfileProps> = ({ isVisible }) => {
         navigate('/')
         setIsAuthenticated(AuthStatus.Failed)
         setUser({
-            username: "",
-            email: "",
-            first_name: "",
-            last_name: "",
-            avatar: ""
+            username: '',
+            email: '',
+            first_name: '',
+            last_name: '',
+            avatar: ''
         })
         localStorage.removeItem('token')
     }
@@ -48,13 +48,13 @@ const Profile: React.FC<ProfileProps> = ({ isVisible }) => {
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
             const target = event.target as HTMLElement
-            if (expand && !target.closest(".profile__modal") && !target.closest(".profile__image")) {
+            if (expand && !target.closest('.profile__modal') && !target.closest('.profile__image')) {
                 handleToggleMenu()
             }
         }
 
-        document.addEventListener("mousedown", handleClickOutside)
-        return () => document.removeEventListener("mousedown", handleClickOutside)
+        document.addEventListener('mousedown', handleClickOutside)
+        return () => document.removeEventListener('mousedown', handleClickOutside)
     }, [expand, handleToggleMenu])
 
     return (

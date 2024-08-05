@@ -1,10 +1,10 @@
-import "./closed-debate-card.css"
-import { useNavigate } from "react-router-dom"
-import { useNavStore } from "../../store/useNavStore"
-import DebateBar from "./debate-bar"
-import { MdModeComment } from "react-icons/md"
-import useFormatNumber from "../../hooks/useFormatNumber"
-import LoadingSkeleton from "../loading/skeleton"
+import './closed-debate-card.css'
+import { useNavigate } from 'react-router-dom'
+import { useNavStore } from '../../store/useNavStore'
+import DebateBar from './debate-bar'
+import { MdModeComment } from 'react-icons/md'
+import useFormatNumber from '../../hooks/useFormatNumber'
+import LoadingSkeleton from '../loading/skeleton'
 
 const ClosedDebateCard = () => {
     const navigate = useNavigate()

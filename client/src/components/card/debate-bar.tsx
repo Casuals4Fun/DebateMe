@@ -1,7 +1,7 @@
-import "./debate-bar.css"
-import React from "react"
-import { IoCaretUpSharp } from "react-icons/io5"
-import useFormatNumber from "../../hooks/useFormatNumber"
+import './debate-bar.css'
+import React from 'react'
+import { IoCaretUpSharp } from 'react-icons/io5'
+import useFormatNumber from '../../hooks/useFormatNumber'
 
 interface BarProps {
     debateFrom: number
@@ -18,10 +18,7 @@ const DebateBar: React.FC<BarProps> = ({ debateFrom, debateBy }) => {
             <>
                 <div
                     className='left-side'
-                    style={{
-                        width: `${leftPercentage}%`,
-                        borderRight: `${debateFrom !== 0 && debateBy !== 0 ? "2.5px solid var(--card_background)" : ""}`
-                    }}
+                    style={{ width: `${leftPercentage}%` }}
                 />
                 <div className='from-vote'>
                     <IoCaretUpSharp size={20} />

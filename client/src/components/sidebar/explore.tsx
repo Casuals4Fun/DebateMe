@@ -1,8 +1,8 @@
-import "./explore.css"
-import { useRef, useState } from "react"
-import { useNavigate, Link } from "react-router-dom"
-import { IoSearch } from "react-icons/io5"
-import { categoriesData } from "../../data/categories-data"
+import './explore.css'
+import { useRef, useState } from 'react'
+import { useNavigate, Link } from 'react-router-dom'
+import { IoSearch } from 'react-icons/io5'
+import { categoriesData } from '../../data/categories-data'
 
 interface ExploreProps {
     term?: string
@@ -12,7 +12,7 @@ const Explore: React.FC<ExploreProps> = ({ term }) => {
     const navigate = useNavigate()
 
     const inputRef = useRef<HTMLInputElement | null>(null)
-    const [searchTerm, setSearchTerm] = useState("")
+    const [searchTerm, setSearchTerm] = useState('')
     const [formSubmitted, setFormSubmitted] = useState(false)
 
     const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {

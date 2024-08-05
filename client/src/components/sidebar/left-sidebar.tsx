@@ -1,12 +1,12 @@
-import "./left-sidebar.css"
-import { useLocation, Link, useNavigate } from "react-router-dom"
-import { toast } from "sonner"
-import { AuthStatus, AuthTab, useAuthStore } from "../../store/useAuthStore"
-import { useNavStore } from "../../store/useNavStore"
-import { leftSidebarLinks } from "../../data/left-sidebar-links"
-import Profile from "./profile"
-import { GoPerson } from "react-icons/go"
-import LoadingSkeleton from "../loading/skeleton"
+import './left-sidebar.css'
+import { useLocation, Link, useNavigate } from 'react-router-dom'
+import { toast } from 'sonner'
+import { AuthStatus, AuthTab, useAuthStore } from '../../store/useAuthStore'
+import { useNavStore } from '../../store/useNavStore'
+import { leftSidebarLinks } from '../../data/left-sidebar-links'
+import Profile from './profile'
+import { GoPerson } from 'react-icons/go'
+import LoadingSkeleton from '../loading/skeleton'
 
 interface SidebarProps {
   isVisible: boolean
@@ -20,7 +20,7 @@ const LeftSidebar: React.FC<SidebarProps> = ({ isVisible }) => {
   const { sidebar } = useNavStore()
 
   const handleLinkClick = (href: string, name: string) => {
-    if (name === "Create Debate") {
+    if (name === 'Create Debate') {
       if (isAuthenticated === AuthStatus.Failed) {
         setRoute(href)
         setAuthTab(AuthTab.Login)
@@ -41,9 +41,9 @@ const LeftSidebar: React.FC<SidebarProps> = ({ isVisible }) => {
           <li key={item.id} title={item.name} className={location.pathname === item.href ? 'active' : ''}>
             <div onClick={() => handleLinkClick(item.href, item.name)} className='links__wrapper'>
               <item.icon />
-              <p className="underline">{item.name}</p>
+              <p className='underline'>{item.name}</p>
             </div>
-            <div className="footer" />
+            <div className='footer' />
           </li>
         ))}
       </ul>

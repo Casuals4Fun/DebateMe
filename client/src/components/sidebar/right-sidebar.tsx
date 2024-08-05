@@ -1,9 +1,9 @@
-import "./right-sidebar.css"
-import { Link } from "react-router-dom"
-import { useNavStore } from "../../store/useNavStore"
-import ToggleTheme from "../button/toggle-theme"
-import Profile from "./profile"
-import Explore from "./explore"
+import './right-sidebar.css'
+import { Link } from 'react-router-dom'
+import { useNavStore } from '../../store/useNavStore'
+import ToggleTheme from '../button/toggle-theme'
+import Profile from './profile'
+import Explore from './explore'
 
 interface SidebarProps {
   isVisible: boolean

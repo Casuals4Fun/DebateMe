@@ -1,5 +1,5 @@
-import { RichTextEditorComponent } from "@syncfusion/ej2-react-richtexteditor"
-import Editor from "./editor"
+import { RichTextEditorComponent } from '@syncfusion/ej2-react-richtexteditor'
+import Editor from './editor'
 
 interface PreviewProps {
     isPreview: boolean

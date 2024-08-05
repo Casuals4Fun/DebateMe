@@ -1,15 +1,15 @@
-import { useState, useCallback } from "react"
-import { useNavigate } from "react-router-dom"
-import { toast } from "sonner"
-import { emailRegex } from "../../../data/regex"
-import { LoadingSVG } from "../../loading/svg"
+import { useState, useCallback } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { toast } from 'sonner'
+import { emailRegex } from '../../../data/regex'
+import { LoadingSVG } from '../../loading/svg'
 
 const ForgotPassword = () => {
     const navigate = useNavigate()
 
     const [forgotData, setForgotData] = useState({
-        email: "",
-        username: ""
+        email: '',
+        username: ''
     })
     const [isSubmitted, setIsSubmitted] = useState(false)
     const [validationState, setValidationState] = useState(true)
@@ -18,8 +18,8 @@ const ForgotPassword = () => {
         const { name, value } = e.target
 
         setForgotData(() => ({
-            email: name === "email" ? value : "",
-            username: name === "username" ? value : ""
+            email: name === 'email' ? value : '',
+            username: name === 'username' ? value : ''
         }))
 
         setValidationState(!!value)

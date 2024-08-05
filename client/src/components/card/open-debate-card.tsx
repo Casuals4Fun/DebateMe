@@ -1,10 +1,10 @@
-import "./open-debate-card.css"
-import { useNavigate } from "react-router-dom"
-import { useNavStore } from "../../store/useNavStore"
-import { MdModeComment } from "react-icons/md"
-import { IoCaretUpSharp } from "react-icons/io5"
-import useFormatNumber from "../../hooks/useFormatNumber"
-import LoadingSkeleton from "../loading/skeleton"
+import './open-debate-card.css'
+import { useNavigate } from 'react-router-dom'
+import { useNavStore } from '../../store/useNavStore'
+import { MdModeComment } from 'react-icons/md'
+import { IoCaretUpSharp } from 'react-icons/io5'
+import useFormatNumber from '../../hooks/useFormatNumber'
+import LoadingSkeleton from '../loading/skeleton'
 
 const OpenDebateCard = () => {
     const navigate = useNavigate()

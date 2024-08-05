@@ -1,22 +1,22 @@
-import "./App.css"
-import { useRef, useState, useEffect } from "react"
-import { Routes, Route, Navigate } from "react-router-dom"
-import { Toaster } from "sonner"
-import { ProtectedRoute } from "./ProtectedRoute"
-import { Theme, useNavStore } from "./store/useNavStore"
-import { AuthTab, useAuthStore } from "./store/useAuthStore"
-import handleAutoLogin from "./utils/handleAutoLogin"
-import LeftSidebar from "./components/sidebar/left-sidebar"
-import RightSidebar from "./components/sidebar/right-sidebar"
-import AuthModal from "./components/modal/auth"
-import HomePage from "./pages/home"
-import AuthPage from "./pages/auth"
-import SearchPage from "./pages/search"
-import CreateDebatePage from "./pages/create-debate"
-import HotTopicsPage from "./pages/hot-topics"
-import OpenTopicsPage from "./pages/open-topics"
-import NotificationPage from "./pages/notifications"
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa"
+import './App.css'
+import { useRef, useState, useEffect } from 'react'
+import { Routes, Route, Navigate } from 'react-router-dom'
+import { Toaster } from 'sonner'
+import { ProtectedRoute } from './ProtectedRoute'
+import { Theme, useNavStore } from './store/useNavStore'
+import { AuthTab, useAuthStore } from './store/useAuthStore'
+import handleAutoLogin from './utils/handleAutoLogin'
+import LeftSidebar from './components/sidebar/left-sidebar'
+import RightSidebar from './components/sidebar/right-sidebar'
+import AuthModal from './components/modal/auth'
+import HomePage from './pages/home'
+import AuthPage from './pages/auth'
+import SearchPage from './pages/search'
+import CreateDebatePage from './pages/create-debate'
+import HotTopicsPage from './pages/hot-topics'
+import OpenTopicsPage from './pages/open-topics'
+import NotificationPage from './pages/notifications'
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'
 
 export default function App() {
   const { setRoute, setUser, setIsAuthenticated, authTab, setAuthTab } = useAuthStore()

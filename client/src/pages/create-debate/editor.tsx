@@ -1,4 +1,4 @@
-import "./editor.css"
+import './editor.css'
 import {
     RichTextEditorComponent,
     Toolbar,
@@ -15,7 +15,7 @@ import {
     FormatPainter,
     PasteCleanup,
     Resize
-} from "@syncfusion/ej2-react-richtexteditor"
+} from '@syncfusion/ej2-react-richtexteditor'
 
 interface EditorProps {
     editorRef: React.RefObject<RichTextEditorComponent>
