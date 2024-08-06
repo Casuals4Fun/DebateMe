@@ -1,5 +1,6 @@
 .debate-bar {
     position: relative;
+    z-index: 0;
     width: 100%;
     height: 30px;
     display: flex;

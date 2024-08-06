@@ -16,6 +16,7 @@ import CreateDebatePage from './pages/create-debate'
 import HotTopicsPage from './pages/hot-topics'
 import OpenTopicsPage from './pages/open-topics'
 import NotificationPage from './pages/notifications'
+import UserProfile from './pages/profile'
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'
 
 export default function App() {
@@ -54,16 +55,16 @@ export default function App() {
       <main id='main' ref={mainRef} className={`${expand ? 'expand' : ''} ${sidebar ? 'w-full' : ''}`}>
         <Routes>
           <Route path='/' element={<HomePage />} />
-          <Route path='/auth' element={<AuthPage />} />isScrollingUp
+          <Route path='/auth' element={<AuthPage />} />
           <Route path='/login' element={<Navigate to='/auth?type=login' />} />
           <Route path='/signup' element={<Navigate to='/auth?type=signup' />} />
           <Route path='/forgot' element={<Navigate to='/auth?type=forgot' />} />
           <Route path='/search' element={<SearchPage />} />
-          <Route path='/create' element={<ProtectedRoute><CreateDebatePage isVisible={isScrollingUp} isFullscreen={!sidebar} /></ProtectedRoute>} />
+          <Route path='/create' element={<ProtectedRoute><CreateDebatePage isScrollingUp={isScrollingUp} isFullscreen={!sidebar} /></ProtectedRoute>} />
           <Route path='/hot-topics' element={<HotTopicsPage />} />
           <Route path='/open-topics' element={<OpenTopicsPage />} />
           <Route path='/notifications' element={<NotificationPage />} />
-          <Route path=':username' element={<>Profile Page</>} />
+          <Route path=':username' element={<UserProfile isScrollingUp={isScrollingUp} />} />
         </Routes>
       </main>
       <>

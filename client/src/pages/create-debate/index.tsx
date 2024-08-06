@@ -6,11 +6,11 @@ import Editor from './editor'
 import Preview from './preview'
 
 interface CreateProps {
-    isVisible: boolean
+    isScrollingUp: boolean
     isFullscreen: boolean
 }
 
-const CreateDebatePage: React.FC<CreateProps> = ({ isVisible, isFullscreen }) => {
+const CreateDebatePage: React.FC<CreateProps> = ({ isScrollingUp, isFullscreen }) => {
     const editorRef = useRef<RichTextEditorComponent>(null)
     const [debateData, setDebateData] = useState({ title: '', body: '' })
     const [isPreview, setIsPreview] = useState<boolean>(false)
@@ -61,7 +61,7 @@ const CreateDebatePage: React.FC<CreateProps> = ({ isVisible, isFullscreen }) =>
 
             <Preview isPreview={isPreview} editorRef={editorRef} debateData={debateData} />
 
-            <div className={`debate-btns ${isVisible ? 'reveal' : 'hide'} ${isFullscreen ? '' : 'w-full'}`}>
+            <div className={`debate-btns ${isScrollingUp ? 'reveal' : 'hide'} ${isFullscreen ? '' : 'w-full'}`}>
                 <button
                     type='button'
                     onClick={handlePreviewToggle}
