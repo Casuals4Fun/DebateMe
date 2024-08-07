@@ -1,8 +1,10 @@
-const { handleGoogleAuth, register, login, autoLogin, checkUsername, recoverAccount, resetPassword } = require('../controllers/auth')
+const { handleGoogleAuth, register, login, autoLogin, recoverAccount, setPassword } = require('../controllers/auth')
 const verifyToken = require('../middleware/verifyToken')
 
 module.exports = async function (fastify, opts) {
     const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+(com|org|net|gov|mil|biz|info|mobi|name|aero|jobs|museum|in|space)))$/
+    const usernameRegex = /^[a-zA-Z0-9]+$/
+    const nameRegex = /^[a-zA-Z]+$/
 
     const registerSchema = {
         consumes: ['multipart/form-data'],
@@ -10,9 +12,9 @@ module.exports = async function (fastify, opts) {
             type: 'object',
             properties: {
                 email: { type: 'string', minLength: 1, maxLength: 255, pattern: emailRegex.source },
-                username: { type: 'string', minLength: 1, maxLength: 15 },
-                first_name: { type: 'string', minLength: 1, maxLength: 30 },
-                last_name: { type: 'string', minLength: 1, maxLength: 30 },
+                username: { type: 'string', minLength: 1, maxLength: 15, pattern: usernameRegex.source },
+                first_name: { type: 'string', minLength: 1, maxLength: 30, pattern: nameRegex.source },
+                last_name: { type: 'string', minLength: 1, maxLength: 30, pattern: nameRegex.source },
             },
             required: ['email', 'username', 'first_name', 'last_name']
         }
@@ -29,22 +31,12 @@ module.exports = async function (fastify, opts) {
         }
     }
 
-    const usernameSchema = {
-        body: {
-            type: 'object',
-            properties: {
-                username: { type: 'string', minLength: 1, maxLength: 15 },
-            },
-            required: ['username']
-        }
-    }
-
     const recoverSchema = {
         body: {
             type: 'object',
             properties: {
                 email: { type: 'string', minLength: 1, maxLength: 255, pattern: emailRegex.source },
-                username: { type: 'string', minLength: 1, maxLength: 15 }
+                username: { type: 'string', minLength: 1, maxLength: 15, pattern: usernameRegex.source }
             },
             anyOf: [
                 { required: ['email'] },
@@ -53,7 +45,7 @@ module.exports = async function (fastify, opts) {
         }
     }
 
-    const resetSchema = {
+    const setSchema = {
         body: {
             type: 'object',
             properties: {
@@ -115,22 +107,6 @@ module.exports = async function (fastify, opts) {
         }
     })
 
-    fastify.post('/check-username', {
-        schema: usernameSchema,
-        attachValidation: true
-    }, async (request, reply) => {
-        if (request.validationError) {
-            const errors = request.validationError.validation.map(error => {
-                return {
-                    field: error.params.missingProperty || error.instancePath.substring(1),
-                    message: error.message
-                }
-            })
-            return reply.code(400).send({ success: false, message: 'Validation failed', errors })
-        }
-        return checkUsername(fastify, request, reply)
-    })
-
     fastify.post('/recover-account', {
         schema: recoverSchema,
         attachValidation: true
@@ -147,8 +123,8 @@ module.exports = async function (fastify, opts) {
         return recoverAccount(fastify, request, reply)
     })
 
-    fastify.post('/reset-password', {
-        schema: resetSchema,
+    fastify.post('/set-password', {
+        schema: setSchema,
         attachValidation: true
     }, async (request, reply) => {
         if (request.validationError) {
@@ -160,6 +136,6 @@ module.exports = async function (fastify, opts) {
             })
             return reply.code(400).send({ success: false, message: 'Validation failed', errors })
         }
-        return resetPassword(fastify, request, reply)
+        return setPassword(fastify, request, reply)
     })
 }
