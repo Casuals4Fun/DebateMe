@@ -127,14 +127,14 @@ const Profile: React.FC<ProfileProps> = ({ isVisible }) => {
                         onClick={handleToggleMenu}
                     >
                         <IoMdPerson size={18} />
-                        <p className='underline'>Profile</p>
+                        <p>Profile</p>
                     </Link>
                     <button
                         className='modal-profile-btn'
                         onClick={handleLogout}
                     >
                         <PiSignOutBold size={18} />
-                        <p className='underline'>Logout</p>
+                        <p>Logout</p>
                     </button>
                 </div>
             )}

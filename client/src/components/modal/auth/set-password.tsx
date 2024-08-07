@@ -33,7 +33,7 @@ const SetPassword = () => {
     }))
   }, [])
 
-  const handleResetSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setIsSubmitted(true)
 
@@ -61,7 +61,7 @@ const SetPassword = () => {
         return toast.warning('Password should be atleast 6 digits')
       }
 
-      await fetch(`${import.meta.env.VITE_SERVER_URL}/api/auth/reset-password`, {
+      await fetch(`${import.meta.env.VITE_SERVER_URL}/api/auth/set-password`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ token: new URLSearchParams(location.search).get('token'), password: trimmedNew })
@@ -89,7 +89,7 @@ const SetPassword = () => {
   return (
     <div id='reset'>
       <h3>Set Password</h3>
-      <form id='forgot-form' className='form__container' onSubmit={handleResetSubmit}>
+      <form id='forgot-form' className='form__container' onSubmit={handleFormSubmit}>
         <div className='input__container'>
           <p>New Password</p>
           <input

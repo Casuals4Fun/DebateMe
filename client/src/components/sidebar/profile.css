@@ -162,6 +162,10 @@
     line-height: 25px;
 }
 
+.modal-profile-btn:hover {
+    text-decoration: underline;
+}
+
 @media screen and (max-width: 767px) {
     .profile__wrapper .auth-btn {
         width: 40px;

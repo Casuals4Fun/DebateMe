@@ -4,7 +4,7 @@ import { RegisterDataProps } from '../../../types'
 import { toast } from 'sonner'
 import { AuthTab, useAuthStore, useTempStore } from '../../../store/useAuthStore'
 import { LoadingSVG } from '../../loading/svg'
-import { specialCharRegex, usernameRegex, emailRegex } from '../../../data/regex'
+import { specialCharRegex, usernameRegex, emailRegex, nameRegex } from '../../../data/regex'
 import { MdModeEdit } from 'react-icons/md'
 import { GrCloudUpload } from 'react-icons/gr'
 import { IoPersonCircleOutline } from 'react-icons/io5'
@@ -82,14 +82,19 @@ const SignupTab: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
             email: trimmedEmail
         }))
 
+        const isUsernameValid = trimmedUsername.length > 0 && usernameRegex.test(trimmedUsername)
+        const isFirstNameValid = trimmedFirstName.length > 0 && nameRegex.test(trimmedFirstName)
+        const isLastNameValid = trimmedLastName.length > 0 && nameRegex.test(trimmedLastName)
+        const isEmailValid = trimmedEmail.length > 0 && emailRegex.test(trimmedEmail)
+
         setValidationState({
-            isUsernameValid: !!trimmedUsername,
-            isFirstNameValid: !!trimmedFirstName,
-            isLastNameValid: !!trimmedLastName,
-            isEmailValid: !!trimmedEmail
+            isUsernameValid,
+            isFirstNameValid,
+            isLastNameValid,
+            isEmailValid
         })
 
-        if (trimmedUsername && trimmedFirstName && trimmedLastName && trimmedEmail && term) {
+        if (isUsernameValid && isFirstNameValid && isLastNameValid && isEmailValid && term) {
             if (!emailRegex.test(trimmedEmail)) {
                 setTimeout(() => setIsSubmitted(false), 500)
                 return toast.warning('Invalid email address')
@@ -114,8 +119,7 @@ const SignupTab: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
                         localStorage.removeItem('username')
                         toast.success(response.message)
                         navigate('/')
-                    }
-                    else {
+                    } else {
                         if (response.message === 'Validation failed') {
                             return toast.error(`${response.errors[0].field.charAt(0).toUpperCase() + response.errors[0].field.slice(1)} ${response.errors[0].message}`)
                         }
@@ -125,7 +129,7 @@ const SignupTab: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
                 .finally(() => setIsSubmitted(false))
         } else {
             setTimeout(() => setIsSubmitted(false), 500)
-            return
+            return toast.warning('Please fill out all fields correctly')
         }
     }
 

@@ -34,7 +34,6 @@ const handleAutoLogin = (setRoute: SetRoute, setUser: SetUser, setIsAuthenticate
             })
             .catch(() => {
                 setIsAuthenticated(AuthStatus.Failed)
-                localStorage.removeItem('token')
             })
     }
 }
