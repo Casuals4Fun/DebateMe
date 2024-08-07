@@ -176,22 +176,6 @@ exports.autoLogin = async function (fastify, request, reply) {
     }
 }
 
-exports.checkUsername = async function (fastify, request, reply) {
-    try {
-        const { username } = request.body
-
-        const [user] = await fastify.mysql.query('SELECT * FROM users WHERE username=?', [username])
-        if (user.length) throw new ErrorHandler(400, false, 'Username already taken')
-
-        return reply.code(200).send({
-            success: true,
-            message: 'Username available'
-        })
-    } catch (err) {
-        return catchError(reply, err)
-    }
-}
-
 exports.recoverAccount = async function (fastify, request, reply) {
     try {
         const { email, username } = request.body
@@ -225,7 +209,7 @@ exports.recoverAccount = async function (fastify, request, reply) {
     }
 }
 
-exports.resetPassword = async (fastify, request, reply) => {
+exports.setPassword = async (fastify, request, reply) => {
     try {
         const { token, password } = request.body
 

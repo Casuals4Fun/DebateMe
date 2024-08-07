@@ -1,0 +1,71 @@
+#profile .user {
+    padding: 20px;
+}
+
+#profile .user img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    background-color: var(--body_background);
+    border-radius: 10px;
+    border: 2px solid var(--explore_input_bg);
+}
+
+#profile .user h3 {
+    color: var(--card_color_secondary);
+}
+
+#profile .profile-btns {
+    position: sticky;
+    z-index: 1;
+    top: -1px;
+    left: 0;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background-color: var(--body_background);
+    border-top: 1px solid var(--explore_input_bg);
+    border-bottom: 1px solid var(--explore_input_bg);
+    transition: top 0.25s ease-out;
+}
+
+#profile .profile-btns button {
+    font-size: 18px;
+    font-weight: 500;
+    text-underline-offset: 4px;
+}
+
+#profile .profile-btns button:hover {
+    text-decoration: underline;
+}
+
+@media screen and (max-width: 767px) {
+    #profile .user img {
+        width: 75px;
+        height: 75px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    #profile .user {
+        padding: 20px 10px;
+    }
+
+    #profile .user h1 {
+        font-size: 24px;
+    }
+
+    #profile .user h3 {
+        font-size: 16px;
+    }
+
+    #profile .profile-btns {
+        padding: 10px;
+    }
+
+    #profile .profile-btns.top {
+        top: -61px;
+        transition: top 0.4s ease-out;
+    }
+}
