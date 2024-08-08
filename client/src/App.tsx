@@ -63,7 +63,7 @@ export default function App() {
           <Route path='/create' element={<ProtectedRoute><CreateDebatePage isScrollingUp={isScrollingUp} isFullscreen={!sidebar} /></ProtectedRoute>} />
           <Route path='/hot-topics' element={<HotTopicsPage />} />
           <Route path='/open-topics' element={<OpenTopicsPage />} />
-          <Route path='/notifications' element={<NotificationPage />} />
+          <Route path='/notifications' element={<ProtectedRoute><NotificationPage /></ProtectedRoute>} />
           <Route path=':username' element={<UserProfile isScrollingUp={isScrollingUp} />} />
         </Routes>
       </main>

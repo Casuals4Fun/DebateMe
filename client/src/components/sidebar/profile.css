@@ -58,13 +58,13 @@
     flex-shrink: 0;
 }
 
+.notification-btn,
 .profile__image,
 .modal-profile__image {
     background-color: var(--explore_input_bg);
 }
 
-.theme-btn,
-.notification-btn {
+.theme-btn {
     display: none;
     background-color: var(--explore_input_bg);
 }
@@ -167,6 +167,10 @@
 }
 
 @media screen and (max-width: 767px) {
+    .profile__wrapper {
+        flex-direction: column;
+    }
+
     .profile__wrapper .auth-btn {
         width: 40px;
         height: 40px;
@@ -198,6 +202,10 @@
 }
 
 @media screen and (max-width: 480px) {
+    .profile__wrapper {
+        flex-direction: row;
+    }
+
     .profile__modal {
         padding-top: 10px;
         padding-bottom: 15px;

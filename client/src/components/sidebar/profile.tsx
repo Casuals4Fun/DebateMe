@@ -59,22 +59,22 @@ const Profile: React.FC<ProfileProps> = ({ isVisible }) => {
 
     return (
         <div className='profile__wrapper'>
-            <Link
-                to='/notifications'
-                className='notification-btn'
-                style={{
-                    borderWidth: '2px',
-                    borderStyle: 'solid',
-                    borderColor: location.pathname === '/notifications' ? 'var(--body_color)' : 'transparent'
-                }}
-            >
-                <PiBellSimpleFill size={20} />
-            </Link>
             {isAuthenticated === AuthStatus.Authenticating ? (
                 <LoadingSkeleton style={{ width: '40px', height: '40px', borderRadius: '50%' }} />
             ) : isAuthenticated === AuthStatus.Authenticated ? (
                 <>
-                    <div
+                    <Link
+                        to='/notifications'
+                        className='notification-btn'
+                        style={{
+                            borderWidth: '2px',
+                            borderStyle: 'solid',
+                            borderColor: location.pathname === '/notifications' ? 'var(--body_color)' : 'transparent'
+                        }}
+                    >
+                        <PiBellSimpleFill size={20} />
+                    </Link>
+                    <button
                         className='profile__image'
                         style={{
                             borderWidth: '2px',
@@ -88,7 +88,7 @@ const Profile: React.FC<ProfileProps> = ({ isVisible }) => {
                         ) : (
                             <FaRegUser style={{ width: '50%', height: '50%' }} />
                         )}
-                    </div>
+                    </button>
                 </>
             ) : authTab === AuthTab.Closed && (
                 <>
