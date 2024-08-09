@@ -44,6 +44,10 @@
     overflow-y: auto;
 }
 
+#left-sidebar ul li:nth-child(3) {
+    display: none;
+}
+
 #left-sidebar .links__wrapper {
     width: fit-content;
     display: flex;
@@ -196,6 +200,14 @@
         display: flex;
         align-items: center;
         justify-content: center;
+    }
+
+    #left-sidebar ul li:nth-child(3) {
+        display: flex;
+    }
+
+    #left-sidebar ul li:last-child {
+        display: none;
     }
 
     #left-sidebar .links__wrapper p {

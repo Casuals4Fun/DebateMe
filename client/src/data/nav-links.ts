@@ -2,9 +2,8 @@ import { RiHome2Fill, RiFireFill } from 'react-icons/ri'
 import { FaFeather } from 'react-icons/fa6'
 import { IoSearch } from 'react-icons/io5'
 import { IoMdCreate } from 'react-icons/io'
-// import { PiBellSimpleFill } from 'react-icons/pi'
 
-export const leftSidebarLinks = [
+export const navLinks = [
     {
         id: 1,
         name: 'Home',
@@ -35,10 +34,10 @@ export const leftSidebarLinks = [
         href: '/open-topics',
         icon: FaFeather
     },
-    // {
-    //     id: 6,
-    //     name: 'Notifications',
-    //     href: '/notifications',
-    //     icon: PiBellSimpleFill
-    // }
+    {
+        id: 6,
+        name: 'Create Debate',
+        href: '/create',
+        icon: IoMdCreate
+    }
 ]
