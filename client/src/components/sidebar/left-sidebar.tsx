@@ -3,7 +3,7 @@ import { useLocation, Link, useNavigate } from 'react-router-dom'
 import { toast } from 'sonner'
 import { AuthStatus, AuthTab, useAuthStore } from '../../store/useAuthStore'
 import { useNavStore } from '../../store/useNavStore'
-import { leftSidebarLinks } from '../../data/left-sidebar-links'
+import { navLinks } from '../../data/nav-links'
 import Profile from './profile'
 import { GoPerson } from 'react-icons/go'
 import LoadingSkeleton from '../loading/skeleton'
@@ -37,7 +37,7 @@ const LeftSidebar: React.FC<SidebarProps> = ({ isVisible }) => {
         <img src='/logo.png' alt='' />
       </Link>
       <ul>
-        {leftSidebarLinks.map(item => (
+        {navLinks.map(item => (
           <li key={item.id} title={item.name} className={location.pathname === item.href ? 'active' : ''}>
             <div onClick={() => handleLinkClick(item.href, item.name)} className='links__wrapper'>
               <item.icon />

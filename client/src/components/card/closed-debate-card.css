@@ -30,6 +30,7 @@
 }
 
 #closed-card .left h2 {
+    width: fit-content;
     font-size: 22px;
     font-weight: 600;
     overflow: hidden;

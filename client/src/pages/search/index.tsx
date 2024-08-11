@@ -1,6 +1,7 @@
 import './style.css'
 import { useState, useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
+import { useNavStore } from '../../store/useNavStore'
 import Explore from '../../components/sidebar/explore'
 import { IoMdClose } from 'react-icons/io'
 import { PiArrowBendUpRightBold } from 'react-icons/pi'
@@ -8,6 +9,8 @@ import { PiArrowBendUpRightBold } from 'react-icons/pi'
 export default function SearchPage() {
     const location = useLocation()
     const navigate = useNavigate()
+
+    const { sidebar } = useNavStore()
 
     const [searchTerm, setSearchTerm] = useState('')
 
@@ -25,7 +28,9 @@ export default function SearchPage() {
 
     return (
         <div id='search'>
-            <Explore term={searchTerm} />
+            <div className={`explore__container ${sidebar ? 'visible' : 'hidden'}`}>
+                <Explore term={searchTerm} />
+            </div>
 
             {searchTerm ? (
                 <>
@@ -40,7 +45,7 @@ export default function SearchPage() {
                     <p>No debates found</p>
                 </>
             ) : (
-                <div className='search-here'>
+                <div className={`search-here ${sidebar ? 'hidden' : ''}`}>
                     <PiArrowBendUpRightBold size={50} />
                     <h2>Search here</h2>
                 </div>
