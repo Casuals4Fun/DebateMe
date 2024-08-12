@@ -1,7 +1,4 @@
 {
-    "env": {
-        "BRANCH": "vercel"
-    },
     "builds": [
         {
             "src": "./server.js",
