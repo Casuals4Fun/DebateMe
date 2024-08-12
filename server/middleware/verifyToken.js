@@ -2,9 +2,7 @@ const { verify } = require('jsonwebtoken')
 
 async function verifyToken(request, reply) {
     const authHeader = request.headers.authorization
-    if (!authHeader) {
-        throw new Error('Authorization header is missing')
-    }
+    if (!authHeader) throw new Error('Authorization header is missing')
 
     const token = authHeader.split(' ')[1]
     try {

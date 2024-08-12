@@ -2,7 +2,7 @@ import './explore.css'
 import { useRef, useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { IoSearch } from 'react-icons/io5'
-import { categoriesData } from '../../data/categories'
+import { categoriesData } from '../../data/sidebar'
 
 interface ExploreProps {
     term?: string
