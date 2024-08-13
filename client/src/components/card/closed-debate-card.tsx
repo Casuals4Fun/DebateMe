@@ -8,15 +8,15 @@ import LoadingSkeleton from '../loading/skeleton'
 
 const ClosedDebateCard = () => {
     const navigate = useNavigate()
-    const { sidebar } = useNavStore()
+    const { isSidebarClose } = useNavStore()
 
     const handleProfileClick = (username: string) => {
         navigate(`/${username}`)
     }
 
     return (
-        <div id='closed-card' className={sidebar ? 'card-break' : ''}>
-            <div className={`left ${sidebar ? 'flex-unset' : ''}`}>
+        <div id='closed-card' className={isSidebarClose ? 'card-break' : ''}>
+            <div className={`left ${isSidebarClose ? 'flex-unset' : ''}`}>
                 <h2 title='Sony is the best camera of all time. ↗' onClick={() => navigate('/')}>
                     Sony is the best camera of all time.
                 </h2>
@@ -26,7 +26,7 @@ const ClosedDebateCard = () => {
                     Fugiat repellat architecto pariatur fugit perspiciatis voluptas quidem autem.
                 </p>
             </div>
-            <div className={`right ${sidebar ? 'flex-unset' : ''}`}>
+            <div className={`right ${isSidebarClose ? 'flex-unset' : ''}`}>
                 <div className='user-info'>
                     <div className='debate-from'>
                         <img src='/user1.webp' alt='' loading='lazy' onClick={() => handleProfileClick('aniketdas')} />
@@ -56,11 +56,11 @@ const ClosedDebateCard = () => {
 }
 
 const ClosedDebateLoadingCard = () => {
-    const { sidebar } = useNavStore()
+    const { isSidebarClose } = useNavStore()
 
     return (
-        <div id='closed-card-loading' className={sidebar ? 'card-break' : ''}>
-            <div className={`left ${sidebar ? 'flex-unset' : ''}`}>
+        <div id='closed-card-loading' className={isSidebarClose ? 'card-break' : ''}>
+            <div className={`left ${isSidebarClose ? 'flex-unset' : ''}`}>
                 <div className='topic'>
                     <LoadingSkeleton />
                 </div>
@@ -72,7 +72,7 @@ const ClosedDebateLoadingCard = () => {
                     <LoadingSkeleton />
                 </div>
             </div>
-            <div className={`right ${sidebar ? 'flex-unset' : ''}`}>
+            <div className={`right ${isSidebarClose ? 'flex-unset' : ''}`}>
                 <div className='user-info'>
                     <div className='debater'>
                         <LoadingSkeleton />

@@ -13,7 +13,7 @@ enum Tabs {
 }
 
 const UserDebates: React.FC<DebatesProps> = ({ isScrollingUp }) => {
-    const { sidebar } = useNavStore()
+    const { isSidebarClose } = useNavStore()
 
     const [tab, setTab] = useState<Tabs>(Tabs.Closed)
 
@@ -33,7 +33,7 @@ const UserDebates: React.FC<DebatesProps> = ({ isScrollingUp }) => {
                     Open Debates
                 </button>
             </div>
-            <div className={`debates ${sidebar ? 'column-debates' : ''}`}>
+            <div className={`debates ${isSidebarClose ? 'column-debates' : ''}`}>
                 {tab === Tabs.Closed ? <ClosedDebates /> : <OpenDebates />}
             </div>
         </div>

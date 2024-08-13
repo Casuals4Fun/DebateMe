@@ -17,7 +17,7 @@ const LeftSidebar: React.FC<SidebarProps> = ({ isVisible }) => {
   const navigate = useNavigate()
 
   const { setRoute, isAuthenticated, setAuthTab } = useAuthStore()
-  const { sidebar } = useNavStore()
+  const { isSidebarClose } = useNavStore()
 
   const handleLinkClick = (href: string, name: string) => {
     if (name === 'Create Debate') {
@@ -32,7 +32,7 @@ const LeftSidebar: React.FC<SidebarProps> = ({ isVisible }) => {
   }
 
   return (
-    <div id='left-sidebar' className={`${isVisible ? 'reveal' : 'hide'} ${sidebar ? 'close' : 'open'}`}>
+    <div id='left-sidebar' className={`${isVisible ? 'reveal' : 'hide'} ${isSidebarClose ? 'close' : 'open'}`}>
       <Link to='/' className='logo__wrapper'>
         <img src='/logo.png' alt='' />
       </Link>

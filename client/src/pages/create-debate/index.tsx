@@ -2,15 +2,17 @@ import './style.css'
 import { useRef, useState } from 'react'
 import { RichTextEditorComponent } from '@syncfusion/ej2-react-richtexteditor'
 import { toast } from 'sonner'
+import { useNavStore } from '../../store/useNavStore'
 import Editor from './editor'
 import Preview from './preview'
 
 interface CreateProps {
     isScrollingUp: boolean
-    isFullscreen: boolean
 }
 
-const CreateDebatePage: React.FC<CreateProps> = ({ isScrollingUp, isFullscreen }) => {
+const CreateDebatePage: React.FC<CreateProps> = ({ isScrollingUp }) => {
+    const { isSidebarClose } = useNavStore()
+
     const editorRef = useRef<RichTextEditorComponent>(null)
     const [debateData, setDebateData] = useState({ title: '', body: '' })
     const [isPreview, setIsPreview] = useState<boolean>(false)
@@ -61,7 +63,7 @@ const CreateDebatePage: React.FC<CreateProps> = ({ isScrollingUp, isFullscreen }
 
             <Preview isPreview={isPreview} editorRef={editorRef} debateData={debateData} />
 
-            <div className={`debate-btns ${isScrollingUp ? 'reveal' : 'hide'} ${isFullscreen ? '' : 'w-full'}`}>
+            <div className={`debate-btns ${isScrollingUp ? 'reveal' : 'hide'} ${isSidebarClose ? 'w-full' : ''}`}>
                 <button
                     type='button'
                     onClick={handlePreviewToggle}

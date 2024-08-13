@@ -10,7 +10,7 @@ export default function SearchPage() {
     const location = useLocation()
     const navigate = useNavigate()
 
-    const { sidebar } = useNavStore()
+    const { isSidebarClose } = useNavStore()
 
     const [searchTerm, setSearchTerm] = useState('')
 
@@ -28,7 +28,7 @@ export default function SearchPage() {
 
     return (
         <div id='search'>
-            <div className={`explore__container ${sidebar ? 'visible' : 'hidden'}`}>
+            <div className={`explore__container ${isSidebarClose ? 'visible' : 'hidden'}`}>
                 <Explore term={searchTerm} />
             </div>
 
@@ -45,7 +45,7 @@ export default function SearchPage() {
                     <p>No debates found</p>
                 </>
             ) : (
-                <div className={`search-here ${sidebar ? 'hidden' : ''}`}>
+                <div className={`search-here ${isSidebarClose ? 'hidden' : ''}`}>
                     <PiArrowBendUpRightBold size={50} />
                     <h2>Search here</h2>
                 </div>

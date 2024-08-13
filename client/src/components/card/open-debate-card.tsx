@@ -8,14 +8,14 @@ import LoadingSkeleton from '../loading/skeleton'
 
 const OpenDebateCard = () => {
     const navigate = useNavigate()
-    const { sidebar } = useNavStore()
+    const { isSidebarClose } = useNavStore()
 
     const handleProfileClick = (username: string) => {
         navigate(`/${username}`)
     }
 
     return (
-        <div id='open-card' className={sidebar ? 'card-break' : ''}>
+        <div id='open-card' className={isSidebarClose ? 'card-break' : ''}>
             <div className='debate-header'>
                 <h2 title='Artificial Intelligence – Is AI good for society or not? ↗' onClick={() => navigate('/')}>
                     Artificial Intelligence – Is AI good for society or not?
@@ -52,10 +52,10 @@ const OpenDebateCard = () => {
 }
 
 const OpenDebateLoadingCard = () => {
-    const { sidebar } = useNavStore()
+    const { isSidebarClose } = useNavStore()
 
     return (
-        <div id='open-card-loading' className={sidebar ? 'card-break' : ''}>
+        <div id='open-card-loading' className={isSidebarClose ? 'card-break' : ''}>
             <div className='debate-header'>
                 <LoadingSkeleton />
             </div>

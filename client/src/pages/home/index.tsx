@@ -4,10 +4,10 @@ import { ClosedDebateCard } from '../../components/card/closed-debate-card'
 import { OpenDebateCard } from '../../components/card/open-debate-card'
 
 export default function HomePage() {
-  const { sidebar } = useNavStore()
+  const { isSidebarClose } = useNavStore()
 
   return (
-    <div className={`debates ${sidebar ? 'column-debates' : ''}`}>
+    <div className={`debates ${isSidebarClose ? 'column-debates' : ''}`}>
       <ClosedDebateCard />
       <OpenDebateCard />
       <ClosedDebateCard />
