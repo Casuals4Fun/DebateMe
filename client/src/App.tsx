@@ -15,13 +15,12 @@ import SearchPage from './pages/search'
 import CreateDebatePage from './pages/create-debate'
 import HotTopicsPage from './pages/hot-topics'
 import OpenTopicsPage from './pages/open-topics'
-import NotificationPage from './pages/notifications'
 import UserProfile from './pages/profile'
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'
 
 export default function App() {
   const { setRoute, setUser, setIsAuthenticated, authTab, setAuthTab } = useAuthStore()
-  const { expand, sidebar, setSidebar } = useNavStore()
+  const { isNavbarOpen, isSidebarClose, setSidebarClose } = useNavStore()
 
   const mainRef = useRef<HTMLDivElement>(null)
   const lastScrollTop = useRef<number>(0)
@@ -48,11 +47,11 @@ export default function App() {
     <div id='app'>
       <>
         <LeftSidebar isVisible={isScrollingUp} />
-        <button className='sidebar-btn left' onClick={() => setSidebar(!sidebar)}>
-          {sidebar ? <FaChevronRight size={20} /> : <FaChevronLeft size={20} />}
+        <button className='sidebar-btn left' onClick={() => setSidebarClose(!isSidebarClose)}>
+          {isSidebarClose ? <FaChevronRight size={20} /> : <FaChevronLeft size={20} />}
         </button>
       </>
-      <main id='main' ref={mainRef} className={`${expand ? 'expand' : ''} ${sidebar ? 'w-full' : ''}`}>
+      <main id='main' ref={mainRef} className={`${isNavbarOpen ? 'expand' : ''} ${isSidebarClose ? 'w-full' : ''}`}>
         <Routes>
           <Route path='/' element={<HomePage />} />
           <Route path='/auth' element={<AuthPage />} />
@@ -60,17 +59,16 @@ export default function App() {
           <Route path='/signup' element={<Navigate to='/auth?type=signup' />} />
           <Route path='/forgot' element={<Navigate to='/auth?type=forgot' />} />
           <Route path='/search' element={<SearchPage />} />
-          <Route path='/create' element={<ProtectedRoute><CreateDebatePage isScrollingUp={isScrollingUp} isFullscreen={!sidebar} /></ProtectedRoute>} />
+          <Route path='/create' element={<ProtectedRoute><CreateDebatePage isScrollingUp={isScrollingUp} /></ProtectedRoute>} />
           <Route path='/hot-topics' element={<HotTopicsPage />} />
           <Route path='/open-topics' element={<OpenTopicsPage />} />
-          <Route path='/notifications' element={<ProtectedRoute><NotificationPage /></ProtectedRoute>} />
           <Route path=':username' element={<UserProfile isScrollingUp={isScrollingUp} />} />
         </Routes>
       </main>
       <>
         <RightSidebar isVisible={isScrollingUp} />
-        <button className='sidebar-btn right' onClick={() => setSidebar(!sidebar)}>
-          {sidebar ? <FaChevronLeft size={20} /> : <FaChevronRight size={20} />}
+        <button className='sidebar-btn right' onClick={() => setSidebarClose(!isSidebarClose)}>
+          {isSidebarClose ? <FaChevronLeft size={20} /> : <FaChevronRight size={20} />}
         </button>
       </>
 

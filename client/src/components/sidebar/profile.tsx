@@ -6,7 +6,7 @@ import { AuthStatus, AuthTab, useAuthStore } from '../../store/useAuthStore'
 import ToggleTheme from '../button/toggle-theme'
 import LoadingSkeleton from '../loading/skeleton'
 import { IoMdPerson } from 'react-icons/io'
-import { PiBellSimpleFill, PiSignOutBold } from 'react-icons/pi'
+import { PiSignOutBold } from 'react-icons/pi'
 import { GoPerson } from 'react-icons/go'
 import { FaRegUser } from 'react-icons/fa'
 
@@ -16,20 +16,20 @@ interface ProfileProps {
 
 const Profile: React.FC<ProfileProps> = ({ isVisible }) => {
     const navigate = useNavigate()
-    const { expand, setExpand } = useNavStore()
+    const { isNavbarOpen, setNavbarOpen } = useNavStore()
     const { isAuthenticated, setIsAuthenticated, user, setUser, authTab, setAuthTab } = useAuthStore()
 
     const handleToggleMenu = useCallback(() => {
-        setExpand(!expand)
+        setNavbarOpen(!isNavbarOpen)
         const mainElement = document.querySelector('#main') as HTMLElement
         if (mainElement) {
             if (window.matchMedia('(max-width: 480px)').matches) {
-                if (expand) mainElement.style.overflow = ''
+                if (isNavbarOpen) mainElement.style.overflow = ''
                 else mainElement.style.overflow = 'hidden'
             }
             else mainElement.style.overflow = ''
         }
-    }, [expand, setExpand])
+    }, [isNavbarOpen, setNavbarOpen])
 
     const handleLogout = () => {
         handleToggleMenu()
@@ -48,62 +48,47 @@ const Profile: React.FC<ProfileProps> = ({ isVisible }) => {
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
             const target = event.target as HTMLElement
-            if (expand && !target.closest('.profile__modal') && !target.closest('.profile__image')) {
+            if (isNavbarOpen && !target.closest('.profile__modal') && !target.closest('.profile__image')) {
                 handleToggleMenu()
             }
         }
 
         document.addEventListener('mousedown', handleClickOutside)
         return () => document.removeEventListener('mousedown', handleClickOutside)
-    }, [expand, handleToggleMenu])
+    }, [isNavbarOpen, handleToggleMenu])
 
     return (
         <div className='profile__wrapper'>
             {isAuthenticated === AuthStatus.Authenticating ? (
                 <LoadingSkeleton style={{ width: '40px', height: '40px', borderRadius: '50%' }} />
             ) : isAuthenticated === AuthStatus.Authenticated ? (
-                <>
-                    <Link
-                        to='/notifications'
-                        className='notification-btn'
-                        style={{
-                            borderWidth: '2px',
-                            borderStyle: 'solid',
-                            borderColor: location.pathname === '/notifications' ? 'var(--body_color)' : 'transparent'
-                        }}
-                    >
-                        <PiBellSimpleFill size={20} />
-                    </Link>
-                    <button
-                        className='profile__image'
-                        style={{
-                            borderWidth: '2px',
-                            borderStyle: 'solid',
-                            borderColor: `${expand ? 'var(--body_color)' : 'transparent'}`
-                        }}
-                        onClick={handleToggleMenu}
-                    >
-                        {user.avatar ? (
-                            <img src={user.avatar} alt='' loading='lazy' referrerPolicy='no-referrer' />
-                        ) : (
-                            <FaRegUser style={{ width: '50%', height: '50%' }} />
-                        )}
-                    </button>
-                </>
+                <button
+                    className='profile__image'
+                    style={{
+                        borderWidth: '2px',
+                        borderStyle: 'solid',
+                        borderColor: `${isNavbarOpen ? 'var(--body_color)' : 'transparent'}`
+                    }}
+                    onClick={handleToggleMenu}
+                >
+                    {user.avatar ? (
+                        <img src={user.avatar} alt='' loading='lazy' referrerPolicy='no-referrer' />
+                    ) : (
+                        <FaRegUser style={{ width: '50%', height: '50%' }} />
+                    )}
+                </button>
             ) : authTab === AuthTab.Closed && (
-                <>
-                    <button
-                        className='auth-btn'
-                        style={{ border: `${authTab !== AuthTab.Closed ? '2px solid var(--body_color)' : ''}` }}
-                        onClick={() => setAuthTab(AuthTab.Login)}
-                    >
-                        <GoPerson size={20} />
-                        <p>Join Community</p>
-                    </button>
-                </>
+                <button
+                    className='auth-btn'
+                    style={{ border: `${authTab !== AuthTab.Closed ? '2px solid var(--body_color)' : ''}` }}
+                    onClick={() => setAuthTab(AuthTab.Login)}
+                >
+                    <GoPerson size={20} />
+                    <p>Join Community</p>
+                </button>
             )}
 
-            {expand && (
+            {isNavbarOpen && (
                 <div className={`profile__modal ${isVisible ? 'shift-down' : 'shift-up'}`}>
                     <div className='modal-profile__wrapper'>
                         <div className='profile-wrapper'>
