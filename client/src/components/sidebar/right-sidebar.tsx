@@ -1,7 +1,7 @@
 import './right-sidebar.css'
 import { Link } from 'react-router-dom'
 import { useNavStore } from '../../store/useNavStore'
-import ToggleTheme from '../button/toggle-theme'
+import ToggleTheme from '../theme'
 import Profile from './profile'
 import Explore from './explore'
 
@@ -21,7 +21,7 @@ const RightSidebar: React.FC<SidebarProps> = ({ isVisible }) => {
 
         <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
           <div className='profile-theme__container'>
-            <div className={`theme__wrapper`}>
+            <div className='theme__wrapper'>
               <ToggleTheme />
             </div>
 

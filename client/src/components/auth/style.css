@@ -1,6 +1,6 @@
 #auth-modal {
     position: fixed;
-    z-index: 5;
+    z-index: 2;
     top: 0;
     left: 0;
     right: 0;
@@ -152,7 +152,7 @@
 #auth-modal .form__container .input__container p {
     padding: 0 5px;
     position: absolute;
-    z-index: 6;
+    z-index: 1;
     top: -10px;
     left: 10px;
     background-color: var(--card_background);

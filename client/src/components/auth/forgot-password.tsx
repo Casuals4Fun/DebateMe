@@ -1,8 +1,8 @@
 import { useState, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'sonner'
-import { emailRegex } from '../../../data/regex'
-import { LoadingSVG } from '../../loading/svg'
+import { emailRegex } from '../../data/regex'
+import { LoadingSVG } from '../loading/svg'
 
 const ForgotPassword = () => {
     const navigate = useNavigate()

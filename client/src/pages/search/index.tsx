@@ -1,10 +1,10 @@
 import './style.css'
 import { useState, useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { useNavStore } from '../../store/useNavStore'
-import Explore from '../../components/sidebar/explore'
 import { IoMdClose } from 'react-icons/io'
 import { PiArrowBendUpRightBold } from 'react-icons/pi'
+import { useNavStore } from '../../store/useNavStore'
+import Explore from '../../components/sidebar/explore'
 
 export default function SearchPage() {
     const location = useLocation()

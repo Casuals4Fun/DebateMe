@@ -5,7 +5,7 @@ interface ProfileProps {
     isScrollingUp: boolean
 }
 
-export default function UserProfile({ isScrollingUp }: ProfileProps) {
+export default function ProfilePage({ isScrollingUp }: ProfileProps) {
     return (
         <div id='profile'>
             <div className='user'>

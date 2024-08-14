@@ -1,14 +1,14 @@
 import './profile.css'
 import React, { useCallback, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { useNavStore } from '../../store/useNavStore'
-import { AuthStatus, AuthTab, useAuthStore } from '../../store/useAuthStore'
-import ToggleTheme from '../button/toggle-theme'
-import LoadingSkeleton from '../loading/skeleton'
 import { IoMdPerson } from 'react-icons/io'
 import { PiSignOutBold } from 'react-icons/pi'
 import { GoPerson } from 'react-icons/go'
 import { FaRegUser } from 'react-icons/fa'
+import { useNavStore } from '../../store/useNavStore'
+import { AuthStatus, AuthTab, useAuthStore } from '../../store/useAuthStore'
+import ToggleTheme from '../theme'
+import LoadingSkeleton from '../loading/skeleton'
 
 interface ProfileProps {
     isVisible?: boolean

@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import { useNavStore } from '../../store/useNavStore'
-import { ClosedDebateCard } from '../../components/card/closed-debate-card'
-import { OpenDebateCard } from '../../components/card/open-debate-card'
+import Debate from '../../components/debate'
+import { ClosedDebateCard } from '../../components/debate/closed'
+import { OpenDebateCard } from '../../components/debate/open'
 
 interface DebatesProps {
     isScrollingUp: boolean
@@ -13,8 +13,6 @@ enum Tabs {
 }
 
 const UserDebates: React.FC<DebatesProps> = ({ isScrollingUp }) => {
-    const { isSidebarClose } = useNavStore()
-
     const [tab, setTab] = useState<Tabs>(Tabs.Closed)
 
     return (
@@ -33,9 +31,9 @@ const UserDebates: React.FC<DebatesProps> = ({ isScrollingUp }) => {
                     Open Debates
                 </button>
             </div>
-            <div className={`debates ${isSidebarClose ? 'column-debates' : ''}`}>
+            <Debate>
                 {tab === Tabs.Closed ? <ClosedDebates /> : <OpenDebates />}
-            </div>
+            </Debate>
         </div>
     )
 }

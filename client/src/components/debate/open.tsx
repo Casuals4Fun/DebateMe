@@ -1,18 +1,14 @@
-import './open-debate-card.css'
+import './open.css'
 import { useNavigate } from 'react-router-dom'
-import { useNavStore } from '../../store/useNavStore'
 import { MdModeComment } from 'react-icons/md'
 import { IoCaretUpSharp } from 'react-icons/io5'
+import { useNavStore } from '../../store/useNavStore'
 import useFormatNumber from '../../hooks/useFormatNumber'
 import LoadingSkeleton from '../loading/skeleton'
 
 const OpenDebateCard = () => {
     const navigate = useNavigate()
     const { isSidebarClose } = useNavStore()
-
-    const handleProfileClick = (username: string) => {
-        navigate(`/${username}`)
-    }
 
     return (
         <div id='open-card' className={isSidebarClose ? 'card-break' : ''}>
@@ -27,10 +23,10 @@ const OpenDebateCard = () => {
                 Fugiat repellat architecto pariatur fugit perspiciatis voluptas quidem autem.
             </p>
             <div className='user-info'>
-                <img src='/user.jpg' alt='' loading='lazy' onClick={() => handleProfileClick('julieroberts')} />
+                <img src='/user.jpg' alt='' loading='lazy' onClick={() => navigate('/julieroberts')} />
                 <div className='user-detail'>
-                    <p onClick={() => handleProfileClick('julieroberts')}>Julie Roberts</p>
-                    <p onClick={() => handleProfileClick('julieroberts')}>julieroberts</p>
+                    <p onClick={() => navigate('/julieroberts')}>Julie Roberts</p>
+                    <p onClick={() => navigate('/julieroberts')}>julieroberts</p>
                 </div>
             </div>
             <div className='debate-footer'>

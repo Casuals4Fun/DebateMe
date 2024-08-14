@@ -1,12 +1,8 @@
-import './style.css'
-import { useNavStore } from '../../store/useNavStore'
-import { ClosedDebateCard, ClosedDebateLoadingCard } from '../../components/card/closed-debate-card'
+import { ClosedDebateCard, ClosedDebateLoadingCard } from '../../components/debate/closed'
 
 export default function HotTopicsPage() {
-    const { isSidebarClose } = useNavStore()
-
     return (
-        <div className={`debates ${isSidebarClose ? 'column-debates' : ''}`}>
+        <>
             <ClosedDebateLoadingCard />
             <ClosedDebateCard />
             <ClosedDebateLoadingCard />
@@ -27,6 +23,6 @@ export default function HotTopicsPage() {
             <ClosedDebateCard />
             <ClosedDebateLoadingCard />
             <ClosedDebateCard />
-        </div>
+        </>
     )
 }

@@ -1,8 +1,8 @@
 import { useCallback, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'sonner'
-import { AuthStatus, AuthTab, useAuthStore } from '../../../store/useAuthStore'
-import { LoadingSVG } from '../../loading/svg'
+import { AuthStatus, AuthTab, useAuthStore } from '../../store/useAuthStore'
+import { LoadingSVG } from '../loading/svg'
 
 const SetPassword = () => {
   const navigate = useNavigate()

@@ -1,11 +1,11 @@
 import './left-sidebar.css'
 import { useLocation, Link, useNavigate } from 'react-router-dom'
 import { toast } from 'sonner'
+import { GoPerson } from 'react-icons/go'
 import { AuthStatus, AuthTab, useAuthStore } from '../../store/useAuthStore'
 import { useNavStore } from '../../store/useNavStore'
 import { navLinks } from '../../data/sidebar'
 import Profile from './profile'
-import { GoPerson } from 'react-icons/go'
 import LoadingSkeleton from '../loading/skeleton'
 
 interface SidebarProps {

@@ -1,19 +1,26 @@
 import React, { useState, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { RegisterDataProps } from '../../../types'
 import { toast } from 'sonner'
-import { AuthTab, useAuthStore, useTempStore } from '../../../store/useAuthStore'
-import { LoadingSVG } from '../../loading/svg'
-import { specialCharRegex, usernameRegex, emailRegex, nameRegex } from '../../../data/regex'
 import { MdModeEdit } from 'react-icons/md'
 import { GrCloudUpload } from 'react-icons/gr'
 import { IoPersonCircleOutline } from 'react-icons/io5'
+import { AuthTab, useAuthStore, useTempStore } from '../../store/useAuthStore'
+import { LoadingSVG } from '../loading/svg'
+import { specialCharRegex, usernameRegex, emailRegex, nameRegex } from '../../data/regex'
 
-const SignupTab: React.FC<RegisterDataProps> = ({ registerData, setRegisterData }) => {
+const Signup = () => {
     const navigate = useNavigate()
 
     const { setAuthTab } = useAuthStore()
-    const { clearTempUser } = useTempStore()
+    const { tempUser, clearTempUser } = useTempStore()
+
+    const [registerData, setRegisterData] = useState({
+        avatar: tempUser.avatar || '',
+        username: localStorage.getItem('username') || tempUser.username || '',
+        first_name: tempUser.first_name || '',
+        last_name: tempUser.last_name || '',
+        email: tempUser.email || ''
+    })
 
     const [term, setTerm] = useState<boolean>(false)
     const [isSubmitted, setIsSubmitted] = useState(false)
@@ -251,4 +258,4 @@ const SignupTab: React.FC<RegisterDataProps> = ({ registerData, setRegisterData 
     )
 }
 
-export default SignupTab
+export default Signup

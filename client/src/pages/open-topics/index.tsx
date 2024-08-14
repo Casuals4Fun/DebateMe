@@ -1,12 +1,8 @@
-import './style.css'
-import { useNavStore } from '../../store/useNavStore'
-import { OpenDebateCard, OpenDebateLoadingCard } from '../../components/card/open-debate-card'
+import { OpenDebateCard, OpenDebateLoadingCard } from '../../components/debate/open'
 
 export default function OpenTopicsPage() {
-    const { isSidebarClose } = useNavStore()
-
     return (
-        <div className={`debates ${isSidebarClose ? 'column-debates' : ''}`}>
+        <>
             <OpenDebateLoadingCard />
             <OpenDebateCard />
             <OpenDebateLoadingCard />
@@ -27,6 +23,6 @@ export default function OpenTopicsPage() {
             <OpenDebateCard />
             <OpenDebateLoadingCard />
             <OpenDebateCard />
-        </div>
+        </>
     )
 }
