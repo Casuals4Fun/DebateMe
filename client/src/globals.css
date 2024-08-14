@@ -68,6 +68,16 @@
     --debate_from: #5b5b5b;
     --debate_by: #000000;
     --modal_header_color: #001AFF;
+    --skeleton_bg_0: #d8d8d8;
+    --skeleton_bg_100: #bdbdbd;
+    --shine_text_primary: #606060;
+    --shine_text_secondary: #000000;
+    --shine_text_tertiary: #606060;
+    --bg_primary: #ffffff;
+    --bg_secondary: #f8f9fa;
+    --color_primary: #000;
+    --color_secondary: #dee2e6;
+    --border_color: #dee2e6;
 }
 
 [data-theme='dark'] {
@@ -86,6 +96,16 @@
     --debate_from: #AAAAAA;
     --debate_by: #ffffff;
     --modal_header_color: rgb(60 130 246);
+    --skeleton_bg_0: #737373;
+    --skeleton_bg_100: #454545;
+    --shine_text_primary: #9f9f9f;
+    --shine_text_secondary: #fff;
+    --shine_text_tertiary: #868686;
+    --bg_primary: #121212;
+    --bg_secondary: #1f1f21;
+    --color_primary: #fff;
+    --color_secondary: #6c757d;
+    --border_color: #1f1f21;
 }
 
 html,

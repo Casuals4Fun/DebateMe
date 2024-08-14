@@ -1,4 +1,4 @@
-import './toggle-theme.css'
+import './style.css'
 import { Theme, useNavStore } from '../../store/useNavStore'
 
 const ToggleTheme = () => {

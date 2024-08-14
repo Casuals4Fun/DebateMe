@@ -2,21 +2,22 @@ import './App.css'
 import { useRef, useState, useEffect } from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import { Toaster } from 'sonner'
-import { ProtectedRoute } from './ProtectedRoute'
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'
 import { Theme, useNavStore } from './store/useNavStore'
-import { AuthTab, useAuthStore } from './store/useAuthStore'
+import { AuthStatus, AuthTab, useAuthStore } from './store/useAuthStore'
 import handleAutoLogin from './utils/auto-login'
 import LeftSidebar from './components/sidebar/left-sidebar'
 import RightSidebar from './components/sidebar/right-sidebar'
-import AuthModal from './components/modal/auth'
+import AuthModal from './components/auth'
 import HomePage from './pages/home'
 import AuthPage from './pages/auth'
 import SearchPage from './pages/search'
 import CreateDebatePage from './pages/create-debate'
 import HotTopicsPage from './pages/hot-topics'
 import OpenTopicsPage from './pages/open-topics'
-import UserProfile from './pages/profile'
-import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'
+import ProfilePage from './pages/profile'
+import { LoadingComponent } from './components/loading/svg'
+import Debate from './components/debate'
 
 export default function App() {
   const { setRoute, setUser, setIsAuthenticated, authTab, setAuthTab } = useAuthStore()
@@ -53,16 +54,18 @@ export default function App() {
       </>
       <main id='main' ref={mainRef} className={`${isNavbarOpen ? 'expand' : ''} ${isSidebarClose ? 'w-full' : ''}`}>
         <Routes>
-          <Route path='/' element={<HomePage />} />
+          <Route element={<Debate />}>
+            <Route path='/' element={<HomePage />} />
+            <Route path='/hot-topics' element={<HotTopicsPage />} />
+            <Route path='/open-topics' element={<OpenTopicsPage />} />
+          </Route>
           <Route path='/auth' element={<AuthPage />} />
           <Route path='/login' element={<Navigate to='/auth?type=login' />} />
           <Route path='/signup' element={<Navigate to='/auth?type=signup' />} />
           <Route path='/forgot' element={<Navigate to='/auth?type=forgot' />} />
           <Route path='/search' element={<SearchPage />} />
           <Route path='/create' element={<ProtectedRoute><CreateDebatePage isScrollingUp={isScrollingUp} /></ProtectedRoute>} />
-          <Route path='/hot-topics' element={<HotTopicsPage />} />
-          <Route path='/open-topics' element={<OpenTopicsPage />} />
-          <Route path=':username' element={<UserProfile isScrollingUp={isScrollingUp} />} />
+          <Route path=':username' element={<ProfilePage isScrollingUp={isScrollingUp} />} />
         </Routes>
       </main>
       <>
@@ -82,4 +85,17 @@ export default function App() {
       />
     </div>
   )
+}
+
+const ProtectedRoute: React.FC<React.PropsWithChildren<{}>> = ({ children }) => {
+  const { isAuthenticated } = useAuthStore()
+
+  if (isAuthenticated === AuthStatus.Authenticating) {
+    return <LoadingComponent />
+  }
+  else if (isAuthenticated === AuthStatus.Failed) {
+    return <Navigate to='/auth' replace />
+  }
+
+  return children
 }

@@ -1,18 +1,14 @@
-import './closed-debate-card.css'
+import './closed.css'
 import { useNavigate } from 'react-router-dom'
-import { useNavStore } from '../../store/useNavStore'
-import DebateBar from './debate-bar'
 import { MdModeComment } from 'react-icons/md'
+import { useNavStore } from '../../store/useNavStore'
+import DebateBar from './bar'
 import useFormatNumber from '../../hooks/useFormatNumber'
 import LoadingSkeleton from '../loading/skeleton'
 
 const ClosedDebateCard = () => {
     const navigate = useNavigate()
     const { isSidebarClose } = useNavStore()
-
-    const handleProfileClick = (username: string) => {
-        navigate(`/${username}`)
-    }
 
     return (
         <div id='closed-card' className={isSidebarClose ? 'card-break' : ''}>
@@ -29,14 +25,14 @@ const ClosedDebateCard = () => {
             <div className={`right ${isSidebarClose ? 'flex-unset' : ''}`}>
                 <div className='user-info'>
                     <div className='debate-from'>
-                        <img src='/user1.webp' alt='' loading='lazy' onClick={() => handleProfileClick('aniketdas')} />
-                        <p onClick={() => handleProfileClick('aniketdas')}>Aniket Das</p>
-                        <p onClick={() => handleProfileClick('aniketdas')}>aniketdas</p>
+                        <img src='/user1.webp' alt='' loading='lazy' onClick={() => navigate('/aniketdas')} />
+                        <p onClick={() => navigate('/aniketdas')}>Aniket Das</p>
+                        <p onClick={() => navigate('/aniketdas')}>aniketdas</p>
                     </div>
                     <div className='debate-by'>
-                        <img src='/user2.jpeg' alt='' loading='lazy' onClick={() => handleProfileClick('pratikprasad')} />
-                        <p onClick={() => handleProfileClick('pratikprasad')}>Pratik Prasad</p>
-                        <p onClick={() => handleProfileClick('pratikprasad')}>pratikprasad</p>
+                        <img src='/user2.jpeg' alt='' loading='lazy' onClick={() => navigate('/pratikprasad')} />
+                        <p onClick={() => navigate('/pratikprasad')}>Pratik Prasad</p>
+                        <p onClick={() => navigate('/pratikprasad')}>pratikprasad</p>
                     </div>
                 </div>
                 <div className='debate-bar__container'>
