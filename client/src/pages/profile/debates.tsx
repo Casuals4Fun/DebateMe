@@ -16,7 +16,7 @@ const UserDebates: React.FC<DebatesProps> = ({ isScrollingUp }) => {
     const [tab, setTab] = useState<Tabs>(Tabs.Closed)
 
     return (
-        <div>
+        <>
             <div className={`profile-btns ${isScrollingUp ? '' : 'top'}`}>
                 <button
                     style={{ textDecoration: tab === Tabs.Closed ? 'underline' : '' }}
@@ -34,7 +34,7 @@ const UserDebates: React.FC<DebatesProps> = ({ isScrollingUp }) => {
             <Debate>
                 {tab === Tabs.Closed ? <ClosedDebates /> : <OpenDebates />}
             </Debate>
-        </div>
+        </>
     )
 }
 

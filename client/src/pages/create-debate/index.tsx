@@ -61,7 +61,11 @@ const CreateDebatePage: React.FC<CreateProps> = ({ isScrollingUp }) => {
                 </div>
             </form>
 
-            <Preview isPreview={isPreview} editorRef={editorRef} debateData={debateData} />
+            <Preview
+                isPreview={isPreview}
+                editorRef={editorRef}
+                debateData={debateData}
+            />
 
             <div className={`debate-btns ${isScrollingUp ? 'reveal' : 'hide'} ${isSidebarClose ? 'w-full' : ''}`}>
                 <button
