@@ -15,7 +15,7 @@
 }
 
 #open-card-loading .debate-header .loading-skeleton {
-    width: 400px;
+    max-width: 400px;
     height: 28px;
     border-radius: 30px;
 }
@@ -172,7 +172,7 @@
     }
 
     #open-card-loading .debate-header .loading-skeleton:first-child {
-        width: 250px;
+        max-width: 250px;
     }
 
     #open-card .divider,

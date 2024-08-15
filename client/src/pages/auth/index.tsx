@@ -6,6 +6,7 @@ import { AuthStatus, AuthTab, useAuthStore, useTempStore } from '../../store/use
 export default function AuthPage() {
     const location = useLocation()
     const navigate = useNavigate()
+    
     const { route, isAuthenticated, setAuthTab } = useAuthStore()
     const { setTempUser } = useTempStore()
 

@@ -1,6 +1,6 @@
 import './App.css'
 import { useRef, useState, useEffect } from 'react'
-import { Routes, Route, Navigate } from 'react-router-dom'
+import { Routes, Route, Navigate, Outlet } from 'react-router-dom'
 import { Toaster } from 'sonner'
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'
 import { Theme, useNavStore } from './store/useNavStore'
@@ -9,6 +9,7 @@ import handleAutoLogin from './utils/auto-login'
 import LeftSidebar from './components/sidebar/left-sidebar'
 import RightSidebar from './components/sidebar/right-sidebar'
 import AuthModal from './components/auth'
+import Debate from './components/debate'
 import HomePage from './pages/home'
 import AuthPage from './pages/auth'
 import SearchPage from './pages/search'
@@ -17,7 +18,6 @@ import HotTopicsPage from './pages/hot-topics'
 import OpenTopicsPage from './pages/open-topics'
 import ProfilePage from './pages/profile'
 import { LoadingComponent } from './components/loading/svg'
-import Debate from './components/debate'
 
 export default function App() {
   const { setRoute, setUser, setIsAuthenticated, authTab, setAuthTab } = useAuthStore()
@@ -45,13 +45,8 @@ export default function App() {
   }, [])
 
   return (
-    <div id='app'>
-      <>
-        <LeftSidebar isVisible={isScrollingUp} />
-        <button className='sidebar-btn left' onClick={() => setSidebarClose(!isSidebarClose)}>
-          {isSidebarClose ? <FaChevronRight size={20} /> : <FaChevronLeft size={20} />}
-        </button>
-      </>
+    <>
+      <LeftSidebar isVisible={isScrollingUp} />
       <main id='main' ref={mainRef} className={`${isNavbarOpen ? 'expand' : ''} ${isSidebarClose ? 'w-full' : ''}`}>
         <Routes>
           <Route element={<Debate />}>
@@ -59,21 +54,25 @@ export default function App() {
             <Route path='/hot-topics' element={<HotTopicsPage />} />
             <Route path='/open-topics' element={<OpenTopicsPage />} />
           </Route>
+          <Route element={<Authenticated />}>
+            <Route path='/create' element={<CreateDebatePage isScrollingUp={isScrollingUp} />} />
+          </Route>
           <Route path='/auth' element={<AuthPage />} />
           <Route path='/login' element={<Navigate to='/auth?type=login' />} />
           <Route path='/signup' element={<Navigate to='/auth?type=signup' />} />
           <Route path='/forgot' element={<Navigate to='/auth?type=forgot' />} />
           <Route path='/search' element={<SearchPage />} />
-          <Route path='/create' element={<ProtectedRoute><CreateDebatePage isScrollingUp={isScrollingUp} /></ProtectedRoute>} />
           <Route path=':username' element={<ProfilePage isScrollingUp={isScrollingUp} />} />
         </Routes>
       </main>
-      <>
-        <RightSidebar isVisible={isScrollingUp} />
-        <button className='sidebar-btn right' onClick={() => setSidebarClose(!isSidebarClose)}>
-          {isSidebarClose ? <FaChevronLeft size={20} /> : <FaChevronRight size={20} />}
-        </button>
-      </>
+      <RightSidebar isVisible={isScrollingUp} />
+
+      <button className='sidebar-btn left' onClick={() => setSidebarClose(!isSidebarClose)}>
+        {isSidebarClose ? <FaChevronRight size={20} /> : <FaChevronLeft size={20} />}
+      </button>
+      <button className='sidebar-btn right' onClick={() => setSidebarClose(!isSidebarClose)}>
+        {isSidebarClose ? <FaChevronLeft size={20} /> : <FaChevronRight size={20} />}
+      </button>
 
       {authTab !== AuthTab.Closed && <AuthModal />}
 
@@ -83,11 +82,11 @@ export default function App() {
         richColors
         theme={(localStorage.getItem('theme') as Theme) || Theme.Dark}
       />
-    </div>
+    </>
   )
 }
 
-const ProtectedRoute: React.FC<React.PropsWithChildren<{}>> = ({ children }) => {
+const Authenticated = () => {
   const { isAuthenticated } = useAuthStore()
 
   if (isAuthenticated === AuthStatus.Authenticating) {
@@ -97,5 +96,5 @@ const ProtectedRoute: React.FC<React.PropsWithChildren<{}>> = ({ children }) => 
     return <Navigate to='/auth' replace />
   }
 
-  return children
+  return <Outlet />
 }

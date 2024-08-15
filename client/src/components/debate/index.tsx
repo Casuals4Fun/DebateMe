@@ -1,9 +1,8 @@
-import React, { ReactNode } from 'react'
 import { Outlet } from 'react-router-dom'
 import { useNavStore } from '../../store/useNavStore'
 
 interface DebateProps {
-    children?: ReactNode
+    children?: React.ReactNode
 }
 
 const Debate: React.FC<DebateProps> = ({ children }) => {

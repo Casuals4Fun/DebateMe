@@ -46,7 +46,7 @@
 }
 
 #closed-card-loading .left .topic .loading-skeleton {
-    max-width: 300px;
+    max-width: 400px;
     height: 28px;
     border-radius: 30px;
 }
@@ -250,6 +250,10 @@
 }
 
 @media screen and (max-width: 480px) {
+    #closed-card-loading .left .topic .loading-skeleton {
+        max-width: 250px;
+    }
+
     #closed-card .divider,
     #closed-card-loading .divider {
         margin-top: 20px;
