@@ -1,5 +1,5 @@
 import './profile.css'
-import React, { useCallback, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { IoMdPerson } from 'react-icons/io'
 import { PiSignOutBold } from 'react-icons/pi'
@@ -19,20 +19,8 @@ const Profile: React.FC<ProfileProps> = ({ isVisible }) => {
     const { isNavbarOpen, setNavbarOpen } = useNavStore()
     const { isAuthenticated, setIsAuthenticated, user, setUser, authTab, setAuthTab } = useAuthStore()
 
-    const handleToggleMenu = useCallback(() => {
-        setNavbarOpen(!isNavbarOpen)
-        const mainElement = document.querySelector('#main') as HTMLElement
-        if (mainElement) {
-            if (window.matchMedia('(max-width: 480px)').matches) {
-                if (isNavbarOpen) mainElement.style.overflow = ''
-                else mainElement.style.overflow = 'hidden'
-            }
-            else mainElement.style.overflow = ''
-        }
-    }, [isNavbarOpen, setNavbarOpen])
-
     const handleLogout = () => {
-        handleToggleMenu()
+        setNavbarOpen(false)
         navigate('/')
         setIsAuthenticated(AuthStatus.Failed)
         setUser({
@@ -49,13 +37,13 @@ const Profile: React.FC<ProfileProps> = ({ isVisible }) => {
         const handleClickOutside = (event: MouseEvent) => {
             const target = event.target as HTMLElement
             if (isNavbarOpen && !target.closest('.profile__modal') && !target.closest('.profile__image')) {
-                handleToggleMenu()
+                setNavbarOpen(false)
             }
         }
 
         document.addEventListener('mousedown', handleClickOutside)
         return () => document.removeEventListener('mousedown', handleClickOutside)
-    }, [isNavbarOpen, handleToggleMenu])
+    }, [isNavbarOpen])
 
     return (
         <div className='profile__wrapper'>
@@ -69,7 +57,7 @@ const Profile: React.FC<ProfileProps> = ({ isVisible }) => {
                         borderStyle: 'solid',
                         borderColor: `${isNavbarOpen ? 'var(--body_color)' : 'transparent'}`
                     }}
-                    onClick={handleToggleMenu}
+                    onClick={() => setNavbarOpen(!isNavbarOpen)}
                 >
                     {user.avatar ? (
                         <img src={user.avatar} alt='' loading='lazy' referrerPolicy='no-referrer' />
@@ -92,7 +80,7 @@ const Profile: React.FC<ProfileProps> = ({ isVisible }) => {
                 <div className={`profile__modal ${isVisible ? 'shift-down' : 'shift-up'}`}>
                     <div className='modal-profile__wrapper'>
                         <div className='profile-wrapper'>
-                            <Link to={user.username} className='modal-profile__image' onClick={handleToggleMenu}>
+                            <Link to={user.username} className='modal-profile__image' onClick={() => setNavbarOpen(false)}>
                                 {user.avatar ? (
                                     <img src={user.avatar} alt='' loading='lazy' referrerPolicy='no-referrer' />
                                 ) : (
@@ -100,8 +88,8 @@ const Profile: React.FC<ProfileProps> = ({ isVisible }) => {
                                 )}
                             </Link>
                             <div className='modal-profile__info'>
-                                <Link to={user.username} onClick={handleToggleMenu}>{user.first_name} {user.last_name}</Link>
-                                <Link to={user.username} onClick={handleToggleMenu}>{user.username}</Link>
+                                <Link to={user.username} onClick={() => setNavbarOpen(false)}>{user.first_name} {user.last_name}</Link>
+                                <Link to={user.username} onClick={() => setNavbarOpen(false)}>{user.username}</Link>
                             </div>
                         </div>
                         <ToggleTheme />
@@ -109,7 +97,7 @@ const Profile: React.FC<ProfileProps> = ({ isVisible }) => {
                     <Link
                         to={user.username}
                         className='modal-profile-btn'
-                        onClick={handleToggleMenu}
+                        onClick={() => setNavbarOpen(false)}
                     >
                         <IoMdPerson size={18} />
                         <p>Profile</p>

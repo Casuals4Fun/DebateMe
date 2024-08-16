@@ -67,7 +67,7 @@
     color: var(--color_primary);
     font-family: inherit;
     font-size: 17px;
-    border: 1px solid var(--border_color);
+    border: 1px solid var(--border_primary);
     outline: none;
 }
 
@@ -84,11 +84,11 @@
     bottom: 0;
     width: calc(40% - 2px);
     padding: 20px;
-    background-color: var(--body_background);
+    background-color: var(--background_primary);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-top: 1px solid var(--explore_input_bg);
+    border-top: 1px solid var(--border_primary);
 }
 
 .debate-btns button {
@@ -96,7 +96,7 @@
     width: 125px;
     background-color: var(--bg_secondary);
     font-size: 18px;
-    border: 1px solid var(--explore_input_bg);
+    border: 1px solid var(--border_primary);
     border-radius: 5px;
 }
 
@@ -164,7 +164,7 @@
     .debate-btns {
         width: 100%;
         padding: 10px;
-        background-color: var(--body_background);
+        background-color: var(--background_primary);
     }
 
     .debate-btns.reveal {

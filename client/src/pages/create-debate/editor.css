@@ -9,7 +9,7 @@
     min-height: 40vh !important;
     background-color: var(--bg_primary);
     color: var(--color_primary);
-    border: 1px solid var(--border_color);
+    border: 1px solid var(--border_primary);
     overflow-x: hidden;
 }
 
@@ -58,7 +58,7 @@
 }
 
 .e-toolbar-wrapper {
-    border-bottom-color: var(--border_color);
+    border-bottom-color: var(--border_primary);
 }
 
 .e-richtexteditor .rte-placeholder,

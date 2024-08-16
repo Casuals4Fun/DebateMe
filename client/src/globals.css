@@ -53,17 +53,14 @@
 }
 
 :root {
-    --body_background: #ffffff;
+    --background_primary: #ffffff;
+    --background_secondary: #fafafa;
     --body_color: rgb(1, 1, 1);
-    --nav-foot__background: #fafafa;
-    --nav_border: #ebebeb;
-    --nav_profile_username: #a6a6a6;
-    --explore_input_bg: #dee2e6;
     --explore_input_placeholder: #606060;
     --card_background: #f4f4f4;
-    --card_color_primary: #111111;
-    --card_color_secondary: #606060;
-    --card_border: #dee2e6;
+    --card_color: #606060;
+    --border_primary: #dee2e6;
+    --border_secondary: #dee2e6;
     --card_divider: #a0a0a041;
     --debate_from: #5b5b5b;
     --debate_by: #000000;
@@ -77,21 +74,17 @@
     --bg_secondary: #f8f9fa;
     --color_primary: #000;
     --color_secondary: #dee2e6;
-    --border_color: #dee2e6;
 }
 
 [data-theme='dark'] {
-    --body_background: rgb(1, 1, 1);
+    --background_primary: rgb(1, 1, 1);
+    --background_secondary: #0a0a0a;
     --body_color: rgb(255, 255, 255);
-    --nav-foot__background: #0a0a0a;
-    --nav_border: #242526;
-    --nav_profile_username: #606060;
-    --explore_input_bg: #1f1f21;
     --explore_input_placeholder: #a0a0a0;
     --card_background: #121212;
-    --card_color_primary: #ffffff;
-    --card_color_secondary: #a5a5a5;
-    --card_border: #1f1f21;
+    --card_color: #a5a5a5;
+    --border_primary: #1f1f21;
+    --border_secondary: #242526;
     --card_divider: #ffffff1a;
     --debate_from: #AAAAAA;
     --debate_by: #ffffff;
@@ -105,7 +98,6 @@
     --bg_secondary: #1f1f21;
     --color_primary: #fff;
     --color_secondary: #6c757d;
-    --border_color: #1f1f21;
 }
 
 html,
@@ -129,7 +121,7 @@ body {
     max-width: 1920px;
     width: 100%;
     margin: 0 auto;
-    background-color: var(--body_background);
+    background-color: var(--background_primary);
     color: var(--body_color);
     font-family: 'Onest', sans-serif;
     font-weight: 400;

@@ -18,7 +18,7 @@
     height: 550px;
     background-color: var(--card_background);
     border-radius: 10px;
-    border: 2px solid var(--card_border);
+    border: 2px solid var(--border_primary);
     display: flex;
     overflow-y: auto;
 }
@@ -108,7 +108,7 @@
     align-items: center;
     justify-content: center;
     gap: 5px;
-    background-color: var(--card_border);
+    background-color: var(--border_primary);
     color: var(--body_color);
     font-size: 16px;
     font-weight: 600;
@@ -126,7 +126,7 @@
 #auth-modal .or-divider .divider {
     width: 100%;
     height: 2px;
-    background-color: var(--card_border);
+    background-color: var(--border_primary);
 }
 
 #auth-modal .or-divider p {
@@ -177,7 +177,7 @@
     justify-content: center;
     height: 48px;
     background-color: var(--body_color);
-    color: var(--body_background);
+    color: var(--background_primary);
     font-size: 16px;
     font-weight: 600;
     border-radius: 5px;
@@ -226,7 +226,7 @@
     right: 0;
     width: 20px;
     height: 20px;
-    background-color: var(--card_border);
+    background-color: var(--border_primary);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -322,7 +322,7 @@
         height: 100%;
         flex-direction: column;
         gap: 10px;
-        background-color: var(--body_background);
+        background-color: var(--background_primary);
         border: none;
         border-radius: unset;
     }
@@ -338,7 +338,7 @@
     .auth__container .close__btn {
         top: 10px;
         right: 10px;
-        background-color: var(--explore_input_bg);
+        background-color: var(--border_primary);
         color: var(--body_color);
         border-radius: 50%;
     }
@@ -376,6 +376,6 @@
     }
 
     #auth-modal .form__container .input__container p {
-        background-color: var(--body_background);
+        background-color: var(--background_primary);
     }
 }

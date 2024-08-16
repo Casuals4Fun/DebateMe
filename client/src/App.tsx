@@ -47,7 +47,7 @@ export default function App() {
   return (
     <>
       <LeftSidebar isVisible={isScrollingUp} />
-      <main id='main' ref={mainRef} className={`${isNavbarOpen ? 'expand' : ''} ${isSidebarClose ? 'w-full' : ''}`}>
+      <main ref={mainRef} className={`${isNavbarOpen ? 'expand' : ''} ${isSidebarClose ? 'w-full' : ''}`}>
         <Routes>
           <Route element={<Debate />}>
             <Route path='/' element={<HomePage />} />
