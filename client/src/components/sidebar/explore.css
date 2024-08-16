@@ -13,7 +13,7 @@
     padding: 0 20px;
     width: 100%;
     height: 40px;
-    background-color: var(--explore_input_bg);
+    background-color: var(--border_primary);
     border-radius: 5px;
     font-size: 18px;
     text-align: center;
@@ -49,7 +49,7 @@
 }
 
 #explore .explore-input button svg {
-    color: var(--body_background);
+    color: var(--background_primary);
 }
 
 #explore .explore-btns {

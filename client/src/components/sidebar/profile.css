@@ -49,18 +49,18 @@
 .notification-btn,
 .profile__image,
 .modal-profile__image {
-    background-color: var(--explore_input_bg);
+    background-color: var(--border_primary);
 }
 
 .theme-btn {
     display: none;
-    background-color: var(--explore_input_bg);
+    background-color: var(--border_primary);
 }
 
 .modal-profile__image {
     width: 45px;
     height: 45px;
-    border: 2px solid var(--explore_input_bg);
+    border: 2px solid var(--border_primary);
 }
 
 .profile__image img,
@@ -105,7 +105,7 @@
 
 .modal-profile__info a:nth-child(2) {
     font-size: 14px;
-    color: var(--nav_profile_username);
+    color: var(--card_color);
     cursor: pointer;
 }
 
@@ -121,12 +121,12 @@
     width: 300px;
     top: 70px;
     right: 20px;
-    background-color: var(--nav-foot__background);
+    background-color: var(--background_secondary);
     height: fit-content;
     display: flex;
     flex-direction: column;
     gap: 20px;
-    border: 2px solid var(--explore_input_bg);
+    border: 2px solid var(--border_primary);
     border-radius: 10px;
 }
 
@@ -134,7 +134,7 @@
     display: flex;
     justify-content: space-between;
     padding-bottom: 20px;
-    border-bottom: 1px solid var(--nav_border);
+    border-bottom: 1px solid var(--border_secondary);
 }
 
 .profile-wrapper {
@@ -163,7 +163,7 @@
         width: 40px;
         height: 40px;
         border-radius: 50%;
-        background: var(--explore_input_bg);
+        background: var(--border_primary);
     }
 
     .profile__wrapper .auth-btn svg {
@@ -197,9 +197,9 @@
         padding-bottom: 15px;
         width: 100%;
         left: 0;
-        background-color: var(--body_background);
+        background-color: var(--background_primary);
         border: 0;
-        border-bottom: 1px solid var(--explore_input_bg);
+        border-bottom: 1px solid var(--border_primary);
     }
 
     .profile__modal.shift-up {

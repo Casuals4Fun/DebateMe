@@ -18,7 +18,7 @@
     width: 83px;
     height: 40px;
     border-radius: 20px;
-    background-color: var(--explore_input_bg);
+    background-color: var(--border_primary);
     cursor: pointer;
     transition: 0.2s ease-in-out;
 }
@@ -51,7 +51,7 @@
 }
 
 .theme__button input[type=checkbox]:checked+.display .toggle-btn {
-    background-color: var(--explore_input_bg);
+    background-color: var(--border_primary);
 }
 
 .theme__button input[type=checkbox]:checked+.display .toggle-btn .circle {

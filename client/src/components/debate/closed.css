@@ -26,7 +26,7 @@
     margin-top: 30px;
     width: 100%;
     height: 0;
-    border-bottom: 1px solid var(--card_border);
+    border-bottom: 1px solid var(--border_primary);
 }
 
 #closed-card .left h2 {
@@ -72,7 +72,7 @@
     -webkit-box-orient: vertical;
     padding-top: 10px;
     font-size: 18px;
-    color: var(--card_color_secondary);
+    color: var(--card_color);
 }
 
 #closed-card-loading .left .view .loading-skeleton {
@@ -118,15 +118,15 @@
     width: 40px;
     height: 40px;
     object-fit: cover;
-    border: 2px solid var(--explore_input_bg);
-    border-radius: 10px;
+    border: 2px solid var(--border_primary);
+    border-radius: 5px;
     cursor: pointer;
 }
 
 #closed-card-loading .right .user-info .debater .loading-skeleton:nth-child(1) {
     width: 40px;
     height: 40px;
-    border-radius: 10px;
+    border-radius: 5px;
 }
 
 #closed-card .right .user-info .debate-from p,
@@ -138,7 +138,7 @@
     overflow: hidden;
     font-size: 15px;
     font-weight: 600;
-    color: var(--card_color_secondary);
+    color: var(--card_color);
     cursor: pointer;
 }
 
@@ -152,7 +152,7 @@
 #closed-card .right .user-info .debate-by p:last-child {
     margin-top: -5px;
     font-size: 14px;
-    font-weight: unset;
+    font-weight: 400;
 }
 
 #closed-card .right .user-info .debate-from img:hover~p:last-child,
@@ -207,7 +207,7 @@
 }
 
 #closed-card .right .debate-info .created-at {
-    color: var(--card_color_secondary);
+    color: var(--card_color);
 }
 
 @media screen and (max-width: 1536px) {

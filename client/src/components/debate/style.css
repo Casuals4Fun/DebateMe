@@ -1,0 +1,42 @@
+.debates {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.debates.column {
+    display: block;
+    columns: 3;
+}
+
+.card-break {
+    break-inside: avoid;
+    margin-bottom: 30px;
+}
+
+@media screen and (max-width: 1880px) {
+    .debates.column {
+        display: block;
+        columns: 2;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .debates.column {
+        columns: unset;
+        display: flex;
+    }
+
+    .card-break {
+        break-inside: avoid;
+        margin-bottom: 0;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .debates {
+        padding: 20px 10px;
+        gap: 20px;
+    }
+}
