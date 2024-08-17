@@ -13,7 +13,7 @@ const RightSidebar: React.FC<SidebarProps> = ({ isVisible }) => {
   const { isNavbarOpen, isSidebarClose } = useNavStore()
 
   return (
-    <div id='right-sidebar' className={`${isVisible ? 'reveal' : 'hide'} ${isSidebarClose ? 'close' : 'open'}`}>
+    <aside id='right-sidebar' className={`${isVisible ? 'reveal' : 'hide'} ${isSidebarClose ? 'close' : 'open'}`}>
       <div className='right-sidebar__container'>
         <Link to='/' className='logo__container'>
           <img src='/logo.png' alt='' />
@@ -35,7 +35,7 @@ const RightSidebar: React.FC<SidebarProps> = ({ isVisible }) => {
 
         {!isNavbarOpen && <div className='nav-border' />}
       </div>
-    </div>
+    </aside>
   )
 }
 

@@ -69,6 +69,7 @@
 
 @media screen and (max-width: 480px) {
     #explore .explore-input input {
+        padding: 0 8px;
         text-align: left;
     }
 }

@@ -1,4 +1,4 @@
-import './closed.css'
+import './close.css'
 import { useNavigate } from 'react-router-dom'
 import { MdModeComment } from 'react-icons/md'
 import { useNavStore } from '../../store/useNavStore'
@@ -6,14 +6,14 @@ import DebateBar from './bar'
 import useFormatNumber from '../../hooks/useFormatNumber'
 import LoadingSkeleton from '../loading/skeleton'
 
-const ClosedDebateCard = () => {
+const CloseDebateCard = () => {
     const navigate = useNavigate()
     const { isSidebarClose } = useNavStore()
 
     return (
         <div id='closed-card' className={isSidebarClose ? 'card-break' : ''}>
             <div className={`left ${isSidebarClose ? 'flex-unset' : ''}`}>
-                <h2 title='Sony is the best camera of all time. ↗' onClick={() => navigate('/')}>
+                <h2 onClick={() => navigate('/')}>
                     Sony is the best camera of all time.
                 </h2>
                 <p>
@@ -51,7 +51,7 @@ const ClosedDebateCard = () => {
     )
 }
 
-const ClosedDebateLoadingCard = () => {
+const CloseDebateLoadingCard = () => {
     const { isSidebarClose } = useNavStore()
 
     return (
@@ -95,4 +95,4 @@ const ClosedDebateLoadingCard = () => {
     )
 }
 
-export { ClosedDebateCard, ClosedDebateLoadingCard }
+export { CloseDebateCard, CloseDebateLoadingCard }

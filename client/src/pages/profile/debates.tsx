@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import Debate from '../../components/debate'
-import { ClosedDebateCard } from '../../components/debate/closed'
+import { CloseDebateCard } from '../../components/debate/close'
 import { OpenDebateCard } from '../../components/debate/open'
 
 interface DebatesProps {
@@ -41,11 +41,11 @@ const UserDebates: React.FC<DebatesProps> = ({ isScrollingUp }) => {
 const ClosedDebates = () => {
     return (
         <>
-            <ClosedDebateCard />
-            <ClosedDebateCard />
-            <ClosedDebateCard />
-            <ClosedDebateCard />
-            <ClosedDebateCard />
+            <CloseDebateCard />
+            <CloseDebateCard />
+            <CloseDebateCard />
+            <CloseDebateCard />
+            <CloseDebateCard />
         </>
     )
 }

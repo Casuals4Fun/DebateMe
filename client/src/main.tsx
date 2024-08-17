@@ -6,8 +6,4 @@ import App from './App.tsx'
 
 registerLicense(import.meta.env.VITE_SYNCFUSION_KEY)
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
-    <BrowserRouter>
-        <App />
-    </BrowserRouter>
-)
+ReactDOM.createRoot(document.getElementById('root')!).render(<BrowserRouter><App /></BrowserRouter>)

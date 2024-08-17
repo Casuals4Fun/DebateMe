@@ -22,7 +22,6 @@ const Signup = () => {
         email: tempUser.email || ''
     })
 
-    const [term, setTerm] = useState<boolean>(false)
     const [isSubmitted, setIsSubmitted] = useState(false)
     const [validationState, setValidationState] = useState({
         isUsernameValid: true,
@@ -101,7 +100,7 @@ const Signup = () => {
             isEmailValid
         })
 
-        if (isUsernameValid && isFirstNameValid && isLastNameValid && isEmailValid && term) {
+        if (isUsernameValid && isFirstNameValid && isLastNameValid && isEmailValid) {
             if (!emailRegex.test(trimmedEmail)) {
                 setTimeout(() => setIsSubmitted(false), 500)
                 return toast.warning('Invalid email address')
@@ -230,25 +229,12 @@ const Signup = () => {
                         placeholder={isSubmitted && !validationState.isEmailValid ? 'Required' : ''}
                     />
                 </div>
-                <div className='terms__container'>
-                    <div className='checkbox__conatiner' onClick={() => setTerm(!term)}>
-                        <input type='checkbox'
-                            checked={term}
-                            readOnly
-                        />
-                        <span
-                            className={`checkmark ${isSubmitted && !term ? 'shake' : ''}`}
-                            style={{ borderColor: isSubmitted && !term ? 'red' : '' }}
-                        />
-                    </div>
-                    <p>Accept <span>Terms & Conditions</span></p>
-                </div>
                 <button
                     type='submit'
                     disabled={isSubmitted}
                     style={{ cursor: `${isSubmitted ? 'not-allowed' : ''}` }}
                 >
-                    {isSubmitted ? <LoadingSVG size={23} /> : 'Create my Account'}
+                    {isSubmitted ? <LoadingSVG size={23} /> : 'Create Account'}
                 </button>
                 <div className='extra-btn'>
                     <p>Already have an account? <span onClick={() => navigate('/auth?type=login')}>Log In</span></p>
