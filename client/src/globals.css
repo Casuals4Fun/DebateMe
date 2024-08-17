@@ -148,6 +148,10 @@ input {
     font-family: inherit;
 }
 
+textarea {
+    font-family: inherit;
+}
+
 @keyframes shake {
 
     0%,

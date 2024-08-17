@@ -1,32 +1,32 @@
-import { ClosedDebateCard } from '../../components/debate/closed'
+import { CloseDebateCard } from '../../components/debate/close'
 import { OpenDebateCard } from '../../components/debate/open'
 
 export default function HomePage() {
   return (
     <>
-      <ClosedDebateCard />
+      <CloseDebateCard />
       <OpenDebateCard />
-      <ClosedDebateCard />
-      <OpenDebateCard />
-      <OpenDebateCard />
-      <ClosedDebateCard />
-      <OpenDebateCard />
-      <ClosedDebateCard />
+      <CloseDebateCard />
       <OpenDebateCard />
       <OpenDebateCard />
-      <ClosedDebateCard />
+      <CloseDebateCard />
       <OpenDebateCard />
-      <ClosedDebateCard />
-      <OpenDebateCard />
-      <OpenDebateCard />
-      <ClosedDebateCard />
-      <OpenDebateCard />
-      <ClosedDebateCard />
+      <CloseDebateCard />
       <OpenDebateCard />
       <OpenDebateCard />
-      <ClosedDebateCard />
+      <CloseDebateCard />
       <OpenDebateCard />
-      <ClosedDebateCard />
+      <CloseDebateCard />
+      <OpenDebateCard />
+      <OpenDebateCard />
+      <CloseDebateCard />
+      <OpenDebateCard />
+      <CloseDebateCard />
+      <OpenDebateCard />
+      <OpenDebateCard />
+      <CloseDebateCard />
+      <OpenDebateCard />
+      <CloseDebateCard />
       <OpenDebateCard />
       <OpenDebateCard />
     </>

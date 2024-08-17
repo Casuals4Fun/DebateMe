@@ -1,28 +1,28 @@
-import { ClosedDebateCard, ClosedDebateLoadingCard } from '../../components/debate/closed'
+import { CloseDebateCard, CloseDebateLoadingCard } from '../../components/debate/close'
 
 export default function HotTopicsPage() {
     return (
         <>
-            <ClosedDebateLoadingCard />
-            <ClosedDebateCard />
-            <ClosedDebateLoadingCard />
-            <ClosedDebateCard />
-            <ClosedDebateLoadingCard />
-            <ClosedDebateCard />
-            <ClosedDebateLoadingCard />
-            <ClosedDebateCard />
-            <ClosedDebateLoadingCard />
-            <ClosedDebateCard />
-            <ClosedDebateLoadingCard />
-            <ClosedDebateCard />
-            <ClosedDebateLoadingCard />
-            <ClosedDebateCard />
-            <ClosedDebateLoadingCard />
-            <ClosedDebateCard />
-            <ClosedDebateLoadingCard />
-            <ClosedDebateCard />
-            <ClosedDebateLoadingCard />
-            <ClosedDebateCard />
+            <CloseDebateLoadingCard />
+            <CloseDebateCard />
+            <CloseDebateLoadingCard />
+            <CloseDebateCard />
+            <CloseDebateLoadingCard />
+            <CloseDebateCard />
+            <CloseDebateLoadingCard />
+            <CloseDebateCard />
+            <CloseDebateLoadingCard />
+            <CloseDebateCard />
+            <CloseDebateLoadingCard />
+            <CloseDebateCard />
+            <CloseDebateLoadingCard />
+            <CloseDebateCard />
+            <CloseDebateLoadingCard />
+            <CloseDebateCard />
+            <CloseDebateLoadingCard />
+            <CloseDebateCard />
+            <CloseDebateLoadingCard />
+            <CloseDebateCard />
         </>
     )
 }
