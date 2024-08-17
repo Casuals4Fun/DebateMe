@@ -1,5 +1,5 @@
 import './left-sidebar.css'
-import { useLocation, Link, useNavigate } from 'react-router-dom'
+import { useLocation, Link } from 'react-router-dom'
 import { toast } from 'sonner'
 import { GoPerson } from 'react-icons/go'
 import { AuthStatus, AuthTab, useAuthStore } from '../../store/useAuthStore'
@@ -14,39 +14,36 @@ interface SidebarProps {
 
 const LeftSidebar: React.FC<SidebarProps> = ({ isVisible }) => {
   const location = useLocation()
-  const navigate = useNavigate()
 
   const { setRoute, isAuthenticated, setAuthTab } = useAuthStore()
   const { isSidebarClose } = useNavStore()
 
-  const handleLinkClick = (href: string, name: string) => {
+  const handleLinkClick = (name: string) => {
     if (name === 'Create Debate') {
       if (isAuthenticated === AuthStatus.Failed) {
-        setRoute(href)
+        setRoute('/create')
         setAuthTab(AuthTab.Login)
       }
-      else if (isAuthenticated === AuthStatus.Authenticated) navigate(href)
-      else return toast.warning('Try again...')
+      else if (isAuthenticated === AuthStatus.Authenticating) return toast.warning('Logging in...')
     }
-    else navigate(href)
   }
 
   return (
-    <div id='left-sidebar' className={`${isVisible ? 'reveal' : 'hide'} ${isSidebarClose ? 'close' : 'open'}`}>
+    <aside id='left-sidebar' className={`${isVisible ? 'reveal' : 'hide'} ${isSidebarClose ? 'close' : 'open'}`}>
       <Link to='/' className='logo__wrapper'>
         <img src='/logo.png' alt='' />
       </Link>
-      <ul>
+      <nav>
         {navLinks.map(item => (
-          <li key={item.id} title={item.name} className={location.pathname === item.href ? 'active' : ''}>
-            <div onClick={() => handleLinkClick(item.href, item.name)} className='links__wrapper'>
+          <Link to={item.href} onClick={() => handleLinkClick(item.name)} key={item.id} title={item.name} className={location.pathname === item.href ? 'active' : ''}>
+            <div className='links__wrapper'>
               <item.icon />
               <p className='underline'>{item.name}</p>
             </div>
             <div className='footer' />
-          </li>
+          </Link>
         ))}
-      </ul>
+      </nav>
       <div className='profile__container'>
         {isAuthenticated === AuthStatus.Authenticating ? (
           <LoadingSkeleton style={{ width: '40px', height: '40px', borderRadius: '50%' }} />
@@ -60,7 +57,7 @@ const LeftSidebar: React.FC<SidebarProps> = ({ isVisible }) => {
           </>
         )}
       </div>
-    </div>
+    </aside>
   )
 }
 
