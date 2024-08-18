@@ -1,7 +1,7 @@
 import './close.css'
 import { useNavigate } from 'react-router-dom'
 import { MdModeComment } from 'react-icons/md'
-import { useNavStore } from '../../store/useNavStore'
+import { useNavStore } from '../../store/nav'
 import DebateBar from './bar'
 import useFormatNumber from '../../hooks/useFormatNumber'
 import LoadingSkeleton from '../loading/skeleton'

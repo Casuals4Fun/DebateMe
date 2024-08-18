@@ -4,7 +4,7 @@ import { toast } from 'sonner'
 import { MdModeEdit } from 'react-icons/md'
 import { GrCloudUpload } from 'react-icons/gr'
 import { IoPersonCircleOutline } from 'react-icons/io5'
-import { AuthTab, useAuthStore, useTempStore } from '../../store/useAuthStore'
+import { AuthTab, useAuthStore, useTempStore } from '../../store/auth'
 import { LoadingSVG } from '../loading/svg'
 import { specialCharRegex, usernameRegex, emailRegex, nameRegex } from '../../data/regex'
 

@@ -1,6 +1,6 @@
 import './right-sidebar.css'
 import { Link } from 'react-router-dom'
-import { useNavStore } from '../../store/useNavStore'
+import { useNavStore } from '../../store/nav'
 import ToggleTheme from '../theme'
 import Profile from './profile'
 import Explore from './explore'

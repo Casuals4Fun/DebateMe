@@ -1,5 +1,5 @@
 import './style.css'
-import { Theme, useNavStore } from '../../store/useNavStore'
+import { Theme, useNavStore } from '../../store/nav'
 
 const ToggleTheme = () => {
     const { theme, setTheme } = useNavStore()
@@ -14,20 +14,17 @@ const ToggleTheme = () => {
         <div className='theme__button' title={theme === Theme.Dark ? 'Switch to Light mode' : 'Switch to Dark mode'}>
             <input
                 name='toggle'
-                className='toggle-activator'
                 type='checkbox'
                 checked={theme === Theme.Light}
                 readOnly
             />
 
-            <div className='display' onClick={handleToggleTheme}>
-                <div className='toggle-btn'>
-                    <div className='circle'>
-                        <img src='/theme/moon.png' className='moon' />
-                        <img src='/theme/sun.svg' className='sun' />
-                    </div>
+            <button onClick={handleToggleTheme}>
+                <div className='circle'>
+                    <img src='/theme/moon.png' className='moon' />
+                    <img src='/theme/sun.svg' className='sun' />
                 </div>
-            </div>
+            </button>
         </div>
     )
 }

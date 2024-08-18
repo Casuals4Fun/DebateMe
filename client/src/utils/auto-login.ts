@@ -1,17 +1,17 @@
-import { User, AuthStatus, AuthTab } from '../store/useAuthStore'
+import { User, AuthStatus, AuthTab } from '../store/auth'
 
-type SetRoute = (navigate: string) => void
-type SetUser = (user: User) => void
-type SetIsAuthenticated = (authenticated: AuthStatus) => void
-type SetAuthTab = (tab: AuthTab) => void
+type Callback<T> = (arg: T) => void
 
-const handleAutoLogin = (setRoute: SetRoute, setUser: SetUser, setIsAuthenticated: SetIsAuthenticated, setAuthTab: SetAuthTab) => {
+const handleAutoLogin = (
+    setRoute: Callback<string>,
+    setUser: Callback<User>,
+    setIsAuthenticated: Callback<AuthStatus>,
+    setAuthTab: Callback<AuthTab>
+) => {
     const token = localStorage.getItem('token')
     setRoute(location.pathname)
 
-    if (!token) {
-        return setIsAuthenticated(AuthStatus.Failed)
-    }
+    if (!token) return setIsAuthenticated(AuthStatus.Failed)
     else {
         const headers = new Headers()
         headers.append('Authorization', `Bearer ${token}`)
@@ -26,15 +26,12 @@ const handleAutoLogin = (setRoute: SetRoute, setUser: SetUser, setIsAuthenticate
                     setUser(response.data.user)
                     setIsAuthenticated(AuthStatus.Authenticated)
                     setAuthTab(AuthTab.Closed)
-                }
-                else {
+                } else {
                     setIsAuthenticated(AuthStatus.Failed)
                     localStorage.removeItem('token')
                 }
             })
-            .catch(() => {
-                setIsAuthenticated(AuthStatus.Failed)
-            })
+            .catch(() => setIsAuthenticated(AuthStatus.Failed))
     }
 }
 
