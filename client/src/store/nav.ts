@@ -23,8 +23,9 @@ export const useNavStore = create<NavStore>((set) => ({
         return prefersDark ? Theme.Dark : Theme.Light
     })(),
     setTheme: (theme: Theme) => {
-        set({ theme })
         localStorage.setItem('theme', theme)
+        document.body.setAttribute('data-theme', theme)
+        set({ theme })
     },
 
     isNavbarOpen: false,
