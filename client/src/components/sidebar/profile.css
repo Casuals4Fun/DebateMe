@@ -97,6 +97,7 @@
 }
 
 .modal-profile__info a:nth-child(1) {
+    margin-top: 5px;
     font-size: 18px;
     font-weight: 600;
     color: var(--body_color);

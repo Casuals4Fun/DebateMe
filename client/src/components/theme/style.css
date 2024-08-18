@@ -7,20 +7,16 @@
     display: none;
 }
 
-.theme__button .display {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.theme__button .toggle-btn {
+.theme__button button {
     position: relative;
     width: 83px;
     height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border-radius: 20px;
     background-color: var(--border_primary);
     cursor: pointer;
-    transition: 0.2s ease-in-out;
 }
 
 .theme__button .circle {
@@ -35,7 +31,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: 0.2s ease-in-out;
 }
 
 .theme__button .moon {
@@ -50,20 +45,20 @@
     opacity: 0;
 }
 
-.theme__button input[type=checkbox]:checked+.display .toggle-btn {
+.theme__button input[type=checkbox]:checked+button {
     background-color: var(--border_primary);
 }
 
-.theme__button input[type=checkbox]:checked+.display .toggle-btn .circle {
+.theme__button input[type=checkbox]:checked+button .circle {
     left: 100%;
     transform: translate(-120%, -50%);
     background-color: white;
 }
 
-.theme__button input[type=checkbox]:checked+.display .toggle-btn .circle .sun {
+.theme__button input[type=checkbox]:checked+button .circle .sun {
     opacity: 1;
 }
 
-.theme__button input[type=checkbox]:checked+.display .toggle-btn .circle .moon {
+.theme__button input[type=checkbox]:checked+button .circle .moon {
     opacity: 0;
 }

@@ -3,8 +3,8 @@ import { useRef, useState, useEffect } from 'react'
 import { Routes, Route, Navigate, Outlet } from 'react-router-dom'
 import { Toaster } from 'sonner'
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'
-import { Theme, useNavStore } from './store/useNavStore'
-import { AuthStatus, AuthTab, useAuthStore } from './store/useAuthStore'
+import { useNavStore } from './store/nav'
+import { AuthStatus, AuthTab, useAuthStore } from './store/auth'
 import handleAutoLogin from './utils/auto-login'
 import LeftSidebar from './components/sidebar/left-sidebar'
 import RightSidebar from './components/sidebar/right-sidebar'
@@ -20,15 +20,15 @@ import ProfilePage from './pages/profile'
 import { LoadingComponent } from './components/loading/svg'
 
 export default function App() {
+  const { theme, isNavbarOpen, isSidebarClose, setSidebarClose } = useNavStore()
   const { setRoute, setUser, setIsAuthenticated, authTab, setAuthTab } = useAuthStore()
-  const { isNavbarOpen, isSidebarClose, setSidebarClose } = useNavStore()
 
   const mainRef = useRef<HTMLDivElement>(null)
   const lastScrollTop = useRef<number>(0)
   const [isScrollingUp, setIsScrollingUp] = useState<boolean>(true)
 
   useEffect(() => {
-    document.body.setAttribute('data-theme', localStorage.getItem('theme') === Theme.Light ? Theme.Light : Theme.Dark)
+    document.body.setAttribute('data-theme', theme)
 
     handleAutoLogin(setRoute, setUser, setIsAuthenticated, setAuthTab)
 
@@ -62,7 +62,7 @@ export default function App() {
           <Route path='/signup' element={<Navigate to='/auth?type=signup' />} />
           <Route path='/forgot' element={<Navigate to='/auth?type=forgot' />} />
           <Route path='/search' element={<SearchPage />} />
-          <Route path=':username' element={<ProfilePage isScrollingUp={isScrollingUp} />} />
+          <Route path=':username' element={<ProfilePage />} />
         </Routes>
       </main>
       <RightSidebar isVisible={isScrollingUp} />
@@ -80,7 +80,7 @@ export default function App() {
         duration={3000}
         position='top-center'
         richColors
-        theme={(localStorage.getItem('theme') as Theme) || Theme.Dark}
+        theme={theme}
       />
     </>
   )

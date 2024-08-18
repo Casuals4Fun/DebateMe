@@ -1,5 +1,6 @@
 #profile .user {
     padding: 20px;
+    border-bottom: 1px solid var(--border_primary);
 }
 
 #profile .user img {
@@ -11,35 +12,13 @@
     border: 2px solid var(--border_primary);
 }
 
+#profile .user h1 {
+    margin-top: 5px;
+}
+
 #profile .user h3 {
     color: var(--card_color);
     font-weight: 400;
-}
-
-#profile .profile-btns {
-    position: sticky;
-    z-index: 1;
-    top: -1px;
-    left: 0;
-    padding: 0 20px;
-    height: 65px;
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    background-color: var(--background_primary);
-    border-top: 1px solid var(--border_primary);
-    border-bottom: 1px solid var(--border_primary);
-    transition: top 0.25s ease-out;
-}
-
-#profile .profile-btns button {
-    font-size: 18px;
-    font-weight: 500;
-    text-underline-offset: 4px;
-}
-
-#profile .profile-btns button:hover {
-    text-decoration: underline;
 }
 
 @media screen and (max-width: 767px) {
@@ -60,15 +39,5 @@
 
     #profile .user h3 {
         font-size: 16px;
-    }
-
-    #profile .profile-btns {
-        height: 60px;
-        padding: 0 10px;
-    }
-
-    #profile .profile-btns.top {
-        top: -61px;
-        transition: top 0.4s ease-out;
     }
 }

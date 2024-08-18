@@ -5,8 +5,8 @@ import { IoMdPerson } from 'react-icons/io'
 import { PiSignOutBold } from 'react-icons/pi'
 import { GoPerson } from 'react-icons/go'
 import { FaRegUser } from 'react-icons/fa'
-import { useNavStore } from '../../store/useNavStore'
-import { AuthStatus, AuthTab, useAuthStore } from '../../store/useAuthStore'
+import { useNavStore } from '../../store/nav'
+import { AuthStatus, AuthTab, useAuthStore } from '../../store/auth'
 import ToggleTheme from '../theme'
 import LoadingSkeleton from '../loading/skeleton'
 
@@ -43,7 +43,7 @@ const Profile: React.FC<ProfileProps> = ({ isVisible }) => {
 
         document.addEventListener('mousedown', handleClickOutside)
         return () => document.removeEventListener('mousedown', handleClickOutside)
-    }, [isNavbarOpen])
+    }, [isNavbarOpen, setNavbarOpen])
 
     return (
         <div className='profile__wrapper'>

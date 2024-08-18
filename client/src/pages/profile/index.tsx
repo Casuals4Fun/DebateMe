@@ -1,19 +1,28 @@
 import './style.css'
-import UserDebates from './debates'
+import Debate from '../../components/debate'
+import { CloseDebateCard } from '../../components/debate/close'
+import { OpenDebateCard } from '../../components/debate/open'
 
-interface ProfileProps {
-    isScrollingUp: boolean
-}
-
-export default function ProfilePage({ isScrollingUp }: ProfileProps) {
+export default function ProfilePage() {
     return (
         <div id='profile'>
             <div className='user'>
                 <img src='/user1.webp' alt='' />
                 <h1>Aniket Das</h1>
-                <h3>@aniketdas</h3>
+                <h3>aniketdas</h3>
             </div>
-            <UserDebates isScrollingUp={isScrollingUp} />
+            <Debate>
+                <CloseDebateCard />
+                <OpenDebateCard />
+                <CloseDebateCard />
+                <OpenDebateCard />
+                <CloseDebateCard />
+                <OpenDebateCard />
+                <CloseDebateCard />
+                <OpenDebateCard />
+                <CloseDebateCard />
+                <OpenDebateCard />
+            </Debate>
         </div>
     )
 }

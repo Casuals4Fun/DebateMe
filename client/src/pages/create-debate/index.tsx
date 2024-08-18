@@ -2,7 +2,7 @@ import './style.css'
 import { useRef, useState } from 'react'
 import { RichTextEditorComponent } from '@syncfusion/ej2-react-richtexteditor'
 import { toast } from 'sonner'
-import { useNavStore } from '../../store/useNavStore'
+import { useNavStore } from '../../store/nav'
 import Editor from './editor'
 import Preview from './preview'
 

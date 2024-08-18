@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { toast } from 'sonner'
-import { AuthStatus, AuthTab, useAuthStore, useTempStore } from '../../store/useAuthStore'
+import { AuthStatus, AuthTab, useAuthStore, useTempStore } from '../../store/auth'
 
 export default function AuthPage() {
     const location = useLocation()

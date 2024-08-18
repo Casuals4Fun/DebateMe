@@ -1,6 +1,6 @@
 import './style.css'
 import { Outlet } from 'react-router-dom'
-import { useNavStore } from '../../store/useNavStore'
+import { useNavStore } from '../../store/nav'
 
 interface DebateProps {
     children?: React.ReactNode
