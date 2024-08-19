@@ -84,6 +84,7 @@ const Login = () => {
                 .catch(() => setIsAuthenticated(AuthStatus.Failed))
                 .finally(() => setIsSubmitted(false))
         }
+        else setTimeout(() => setIsSubmitted(false), 500)
     }
 
     return (
@@ -92,7 +93,10 @@ const Login = () => {
             <button
                 disabled={isAuthenticated === AuthStatus.Authenticating}
                 className='google-btn'
-                onClick={() => window.location.href = `${import.meta.env.VITE_SERVER_URL}/api/auth/google`}
+                onClick={() => {
+                    setIsAuthenticated(AuthStatus.Authenticating)
+                    window.location.href = `${import.meta.env.VITE_SERVER_URL}/api/auth/google`
+                }}
             >
                 {isAuthenticated === AuthStatus.Authenticating && !isSubmitted ? <LoadingSVG size={23} /> : (
                     <>
@@ -116,7 +120,6 @@ const Login = () => {
                         onKeyPress={handleKeyPress}
                         className={`${isSubmitted && !validationState.isIdValid ? 'shake' : ''}`}
                         style={{ borderColor: isSubmitted && !validationState.isIdValid ? 'red' : '' }}
-                        placeholder={isSubmitted && !validationState.isIdValid ? 'Required' : ''}
                     />
                 </div>
                 <div className='input__container'>
@@ -129,7 +132,6 @@ const Login = () => {
                         onKeyPress={handleKeyPress}
                         className={`${isSubmitted && !validationState.isPasswordValid ? 'shake' : ''}`}
                         style={{ borderColor: isSubmitted && !validationState.isPasswordValid ? 'red' : '' }}
-                        placeholder={isSubmitted && !validationState.isPasswordValid ? 'Required' : ''}
                     />
                 </div>
                 <button

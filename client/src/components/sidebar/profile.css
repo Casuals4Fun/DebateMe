@@ -7,24 +7,20 @@
 
 .profile__wrapper .auth-btn {
     height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(to right, var(--shine_text_primary) 0, var(--shine_text_secondary) 10%, var(--shine_text_tertiary) 20%);
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: shine-join_community 7.5s infinite linear;
-    font-weight: 600;
     font-size: 22px;
+    font-weight: 600;
+    background: linear-gradient(to right, var(--card_color) 0, var(--debate_by) 10%, var(--card_color) 20%);
+    background-size: 200% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: textclip 5s linear infinite;
+    display: inline-block;
 }
 
-@keyframes shine-join_community {
-    0% {
-        background-position: 0;
-    }
-
-    100% {
-        background-position: 171.833px;
+@keyframes textclip {
+    to {
+        background-position: -200% center;
     }
 }
 
