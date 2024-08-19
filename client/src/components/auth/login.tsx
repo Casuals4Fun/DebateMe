@@ -91,7 +91,6 @@ const Login = () => {
         <div id='login'>
             <h3>Login</h3>
             <button
-                disabled={isAuthenticated === AuthStatus.Authenticating}
                 className='google-btn'
                 onClick={() => {
                     setIsAuthenticated(AuthStatus.Authenticating)
