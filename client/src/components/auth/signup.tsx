@@ -133,10 +133,7 @@ const Signup = () => {
                     }
                 })
                 .finally(() => setIsSubmitted(false))
-        } else {
-            setTimeout(() => setIsSubmitted(false), 500)
-            return toast.warning('Please fill out all fields correctly')
-        }
+        } else setTimeout(() => setIsSubmitted(false), 500)
     }
 
     return (
@@ -186,7 +183,6 @@ const Signup = () => {
                             onKeyPress={handleKeyPress}
                             className={`${isSubmitted && !validationState.isUsernameValid ? 'shake' : ''}`}
                             style={{ borderColor: isSubmitted && !validationState.isUsernameValid ? 'red' : '' }}
-                            placeholder={isSubmitted && !validationState.isUsernameValid ? 'Required' : ''}
                         />
                     </div>
                 </div>
@@ -200,7 +196,6 @@ const Signup = () => {
                         onKeyPress={handleKeyPress}
                         className={`${isSubmitted && !validationState.isFirstNameValid ? 'shake' : ''}`}
                         style={{ borderColor: isSubmitted && !validationState.isFirstNameValid ? 'red' : '' }}
-                        placeholder={isSubmitted && !validationState.isFirstNameValid ? 'Required' : ''}
                     />
                 </div>
                 <div className='input__container'>
@@ -213,7 +208,6 @@ const Signup = () => {
                         onKeyPress={handleKeyPress}
                         className={`${isSubmitted && !validationState.isLastNameValid ? 'shake' : ''}`}
                         style={{ borderColor: isSubmitted && !validationState.isLastNameValid ? 'red' : '' }}
-                        placeholder={isSubmitted && !validationState.isLastNameValid ? 'Required' : ''}
                     />
                 </div>
                 <div className='input__container'>
@@ -226,7 +220,6 @@ const Signup = () => {
                         onKeyPress={handleKeyPress}
                         className={`${isSubmitted && !validationState.isEmailValid ? 'shake' : ''}`}
                         style={{ borderColor: isSubmitted && !validationState.isEmailValid ? 'red' : '' }}
-                        placeholder={isSubmitted && !validationState.isEmailValid ? 'Required' : ''}
                     />
                 </div>
                 <button

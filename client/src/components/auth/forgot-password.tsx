@@ -68,9 +68,7 @@ const ForgotPassword = () => {
             } finally {
                 setIsSubmitted(false)
             }
-        } else {
-            setTimeout(() => setIsSubmitted(false), 500)
-        }
+        } else setTimeout(() => setIsSubmitted(false), 500)
     }
 
     return (
