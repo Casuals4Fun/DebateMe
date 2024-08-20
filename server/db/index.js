@@ -1,5 +1,4 @@
 const { createPool } = require('mysql2/promise')
-const { readFileSync } = require('fs')
 
 const pool = createPool({
     user: process.env.DB_USER,
