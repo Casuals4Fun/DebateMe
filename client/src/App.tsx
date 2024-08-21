@@ -21,7 +21,7 @@ import { LoadingComponent } from './components/loading/svg'
 
 export default function App() {
   const { theme, isNavbarOpen, isSidebarClose, setSidebarClose } = useNavStore()
-  const { setRoute, setUser, setIsAuthenticated, authTab, setAuthTab } = useAuthStore()
+  const { setUser, setIsAuthenticated, authTab, setAuthTab } = useAuthStore()
 
   const mainRef = useRef<HTMLDivElement>(null)
   const lastScrollTop = useRef<number>(0)
@@ -30,7 +30,7 @@ export default function App() {
   useEffect(() => {
     document.body.setAttribute('data-theme', theme)
 
-    handleAutoLogin(setRoute, setUser, setIsAuthenticated, setAuthTab)
+    handleAutoLogin(setUser, setIsAuthenticated, setAuthTab)
 
     const handleScroll = () => {
       const st = mainRef.current?.scrollTop ?? 0

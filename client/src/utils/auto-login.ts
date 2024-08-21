@@ -3,13 +3,12 @@ import { User, AuthStatus, AuthTab } from '../store/auth'
 type Callback<T> = (arg: T) => void
 
 const handleAutoLogin = (
-    setRoute: Callback<string>,
     setUser: Callback<User>,
     setIsAuthenticated: Callback<AuthStatus>,
     setAuthTab: Callback<AuthTab>
 ) => {
     const token = localStorage.getItem('token')
-    setRoute(location.pathname)
+    localStorage.setItem('route', location.pathname)
 
     if (!token) return setIsAuthenticated(AuthStatus.Failed)
     else {

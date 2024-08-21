@@ -15,13 +15,13 @@ interface SidebarProps {
 const LeftSidebar: React.FC<SidebarProps> = ({ isVisible }) => {
   const location = useLocation()
 
-  const { setRoute, isAuthenticated, setAuthTab } = useAuthStore()
+  const { isAuthenticated, setAuthTab } = useAuthStore()
   const { isSidebarClose } = useNavStore()
 
   const handleLinkClick = (name: string) => {
     if (name === 'Create Debate') {
       if (isAuthenticated === AuthStatus.Failed) {
-        setRoute('/create')
+        localStorage.setItem('route', '/create')
         setAuthTab(AuthTab.Login)
       }
       else if (isAuthenticated === AuthStatus.Authenticating) return toast.warning('Logging in...')
@@ -50,11 +50,9 @@ const LeftSidebar: React.FC<SidebarProps> = ({ isVisible }) => {
         ) : isAuthenticated === AuthStatus.Authenticated ? (
           <Profile />
         ) : isAuthenticated === AuthStatus.Failed && (
-          <>
-            <button onClick={() => setAuthTab(AuthTab.Login)}>
-              <GoPerson size={30} />
-            </button>
-          </>
+          <button onClick={() => setAuthTab(AuthTab.Login)}>
+            <GoPerson size={30} />
+          </button>
         )}
       </div>
     </aside>
