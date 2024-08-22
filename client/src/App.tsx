@@ -1,6 +1,6 @@
 import './App.css'
 import { useRef, useState, useEffect } from 'react'
-import { Routes, Route, Navigate, Outlet } from 'react-router-dom'
+import { useLocation, Routes, Route, Navigate, Outlet } from 'react-router-dom'
 import { Toaster } from 'sonner'
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'
 import { useNavStore } from './store/nav'
@@ -17,11 +17,15 @@ import CreateDebatePage from './pages/create-debate'
 import HotTopicsPage from './pages/hot-topics'
 import OpenTopicsPage from './pages/open-topics'
 import ProfilePage from './pages/profile'
+import DebatePage from './pages/profile/debate'
 import { LoadingComponent } from './components/loading/svg'
 
 export default function App() {
+  const location = useLocation();
+  const showSidebar = !/^\/[^\/]+\/[^\/]+$/.test(location.pathname);
+
   const { theme, isNavbarOpen, isSidebarClose, setSidebarClose } = useNavStore()
-  const { setRoute, setUser, setIsAuthenticated, authTab, setAuthTab } = useAuthStore()
+  const { setUser, setIsAuthenticated, authTab, setAuthTab } = useAuthStore()
 
   const mainRef = useRef<HTMLDivElement>(null)
   const lastScrollTop = useRef<number>(0)
@@ -30,7 +34,7 @@ export default function App() {
   useEffect(() => {
     document.body.setAttribute('data-theme', theme)
 
-    handleAutoLogin(setRoute, setUser, setIsAuthenticated, setAuthTab)
+    handleAutoLogin(setUser, setIsAuthenticated, setAuthTab)
 
     const handleScroll = () => {
       const st = mainRef.current?.scrollTop ?? 0
@@ -46,8 +50,8 @@ export default function App() {
 
   return (
     <>
-      <LeftSidebar isVisible={isScrollingUp} />
-      <main ref={mainRef} className={`${isNavbarOpen ? 'expand' : ''} ${isSidebarClose ? 'w-full' : ''}`}>
+      {showSidebar && <LeftSidebar isVisible={isScrollingUp} />}
+      <main ref={mainRef} className={`${isNavbarOpen ? 'expand' : ''} ${isSidebarClose ? 'w-full' : ''} ${!showSidebar ? 'w-page' : ''}`}>
         <Routes>
           <Route element={<Debate />}>
             <Route path='/' element={<HomePage />} />
@@ -62,17 +66,24 @@ export default function App() {
           <Route path='/signup' element={<Navigate to='/auth?type=signup' />} />
           <Route path='/forgot' element={<Navigate to='/auth?type=forgot' />} />
           <Route path='/search' element={<SearchPage />} />
-          <Route path=':username' element={<ProfilePage />} />
+          <Route path=':user_id'>
+            <Route index element={<ProfilePage />} />
+            <Route path=':debate_id' element={<DebatePage />} />
+          </Route>
         </Routes>
       </main>
-      <RightSidebar isVisible={isScrollingUp} />
+      {showSidebar && <RightSidebar isVisible={isScrollingUp} />}
 
-      <button className='sidebar-btn left' onClick={() => setSidebarClose(!isSidebarClose)}>
-        {isSidebarClose ? <FaChevronRight size={20} /> : <FaChevronLeft size={20} />}
-      </button>
-      <button className='sidebar-btn right' onClick={() => setSidebarClose(!isSidebarClose)}>
-        {isSidebarClose ? <FaChevronLeft size={20} /> : <FaChevronRight size={20} />}
-      </button>
+      {showSidebar && (
+        <>
+          <button className='sidebar-btn left' onClick={() => setSidebarClose(!isSidebarClose)}>
+            {isSidebarClose ? <FaChevronRight size={20} /> : <FaChevronLeft size={20} />}
+          </button>
+          <button className='sidebar-btn right' onClick={() => setSidebarClose(!isSidebarClose)}>
+            {isSidebarClose ? <FaChevronLeft size={20} /> : <FaChevronRight size={20} />}
+          </button>
+        </>
+      )}
 
       {authTab !== AuthTab.Closed && <AuthModal />}
 

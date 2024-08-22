@@ -68,9 +68,9 @@ const SetPassword = () => {
       }).then(res => res.json())
         .then(response => {
           if (response.success) {
+            localStorage.setItem('token', response.data.token)
             setUser(response.data.user)
             setIsAuthenticated(AuthStatus.Authenticated)
-            localStorage.setItem('token', response.data.token)
             setAuthTab(AuthTab.Closed)
             navigate('/')
             toast.success(response.message)

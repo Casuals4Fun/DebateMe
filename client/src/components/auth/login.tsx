@@ -8,7 +8,7 @@ import { LoadingSVG } from '../loading/svg'
 const Login = () => {
     const navigate = useNavigate()
 
-    const { route, setAuthTab, isAuthenticated, setIsAuthenticated, setUser } = useAuthStore()
+    const { setAuthTab, isAuthenticated, setIsAuthenticated, setUser } = useAuthStore()
 
     const [loginData, setLoginData] = useState({
         id: '',
@@ -66,11 +66,11 @@ const Login = () => {
                 .then(res => res.json())
                 .then(response => {
                     if (response.success) {
+                        localStorage.setItem('token', response.data.token)
                         setUser(response.data.user)
                         setIsAuthenticated(AuthStatus.Authenticated)
-                        localStorage.setItem('token', response.data.token)
                         setAuthTab(AuthTab.Closed)
-                        navigate(route)
+                        navigate(localStorage.getItem('route') || '/')
                         toast.success(response.message)
                     }
                     else {

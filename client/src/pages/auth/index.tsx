@@ -6,8 +6,8 @@ import { AuthStatus, AuthTab, useAuthStore, useTempStore } from '../../store/aut
 export default function AuthPage() {
     const location = useLocation()
     const navigate = useNavigate()
-    
-    const { route, isAuthenticated, setAuthTab } = useAuthStore()
+
+    const { isAuthenticated, setAuthTab } = useAuthStore()
     const { setTempUser } = useTempStore()
 
     useEffect(() => {
@@ -18,7 +18,11 @@ export default function AuthPage() {
             setAuthTab(type === 'login' ? AuthTab.Login : type === 'signup' ? AuthTab.Signup : AuthTab.Login)
         }
         else if (isAuthenticated === AuthStatus.Authenticated) {
-            navigate(route === '/auth' || route === '/login' || route === '/signup' ? '/' : route, { replace: true })
+            navigate(localStorage.getItem('route') === '/auth'
+                || localStorage.getItem('route') === '/login'
+                || localStorage.getItem('route') === '/signup' ? '/' : localStorage.getItem('route') || '/',
+                { replace: true }
+            )
         }
         else if (isAuthenticated === AuthStatus.Failed) {
             setAuthTab(
@@ -52,7 +56,7 @@ export default function AuthPage() {
             setAuthTab(AuthTab.Signup)
             navigate('/auth?type=signup', { replace: true })
         }
-    }, [isAuthenticated, location.search, navigate, route, setAuthTab, setTempUser])
+    }, [isAuthenticated, location.search, navigate, setAuthTab, setTempUser])
 
     return <></>
 }

@@ -16,7 +16,7 @@ const Signup = () => {
 
     const [registerData, setRegisterData] = useState({
         avatar: tempUser.avatar || '',
-        username: localStorage.getItem('username') || tempUser.username || '',
+        username: tempUser.username || '',
         first_name: tempUser.first_name || '',
         last_name: tempUser.last_name || '',
         email: tempUser.email || ''
@@ -121,10 +121,10 @@ const Signup = () => {
                 .then(response => {
                     if (response.success) {
                         clearTempUser()
-                        setAuthTab(AuthTab.Login)
                         localStorage.removeItem('username')
-                        toast.success(response.message)
+                        setAuthTab(AuthTab.Login)
                         navigate('/')
+                        toast.success(response.message)
                     } else {
                         if (response.message === 'Validation failed') {
                             return toast.error(`${response.errors[0].field.charAt(0).toUpperCase() + response.errors[0].field.slice(1)} ${response.errors[0].message}`)

@@ -28,6 +28,11 @@ main.w-full {
     border: unset;
 }
 
+main.w-page {
+    width: 100% !important;
+    border: unset;
+}
+
 .sidebar-btn {
     position: absolute;
     z-index: 2;

@@ -23,8 +23,6 @@ export interface User {
 }
 
 interface AuthStore {
-    route: string
-    setRoute: (navigate: string) => void
     authTab: AuthTab
     setAuthTab: (tab: AuthTab) => void
     isAuthenticated: string
@@ -34,8 +32,6 @@ interface AuthStore {
 }
 
 export const useAuthStore = create<AuthStore>((set) => ({
-    route: '',
-    setRoute: (navigate: string) => set({ route: navigate }),
     authTab: AuthTab.Closed,
     setAuthTab: (tab: AuthTab) => set({ authTab: tab }),
     isAuthenticated: AuthStatus.Authenticating,
