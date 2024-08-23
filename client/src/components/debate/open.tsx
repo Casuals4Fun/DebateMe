@@ -13,7 +13,7 @@ const OpenDebateCard = () => {
     return (
         <div id='open-card' className={isSidebarClose ? 'card-break' : ''}>
             <div className='debate-header'>
-                <h2 onClick={() => navigate('/')}>
+                <h2 onClick={() => navigate('/aniketdas/Artificial Intelligence – Is AI good for society or not')}>
                     Artificial Intelligence – Is AI good for society or not?
                 </h2>
             </div>

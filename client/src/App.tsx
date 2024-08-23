@@ -21,8 +21,8 @@ import DebatePage from './pages/profile/debate'
 import { LoadingComponent } from './components/loading/svg'
 
 export default function App() {
-  const location = useLocation();
-  const showSidebar = !/^\/[^\/]+\/[^\/]+$/.test(location.pathname);
+  const location = useLocation()
+  const showSidebar = !/^\/[^\/]+\/[^\/]+$/.test(location.pathname)
 
   const { theme, isNavbarOpen, isSidebarClose, setSidebarClose } = useNavStore()
   const { setUser, setIsAuthenticated, authTab, setAuthTab } = useAuthStore()
@@ -50,7 +50,9 @@ export default function App() {
 
   return (
     <>
-      {showSidebar && <LeftSidebar isVisible={isScrollingUp} />}
+      <aside id='left-sidebar' className={`${isScrollingUp ? 'reveal' : 'hide'} ${isSidebarClose ? 'close' : ''} ${showSidebar ? '' : 'hidden'}`}>
+        <LeftSidebar />
+      </aside>
       <main ref={mainRef} className={`${isNavbarOpen ? 'expand' : ''} ${isSidebarClose ? 'w-full' : ''} ${!showSidebar ? 'w-page' : ''}`}>
         <Routes>
           <Route element={<Debate />}>
@@ -72,7 +74,9 @@ export default function App() {
           </Route>
         </Routes>
       </main>
-      {showSidebar && <RightSidebar isVisible={isScrollingUp} />}
+      <aside id='right-sidebar' className={`${isScrollingUp ? 'reveal' : 'hide'} ${isSidebarClose ? 'close' : ''} ${showSidebar ? '' : 'hidden'}`}>
+        <RightSidebar isVisible={isScrollingUp} />
+      </aside>
 
       {showSidebar && (
         <>

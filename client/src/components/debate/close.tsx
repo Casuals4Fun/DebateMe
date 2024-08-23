@@ -13,7 +13,7 @@ const CloseDebateCard = () => {
     return (
         <div id='closed-card' className={isSidebarClose ? 'card-break' : ''}>
             <div className={`left ${isSidebarClose ? 'flex-unset' : ''}`}>
-                <h2 onClick={() => navigate('/')}>
+                <h2 onClick={() => navigate('/aniketdas/Sony is the best camera of all time')}>
                     Sony is the best camera of all time.
                 </h2>
                 <p>
