@@ -6,6 +6,8 @@ export default function DebatePage() {
     const navigate = useNavigate()
     const { user_id, debate_id } = useParams()
 
+    console.log({ user_id, debate_id })
+
     return (
         <div id='debate'>
             <h1>{debate_id}</h1>
