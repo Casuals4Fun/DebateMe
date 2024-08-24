@@ -71,7 +71,6 @@ const Login = () => {
                         setIsAuthenticated(AuthStatus.Authenticated)
                         setAuthTab(AuthTab.Closed)
                         navigate(localStorage.getItem('route') || '/')
-                        toast.success(response.message)
                     }
                     else {
                         setIsAuthenticated(AuthStatus.Failed)

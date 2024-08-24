@@ -16,13 +16,14 @@
     color: var(--card_background);
 }
 
-.left-side {
+.left-side,
+.right-side {
     background-color: var(--debate_from);
 }
 
-.right-side {
+/* .right-side {
     background-color: var(--debate_by);
-}
+} */
 
 .debate-bar .from-vote,
 .debate-bar .to-vote {

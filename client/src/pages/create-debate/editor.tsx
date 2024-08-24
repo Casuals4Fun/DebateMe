@@ -18,7 +18,7 @@ import {
 } from '@syncfusion/ej2-react-richtexteditor'
 
 interface EditorProps {
-    editorRef: React.RefObject<RichTextEditorComponent>
+    editorRef: React.RefObject<RichTextEditorComponent> | null
     rteValue?: string
     isEditable: boolean
     setDebateData?: React.Dispatch<React.SetStateAction<{

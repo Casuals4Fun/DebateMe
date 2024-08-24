@@ -1,0 +1,80 @@
+#debate {
+    padding: 20px;
+    max-width: 1024px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#debate h1 {
+    font-size: 40px;
+}
+
+#debate .user-info {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+#debate .user-info img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border: 2px solid var(--border_primary);
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#debate .user-info .user-detail {
+    width: calc(100% - 40px - 10px);
+}
+
+#debate .user-info p {
+    width: 100%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    color: var(--card_color);
+    cursor: pointer;
+}
+
+#debate .user-info p:nth-child(1) {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+#debate .user-info p:nth-child(2) {
+    font-size: 14px;
+    font-weight: 400;
+}
+
+#debate .user-info img:hover~.user-detail p:nth-child(2),
+#debate .user-info .user-detail p:nth-child(1):hover~p:nth-child(2),
+#debate .user-info .user-detail p:nth-child(2):hover {
+    text-decoration: underline;
+}
+
+#debate #toolsRTE_toolbar_wrapper {
+    display: none;
+}
+
+#debate .e-richtexteditor {
+    background-color: transparent;
+    border: none;
+}
+
+#debate .e-richtexteditor .e-rte-content .e-content {
+    padding: 0;
+    font-size: 20px;
+}
+
+@media screen and (max-width: 480px) {
+    #debate {
+        padding: 20px 10px;
+    }
+
+    #debate h1 {
+        font-size: 30px;
+    }
+}
