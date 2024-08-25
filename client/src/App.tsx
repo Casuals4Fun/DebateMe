@@ -21,8 +21,7 @@ import DebatePage from './pages/profile/debate'
 import { LoadingComponent } from './components/loading/svg'
 
 export default function App() {
-  const location = useLocation()
-  const showSidebar = !/^\/[^\/]+\/[^\/]+$/.test(location.pathname)
+  const isDebatePage = useLocation().pathname.split('/').length === 3
 
   const { theme, isNavbarOpen, isSidebarClose, setSidebarClose } = useNavStore()
   const { setUser, setIsAuthenticated, authTab, setAuthTab } = useAuthStore()
@@ -50,10 +49,10 @@ export default function App() {
 
   return (
     <>
-      <aside id='left-sidebar' className={`${isScrollingUp ? 'reveal' : 'hide'} ${isSidebarClose ? 'close' : ''} ${showSidebar ? '' : 'hidden'}`}>
+      <aside id='left-sidebar' className={`${isScrollingUp ? 'reveal' : 'hide'} ${isSidebarClose && !isDebatePage ? 'close' : ''}`}>
         <LeftSidebar />
       </aside>
-      <main ref={mainRef} className={`${isNavbarOpen ? 'expand' : ''} ${isSidebarClose ? 'w-full' : ''} ${!showSidebar ? 'w-page' : ''}`}>
+      <main ref={mainRef} className={`${isNavbarOpen ? 'expand' : ''} ${isSidebarClose ? 'w-full' : ''} ${isDebatePage ? 'w-page' : ''}`}>
         <Routes>
           <Route element={<Debate />}>
             <Route path='/' element={<HomePage />} />
@@ -74,11 +73,11 @@ export default function App() {
           </Route>
         </Routes>
       </main>
-      <aside id='right-sidebar' className={`${isScrollingUp ? 'reveal' : 'hide'} ${isSidebarClose ? 'close' : ''} ${showSidebar ? '' : 'hidden'}`}>
+      <aside id='right-sidebar' className={`${isScrollingUp ? 'reveal' : 'hide'} ${isSidebarClose && !isDebatePage ? 'close' : ''} ${isDebatePage ? 'hidden' : ''}`}>
         <RightSidebar isVisible={isScrollingUp} />
       </aside>
 
-      {showSidebar && (
+      {!isDebatePage && (
         <>
           <button className='sidebar-btn left' onClick={() => setSidebarClose(!isSidebarClose)}>
             {isSidebarClose ? <FaChevronRight size={20} /> : <FaChevronLeft size={20} />}

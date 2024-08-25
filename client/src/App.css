@@ -29,8 +29,10 @@ main.w-full {
 }
 
 main.w-page {
-    width: 100% !important;
-    border: unset;
+    margin: 0 auto;
+    width: 70% !important;
+    border-left: 1px solid var(--border_primary);
+    border-right: none;
 }
 
 .sidebar-btn {
@@ -67,6 +69,10 @@ main.w-page {
         width: 50%;
     }
 
+    main.w-page {
+        width: 90% !important;
+    }
+
     #right-sidebar {
         width: 40%;
     }
@@ -94,6 +100,10 @@ main.w-page {
     main.w-full {
         width: 85%;
         border-right: unset;
+    }
+
+    main.w-page {
+        width: 85% !important;
     }
 
     #right-sidebar {
@@ -142,6 +152,11 @@ main.w-page {
     main.w-full {
         padding-top: 60px;
         width: 100%;
+    }
+
+    main.w-page {
+        width: 100% !important;
+        border-left: none;
     }
 
     main.expand {

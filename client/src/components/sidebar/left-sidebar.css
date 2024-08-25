@@ -9,8 +9,7 @@
     overflow-y: auto;
 }
 
-#left-sidebar.close,
-#left-sidebar.hidden {
+#left-sidebar.close {
     display: none;
 }
 
@@ -141,8 +140,7 @@
 @media screen and (max-width: 480px) {
 
     #left-sidebar,
-    #left-sidebar.close,
-    #left-sidebar.hidden {
+    #left-sidebar.close {
         display: block;
         padding: 0;
         border-right: none;
