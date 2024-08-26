@@ -21,7 +21,8 @@ import DebatePage from './pages/profile/debate'
 import { LoadingComponent } from './components/loading/svg'
 
 export default function App() {
-  const isDebatePage = useLocation().pathname.split('/').length === 3
+  const location = useLocation()
+  const isDebatePage = location.pathname.split('/').length === 3 || location.pathname === '/create'
 
   const { theme, isNavbarOpen, isSidebarClose, setSidebarClose } = useNavStore()
   const { setUser, setIsAuthenticated, authTab, setAuthTab } = useAuthStore()

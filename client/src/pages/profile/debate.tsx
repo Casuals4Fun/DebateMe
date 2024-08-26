@@ -1,5 +1,7 @@
 import './debate.css'
 import { useNavigate, useParams } from 'react-router-dom'
+import { IoCaretUpSharp } from 'react-icons/io5'
+import { MdModeComment } from 'react-icons/md'
 import Editor from '../create-debate/editor'
 
 export default function DebatePage() {
@@ -11,11 +13,23 @@ export default function DebatePage() {
     return (
         <div id='debate'>
             <h1>{debate_id}</h1>
-            <div className='user-info'>
-                <img src='/user2.jpeg' alt='' loading='lazy' onClick={() => navigate('/julieroberts')} />
-                <div className='user-detail'>
-                    <p onClick={() => navigate('/julieroberts')}>Pratik Prasad</p>
-                    <p onClick={() => navigate('/julieroberts')}>pratikprasad</p>
+            <div className='detail'>
+                <div className='user-info'>
+                    <img src='/user2.jpeg' alt='' loading='lazy' onClick={() => navigate('/julieroberts')} />
+                    <div className='user-detail'>
+                        <p onClick={() => navigate('/julieroberts')}>Pratik Prasad</p>
+                        <p onClick={() => navigate('/julieroberts')}>pratikprasad</p>
+                    </div>
+                </div>
+                <div className='debate-detail'>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '2px' }}>
+                        <IoCaretUpSharp size={25} color='var(--body_color)' />
+                        <p>4500</p>
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+                        <MdModeComment size={15} color='var(--body_color)' />
+                        <p>1300</p>
+                    </div>
                 </div>
             </div>
             <Editor

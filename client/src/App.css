@@ -71,6 +71,7 @@ main.w-page {
 
     main.w-page {
         width: 90% !important;
+        border-right: none;
     }
 
     #right-sidebar {

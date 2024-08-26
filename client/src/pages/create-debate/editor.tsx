@@ -51,8 +51,8 @@ const Editor: React.FC<EditorProps> = ({ editorRef, rteValue, isEditable, setDeb
         'Alignments',
         'Blockquote',
         '|',
-        'NumberFormatList',
-        'BulletFormatList',
+        // 'NumberFormatList',
+        // 'BulletFormatList',
         '|',
         'Outdent',
         'Indent',
@@ -66,10 +66,10 @@ const Editor: React.FC<EditorProps> = ({ editorRef, rteValue, isEditable, setDeb
         'FormatPainter',
         'ClearFormat',
         '|',
-        'EmojiPicker',
+        'EmojiPicker'
     ]
     const toolbarSettings = {
-        items: items,
+        items: items
     }
     const quickToolbarSettings = {
         table: [
@@ -81,9 +81,9 @@ const Editor: React.FC<EditorProps> = ({ editorRef, rteValue, isEditable, setDeb
             'BackgroundColor',
             'TableRemove',
             'TableCellVerticalAlign',
-            'Styles',
+            'Styles'
         ],
-        showOnRightClick: true,
+        showOnRightClick: true
     }
 
     return (

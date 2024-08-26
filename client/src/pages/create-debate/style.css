@@ -52,7 +52,7 @@
 #create h1 {
     font-size: 30px;
     font-weight: 600;
-    text-align: center;
+    /* text-align: center; */
 }
 
 #create h2 {
@@ -81,7 +81,7 @@
     position: fixed;
     z-index: 1;
     bottom: 0;
-    width: calc(40% - 2px);
+    width: calc(70% - 1px);
     padding: 20px;
     background-color: var(--background_primary);
     display: flex;
@@ -91,7 +91,7 @@
 }
 
 .debate-btns button {
-    padding: 8px 0;
+    padding: 7.5px 0;
     width: 125px;
     background-color: var(--bg_secondary);
     font-size: 18px;
@@ -122,13 +122,17 @@
 .preview .e-richtexteditor .e-rte-content .e-content {
     min-height: fit-content !important;
     height: fit-content !important;
-    padding-top: 0;
-    padding-bottom: 0;
+    padding: 0;
+    font-size: 20px;
 }
 
 @media screen and (min-width: 1921px) {
+    main.w-page {
+        border-right: 1px solid var(--border_primary);
+    }
+
     .debate-btns {
-        width: 766px;
+        width: 1342px;
     }
 }
 
@@ -140,7 +144,7 @@
 
 @media screen and (max-width: 1024px) {
     .debate-btns {
-        width: calc(50% - 2px);
+        width: calc(90% - 1px);
     }
 }
 
@@ -153,7 +157,7 @@
 @media screen and (max-width: 480px) {
     #create-debate {
         padding: 20px 0;
-        height: calc(100svh - 120px - 62px);
+        height: calc(100svh - 120px - 60px);
     }
 
     #create-debate .vertical-space {
