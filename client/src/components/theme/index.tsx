@@ -15,8 +15,8 @@ const ToggleTheme = () => {
 
             <button onClick={() => setTheme(theme === Theme.Light ? Theme.Dark : Theme.Light)}>
                 <div className='circle'>
-                    <img src='/theme/moon.png' className='moon' />
-                    <img src='/theme/sun.svg' className='sun' />
+                    <img src='/theme/moon.png' className='moon' alt='moon' />
+                    <img src='/theme/sun.svg' className='sun' alt='sun' />
                 </div>
             </button>
         </div>

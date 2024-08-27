@@ -48,7 +48,7 @@ const AuthModal = () => {
                 </div>
 
                 <button onClick={handleCloseModal} className='logo__wrapper'>
-                    <img src='/logo.png' alt='' />
+                    <img src='/logo.png' alt='logo' />
                 </button>
                 <button
                     className='close__btn'

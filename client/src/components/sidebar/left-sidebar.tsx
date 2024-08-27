@@ -25,11 +25,17 @@ const LeftSidebar = () => {
   return (
     <>
       <Link to='/' className='logo__wrapper'>
-        <img src='/logo.png' alt='' />
+        <img src='/logo.png' alt='logo' />
       </Link>
       <nav>
         {navLinks.map(item => (
-          <Link to={item.href} onClick={() => handleLinkClick(item.name)} key={item.id} title={item.name} className={location.pathname === item.href ? 'active' : ''}>
+          <Link
+            key={item.id}
+            title={item.name}
+            className={location.pathname === item.href ? 'active' : ''}
+            to={item.name === 'Create Debate' ? isAuthenticated === AuthStatus.Authenticated ? item.href : '#' : item.href}
+            onClick={() => handleLinkClick(item.name)}
+          >
             <div className='links__wrapper'>
               <item.icon />
               <p className='underline'>{item.name}</p>

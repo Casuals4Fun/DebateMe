@@ -15,7 +15,7 @@ export default function DebatePage() {
             <h1>{debate_id}</h1>
             <div className='detail'>
                 <div className='user-info'>
-                    <img src='/user2.jpeg' alt='' loading='lazy' onClick={() => navigate('/julieroberts')} />
+                    <img src='/user2.jpeg' alt='avatar' loading='lazy' onClick={() => navigate('/julieroberts')} />
                     <div className='user-detail'>
                         <p onClick={() => navigate('/julieroberts')}>Pratik Prasad</p>
                         <p onClick={() => navigate('/julieroberts')}>pratikprasad</p>

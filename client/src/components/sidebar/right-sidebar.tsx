@@ -5,26 +5,22 @@ import ToggleTheme from '../theme'
 import Profile from './profile'
 import Explore from './explore'
 
-interface SidebarProps {
-  isVisible: boolean
-}
-
-const RightSidebar: React.FC<SidebarProps> = ({ isVisible }) => {
+const RightSidebar = () => {
   const { isNavbarOpen } = useNavStore()
 
   return (
     <div className='right-sidebar__container'>
       <Link to='/' className='logo__container'>
-        <img src='/logo.png' alt='' />
+        <img src='/logo.png' alt='logo' />
       </Link>
 
-      <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+      <div style={{ display: 'flex', alignItems: 'center' }}>
         <div className='profile-theme__container'>
           <div className='theme__wrapper'>
             <ToggleTheme />
           </div>
 
-          <Profile isVisible={isVisible} />
+          <Profile />
         </div>
       </div>
 

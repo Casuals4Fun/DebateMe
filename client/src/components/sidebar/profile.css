@@ -196,19 +196,10 @@
         padding-bottom: 15px;
         width: 100%;
         left: 0;
+        top: 60px;
         background-color: var(--background_primary);
         border: 0;
         border-bottom: 1px solid var(--border_primary);
-    }
-
-    .profile__modal.shift-up {
-        top: 0;
-        transition: top 0.25s ease-out;
-    }
-
-    .profile__modal.shift-down {
-        top: 60px;
-        transition: top 0.25s ease-out;
     }
 
     .theme-btn,

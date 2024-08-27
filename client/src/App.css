@@ -17,8 +17,6 @@
 
 main {
     width: 40%;
-    height: 100svh;
-    overflow-y: auto;
     border-left: 1px solid var(--border_primary);
     border-right: 1px solid var(--border_primary);
 }
@@ -29,17 +27,17 @@ main.w-full {
 }
 
 main.w-page {
-    margin: 0 auto;
     width: 70% !important;
     border-left: 1px solid var(--border_primary);
     border-right: none;
 }
 
 .sidebar-btn {
-    position: absolute;
+    position: fixed;
     z-index: 2;
     top: 50%;
     transform: translateY(-50%);
+    height: 20px;
 }
 
 .sidebar-btn.left {
@@ -57,6 +55,12 @@ main.w-page {
 
 .sidebar-btn:hover svg {
     color: var(--body_color);
+}
+
+@media screen and (min-width: 1921px) {
+    main.w-page {
+        border-right: 1px solid var(--border_primary);
+    }
 }
 
 @media screen and (max-width: 1024px) {
@@ -146,6 +150,7 @@ main.w-page {
     }
 
     main {
+        height: 100svh;
         border: unset;
     }
 

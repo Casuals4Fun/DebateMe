@@ -75,7 +75,7 @@
 }
 
 #debate .e-richtexteditor {
-    min-height: auto !important;
+    /* min-height: auto !important; */
     background-color: transparent;
     border: none;
 }

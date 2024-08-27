@@ -210,45 +210,6 @@
     color: var(--card_color);
 }
 
-@media screen and (max-width: 1536px) {
-
-    #closed-card,
-    #closed-card-loading {
-        flex-direction: column;
-    }
-
-    #closed-card .left,
-    #closed-card-loading .left {
-        padding-bottom: 0;
-    }
-
-    #closed-card .right,
-    #closed-card-loading .right {
-        padding-top: 10px;
-    }
-
-    #closed-card .left a,
-    #closed-card-loading .left .view .loading-skeleton {
-        display: none;
-    }
-
-    #closed-card .debate-bar__container {
-        padding-top: 10px;
-    }
-
-    #closed-card-loading .right .debate-bar {
-        margin-top: 10px;
-    }
-
-    #closed-card .right .debate-info {
-        padding-top: 10px;
-    }
-
-    #closed-card-loading .right .debate-info {
-        padding-top: 10px;
-    }
-}
-
 @media screen and (max-width: 480px) {
     #closed-card-loading .left .topic .loading-skeleton {
         max-width: 250px;
