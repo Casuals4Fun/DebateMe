@@ -21,15 +21,14 @@ import DebatePage from './pages/profile/debate'
 import { LoadingComponent } from './components/loading/svg'
 
 export default function App() {
-  const location = useLocation();
-  const showSidebar = !/^\/[^\/]+\/[^\/]+$/.test(location.pathname);
+  const location = useLocation()
+  const isDebatePage = location.pathname.split('/').length === 3 || location.pathname === '/create'
 
   const { theme, isNavbarOpen, isSidebarClose, setSidebarClose } = useNavStore()
   const { setUser, setIsAuthenticated, authTab, setAuthTab } = useAuthStore()
 
-  const mainRef = useRef<HTMLDivElement>(null)
   const lastScrollTop = useRef<number>(0)
-  const [isScrollingUp, setIsScrollingUp] = useState<boolean>(true)
+  const [isScrolling, setIsScrolling] = useState<boolean>(false)
 
   useEffect(() => {
     document.body.setAttribute('data-theme', theme)
@@ -37,21 +36,22 @@ export default function App() {
     handleAutoLogin(setUser, setIsAuthenticated, setAuthTab)
 
     const handleScroll = () => {
-      const st = mainRef.current?.scrollTop ?? 0
-      setIsScrollingUp(st <= lastScrollTop.current)
-      lastScrollTop.current = Math.max(st, 0)
+      const st = window.scrollY
+      setIsScrolling(st > lastScrollTop.current)
+      lastScrollTop.current = st <= 0 ? 0 : st
     }
 
-    const mainElement = mainRef.current
-    mainElement?.addEventListener('scroll', handleScroll, { passive: true })
-    return () => mainElement?.removeEventListener('scroll', handleScroll)
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
     <>
-      {showSidebar && <LeftSidebar isVisible={isScrollingUp} />}
-      <main ref={mainRef} className={`${isNavbarOpen ? 'expand' : ''} ${isSidebarClose ? 'w-full' : ''} ${!showSidebar ? 'w-page' : ''}`}>
+      <aside id='left-sidebar' className={`${isScrolling ? 'hide' : 'reveal'} ${isSidebarClose && !isDebatePage ? 'close' : ''}`}>
+        <LeftSidebar />
+      </aside>
+      <main className={`${isNavbarOpen ? 'expand' : ''} ${isSidebarClose ? 'w-full' : ''} ${isDebatePage ? 'w-page' : ''}`}>
         <Routes>
           <Route element={<Debate />}>
             <Route path='/' element={<HomePage />} />
@@ -59,7 +59,7 @@ export default function App() {
             <Route path='/open-topics' element={<OpenTopicsPage />} />
           </Route>
           <Route element={<Authenticated />}>
-            <Route path='/create' element={<CreateDebatePage isScrollingUp={isScrollingUp} />} />
+            <Route path='/create' element={<CreateDebatePage />} />
           </Route>
           <Route path='/auth' element={<AuthPage />} />
           <Route path='/login' element={<Navigate to='/auth?type=login' />} />
@@ -72,9 +72,11 @@ export default function App() {
           </Route>
         </Routes>
       </main>
-      {showSidebar && <RightSidebar isVisible={isScrollingUp} />}
+      <aside id='right-sidebar' className={`${isScrolling ? 'hide' : 'reveal'} ${isSidebarClose && !isDebatePage ? 'close' : ''} ${isDebatePage ? 'hidden' : ''}`}>
+        <RightSidebar />
+      </aside>
 
-      {showSidebar && (
+      {!isDebatePage && (
         <>
           <button className='sidebar-btn left' onClick={() => setSidebarClose(!isSidebarClose)}>
             {isSidebarClose ? <FaChevronRight size={20} /> : <FaChevronLeft size={20} />}

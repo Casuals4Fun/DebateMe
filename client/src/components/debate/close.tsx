@@ -13,7 +13,7 @@ const CloseDebateCard = () => {
     return (
         <div id='closed-card' className={isSidebarClose ? 'card-break' : ''}>
             <div className={`left ${isSidebarClose ? 'flex-unset' : ''}`}>
-                <h2 onClick={() => navigate('/')}>
+                <h2 onClick={() => navigate('/aniketdas/Sony is the best camera of all time')}>
                     Sony is the best camera of all time.
                 </h2>
                 <p>
@@ -25,18 +25,18 @@ const CloseDebateCard = () => {
             <div className={`right ${isSidebarClose ? 'flex-unset' : ''}`}>
                 <div className='user-info'>
                     <div className='debate-from'>
-                        <img src='/user1.webp' alt='' loading='lazy' onClick={() => navigate('/aniketdas')} />
-                        <p onClick={() => navigate('/aniketdas')}>Aniket Das</p>
-                        <p onClick={() => navigate('/aniketdas')}>aniketdas</p>
-                    </div>
-                    <div className='debate-by'>
-                        <img src='/user2.jpeg' alt='' loading='lazy' onClick={() => navigate('/pratikprasad')} />
+                        <img src='/user2.jpeg' alt='avatar' loading='lazy' onClick={() => navigate('/pratikprasad')} />
                         <p onClick={() => navigate('/pratikprasad')}>Pratik Prasad</p>
                         <p onClick={() => navigate('/pratikprasad')}>pratikprasad</p>
                     </div>
+                    <div className='debate-by'>
+                        <img src='/user1.webp' alt='avatar' loading='lazy' onClick={() => navigate('/aniketdas')} />
+                        <p onClick={() => navigate('/aniketdas')}>Aniket Das</p>
+                        <p onClick={() => navigate('/aniketdas')}>aniketdas</p>
+                    </div>
                 </div>
                 <div className='debate-bar__container'>
-                    <DebateBar debateFrom={4230} debateBy={5160} />
+                    <DebateBar debateFrom={5160} debateBy={4230} />
                 </div>
                 <div className='debate-info'>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '5px', fontSize: '15px', fontWeight: '600' }}>

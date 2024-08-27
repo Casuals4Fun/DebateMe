@@ -3,20 +3,14 @@ import { useLocation, Link } from 'react-router-dom'
 import { toast } from 'sonner'
 import { GoPerson } from 'react-icons/go'
 import { AuthStatus, AuthTab, useAuthStore } from '../../store/auth'
-import { useNavStore } from '../../store/nav'
 import { navLinks } from '../../data/sidebar'
 import Profile from './profile'
 import LoadingSkeleton from '../loading/skeleton'
 
-interface SidebarProps {
-  isVisible: boolean
-}
-
-const LeftSidebar: React.FC<SidebarProps> = ({ isVisible }) => {
+const LeftSidebar = () => {
   const location = useLocation()
 
   const { isAuthenticated, setAuthTab } = useAuthStore()
-  const { isSidebarClose } = useNavStore()
 
   const handleLinkClick = (name: string) => {
     if (name === 'Create Debate') {
@@ -29,13 +23,19 @@ const LeftSidebar: React.FC<SidebarProps> = ({ isVisible }) => {
   }
 
   return (
-    <aside id='left-sidebar' className={`${isVisible ? 'reveal' : 'hide'} ${isSidebarClose ? 'close' : 'open'}`}>
+    <>
       <Link to='/' className='logo__wrapper'>
-        <img src='/logo.png' alt='' />
+        <img src='/logo.png' alt='logo' />
       </Link>
       <nav>
         {navLinks.map(item => (
-          <Link to={item.href} onClick={() => handleLinkClick(item.name)} key={item.id} title={item.name} className={location.pathname === item.href ? 'active' : ''}>
+          <Link
+            key={item.id}
+            title={item.name}
+            className={location.pathname === item.href ? 'active' : ''}
+            to={item.name === 'Create Debate' ? isAuthenticated === AuthStatus.Authenticated ? item.href : '#' : item.href}
+            onClick={() => handleLinkClick(item.name)}
+          >
             <div className='links__wrapper'>
               <item.icon />
               <p className='underline'>{item.name}</p>
@@ -55,7 +55,7 @@ const LeftSidebar: React.FC<SidebarProps> = ({ isVisible }) => {
           </button>
         )}
       </div>
-    </aside>
+    </>
   )
 }
 

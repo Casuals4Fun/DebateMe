@@ -1,8 +1,5 @@
-#right-sidebar.open {
-    display: inherit;
-}
-
-#right-sidebar.close {
+#right-sidebar.close,
+#right-sidebar.hidden {
     display: none;
     width: 0;
 }
@@ -99,19 +96,15 @@
 }
 
 @media screen and (max-width: 767px) {
-
-    #right-sidebar.open {
-        display: none;
-    }
-
     #right-sidebar.close {
         display: none;
     }
 }
 
 @media screen and (max-width: 480px) {
+
     #right-sidebar.close,
-    #right-sidebar.open {
+    #right-sidebar.hidden {
         display: block;
         width: 100%;
     }

@@ -17,8 +17,6 @@
 
 main {
     width: 40%;
-    height: 100svh;
-    overflow-y: auto;
     border-left: 1px solid var(--border_primary);
     border-right: 1px solid var(--border_primary);
 }
@@ -29,15 +27,17 @@ main.w-full {
 }
 
 main.w-page {
-    width: 100% !important;
-    border: unset;
+    width: 70% !important;
+    border-left: 1px solid var(--border_primary);
+    border-right: none;
 }
 
 .sidebar-btn {
-    position: absolute;
+    position: fixed;
     z-index: 2;
     top: 50%;
     transform: translateY(-50%);
+    height: 20px;
 }
 
 .sidebar-btn.left {
@@ -57,6 +57,12 @@ main.w-page {
     color: var(--body_color);
 }
 
+@media screen and (min-width: 1921px) {
+    main.w-page {
+        border-right: 1px solid var(--border_primary);
+    }
+}
+
 @media screen and (max-width: 1024px) {
     #left-sidebar {
         width: 10%;
@@ -65,6 +71,11 @@ main.w-page {
     main,
     main.w-full {
         width: 50%;
+    }
+
+    main.w-page {
+        width: 90% !important;
+        border-right: none;
     }
 
     #right-sidebar {
@@ -94,6 +105,10 @@ main.w-page {
     main.w-full {
         width: 85%;
         border-right: unset;
+    }
+
+    main.w-page {
+        width: 85% !important;
     }
 
     #right-sidebar {
@@ -135,6 +150,7 @@ main.w-page {
     }
 
     main {
+        height: 100svh;
         border: unset;
     }
 
@@ -142,6 +158,11 @@ main.w-page {
     main.w-full {
         padding-top: 60px;
         width: 100%;
+    }
+
+    main.w-page {
+        width: 100% !important;
+        border-left: none;
     }
 
     main.expand {

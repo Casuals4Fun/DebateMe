@@ -1,5 +1,4 @@
 import './bar.css'
-import React from 'react'
 import { IoCaretUpSharp } from 'react-icons/io5'
 import useFormatNumber from '../../hooks/useFormatNumber'
 

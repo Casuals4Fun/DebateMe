@@ -5,37 +5,31 @@ import ToggleTheme from '../theme'
 import Profile from './profile'
 import Explore from './explore'
 
-interface SidebarProps {
-  isVisible: boolean
-}
-
-const RightSidebar: React.FC<SidebarProps> = ({ isVisible }) => {
-  const { isNavbarOpen, isSidebarClose } = useNavStore()
+const RightSidebar = () => {
+  const { isNavbarOpen } = useNavStore()
 
   return (
-    <aside id='right-sidebar' className={`${isVisible ? 'reveal' : 'hide'} ${isSidebarClose ? 'close' : 'open'}`}>
-      <div className='right-sidebar__container'>
-        <Link to='/' className='logo__container'>
-          <img src='/logo.png' alt='' />
-        </Link>
+    <div className='right-sidebar__container'>
+      <Link to='/' className='logo__container'>
+        <img src='/logo.png' alt='logo' />
+      </Link>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
-          <div className='profile-theme__container'>
-            <div className='theme__wrapper'>
-              <ToggleTheme />
-            </div>
-
-            <Profile isVisible={isVisible} />
+      <div style={{ display: 'flex', alignItems: 'center' }}>
+        <div className='profile-theme__container'>
+          <div className='theme__wrapper'>
+            <ToggleTheme />
           </div>
-        </div>
 
-        <div className='explore__container'>
-          <Explore />
+          <Profile />
         </div>
-
-        {!isNavbarOpen && <div className='nav-border' />}
       </div>
-    </aside>
+
+      <div className='explore__container'>
+        <Explore />
+      </div>
+
+      {!isNavbarOpen && <div className='nav-border' />}
+    </div>
   )
 }
 

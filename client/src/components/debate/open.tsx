@@ -13,7 +13,7 @@ const OpenDebateCard = () => {
     return (
         <div id='open-card' className={isSidebarClose ? 'card-break' : ''}>
             <div className='debate-header'>
-                <h2 onClick={() => navigate('/')}>
+                <h2 onClick={() => navigate('/aniketdas/Artificial Intelligence – Is AI good for society or not')}>
                     Artificial Intelligence – Is AI good for society or not?
                 </h2>
             </div>
@@ -23,7 +23,7 @@ const OpenDebateCard = () => {
                 Fugiat repellat architecto pariatur fugit perspiciatis voluptas quidem autem.
             </p>
             <div className='user-info'>
-                <img src='/user.jpg' alt='' loading='lazy' onClick={() => navigate('/julieroberts')} />
+                <img src='/user.jpg' alt='avatar' loading='lazy' onClick={() => navigate('/julieroberts')} />
                 <div className='user-detail'>
                     <p onClick={() => navigate('/julieroberts')}>Julie Roberts</p>
                     <p onClick={() => navigate('/julieroberts')}>julieroberts</p>

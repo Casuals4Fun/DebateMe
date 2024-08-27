@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react'
+import { useState, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'sonner'
 import { FcGoogle } from 'react-icons/fc'
@@ -71,7 +71,6 @@ const Login = () => {
                         setIsAuthenticated(AuthStatus.Authenticated)
                         setAuthTab(AuthTab.Closed)
                         navigate(localStorage.getItem('route') || '/')
-                        toast.success(response.message)
                     }
                     else {
                         setIsAuthenticated(AuthStatus.Failed)

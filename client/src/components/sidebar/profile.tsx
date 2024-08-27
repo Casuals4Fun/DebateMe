@@ -1,5 +1,5 @@
 import './profile.css'
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { IoMdPerson } from 'react-icons/io'
 import { PiSignOutBold } from 'react-icons/pi'
@@ -10,17 +10,18 @@ import { AuthStatus, AuthTab, useAuthStore } from '../../store/auth'
 import ToggleTheme from '../theme'
 import LoadingSkeleton from '../loading/skeleton'
 
-interface ProfileProps {
-    isVisible?: boolean
-}
-
-const Profile: React.FC<ProfileProps> = ({ isVisible }) => {
+const Profile = () => {
     const navigate = useNavigate()
     const { isNavbarOpen, setNavbarOpen } = useNavStore()
     const { isAuthenticated, setIsAuthenticated, user, setUser, authTab, setAuthTab } = useAuthStore()
 
+    const handleNavbar = () => {
+        document.body.style.overflow = isNavbarOpen ? 'auto' : 'hidden'
+        setNavbarOpen(!isNavbarOpen)
+    }
+
     const handleLogout = () => {
-        setNavbarOpen(false)
+        handleNavbar()
         navigate('/')
         setIsAuthenticated(AuthStatus.Failed)
         setUser({
@@ -37,6 +38,7 @@ const Profile: React.FC<ProfileProps> = ({ isVisible }) => {
         const handleClickOutside = (event: MouseEvent) => {
             const target = event.target as HTMLElement
             if (isNavbarOpen && !target.closest('.profile__modal') && !target.closest('.profile__image')) {
+                document.body.style.overflow = 'auto'
                 setNavbarOpen(false)
             }
         }
@@ -57,10 +59,10 @@ const Profile: React.FC<ProfileProps> = ({ isVisible }) => {
                         borderStyle: 'solid',
                         borderColor: `${isNavbarOpen ? 'var(--body_color)' : 'transparent'}`
                     }}
-                    onClick={() => setNavbarOpen(!isNavbarOpen)}
+                    onClick={handleNavbar}
                 >
                     {user.avatar ? (
-                        <img src={user.avatar} alt='' loading='lazy' referrerPolicy='no-referrer' />
+                        <img src={user.avatar} alt='avatar' loading='lazy' referrerPolicy='no-referrer' />
                     ) : (
                         <FaRegUser style={{ width: '50%', height: '50%' }} />
                     )}
@@ -77,19 +79,19 @@ const Profile: React.FC<ProfileProps> = ({ isVisible }) => {
             )}
 
             {isNavbarOpen && (
-                <div className={`profile__modal ${isVisible ? 'shift-down' : 'shift-up'}`}>
+                <div className='profile__modal'>
                     <div className='modal-profile__wrapper'>
                         <div className='profile-wrapper'>
-                            <Link to={user.username} className='modal-profile__image' onClick={() => setNavbarOpen(false)}>
+                            <Link to={user.username} className='modal-profile__image' onClick={handleNavbar}>
                                 {user.avatar ? (
-                                    <img src={user.avatar} alt='' loading='lazy' referrerPolicy='no-referrer' />
+                                    <img src={user.avatar} alt='avatar' loading='lazy' referrerPolicy='no-referrer' />
                                 ) : (
                                     <FaRegUser style={{ width: '50%', height: '50%' }} />
                                 )}
                             </Link>
                             <div className='modal-profile__info'>
-                                <Link to={user.username} onClick={() => setNavbarOpen(false)}>{user.first_name} {user.last_name}</Link>
-                                <Link to={user.username} onClick={() => setNavbarOpen(false)}>{user.username}</Link>
+                                <Link to={user.username} onClick={handleNavbar}>{user.first_name} {user.last_name}</Link>
+                                <Link to={user.username} onClick={handleNavbar}>{user.username}</Link>
                             </div>
                         </div>
                         <ToggleTheme />
@@ -97,7 +99,7 @@ const Profile: React.FC<ProfileProps> = ({ isVisible }) => {
                     <Link
                         to={user.username}
                         className='modal-profile-btn'
-                        onClick={() => setNavbarOpen(false)}
+                        onClick={handleNavbar}
                     >
                         <IoMdPerson size={18} />
                         <p>Profile</p>

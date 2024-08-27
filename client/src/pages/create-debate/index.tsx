@@ -6,11 +6,7 @@ import { useNavStore } from '../../store/nav'
 import Editor from './editor'
 import Preview from './preview'
 
-interface CreateProps {
-    isScrollingUp: boolean
-}
-
-const CreateDebatePage: React.FC<CreateProps> = ({ isScrollingUp }) => {
+const CreateDebatePage = () => {
     const { isSidebarClose } = useNavStore()
 
     const editorRef = useRef<RichTextEditorComponent>(null)
@@ -67,7 +63,8 @@ const CreateDebatePage: React.FC<CreateProps> = ({ isScrollingUp }) => {
                 debateData={debateData}
             />
 
-            <div className={`debate-btns ${isScrollingUp ? 'reveal' : 'hide'} ${isSidebarClose ? 'w-full' : ''}`}>
+            {/* <div className={`debate-btns ${isScrolling ? 'hide' : 'reveal'} ${isSidebarClose ? 'w-full' : ''}`}> */}
+            <div className={`debate-btns ${isSidebarClose ? 'w-full' : ''}`}>
                 <button
                     type='button'
                     onClick={handlePreviewToggle}

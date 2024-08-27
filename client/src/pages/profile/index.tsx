@@ -7,7 +7,7 @@ export default function ProfilePage() {
     return (
         <div id='profile'>
             <div className='user'>
-                <img src='/user1.webp' alt='' />
+                <img src='/user1.webp' alt='avatar' />
                 <h1>Aniket Das</h1>
                 <h3>aniketdas</h3>
             </div>
