@@ -1,5 +1,4 @@
 #left-sidebar {
-    max-height: 100svh;
     padding: 20px 0;
     display: grid;
     gap: 50px;
@@ -137,7 +136,6 @@
 }
 
 @media screen and (max-width: 480px) {
-
     #left-sidebar,
     #left-sidebar.close {
         display: block;

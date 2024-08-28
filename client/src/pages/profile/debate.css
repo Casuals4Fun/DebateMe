@@ -1,4 +1,5 @@
-#debate {
+#debate,
+#comment {
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -55,13 +56,16 @@
 #debate .debate-detail {
     display: flex;
     gap: 20px;
+}
+
+#debate .debate-detail button {
     color: var(--card_color);
+    font-size: 16px;
     font-weight: 600;
 }
 
-#debate .debate-detail div:nth-child(2) p:hover {
+#debate .debate-detail button:hover {
     text-decoration: underline;
-    cursor: pointer;
 }
 
 #debate .user-info img:hover~.user-detail p:nth-child(2),
@@ -75,7 +79,6 @@
 }
 
 #debate .e-richtexteditor {
-    /* min-height: auto !important; */
     background-color: transparent;
     border: none;
 }
@@ -86,7 +89,9 @@
 }
 
 @media screen and (max-width: 480px) {
-    #debate {
+
+    #debate,
+    #comment {
         padding: 20px 10px;
     }
 

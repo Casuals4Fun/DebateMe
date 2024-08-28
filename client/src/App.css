@@ -1,18 +1,11 @@
 #left-sidebar,
 #right-sidebar {
     width: 30%;
+    height: 100svh;
     position: sticky;
     top: 0;
     user-select: none;
     z-index: 2;
-}
-
-#left-sidebar {
-    max-height: 1080px;
-}
-
-#right-sidebar {
-    max-height: 100svh;
 }
 
 main {
