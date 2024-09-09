@@ -2,14 +2,13 @@ import { RichTextEditorComponent } from '@syncfusion/ej2-react-richtexteditor'
 import Editor from './editor'
 
 interface PreviewProps {
-    isPreview: boolean
     editorRef: React.RefObject<RichTextEditorComponent>
     debateData: { title: string, body: string }
 }
 
-const Preview: React.FC<PreviewProps> = ({ isPreview, editorRef, debateData }) => {
+const Preview: React.FC<PreviewProps> = ({ editorRef, debateData }) => {
     return (
-        <div className={`preview ${isPreview ? 'shift-left' : 'shift-right'}`}>
+        <div className='preview'>
             <h1>{debateData.title}</h1>
             <Editor
                 editorRef={editorRef}

@@ -1,52 +1,10 @@
-#create {
-    position: relative;
-    overflow: hidden;
-}
-
-#create-debate {
-    padding: 20px 0;
-    height: calc(100svh - 80px);
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    overflow-y: auto;
-}
-
-#create-debate.shift-left {
-    position: relative;
-    top: 0;
-    left: -100%;
-    transition: left 250ms ease-in-out;
-}
-
-#create-debate.shift-right {
-    position: relative;
-    top: 0;
-    left: 0;
-    transition: left 250ms ease-in-out;
-}
-
+#create-debate,
 .preview {
-    position: absolute;
-    top: 0;
-    left: 100%;
     padding: 20px;
-    width: 100%;
-    height: 100%;
+    padding-bottom: 100px;
     display: flex;
     flex-direction: column;
     gap: 20px;
-    overflow-y: auto;
-}
-
-.preview.shift-left {
-    left: 0;
-    transition: left 250ms ease-in-out;
-}
-
-.preview.shift-right {
-    left: 100%;
-    transition: left 250ms ease-in-out;
 }
 
 #create h1 {
@@ -66,13 +24,6 @@
     font-size: 17px;
     border: 1px solid var(--border_primary);
     outline: none;
-}
-
-#create-debate .vertical-space {
-    padding: 0 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
 }
 
 .debate-btns {
@@ -125,12 +76,6 @@
     }
 }
 
-@media screen and (min-width: 1025px) {
-    .debate-btns.w-full {
-        width: 100%;
-    }
-}
-
 @media screen and (max-width: 1024px) {
     .debate-btns {
         width: calc(90% - 1px);
@@ -144,13 +89,11 @@
 }
 
 @media screen and (max-width: 480px) {
-    #create-debate {
-        padding: 20px 0;
-        height: calc(100svh - 120px - 60px);
-    }
 
-    #create-debate .vertical-space {
-        padding: 0 10px;
+    #create-debate,
+    .preview {
+        padding: 20px 10px;
+        padding-bottom: 70px;
     }
 
     .debate-btns {
@@ -161,8 +104,17 @@
         background-color: var(--background_primary);
     }
 
+    .debate-btns.hide {
+        bottom: 0;
+        transition: bottom 0.4s ease-out;
+    }
+
+    .debate-btns.reveal {
+        bottom: 60px;
+        transition: bottom 0.25s ease-out;
+    }
+
     .preview {
-        padding: 10px;
         gap: 10px;
     }
 

@@ -88,6 +88,16 @@
     font-size: 20px;
 }
 
+#comment .back-btn {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: var(--border_primary);
+}
+
 @media screen and (max-width: 480px) {
 
     #debate,

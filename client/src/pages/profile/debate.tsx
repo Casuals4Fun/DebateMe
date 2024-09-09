@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { IoCaretUpSharp } from 'react-icons/io5'
 import { MdModeComment } from 'react-icons/md'
+import { IoMdArrowBack } from 'react-icons/io'
 import Editor from '../create-debate/editor'
 
 export default function DebatePage() {
@@ -49,9 +50,12 @@ export default function DebatePage() {
             </div>
         ) : (
             <div id='comment'>
-                <button onClick={() => setTab('debate')}>
-                    Back to Debate
-                </button>
+                <div style={{display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', alignItems: 'center'}}>
+                    <button title='Back to debate' onClick={() => setTab('debate')} className='back-btn'>
+                        <IoMdArrowBack size={20} />
+                    </button>
+                    <p style={{ fontSize: '20px', textAlign: 'center' }}>Discussions</p>
+                </div>
             </div>
         )
     )
