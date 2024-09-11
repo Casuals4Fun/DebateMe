@@ -59,7 +59,7 @@ export default function App() {
             <Route path='/open-topics' element={<OpenTopicsPage />} />
           </Route>
           <Route element={<Authenticated />}>
-            <Route path='/create' element={<CreateDebatePage />} />
+            <Route path='/create' element={<CreateDebatePage isScrolling={isScrolling} />} />
           </Route>
           <Route path='/auth' element={<AuthPage />} />
           <Route path='/login' element={<Navigate to='/auth?type=login' />} />

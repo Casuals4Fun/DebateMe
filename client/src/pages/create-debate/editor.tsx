@@ -90,7 +90,7 @@ const Editor: React.FC<EditorProps> = ({ editorRef, rteValue, isEditable, setDeb
         <RichTextEditorComponent
             id='toolsRTE'
             ref={editorRef}
-            value={rteValue}
+            value={rteValue || editorRef?.current?.value}
             showCharCount={isEditable}
             toolbarSettings={isEditable ? toolbarSettings : undefined}
             quickToolbarSettings={isEditable ? quickToolbarSettings : undefined}
