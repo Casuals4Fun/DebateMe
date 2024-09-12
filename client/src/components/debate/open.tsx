@@ -42,7 +42,6 @@ const OpenDebateCard = () => {
                 </div>
                 <p className='created-date'>15 mins ago</p>
             </div>
-            <div className='divider' />
         </div>
     )
 }
@@ -80,7 +79,6 @@ const OpenDebateLoadingCard = () => {
                     <LoadingSkeleton />
                 </div>
             </div>
-            <div className='divider' />
         </div>
     )
 }

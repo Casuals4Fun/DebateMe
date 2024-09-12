@@ -1,5 +1,5 @@
 .debates {
-    padding: 20px;
+    padding: 20px 20px 0;
     display: flex;
     flex-direction: column;
     gap: 30px;
@@ -34,7 +34,7 @@
 
 @media screen and (max-width: 480px) {
     .debates {
-        padding: 20px 10px;
+        padding: 20px 10px 0;
         gap: 20px;
     }
 }

@@ -55,8 +55,8 @@ export default function App() {
         <Routes>
           <Route element={<Debate />}>
             <Route path='/' element={<HomePage />} />
-            <Route path='/hot-topics' element={<HotTopicsPage />} />
-            <Route path='/open-topics' element={<OpenTopicsPage />} />
+            <Route path='/hot' element={<HotTopicsPage />} />
+            <Route path='/new' element={<OpenTopicsPage />} />
           </Route>
           <Route element={<Authenticated />}>
             <Route path='/create' element={<CreateDebatePage isScrolling={isScrolling} />} />
