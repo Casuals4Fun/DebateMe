@@ -10,8 +10,8 @@
 
 main {
     width: 40%;
-    border-left: 1px solid var(--border_primary);
-    border-right: 1px solid var(--border_primary);
+    border-left: 2px solid var(--border_primary);
+    border-right: 2px solid var(--border_primary);
 }
 
 main.w-full {
@@ -21,7 +21,7 @@ main.w-full {
 
 main.w-page {
     width: 70% !important;
-    border-left: 1px solid var(--border_primary);
+    border-left: 2px solid var(--border_primary);
     border-right: none;
 }
 
@@ -52,7 +52,7 @@ main.w-page {
 
 @media screen and (min-width: 1921px) {
     main.w-page {
-        border-right: 1px solid var(--border_primary);
+        border-right: 2px solid var(--border_primary);
     }
 }
 
@@ -84,8 +84,8 @@ main.w-page {
 
     main,
     main.w-full {
-        border-left: 1px solid var(--border_primary);
-        border-right: 1px solid var(--border_primary);
+        border-left: 2px solid var(--border_primary);
+        border-right: 2px solid var(--border_primary);
     }
 }
 
@@ -113,7 +113,7 @@ main.w-page {
 
     main,
     main.w-full {
-        border-left: 1px solid var(--border_primary);
+        border-left: 2px solid var(--border_primary);
         border-right: unset;
     }
 }
@@ -131,7 +131,7 @@ main.w-page {
         bottom: 0;
         height: 60px;
         background-color: var(--background_primary);
-        border-top: 1px solid var(--border_secondary);
+        border-top: 2px solid var(--border_secondary);
     }
 
     #right-sidebar {

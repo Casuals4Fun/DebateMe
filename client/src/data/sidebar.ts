@@ -25,13 +25,13 @@ export const navLinks = [
     {
         id: 4,
         name: 'Hot Topics',
-        href: '/hot-topics',
+        href: '/hot',
         icon: RiFireFill
     },
     {
         id: 5,
-        name: 'Open Topics',
-        href: '/open-topics',
+        name: 'New Topics',
+        href: '/new',
         icon: FaFeather
     },
     {

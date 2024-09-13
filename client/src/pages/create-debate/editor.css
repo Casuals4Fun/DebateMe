@@ -9,7 +9,7 @@
     min-height: 40vh !important;
     background-color: var(--bg_primary);
     color: var(--color_primary);
-    border: 1px solid var(--border_primary);
+    border: 2px solid var(--border_primary);
     overflow-x: hidden;
 }
 

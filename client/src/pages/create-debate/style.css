@@ -9,6 +9,7 @@
 
 #create h1 {
     font-size: 40px;
+    text-align: center;
 }
 
 #create h2 {
@@ -22,7 +23,7 @@
     background-color: var(--bg_primary);
     color: var(--color_primary);
     font-size: 17px;
-    border: 1px solid var(--border_primary);
+    border: 2px solid var(--border_primary);
     outline: none;
 }
 
@@ -30,14 +31,14 @@
     position: fixed;
     z-index: 1;
     bottom: 0;
-    width: calc(70% - 1px);
+    width: calc(70% - 2px);
     height: 80px;
     padding: 0 20px;
     background-color: var(--background_primary);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-top: 1px solid var(--border_primary);
+    border-top: 2px solid var(--border_primary);
 }
 
 .debate-btns button {
@@ -45,7 +46,7 @@
     width: 125px;
     background-color: var(--bg_secondary);
     font-size: 18px;
-    border: 1px solid var(--border_primary);
+    border: 2px solid var(--border_primary);
     border-radius: 5px;
 }
 
@@ -72,19 +73,19 @@
 
 @media screen and (min-width: 1921px) {
     .debate-btns {
-        width: 1342px;
+        width: 1340px;
     }
 }
 
 @media screen and (max-width: 1024px) {
     .debate-btns {
-        width: calc(90% - 1px);
+        width: calc(90% - 2px);
     }
 }
 
 @media screen and (max-width: 767px) {
     .debate-btns {
-        width: calc(85% - 1px);
+        width: calc(85% - 2px);
     }
 }
 

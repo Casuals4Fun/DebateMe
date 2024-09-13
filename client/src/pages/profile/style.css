@@ -1,6 +1,6 @@
 #profile .user {
     padding: 20px;
-    border-bottom: 1px solid var(--border_primary);
+    border-bottom: 2px solid var(--border_primary);
 }
 
 #profile .user img {

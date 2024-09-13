@@ -11,6 +11,7 @@
 
 #debate h1 {
     font-size: 40px;
+    text-align: center;
 }
 
 #debate .detail {
@@ -106,7 +107,7 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     align-items: center;
-    border-bottom: 1px solid var(--border_primary);
+    border-bottom: 2px solid var(--border_primary);
 }
 
 #comment .back-btn {
@@ -118,7 +119,7 @@
 #comment .comment-box {
     margin: 0 20px;
     padding-bottom: 20px;
-    border-bottom: 1px solid var(--border_primary);
+    border-bottom: 2px solid var(--border_primary);
 }
 
 #comment .comment-box .content {
@@ -145,6 +146,11 @@
 
 #comment .comment-box .comment-btns button:hover p {
     text-decoration: underline;
+}
+
+#comment .comment-box .created-at {
+    font-size: 15px;
+    color: var(--card_color);
 }
 
 @media screen and (max-width: 480px) {

@@ -75,7 +75,7 @@
     right: 0;
     bottom: 0;
     height: 1px;
-    border-bottom: 1px solid var(--border_secondary);
+    border-bottom: 2px solid var(--border_secondary);
 }
 
 #right-sidebar .explore__container {

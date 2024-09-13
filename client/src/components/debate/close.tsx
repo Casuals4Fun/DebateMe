@@ -12,7 +12,7 @@ const CloseDebateCard = () => {
 
     return (
         <div id='closed-card' className={isSidebarClose ? 'card-break' : ''}>
-            <div className={`left ${isSidebarClose ? 'flex-unset' : ''}`}>
+            <div className='left'>
                 <h2 onClick={() => navigate('/aniketdas/Sony is the best camera of all time')}>
                     Sony is the best camera of all time.
                 </h2>
@@ -22,7 +22,7 @@ const CloseDebateCard = () => {
                     Fugiat repellat architecto pariatur fugit perspiciatis voluptas quidem autem.
                 </p>
             </div>
-            <div className={`right ${isSidebarClose ? 'flex-unset' : ''}`}>
+            <div className='right'>
                 <div className='user-info'>
                     <div className='debate-from'>
                         <img src='/user2.jpeg' alt='avatar' loading='lazy' onClick={() => navigate('/pratikprasad')} />
@@ -46,7 +46,6 @@ const CloseDebateCard = () => {
                     <p className='created-at'>5 days ago</p>
                 </div>
             </div>
-            <div className='divider' />
         </div>
     )
 }
@@ -56,7 +55,7 @@ const CloseDebateLoadingCard = () => {
 
     return (
         <div id='closed-card-loading' className={isSidebarClose ? 'card-break' : ''}>
-            <div className={`left ${isSidebarClose ? 'flex-unset' : ''}`}>
+            <div className='left'>
                 <div className='topic'>
                     <LoadingSkeleton />
                 </div>
@@ -68,7 +67,7 @@ const CloseDebateLoadingCard = () => {
                     <LoadingSkeleton />
                 </div>
             </div>
-            <div className={`right ${isSidebarClose ? 'flex-unset' : ''}`}>
+            <div className='right'>
                 <div className='user-info'>
                     <div className='debater'>
                         <LoadingSkeleton />
@@ -90,7 +89,6 @@ const CloseDebateLoadingCard = () => {
                     <LoadingSkeleton />
                 </div>
             </div>
-            <div className='divider' />
         </div>
     )
 }
