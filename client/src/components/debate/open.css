@@ -1,6 +1,12 @@
-#open-card {
+#open-card,
+#open-card-loading {
     padding-bottom: 30px;
     border-bottom: 2px solid var(--border_primary);
+}
+
+#open-card:last-child,
+#open-card-loading:last-child {
+    border-bottom: none;
 }
 
 #open-card h2 {

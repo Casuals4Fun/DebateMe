@@ -1,5 +1,5 @@
 import './App.css'
-import { useRef, useState, useEffect } from 'react'
+import { useRef, useEffect } from 'react'
 import { useLocation, Routes, Route, Navigate, Outlet } from 'react-router-dom'
 import { Toaster } from 'sonner'
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'
@@ -24,11 +24,10 @@ export default function App() {
   const location = useLocation()
   const isDebatePage = location.pathname.split('/').length === 3 || location.pathname === '/create'
 
-  const { theme, isNavbarOpen, isSidebarClose, setSidebarClose } = useNavStore()
+  const { theme, isNavbarOpen, isSidebarClose, setSidebarClose, isScrolling, setScrolling } = useNavStore()
   const { setUser, setIsAuthenticated, authTab, setAuthTab } = useAuthStore()
 
   const lastScrollTop = useRef<number>(0)
-  const [isScrolling, setIsScrolling] = useState<boolean>(false)
 
   useEffect(() => {
     document.body.setAttribute('data-theme', theme)
@@ -37,7 +36,7 @@ export default function App() {
 
     const handleScroll = () => {
       const st = window.scrollY
-      setIsScrolling(st > lastScrollTop.current)
+      setScrolling(st > lastScrollTop.current)
       lastScrollTop.current = st <= 0 ? 0 : st
     }
 
@@ -59,7 +58,7 @@ export default function App() {
             <Route path='/new' element={<OpenTopicsPage />} />
           </Route>
           <Route element={<Authenticated />}>
-            <Route path='/create' element={<CreateDebatePage isScrolling={isScrolling} />} />
+            <Route path='/create' element={<CreateDebatePage />} />
           </Route>
           <Route path='/auth' element={<AuthPage />} />
           <Route path='/login' element={<Navigate to='/auth?type=login' />} />

@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import { IoMdArrowBack } from 'react-icons/io'
 import { AiOutlineLike, AiOutlineDislike } from 'react-icons/ai'
+import { useNavStore } from '../../store/nav'
 // import { MdOutlineModeComment } from 'react-icons/md'
 
 interface CommentsProps {
@@ -10,14 +11,16 @@ interface CommentsProps {
 const Comments: React.FC<CommentsProps> = ({ setTab }) => {
     const navigate = useNavigate()
 
+    const { isScrolling } = useNavStore()
+
     return (
         <div>
             <div id='comment'>
-                <div className='header'>
+                <div className={`header ${isScrolling ? 'hide' : 'reveal'}`}>
                     <button title='Back to debate' onClick={() => setTab('debate')} className='back-btn'>
                         <IoMdArrowBack size={25} />
                     </button>
-                    <p style={{ fontSize: '20px', textAlign: 'center' }}>Discussions</p>
+                    <p style={{ fontSize: '20px', fontWeight: 600, textAlign: 'center' }}>Discussions</p>
                 </div>
                 <div className='comment-box'>
                     <div className='user-info'>

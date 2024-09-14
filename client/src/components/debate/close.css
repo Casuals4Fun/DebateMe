@@ -7,6 +7,11 @@
     border-bottom: 2px solid var(--border_primary);
 }
 
+#closed-card:last-child,
+#closed-card-loading:last-child {
+    border-bottom: none;
+}
+
 #closed-card .left,
 #closed-card-loading .left {
     display: flex;

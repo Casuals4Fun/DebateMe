@@ -13,6 +13,7 @@
 .card-break {
     break-inside: avoid;
     margin-bottom: 30px;
+    border-bottom: 2px solid var(--border_primary) !important;
 }
 
 #closed-card,
@@ -29,6 +30,10 @@
     .card-break {
         break-inside: avoid;
         margin-bottom: 0;
+    }
+
+    .card-break:last-child {
+        border-bottom: none !important;
     }
 }
 
