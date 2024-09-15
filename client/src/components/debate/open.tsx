@@ -11,12 +11,10 @@ const OpenDebateCard = () => {
     const { isSidebarClose } = useNavStore()
 
     return (
-        <div id='open-card' className={isSidebarClose ? 'card-break' : ''}>
-            <div className='debate-header'>
-                <h2 onClick={() => navigate('/aniketdas/Artificial Intelligence – Is AI good for society or not')}>
-                    Artificial Intelligence – Is AI good for society or not?
-                </h2>
-            </div>
+        <article id='open-card' className={isSidebarClose ? 'card-break' : ''}>
+            <h2 onClick={() => navigate('/aniketdas/Artificial Intelligence – Is AI good for society or not')}>
+                Artificial Intelligence – Is AI good for society or not?
+            </h2>
             <p className='debate-body'>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Non labore necessitatibus reiciendis rem ad perferendis, id officia omnis voluptas eius veritatis explicabo harum! Vero porro labore quo ab aut. Nesciunt!
                 Fugiat repellat architecto pariatur fugit perspiciatis voluptas quidem autem. Lorem ipsum dolor sit amet consectetur adipisicing elit. Non labore necessitatibus reiciendis rem ad perferendis, id officia omnis voluptas eius veritatis explicabo harum! Vero porro labore quo ab aut. Nesciunt!
@@ -42,7 +40,7 @@ const OpenDebateCard = () => {
                 </div>
                 <p className='created-date'>15 mins ago</p>
             </div>
-        </div>
+        </article>
     )
 }
 

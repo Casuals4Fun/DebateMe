@@ -12,6 +12,8 @@ interface NavStore {
     setNavbarOpen: (toggle: boolean) => void
     isSidebarClose: boolean
     setSidebarClose: (toggle: boolean) => void
+    isScrolling: boolean
+    setScrolling: (scroll: boolean) => void
 }
 
 export const useNavStore = create<NavStore>((set) => ({
@@ -38,5 +40,8 @@ export const useNavStore = create<NavStore>((set) => ({
     setSidebarClose: (toggle: boolean) => {
         set(() => ({ isSidebarClose: toggle }))
         localStorage.setItem('sidebar', toggle.toString())
-    }
+    },
+
+    isScrolling: false,
+    setScrolling: (scroll: boolean) => set(() => ({ isScrolling: scroll }))
 }))

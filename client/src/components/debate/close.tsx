@@ -11,42 +11,38 @@ const CloseDebateCard = () => {
     const { isSidebarClose } = useNavStore()
 
     return (
-        <div id='closed-card' className={isSidebarClose ? 'card-break' : ''}>
-            <div className='left'>
-                <h2 onClick={() => navigate('/aniketdas/Sony is the best camera of all time')}>
-                    Sony is the best camera of all time.
-                </h2>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Non labore necessitatibus reiciendis rem ad perferendis, id officia omnis voluptas eius veritatis explicabo harum! Vero porro labore quo ab aut. Nesciunt!
-                    Fugiat repellat architecto pariatur fugit perspiciatis voluptas quidem autem. Lorem ipsum dolor sit amet consectetur adipisicing elit. Non labore necessitatibus reiciendis rem ad perferendis, id officia omnis voluptas eius veritatis explicabo harum! Vero porro labore quo ab aut. Nesciunt!
-                    Fugiat repellat architecto pariatur fugit perspiciatis voluptas quidem autem.
-                </p>
-            </div>
-            <div className='right'>
-                <div className='user-info'>
-                    <div className='debate-from'>
-                        <img src='/user2.jpeg' alt='avatar' loading='lazy' onClick={() => navigate('/pratikprasad')} />
-                        <p onClick={() => navigate('/pratikprasad')}>Pratik Prasad</p>
-                        <p onClick={() => navigate('/pratikprasad')}>pratikprasad</p>
-                    </div>
-                    <div className='debate-by'>
-                        <img src='/user1.webp' alt='avatar' loading='lazy' onClick={() => navigate('/aniketdas')} />
-                        <p onClick={() => navigate('/aniketdas')}>Aniket Das</p>
-                        <p onClick={() => navigate('/aniketdas')}>aniketdas</p>
-                    </div>
+        <article id='closed-card' className={isSidebarClose ? 'card-break' : ''}>
+            <h2 onClick={() => navigate('/aniketdas/Sony is the best camera of all time')}>
+                Sony is the best camera of all time.
+            </h2>
+            <p className='debate-body'>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Non labore necessitatibus reiciendis rem ad perferendis, id officia omnis voluptas eius veritatis explicabo harum! Vero porro labore quo ab aut. Nesciunt!
+                Fugiat repellat architecto pariatur fugit perspiciatis voluptas quidem autem. Lorem ipsum dolor sit amet consectetur adipisicing elit. Non labore necessitatibus reiciendis rem ad perferendis, id officia omnis voluptas eius veritatis explicabo harum! Vero porro labore quo ab aut. Nesciunt!
+                Fugiat repellat architecto pariatur fugit perspiciatis voluptas quidem autem.
+            </p>
+            <div className='user-info'>
+                <div className='debate-from'>
+                    <img src='/user2.jpeg' alt='avatar' loading='lazy' onClick={() => navigate('/pratikprasad')} />
+                    <p onClick={() => navigate('/pratikprasad')}>Pratik Prasad</p>
+                    <p onClick={() => navigate('/pratikprasad')}>pratikprasad</p>
                 </div>
-                <div className='debate-bar__container'>
-                    <DebateBar debateFrom={5160} debateBy={4230} />
-                </div>
-                <div className='debate-info'>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '5px', fontSize: '15px', fontWeight: '600' }}>
-                        <MdModeComment size={15} />
-                        <p>{useFormatNumber(1300)}</p>
-                    </div>
-                    <p className='created-at'>5 days ago</p>
+                <div className='debate-by'>
+                    <img src='/user1.webp' alt='avatar' loading='lazy' onClick={() => navigate('/aniketdas')} />
+                    <p onClick={() => navigate('/aniketdas')}>Aniket Das</p>
+                    <p onClick={() => navigate('/aniketdas')}>aniketdas</p>
                 </div>
             </div>
-        </div>
+            <div className='debate-bar__container'>
+                <DebateBar debateFrom={5160} debateBy={4230} />
+            </div>
+            <div className='debate-info'>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '5px', fontSize: '15px', fontWeight: '600' }}>
+                    <MdModeComment size={15} />
+                    <p>{useFormatNumber(1300)}</p>
+                </div>
+                <p className='created-at'>5 days ago</p>
+            </div>
+        </article>
     )
 }
 
@@ -55,39 +51,35 @@ const CloseDebateLoadingCard = () => {
 
     return (
         <div id='closed-card-loading' className={isSidebarClose ? 'card-break' : ''}>
-            <div className='left'>
-                <div className='topic'>
+            <div className='debate-header'>
+                <LoadingSkeleton />
+            </div>
+            <div className='debate-body'>
+                <LoadingSkeleton />
+                <LoadingSkeleton />
+                <LoadingSkeleton />
+                <LoadingSkeleton />
+                <LoadingSkeleton />
+            </div>
+            <div className='user-info'>
+                <div className='debater'>
+                    <LoadingSkeleton />
+                    <LoadingSkeleton />
                     <LoadingSkeleton />
                 </div>
-                <div className='description'>
-                    <LoadingSkeleton />
-                    <LoadingSkeleton />
+                <div className='debater'>
                     <LoadingSkeleton />
                     <LoadingSkeleton />
                     <LoadingSkeleton />
                 </div>
             </div>
-            <div className='right'>
-                <div className='user-info'>
-                    <div className='debater'>
-                        <LoadingSkeleton />
-                        <LoadingSkeleton />
-                        <LoadingSkeleton />
-                    </div>
-                    <div className='debater'>
-                        <LoadingSkeleton />
-                        <LoadingSkeleton />
-                        <LoadingSkeleton />
-                    </div>
-                </div>
-                <div className='debate-bar'>
-                    <LoadingSkeleton />
-                    <LoadingSkeleton />
-                </div>
-                <div className='debate-info'>
-                    <LoadingSkeleton />
-                    <LoadingSkeleton />
-                </div>
+            <div className='debate-bar'>
+                <LoadingSkeleton />
+                <LoadingSkeleton />
+            </div>
+            <div className='debate-info'>
+                <LoadingSkeleton />
+                <LoadingSkeleton />
             </div>
         </div>
     )

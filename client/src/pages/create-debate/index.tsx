@@ -2,14 +2,13 @@ import './style.css'
 import { useRef, useState } from 'react'
 import { RichTextEditorComponent } from '@syncfusion/ej2-react-richtexteditor'
 import { toast } from 'sonner'
+import { useNavStore } from '../../store/nav'
 import Editor from './editor'
 import Preview from './preview'
 
-interface CreateDebateProps {
-    isScrolling: boolean
-}
+const CreateDebatePage = () => {
+    const { isScrolling } = useNavStore()
 
-const CreateDebatePage: React.FC<CreateDebateProps> = ({ isScrolling }) => {
     const editorRef = useRef<RichTextEditorComponent>(null)
     const [debateData, setDebateData] = useState({ title: '', body: '' })
     const [isPreview, setIsPreview] = useState<boolean>(false)
