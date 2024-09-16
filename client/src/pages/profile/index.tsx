@@ -1,7 +1,6 @@
 import './style.css'
 import Debate from '../../components/debate'
-import { CloseDebateCard } from '../../components/debate/close'
-import { OpenDebateCard } from '../../components/debate/open'
+import { DebateCard } from '../../components/debate/card'
 
 export default function ProfilePage() {
     return (
@@ -12,16 +11,11 @@ export default function ProfilePage() {
                 <h3>aniketdas</h3>
             </div>
             <Debate>
-                <CloseDebateCard />
-                <OpenDebateCard />
-                <CloseDebateCard />
-                <OpenDebateCard />
-                <CloseDebateCard />
-                <OpenDebateCard />
-                <CloseDebateCard />
-                <OpenDebateCard />
-                <CloseDebateCard />
-                <OpenDebateCard />
+                <DebateCard />
+                <DebateCard />
+                <DebateCard />
+                <DebateCard />
+                <DebateCard />
             </Debate>
         </div>
     )

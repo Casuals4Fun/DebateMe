@@ -31,7 +31,7 @@
     position: fixed;
     z-index: 1;
     bottom: 0;
-    width: calc(70% - 2px);
+    width: calc(80% - 2px);
     height: 80px;
     padding: 0 20px;
     background-color: var(--background_primary);
@@ -73,7 +73,9 @@
 
 @media screen and (min-width: 1921px) {
     .debate-btns {
-        width: 1340px;
+        position: unset;
+        width: 100%;
+        border-bottom: 2px solid var(--border_primary);
     }
 }
 

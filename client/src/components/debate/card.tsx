@@ -1,21 +1,25 @@
-import './open.css'
+import './card.css'
 import { useNavigate } from 'react-router-dom'
+import { IoMdMore } from 'react-icons/io'
 import { MdModeComment } from 'react-icons/md'
 import { IoCaretUpSharp } from 'react-icons/io5'
-import { useNavStore } from '../../store/nav'
 import useFormatNumber from '../../hooks/useFormatNumber'
 import LoadingSkeleton from '../loading/skeleton'
 
-const OpenDebateCard = () => {
+const DebateCard = () => {
     const navigate = useNavigate()
-    const { isSidebarClose } = useNavStore()
 
     return (
-        <article id='open-card' className={isSidebarClose ? 'card-break' : ''}>
-            <h2 onClick={() => navigate('/aniketdas/Artificial Intelligence – Is AI good for society or not')}>
-                Artificial Intelligence – Is AI good for society or not?
-            </h2>
-            <p className='debate-body'>
+        <article id='debate-card'>
+            <div className='debate-header'>
+                <h2 onClick={() => navigate('/aniketdas/Artificial Intelligence – Is AI good for society or not')}>
+                    Artificial Intelligence – Is AI good for society or not?
+                </h2>
+                <button className='more-btn'>
+                    <IoMdMore color='var(--card_color)' />
+                </button>
+            </div>
+            <p className='debate-body' onClick={() => navigate('/aniketdas/Artificial Intelligence – Is AI good for society or not')}>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Non labore necessitatibus reiciendis rem ad perferendis, id officia omnis voluptas eius veritatis explicabo harum! Vero porro labore quo ab aut. Nesciunt!
                 Fugiat repellat architecto pariatur fugit perspiciatis voluptas quidem autem. Lorem ipsum dolor sit amet consectetur adipisicing elit. Non labore necessitatibus reiciendis rem ad perferendis, id officia omnis voluptas eius veritatis explicabo harum! Vero porro labore quo ab aut. Nesciunt!
                 Fugiat repellat architecto pariatur fugit perspiciatis voluptas quidem autem.
@@ -29,11 +33,11 @@ const OpenDebateCard = () => {
             </div>
             <div className='debate-footer'>
                 <div className='debate-info'>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '2px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '2px', cursor: 'default' }}>
                         <IoCaretUpSharp size={20} />
                         <p>{useFormatNumber(4500)}</p>
                     </div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '5px', cursor: 'default' }}>
                         <MdModeComment size={15} />
                         <p>{useFormatNumber(1300)}</p>
                     </div>
@@ -44,11 +48,9 @@ const OpenDebateCard = () => {
     )
 }
 
-const OpenDebateLoadingCard = () => {
-    const { isSidebarClose } = useNavStore()
-
+const DebateLoadingCard = () => {
     return (
-        <div id='open-card-loading' className={isSidebarClose ? 'card-break' : ''}>
+        <div id='debate-card-loading'>
             <div className='debate-header'>
                 <LoadingSkeleton />
             </div>
@@ -81,4 +83,4 @@ const OpenDebateLoadingCard = () => {
     )
 }
 
-export { OpenDebateCard, OpenDebateLoadingCard }
+export { DebateCard, DebateLoadingCard }

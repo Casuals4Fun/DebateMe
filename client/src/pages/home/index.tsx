@@ -1,34 +1,28 @@
-import { CloseDebateCard } from '../../components/debate/close'
-import { OpenDebateCard } from '../../components/debate/open'
+import { DebateCard } from '../../components/debate/card'
 
 export default function HomePage() {
   return (
     <>
-      <CloseDebateCard />
-      <OpenDebateCard />
-      <CloseDebateCard />
-      <OpenDebateCard />
-      <OpenDebateCard />
-      <CloseDebateCard />
-      <OpenDebateCard />
-      <CloseDebateCard />
-      <OpenDebateCard />
-      <OpenDebateCard />
-      <CloseDebateCard />
-      <OpenDebateCard />
-      <CloseDebateCard />
-      <OpenDebateCard />
-      <OpenDebateCard />
-      <CloseDebateCard />
-      <OpenDebateCard />
-      <CloseDebateCard />
-      <OpenDebateCard />
-      <OpenDebateCard />
-      <CloseDebateCard />
-      <OpenDebateCard />
-      <CloseDebateCard />
-      <OpenDebateCard />
-      <OpenDebateCard />
+      <DebateCard />
+      <DebateCard />
+      <DebateCard />
+      <DebateCard />
+      <DebateCard />
+      <DebateCard />
+      <DebateCard />
+      <DebateCard />
+      <DebateCard />
+      <DebateCard />
+      <DebateCard />
+      <DebateCard />
+      <DebateCard />
+      <DebateCard />
+      <DebateCard />
+      <DebateCard />
+      <DebateCard />
+      <DebateCard />
+      <DebateCard />
+      <DebateCard />
     </>
   )
 }

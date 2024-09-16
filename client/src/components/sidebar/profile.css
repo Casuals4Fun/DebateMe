@@ -6,28 +6,13 @@
 }
 
 .profile__wrapper .auth-btn {
+    width: 40px;
     height: 40px;
-    font-size: 22px;
-    font-weight: 600;
-    background: linear-gradient(to right, var(--card_color) 0, var(--debate_by) 10%, var(--card_color) 20%);
-    background-size: 200% auto;
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: textclip 5s linear infinite;
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-@keyframes textclip {
-    to {
-        background-position: -200% center;
-    }
-}
-
-.profile__wrapper .auth-btn svg {
-    display: none;
+    border-radius: 50%;
+    background: var(--border_primary);
 }
 
 .profile__image,
@@ -156,21 +141,6 @@
 @media screen and (max-width: 767px) {
     .profile__wrapper {
         flex-direction: column;
-    }
-
-    .profile__wrapper .auth-btn {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        background: var(--border_primary);
-    }
-
-    .profile__wrapper .auth-btn svg {
-        display: block;
-    }
-
-    .profile__wrapper .auth-btn p {
-        display: none;
     }
 
     .profile__modal {

@@ -2,7 +2,6 @@ import './App.css'
 import { useRef, useEffect } from 'react'
 import { useLocation, Routes, Route, Navigate, Outlet } from 'react-router-dom'
 import { Toaster } from 'sonner'
-import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'
 import { useNavStore } from './store/nav'
 import { AuthStatus, AuthTab, useAuthStore } from './store/auth'
 import handleAutoLogin from './utils/auto-login'
@@ -13,9 +12,9 @@ import Debate from './components/debate'
 import HomePage from './pages/home'
 import AuthPage from './pages/auth'
 import SearchPage from './pages/search'
+import NotificationsPage from './pages/notifications'
 import CreateDebatePage from './pages/create-debate'
 import HotTopicsPage from './pages/hot-topics'
-import OpenTopicsPage from './pages/open-topics'
 import ProfilePage from './pages/profile'
 import DebatePage from './pages/profile/debate'
 import { LoadingComponent } from './components/loading/svg'
@@ -24,7 +23,7 @@ export default function App() {
   const location = useLocation()
   const isDebatePage = location.pathname.split('/').length === 3 || location.pathname === '/create'
 
-  const { theme, isNavbarOpen, isSidebarClose, setSidebarClose, isScrolling, setScrolling } = useNavStore()
+  const { theme, isNavbarOpen, isScrolling, setScrolling } = useNavStore()
   const { setUser, setIsAuthenticated, authTab, setAuthTab } = useAuthStore()
 
   const lastScrollTop = useRef<number>(0)
@@ -47,18 +46,18 @@ export default function App() {
 
   return (
     <>
-      <aside id='left-sidebar' className={`${isScrolling ? 'hide' : 'reveal'} ${isSidebarClose && !isDebatePage ? 'close' : ''}`}>
+      <aside id='left-sidebar' className={`${isScrolling ? 'hide' : 'reveal'}`}>
         <LeftSidebar />
       </aside>
-      <main className={`${isNavbarOpen ? 'expand' : ''} ${isSidebarClose ? 'w-full' : ''} ${isDebatePage ? 'w-page' : ''}`}>
+      <main className={`${isNavbarOpen ? 'expand' : ''} ${isDebatePage ? 'w-page' : ''}`}>
         <Routes>
           <Route element={<Debate />}>
             <Route path='/' element={<HomePage />} />
-            <Route path='/hot' element={<HotTopicsPage />} />
-            <Route path='/new' element={<OpenTopicsPage />} />
+            <Route path='/trending' element={<HotTopicsPage />} />
           </Route>
           <Route element={<Authenticated />}>
             <Route path='/create' element={<CreateDebatePage />} />
+            <Route path='/notifications' element={<NotificationsPage />} />
           </Route>
           <Route path='/auth' element={<AuthPage />} />
           <Route path='/login' element={<Navigate to='/auth?type=login' />} />
@@ -71,20 +70,9 @@ export default function App() {
           </Route>
         </Routes>
       </main>
-      <aside id='right-sidebar' className={`${isScrolling ? 'hide' : 'reveal'} ${isSidebarClose && !isDebatePage ? 'close' : ''} ${isDebatePage ? 'hidden' : ''}`}>
+      <aside id='right-sidebar' className={`${isScrolling ? 'hide' : 'reveal'} ${isDebatePage ? 'hidden' : ''}`}>
         <RightSidebar />
       </aside>
-
-      {!isDebatePage && (
-        <>
-          <button className='sidebar-btn left' onClick={() => setSidebarClose(!isSidebarClose)}>
-            {isSidebarClose ? <FaChevronRight size={20} /> : <FaChevronLeft size={20} />}
-          </button>
-          <button className='sidebar-btn right' onClick={() => setSidebarClose(!isSidebarClose)}>
-            {isSidebarClose ? <FaChevronLeft size={20} /> : <FaChevronRight size={20} />}
-          </button>
-        </>
-      )}
 
       {authTab !== AuthTab.Closed && <AuthModal />}
 

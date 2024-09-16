@@ -74,7 +74,6 @@ const Profile = () => {
                     onClick={() => setAuthTab(AuthTab.Login)}
                 >
                     <GoPerson size={20} />
-                    <p>Join Community</p>
                 </button>
             )}
 
