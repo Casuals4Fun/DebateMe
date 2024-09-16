@@ -2,7 +2,6 @@ import { useNavigate } from 'react-router-dom'
 import { IoMdArrowBack } from 'react-icons/io'
 import { AiOutlineLike, AiOutlineDislike } from 'react-icons/ai'
 import { useNavStore } from '../../store/nav'
-// import { MdOutlineModeComment } from 'react-icons/md'
 
 interface CommentsProps {
     setTab: React.Dispatch<React.SetStateAction<'debate' | 'comment'>>
@@ -10,7 +9,6 @@ interface CommentsProps {
 
 const Comments: React.FC<CommentsProps> = ({ setTab }) => {
     const navigate = useNavigate()
-
     const { isScrolling } = useNavStore()
 
     return (

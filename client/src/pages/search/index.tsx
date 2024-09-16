@@ -2,53 +2,59 @@ import './style.css'
 import { useState, useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { IoMdClose } from 'react-icons/io'
-import { PiArrowBendUpRightBold } from 'react-icons/pi'
 import { useNavStore } from '../../store/nav'
 import Explore from '../../components/sidebar/explore'
+import Debate from '../../components/debate'
+import { DebateCard, DebateLoadingCard } from '../../components/debate/card'
 
 export default function SearchPage() {
     const location = useLocation()
     const navigate = useNavigate()
 
-    const { isSidebarClose } = useNavStore()
+    const { isScrolling } = useNavStore()
 
-    const [searchTerm, setSearchTerm] = useState('')
+    const [searchTerm, setSearchTerm] = useState<string | null>('')
+
+    const handleClearSearch = () => {
+        setSearchTerm('')
+        navigate('/search')
+    }
 
     useEffect(() => {
         const urlParams = new URLSearchParams(location.search)
         const termValue = urlParams.get('term')
         const categoryValue = urlParams.get('category')
 
-        if (termValue === '' || categoryValue === '') navigate('/')
-        else {
-            const searchValue = termValue ?? categoryValue ?? ''
-            setSearchTerm(searchValue)
+        if (termValue || categoryValue) {
+            setSearchTerm(termValue || categoryValue)
         }
     }, [location.search, navigate])
 
     return (
         <div id='search'>
-            <div className={`explore__container ${isSidebarClose ? 'visible' : 'hidden'}`}>
-                <Explore term={searchTerm} />
-            </div>
-
-            {searchTerm ? (
-                <>
-                    <div className='search-term'>
-                        <h1>
-                            Showing results for <span>{searchTerm}</span>
-                        </h1>
-                        <button className='clear-term' onClick={() => navigate('/search')}>
-                            <IoMdClose size={20} />
-                        </button>
-                    </div>
-                    <p>No debates found</p>
-                </>
+            {!searchTerm ? (
+                <Explore />
             ) : (
-                <div className={`search-here ${isSidebarClose ? 'hidden' : ''}`}>
-                    <PiArrowBendUpRightBold size={50} />
-                    <h2>Search here</h2>
-                </div>
+                (
+                    <>
+                        <div className={`header ${isScrolling ? 'hide' : 'reveal'}`}>
+                            <h1>Showing results for <span>{searchTerm}</span></h1>
+                            <button onClick={handleClearSearch}>
+                                <IoMdClose size={25} />
+                            </button>
+                        </div>
+                        <Debate>
+                            <DebateCard />
+                            <DebateLoadingCard />
+                            <DebateCard />
+                            <DebateLoadingCard />
+                            <DebateCard />
+                            <DebateLoadingCard />
+                            <DebateCard />
+                            <DebateLoadingCard />
+                        </Debate>
+                    </>
+                )
             )}
         </div>
     )

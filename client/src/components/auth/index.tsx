@@ -21,6 +21,7 @@ const AuthModal = () => {
             navigate('/')
             setAuthTab(AuthTab.Closed)
         }
+        localStorage.removeItem('route')
     }
 
     const handleBackgroundClick = (event: React.MouseEvent<HTMLDivElement>) => {

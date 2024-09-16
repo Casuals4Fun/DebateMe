@@ -21,10 +21,6 @@
     background-color: var(--debate_from);
 }
 
-/* .right-side {
-    background-color: var(--debate_by);
-} */
-
 .debate-bar .from-vote,
 .debate-bar .to-vote {
     position: absolute;

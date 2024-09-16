@@ -10,8 +10,6 @@ interface NavStore {
     setTheme: (theme: Theme) => void
     isNavbarOpen: boolean
     setNavbarOpen: (toggle: boolean) => void
-    isSidebarClose: boolean
-    setSidebarClose: (toggle: boolean) => void
     isScrolling: boolean
     setScrolling: (scroll: boolean) => void
 }
@@ -32,15 +30,6 @@ export const useNavStore = create<NavStore>((set) => ({
 
     isNavbarOpen: false,
     setNavbarOpen: (toggle: boolean) => set(() => ({ isNavbarOpen: toggle })),
-
-    isSidebarClose: (() => {
-        const savedSidebar = localStorage.getItem('sidebar')
-        return savedSidebar === 'true'
-    })(),
-    setSidebarClose: (toggle: boolean) => {
-        set(() => ({ isSidebarClose: toggle }))
-        localStorage.setItem('sidebar', toggle.toString())
-    },
 
     isScrolling: false,
     setScrolling: (scroll: boolean) => set(() => ({ isScrolling: scroll }))

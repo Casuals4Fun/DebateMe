@@ -1,7 +1,6 @@
 import './right-sidebar.css'
 import { Link } from 'react-router-dom'
 import { useNavStore } from '../../store/nav'
-import ToggleTheme from '../theme'
 import Profile from './profile'
 import Explore from './explore'
 
@@ -14,19 +13,9 @@ const RightSidebar = () => {
         <img src='/logo.png' alt='logo' />
       </Link>
 
-      <div style={{ display: 'flex', alignItems: 'center' }}>
-        <div className='profile-theme__container'>
-          <div className='theme__wrapper'>
-            <ToggleTheme />
-          </div>
+      <Profile />
 
-          <Profile />
-        </div>
-      </div>
-
-      <div className='explore__container'>
-        <Explore />
-      </div>
+      <Explore />
 
       {!isNavbarOpen && <div className='nav-border' />}
     </div>

@@ -1,6 +1,5 @@
 #left-sidebar,
 #right-sidebar {
-    width: 30%;
     height: 100svh;
     position: sticky;
     top: 0;
@@ -8,19 +7,22 @@
     z-index: 2;
 }
 
+#left-sidebar {
+    width: 20%;
+}
+
+#right-sidebar {
+    width: 30%;
+}
+
 main {
-    width: 40%;
+    width: 50%;
     border-left: 2px solid var(--border_primary);
     border-right: 2px solid var(--border_primary);
 }
 
-main.w-full {
-    width: 100%;
-    border: unset;
-}
-
 main.w-page {
-    width: 70% !important;
+    width: 80%;
     border-left: 2px solid var(--border_primary);
     border-right: none;
 }
@@ -51,8 +53,14 @@ main.w-page {
 }
 
 @media screen and (min-width: 1921px) {
+
+    #right-sidebar,
     main.w-page {
         border-right: 2px solid var(--border_primary);
+    }
+
+    #left-sidebar {
+        border-left: 2px solid var(--border_primary);
     }
 }
 
@@ -62,30 +70,18 @@ main.w-page {
     }
 
     main,
-    main.w-full {
-        width: 50%;
-    }
-
     main.w-page {
-        width: 90% !important;
+        width: 90%;
+        border-left: 2px solid var(--border_primary);
         border-right: none;
     }
 
     #right-sidebar {
-        width: 40%;
+        display: none;
     }
 
     .sidebar-btn {
         display: none;
-    }
-}
-
-@media screen and (min-width: 768px) and (max-width: 1024px) {
-
-    main,
-    main.w-full {
-        border-left: 2px solid var(--border_primary);
-        border-right: 2px solid var(--border_primary);
     }
 }
 
@@ -95,26 +91,8 @@ main.w-page {
     }
 
     main,
-    main.w-full {
-        width: 85%;
-        border-right: unset;
-    }
-
     main.w-page {
-        width: 85% !important;
-    }
-
-    #right-sidebar {
-        display: none;
-    }
-}
-
-@media screen and (min-width: 481px) and (max-width: 767px) {
-
-    main,
-    main.w-full {
-        border-left: 2px solid var(--border_primary);
-        border-right: unset;
+        width: 85%;
     }
 }
 
@@ -142,20 +120,11 @@ main.w-page {
         background-color: var(--background_primary);
     }
 
-    main {
-        height: 100svh;
-        border: unset;
-    }
-
     main,
-    main.w-full {
+    main.w-page {
         padding-top: 60px;
         width: 100%;
-    }
-
-    main.w-page {
-        width: 100% !important;
-        border-left: none;
+        border: none;
     }
 
     main.expand {

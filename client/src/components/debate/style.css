@@ -2,39 +2,12 @@
     padding: 20px 20px 0;
     display: flex;
     flex-direction: column;
-    gap: 30px;
-}
-
-.debates.column {
-    display: block;
-    columns: 2;
-}
-
-.card-break {
-    break-inside: avoid;
-    margin-bottom: 30px;
-    border-bottom: 2px solid var(--border_primary) !important;
+    gap: 25px;
 }
 
 #closed-card,
 #open-card {
     user-select: none;
-}
-
-@media screen and (max-width: 1024px) {
-    .debates.column {
-        columns: unset;
-        display: flex;
-    }
-
-    .card-break {
-        break-inside: avoid;
-        margin-bottom: 0;
-    }
-
-    .card-break:last-child {
-        border-bottom: none !important;
-    }
 }
 
 @media screen and (max-width: 480px) {

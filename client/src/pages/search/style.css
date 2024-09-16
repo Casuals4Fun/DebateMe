@@ -1,22 +1,59 @@
 #search {
-    padding: 20px;
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
-#search .explore__container #explore {
+#search #explore {
+    padding: 20px;
+}
+
+#search .explore-input {
+    height: unset;
+    background-color: transparent;
+    border-bottom: 2px solid var(--border_primary);
+    border-radius: 0;
+}
+
+#search .explore-input input {
+    padding-bottom: 15px;
+    padding-left: 0;
+    font-size: 30px;
+}
+
+#search .explore-input input::placeholder {
+    font-weight: 400;
+}
+
+#search .explore-input:hover,
+#search .explore-input:focus-within {
+    border-color: transparent;
+    border-bottom: 2px solid var(--body_color);
+}
+
+#search .explore-input button {
+    padding-top: 15px;
+}
+
+#search .explore-btns {
     display: none;
-    max-width: 768px;
-    margin: 0 auto;
 }
 
-#search .search-term {
+#search .header {
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    width: calc(50% - 4px);
+    height: 60px;
+    padding: 0 20px;
     display: flex;
+    align-items: center;
     gap: 10px;
+    background-color: var(--background_primary);
+    border-bottom: 2px solid var(--border_primary);
 }
 
-#search .search-term h1 {
+#search .header h1 {
     font-size: 20px;
     font-weight: normal;
     text-overflow: ellipsis;
@@ -24,53 +61,72 @@
     overflow: hidden;
 }
 
-#search .search-term h1 span {
+#search .header h1 span {
     font-weight: 700;
 }
 
-#search .search-term .clear-term {
-    display: grid;
-    place-items: center;
-    cursor: pointer;
+#search .header button {
+    width: 25px;
+    height: 25px;
     color: var(--body_color);
 }
 
-#search .search-here {
-    margin-top: 60px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
+#search .debates {
+    padding-top: 80px;
 }
 
-@media screen and (min-width: 1024px) {
-    #search .explore__container.visible #explore {
+@media screen and (min-width: 1921px) {
+    #search .header {
+        position: unset;
+        width: 100%;
+    }
+
+    #search .debates {
+        padding-top: 0;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    #search .explore-btns {
         display: flex;
     }
 
-    #search .search-here.hidden {
-        display: none;
-    }
-}
-
-@media screen and (min-width: 767px) {
-    #search .explore__container.hidden {
-        display: none;
+    #search .header {
+        width: 90%;
     }
 }
 
 @media screen and (max-width: 767px) {
-    #search .explore__container #explore {
-        display: flex;
-    }
-
-    #search .search-here {
-        display: none;
+    #search .header {
+        width: 85%;
     }
 }
 
 @media screen and (max-width: 480px) {
-    #search {
+    #search #explore {
         padding: 20px 10px;
+    }
+
+    #search .explore-input input {
+        font-size: 24px;
+    }
+
+    #search .explore-input button {
+        padding-top: 10px;
+    }
+
+    #search .header {
+        padding: 0 10px;
+        width: 100%;
+    }
+
+    #search .header.hide {
+        top: 0;
+        transition: top 0.4s ease-out;
+    }
+
+    #search .header.reveal {
+        top: 60px;
+        transition: top 0.25s ease-out;
     }
 }

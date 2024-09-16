@@ -1,67 +1,53 @@
 import './explore.css'
 import { useRef, useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
-import { IoSearch } from 'react-icons/io5'
+import { GrLinkNext } from 'react-icons/gr'
 import { categoriesData } from '../../data/sidebar'
 
-interface ExploreProps {
-    term?: string
-}
-
-const Explore: React.FC<ExploreProps> = ({ term }) => {
+const Explore = () => {
     const navigate = useNavigate()
 
     const inputRef = useRef<HTMLInputElement | null>(null)
     const [searchTerm, setSearchTerm] = useState('')
-    const [formSubmitted, setFormSubmitted] = useState(false)
 
     const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
+        if (!searchTerm.trim()) return
 
-        if (!searchTerm.trim()) {
-            setFormSubmitted(true)
-            setTimeout(() => setFormSubmitted(false), 500)
-            return
-        }
         navigate(`/search?term=${searchTerm.trim()}`)
-        setFormSubmitted(true)
+        setSearchTerm('')
         inputRef.current?.blur()
     }
 
     return (
         <div id='explore'>
             <form id='explore-form' className='explore-input' onSubmit={handleSearch}>
-                <div style={{ flex: '1' }}>
-                    <input
-                        name='search'
-                        ref={inputRef}
-                        type='text'
-                        placeholder='Explore...'
-                        value={searchTerm}
-                        onChange={e => {
-                            setSearchTerm(e.target.value)
-                            setFormSubmitted(false)
-                        }}
-                        style={{ borderColor: formSubmitted && searchTerm.trim() === '' ? 'var(--body_color)' : '' }}
-                        className={formSubmitted && searchTerm.trim() === '' ? 'shake' : ''}
-                        autoFocus={location.pathname === '/search'}
-                    />
-                </div>
-                <div>
+                <input
+                    name='search'
+                    ref={inputRef}
+                    type='text'
+                    placeholder='Explore...'
+                    value={searchTerm}
+                    onChange={e => setSearchTerm(e.target.value)}
+                    autoFocus={location.pathname === '/search'}
+                />
+                {searchTerm.trim() && (
                     <button type='submit'>
-                        <IoSearch size={15} />
+                        <GrLinkNext size={15} />
                     </button>
-                </div>
+                )}
             </form>
-            {!term && (
-                <div className='explore-btns'>
-                    {categoriesData.map((item, index) => (
-                        <Link to={`/search?category=${item}`} key={index}>
-                            {item}
-                        </Link>
-                    ))}
-                </div>
-            )}
+            <div className='explore-btns'>
+                {categoriesData.map((item, index) => (
+                    <Link
+                        key={index}
+                        to={`/search?category=${item.toLowerCase()}`}
+                        style={{ textDecoration: location.search.split('?category=')[1] === item ? 'underline' : '' }}
+                    >
+                        {item}
+                    </Link>
+                ))}
+            </div>
         </div>
     )
 }
