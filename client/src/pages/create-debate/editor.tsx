@@ -44,8 +44,8 @@ const Editor: React.FC<EditorProps> = ({ editorRef, rteValue, isEditable, setDeb
         'FontColor',
         'BackgroundColor',
         '|',
-        'LowerCase',
-        'UpperCase',
+        // 'LowerCase',
+        // 'UpperCase',
         '|',
         'Formats',
         'Alignments',
@@ -63,8 +63,8 @@ const Editor: React.FC<EditorProps> = ({ editorRef, rteValue, isEditable, setDeb
         'Audio',
         'CreateTable',
         '|',
-        'FormatPainter',
-        'ClearFormat',
+        // 'FormatPainter',
+        // 'ClearFormat',
         '|',
         'EmojiPicker'
     ]

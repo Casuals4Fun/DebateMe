@@ -3,11 +3,11 @@ import { IoMdArrowBack } from 'react-icons/io'
 import { AiOutlineLike, AiOutlineDislike } from 'react-icons/ai'
 import { useNavStore } from '../../store/nav'
 
-interface CommentsProps {
+interface DiscussionProps {
     setTab: React.Dispatch<React.SetStateAction<'debate' | 'comment'>>
 }
 
-const Comments: React.FC<CommentsProps> = ({ setTab }) => {
+const Discussion: React.FC<DiscussionProps> = ({ setTab }) => {
     const navigate = useNavigate()
     const { isScrolling } = useNavStore()
 
@@ -229,4 +229,4 @@ const Comments: React.FC<CommentsProps> = ({ setTab }) => {
     )
 }
 
-export default Comments
+export default Discussion
