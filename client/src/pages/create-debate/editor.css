@@ -22,11 +22,6 @@
     background-color: var(--bg_secondary);
 }
 
-.e-richtexteditor .e-toolbar-wrapper.e-rte-tb-float,
-.e-richtexteditor .e-toolbar-container.e-rte-tb-float {
-    overflow: auto;
-}
-
 .e-toolbar,
 .e-toolbar .e-toolbar-item.e-overlay,
 .e-toolbar .e-toolbar-items,

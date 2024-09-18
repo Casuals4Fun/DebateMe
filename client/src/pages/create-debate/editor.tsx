@@ -46,14 +46,14 @@ const Editor: React.FC<EditorProps> = ({ editorRef, rteValue, isEditable, setDeb
         '|',
         // 'LowerCase',
         // 'UpperCase',
-        '|',
+        // '|',
         'Formats',
         'Alignments',
         'Blockquote',
         '|',
         // 'NumberFormatList',
         // 'BulletFormatList',
-        '|',
+        // '|',
         'Outdent',
         'Indent',
         '|',
@@ -65,7 +65,7 @@ const Editor: React.FC<EditorProps> = ({ editorRef, rteValue, isEditable, setDeb
         '|',
         // 'FormatPainter',
         // 'ClearFormat',
-        '|',
+        // '|',
         'EmojiPicker'
     ]
     const toolbarSettings = {

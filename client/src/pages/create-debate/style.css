@@ -60,6 +60,11 @@
     transition: background-color 0.2s ease-in-out;
 }
 
+.preview .detail {
+    display: flex;
+    justify-content: space-between;
+}
+
 .preview #toolsRTE_toolbar_wrapper {
     display: none;
 }
@@ -72,7 +77,55 @@
 }
 
 .preview .e-richtexteditor .e-rte-content .e-content {
+    padding: 0;
     font-size: 20px;
+}
+
+.preview .user-info {
+    max-width: 50%;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.preview .user-info img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border: 2px solid var(--border_primary);
+    border-radius: 5px;
+}
+
+.preview .user-info .user-detail {
+    max-width: 75%;
+}
+
+.preview .user-info p {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    color: var(--card_color);
+}
+
+.preview .user-info p:nth-child(1) {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.preview .user-info p:nth-child(2) {
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.preview .debate-detail {
+    display: flex;
+    gap: 20px;
+}
+
+.preview .debate-detail div {
+    color: var(--card_color);
+    font-size: 16px;
+    font-weight: 600;
 }
 
 @media screen and (min-width: 1921px) {
@@ -122,7 +175,17 @@
     }
 
     .preview {
-        gap: 10px;
+        gap: 20px;
+    }
+
+    .preview .detail {
+        gap: 20px;
+        flex-direction: column-reverse;
+    }
+
+    .preview .user-info,
+    .preview .debate-detail {
+        max-width: 100%;
     }
 
     #create h1 {
