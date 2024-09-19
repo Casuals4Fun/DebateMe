@@ -1,6 +1,6 @@
 import { DebateCard, DebateLoadingCard } from '../../components/debate/card'
 
-export default function HotTopicsPage() {
+export default function TrendingPage() {
     return (
         <>
             <DebateLoadingCard />

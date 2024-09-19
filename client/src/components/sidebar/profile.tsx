@@ -1,10 +1,10 @@
 import './profile.css'
 import { useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { IoMdPerson } from 'react-icons/io'
-import { PiSignOutBold } from 'react-icons/pi'
 import { GoPerson } from 'react-icons/go'
-import { FaRegUser } from 'react-icons/fa'
+import { RiNotification4Line } from 'react-icons/ri'
+import { IoSettingsOutline } from 'react-icons/io5'
+import { AiOutlineLogout } from 'react-icons/ai'
 import { useNavStore } from '../../store/nav'
 import { AuthStatus, AuthTab, useAuthStore } from '../../store/auth'
 import ToggleTheme from '../theme'
@@ -37,7 +37,7 @@ const Profile = () => {
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
             const target = event.target as HTMLElement
-            if (isNavbarOpen && !target.closest('.profile__modal') && !target.closest('.profile__image')) {
+            if (isNavbarOpen && !target.closest('.profile__modal') && !target.closest('.profile__image') && !target.closest('#left-sidebar')) {
                 document.body.style.overflow = 'auto'
                 setNavbarOpen(false)
             }
@@ -64,7 +64,7 @@ const Profile = () => {
                     {user.avatar ? (
                         <img src={user.avatar} alt='avatar' loading='lazy' referrerPolicy='no-referrer' />
                     ) : (
-                        <FaRegUser style={{ width: '50%', height: '50%' }} />
+                        <GoPerson style={{ width: '50%', height: '50%' }} />
                     )}
                 </button>
             ) : authTab === AuthTab.Closed && (
@@ -85,7 +85,7 @@ const Profile = () => {
                                 {user.avatar ? (
                                     <img src={user.avatar} alt='avatar' loading='lazy' referrerPolicy='no-referrer' />
                                 ) : (
-                                    <FaRegUser style={{ width: '50%', height: '50%' }} />
+                                    <GoPerson style={{ width: '50%', height: '50%' }} />
                                 )}
                             </Link>
                             <div className='modal-profile__info'>
@@ -96,18 +96,26 @@ const Profile = () => {
                         <ToggleTheme />
                     </div>
                     <Link
-                        to={user.username}
+                        to='/notifications'
                         className='modal-profile-btn'
                         onClick={handleNavbar}
                     >
-                        <IoMdPerson size={18} />
-                        <p>Profile</p>
+                        <RiNotification4Line size={20} />
+                        <p>Notifications</p>
+                    </Link>
+                    <Link
+                        to='/settings'
+                        className='modal-profile-btn'
+                        onClick={handleNavbar}
+                    >
+                        <IoSettingsOutline size={20} />
+                        <p>Settings</p>
                     </Link>
                     <button
                         className='modal-profile-btn'
                         onClick={handleLogout}
                     >
-                        <PiSignOutBold size={18} />
+                        <AiOutlineLogout size={20} />
                         <p>Logout</p>
                     </button>
                 </div>
