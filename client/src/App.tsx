@@ -13,8 +13,9 @@ import HomePage from './pages/home'
 import AuthPage from './pages/auth'
 import SearchPage from './pages/search'
 import NotificationsPage from './pages/notifications'
-import CreateDebatePage from './pages/create-debate'
-import HotTopicsPage from './pages/hot-topics'
+import SettingsPage from './pages/settings'
+import CreateDebatePage from './pages/create'
+import TrendingPage from './pages/trending'
 import ProfilePage from './pages/profile'
 import DebatePage from './pages/profile/debate'
 import { LoadingComponent } from './components/loading/svg'
@@ -53,11 +54,12 @@ export default function App() {
         <Routes>
           <Route element={<Debate />}>
             <Route path='/' element={<HomePage />} />
-            <Route path='/trending' element={<HotTopicsPage />} />
+            <Route path='/trending' element={<TrendingPage />} />
           </Route>
           <Route element={<Authenticated />}>
             <Route path='/create' element={<CreateDebatePage />} />
             <Route path='/notifications' element={<NotificationsPage />} />
+            <Route path='/settings' element={<SettingsPage />} />
           </Route>
           <Route path='/auth' element={<AuthPage />} />
           <Route path='/login' element={<Navigate to='/auth?type=login' />} />

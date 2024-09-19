@@ -3,8 +3,8 @@ import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { IoCaretUpSharp } from 'react-icons/io5'
 import { MdModeComment } from 'react-icons/md'
-import Editor from '../create-debate/editor'
-import Comments from './comments'
+import Editor from '../create/editor'
+import Discussion from './discussion'
 
 export default function DebatePage() {
     const navigate = useNavigate()
@@ -47,5 +47,5 @@ export default function DebatePage() {
                 isEditable={false}
             />
         </div>
-    ) : <Comments setTab={setTab} />
+    ) : <Discussion setTab={setTab} />
 }

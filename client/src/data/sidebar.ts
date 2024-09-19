@@ -1,4 +1,4 @@
-import { RiHome2Line, RiHome2Fill, RiFireLine, RiSearchLine, RiSearchFill, RiFireFill, RiNotification4Line, RiNotification4Fill } from 'react-icons/ri'
+import { RiHome2Line, RiHome2Fill, RiFireLine, RiSearchLine, RiSearchFill, RiFireFill } from 'react-icons/ri'
 import { IoMdCreate } from 'react-icons/io'
 import { MdOutlineCreate } from 'react-icons/md'
 
@@ -37,13 +37,6 @@ export const navLinks = [
         href: '/create',
         icon1: MdOutlineCreate,
         icon2: IoMdCreate
-    },
-    {
-        id: 6,
-        name: 'Notifications',
-        href: '/notifications',
-        icon1: RiNotification4Line,
-        icon2: RiNotification4Fill
     }
 ]
 

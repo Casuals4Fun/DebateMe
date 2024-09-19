@@ -18,12 +18,20 @@
     height: 100%;
 }
 
-#left-sidebar nav {
+#left-sidebar nav,
+#left-sidebar .account {
+    position: relative;
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 50px;
+}
+
+#left-sidebar .account {
+    position: absolute;
+    top: 0;
+    background-color: var(--background_primary);
 }
 
 #left-sidebar nav a {
@@ -43,18 +51,15 @@
     cursor: pointer;
 }
 
-#left-sidebar .links__wrapper svg {
+#left-sidebar .links__wrapper svg,
+#left-sidebar .links__wrapper img {
     width: 25px;
     height: 25px;
+    border-radius: 50%;
 }
 
 #left-sidebar .links__wrapper p {
     font-size: 20px;
-}
-
-#left-sidebar .profile-tab {
-    width: 100%;
-    background-color: red;
 }
 
 .underline {
@@ -87,7 +92,9 @@
 }
 
 @media screen and (max-width: 1024px) {
-    #left-sidebar nav {
+
+    #left-sidebar nav,
+    #left-sidebar .account {
         gap: 30px;
     }
 
@@ -133,8 +140,12 @@
         max-width: 480px;
         height: 100%;
         display: grid;
-        grid-template-columns: repeat(5, 1fr);
+        grid-template-columns: repeat(4, 1fr);
         gap: unset;
+    }
+
+    #left-sidebar .account {
+        display: none;
     }
 
     #left-sidebar nav a {
@@ -151,7 +162,7 @@
     }
 
     #left-sidebar nav a:nth-child(5),
-    #left-sidebar nav a:last-child {
+    #left-sidebar nav a:nth-child(6) {
         display: none;
     }
 

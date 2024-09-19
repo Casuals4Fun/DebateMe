@@ -7,7 +7,7 @@ interface DebateProps {
 
 const Debate: React.FC<DebateProps> = ({ children }) => {
     return (
-        <div className='debates'>
+        <div id='debates' className='debates'>
             {children || <Outlet />}
         </div>
     )
