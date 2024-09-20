@@ -42,10 +42,20 @@ export default function DebatePage() {
             <Editor
                 editorRef={null}
                 rteValue='Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus placeat temporibus voluptatibus facere autem ipsa reprehenderit at nostrum accusamus atque voluptas, illum vitae explicabo soluta, ea rem quas veritatis tempora.
-                Veritatis, iusto a architecto odio quaerat dolor aspernatur inventore illo impedit sapiente commodi, exercitationem repellendus sit, veniam dicta ipsa. Vero consequatur iusto odio minus officiis veritatis labore reiciendis molestiae natus?
-                Rerum repellendus architecto molestiae ipsam officiis.'
+                Veritatis, iusto a architecto odio quaerat dolor aspernatur inventore illo impedit sapiente commodi, exercitationem repellendus sit, veniam dicta ipsa. Vero consequatur iusto odio minus officiis veritatis labore reiciendis molestiae natus?'
                 isEditable={false}
             />
+            <div className='actions'>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                    <button>
+                        Share
+                    </button>
+                    <button>
+                        Report
+                    </button>
+                </div>
+                <p>Posted 15 mins ago</p>
+            </div>
         </div>
     ) : <Discussion setTab={setTab} />
 }

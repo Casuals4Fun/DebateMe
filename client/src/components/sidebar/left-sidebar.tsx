@@ -9,6 +9,7 @@ import { AiOutlineLogout } from 'react-icons/ai'
 import { AuthStatus, AuthTab, useAuthStore } from '../../store/auth'
 import { useNavStore } from '../../store/nav'
 import { navLinks } from '../../data/sidebar'
+import LoadingSkeleton from '../loading/skeleton'
 
 const LeftSidebar = () => {
   const location = useLocation()
@@ -72,10 +73,14 @@ const LeftSidebar = () => {
             else setNavbarOpen(true)
           }}
         >
-          {isAuthenticated === AuthStatus.Failed ? <GoPerson /> : user.avatar ? (
+          {isAuthenticated === AuthStatus.Authenticating ? (
+            <LoadingSkeleton style={{ width: '25px', height: '25px', borderRadius: '50%' }} />
+          ) : isAuthenticated === AuthStatus.Failed ? <GoPerson /> : user.avatar ? (
             <img src={user.avatar} alt='avatar' loading='lazy' referrerPolicy='no-referrer' />
           ) : <GoPerson />}
-          <p>Account</p>
+          {isAuthenticated === AuthStatus.Authenticating ? (
+            <LoadingSkeleton style={{ width: '75px', height: '25px', borderRadius: '20px' }} />
+          ) : <p>Account</p>}
         </Link>
 
         {isNavbarOpen && (

@@ -99,6 +99,7 @@
 }
 
 #debate .e-richtexteditor {
+    min-height: unset !important;
     background-color: transparent;
     border: none;
 }
@@ -106,6 +107,22 @@
 #debate .e-richtexteditor .e-rte-content .e-content {
     padding: 0;
     font-size: 20px;
+}
+
+#debate .actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#debate .actions p,
+#debate .actions button {
+    color: var(--card_color);
+    font-size: 15px;
+}
+
+#debate .actions button:hover {
+    text-decoration: underline;
 }
 
 #comment .header {
@@ -196,6 +213,7 @@
 @media screen and (max-width: 480px) {
     #debate {
         padding: 20px 10px;
+        margin-bottom: 60px;
     }
 
     #debate h1 {
