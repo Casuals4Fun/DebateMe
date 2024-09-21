@@ -56,6 +56,7 @@ export default function DebatePage() {
                 </div>
                 <p>Posted 15 mins ago</p>
             </div>
+            <div className='divider' />
         </div>
     ) : <Discussion setTab={setTab} />
 }

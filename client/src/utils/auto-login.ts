@@ -8,7 +8,6 @@ const handleAutoLogin = (
     setAuthTab: Callback<AuthTab>
 ) => {
     const token = localStorage.getItem('token')
-    localStorage.setItem('route', location.pathname)
 
     if (!token) return setIsAuthenticated(AuthStatus.Failed)
     else {

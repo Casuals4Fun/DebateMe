@@ -23,7 +23,7 @@ const LeftSidebar = () => {
         localStorage.setItem('route', href)
         setAuthTab(AuthTab.Login)
       }
-      else if (isAuthenticated === AuthStatus.Authenticating) return toast.warning('Logging in...')
+      else if (isAuthenticated === AuthStatus.Authenticating) return toast.loading('Logging in...')
     }
   }
 
@@ -66,8 +66,9 @@ const LeftSidebar = () => {
           to='#'
           className='links__wrapper'
           onClick={() => {
-            if (isAuthenticated === AuthStatus.Failed) {
-              localStorage.removeItem('route')
+            if (isAuthenticated === AuthStatus.Authenticating) toast.loading('Logging in...')
+            else if (isAuthenticated === AuthStatus.Failed) {
+              localStorage.setItem('route', location.pathname)
               setAuthTab(AuthTab.Login)
             }
             else setNavbarOpen(true)
@@ -76,10 +77,10 @@ const LeftSidebar = () => {
           {isAuthenticated === AuthStatus.Authenticating ? (
             <LoadingSkeleton style={{ width: '25px', height: '25px', borderRadius: '50%' }} />
           ) : isAuthenticated === AuthStatus.Failed ? <GoPerson /> : user.avatar ? (
-            <img src={user.avatar} alt='avatar' loading='lazy' referrerPolicy='no-referrer' />
+            <img src={user.avatar} alt={user.username} loading='lazy' referrerPolicy='no-referrer' />
           ) : <GoPerson />}
           {isAuthenticated === AuthStatus.Authenticating ? (
-            <LoadingSkeleton style={{ width: '75px', height: '25px', borderRadius: '20px' }} />
+            <LoadingSkeleton />
           ) : <p>Account</p>}
         </Link>
 
@@ -101,7 +102,11 @@ const LeftSidebar = () => {
             >
               <div className='links__wrapper'>
                 {user.avatar ? (
-                  <img src={user.avatar} alt='avatar' loading='lazy' referrerPolicy='no-referrer' />
+                  <img
+                    src={user.avatar}
+                    alt={user.username}
+                    style={{ borderColor: location.pathname === `/${user.username}` ? 'var(--body_color)' : '' }}
+                  />
                 ) : <GoPerson />}
                 <p className='underline'>Profile</p>
               </div>
