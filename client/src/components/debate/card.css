@@ -46,6 +46,10 @@
     font-size: 18px;
 }
 
+#debate-card .more-tab button:hover {
+    text-decoration: underline;
+}
+
 #debate-card h2 {
     width: fit-content;
     font-size: 22px;
@@ -111,7 +115,7 @@
 
 #debate-card .user-info,
 #debate-card-loading .user-info {
-    width: 70%;
+    width: 50%;
     padding: 15px 0;
     display: flex;
     gap: 10px;
@@ -177,7 +181,6 @@
 }
 
 #debate-card .debate-footer .created-date {
-    width: auto;
     font-size: 15px;
     color: var(--card_color);
     cursor: default;

@@ -16,8 +16,7 @@
 }
 
 #debate h1 {
-    font-size: 40px;
-    text-align: center;
+    font-size: 30px;
 }
 
 #debate .detail {
@@ -106,7 +105,8 @@
 
 #debate .e-richtexteditor .e-rte-content .e-content {
     padding: 0;
-    font-size: 20px;
+    min-height: unset;
+    font-size: 18px;
 }
 
 #debate .actions {
@@ -126,7 +126,7 @@
 }
 
 #debate .divider {
-    border-top: 1px solid var(--border_primary);
+    border-top: 2px solid var(--border_primary);
 }
 
 #comment .header {
@@ -221,7 +221,7 @@
     }
 
     #debate h1 {
-        font-size: 30px;
+        font-size: 25px;
     }
 
     #debate .detail {

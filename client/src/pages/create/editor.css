@@ -61,6 +61,11 @@
     color: var(--color_primary);
 }
 
+.e-richtexteditor ol,
+.e-richtexteditor ul {
+    list-style-position: inside;
+}
+
 .e-img-uploadwrap,
 .e-droparea {
     display: none;
