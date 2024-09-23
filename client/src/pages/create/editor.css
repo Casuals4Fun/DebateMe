@@ -6,7 +6,7 @@
     position: relative;
     min-width: 100%;
     max-width: 100%;
-    min-height: 40vh !important;
+    min-height: 50vh !important;
     background-color: var(--bg_primary);
     color: var(--color_primary);
     border: 2px solid var(--border_primary);
@@ -18,7 +18,6 @@
 }
 
 .e-richtexteditor .e-toolbar-wrapper {
-    z-index: 0 !important;
     background-color: var(--bg_secondary);
 }
 

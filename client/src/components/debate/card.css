@@ -123,8 +123,8 @@
 }
 
 #debate-card .user-info img {
-    width: 30px;
-    height: 30px;
+    width: 2rem;
+    height: 2rem;
     object-fit: cover;
     border: 2px solid var(--border_primary);
     border-radius: 5px;
@@ -132,8 +132,8 @@
 }
 
 #debate-card-loading .user-info .img .loading-skeleton {
-    width: 30px;
-    height: 30px;
+    width: 2rem;
+    height: 2rem;
     border-radius: 5px;
 }
 

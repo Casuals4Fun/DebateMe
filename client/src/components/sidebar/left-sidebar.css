@@ -18,9 +18,7 @@
     height: 100%;
 }
 
-#left-sidebar nav,
-#left-sidebar .account {
-    position: relative;
+#left-sidebar nav {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -28,18 +26,21 @@
     gap: 50px;
 }
 
-#left-sidebar .account {
-    position: absolute;
-    top: 0;
-    background-color: var(--background_primary);
+#left-sidebar nav.visible {
+    display: flex;
+}
+
+#left-sidebar nav.hidden {
+    display: none;
+}
+
+#left-sidebar nav:last-child {
+    position: relative;
+    left: 2px;
 }
 
 #left-sidebar nav a {
     width: fit-content;
-}
-
-#left-sidebar nav a:nth-child(3) {
-    display: none;
 }
 
 #left-sidebar .links__wrapper {
@@ -103,9 +104,12 @@
 
 @media screen and (max-width: 1024px) {
 
-    #left-sidebar nav,
-    #left-sidebar .account {
+    #left-sidebar nav {
         gap: 30px;
+    }
+
+    #left-sidebar nav:last-child {
+        left: 0;
     }
 
     #left-sidebar nav a {
@@ -151,7 +155,7 @@
         display: none;
     }
 
-    #left-sidebar nav {
+    #left-sidebar nav:first-of-type {
         max-width: 480px;
         height: 100%;
         display: grid;
@@ -159,7 +163,7 @@
         gap: unset;
     }
 
-    #left-sidebar .account {
+    #left-sidebar nav:last-child {
         display: none;
     }
 
@@ -172,12 +176,7 @@
         justify-content: center;
     }
 
-    #left-sidebar nav a:nth-child(3) {
-        display: flex;
-    }
-
-    #left-sidebar nav a:nth-child(5),
-    #left-sidebar nav a:nth-child(6) {
+    #left-sidebar nav:first-of-type a:nth-child(5) {
         display: none;
     }
 

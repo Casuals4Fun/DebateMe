@@ -19,20 +19,13 @@ export const navLinks = [
     },
     {
         id: 3,
-        name: 'New Debate',
-        href: '/create',
-        icon1: MdOutlineCreate,
-        icon2: IoMdCreate
-    },
-    {
-        id: 4,
         name: 'Trending',
         href: '/trending',
         icon1: RiFireLine,
         icon2: RiFireFill
     },
     {
-        id: 5,
+        id: 4,
         name: 'New Debate',
         href: '/create',
         icon1: MdOutlineCreate,

@@ -45,7 +45,8 @@ const LeftSidebar = () => {
       <Link to='/' className='logo'>
         <img src='/logo.png' alt='DebateMe' />
       </Link>
-      <nav>
+
+      <nav className={isNavbarOpen ? 'hidden' : 'visible'}>
         {navLinks.map(item => (
           <Link
             key={item.id}
@@ -83,66 +84,63 @@ const LeftSidebar = () => {
             <LoadingSkeleton />
           ) : <p>Account</p>}
         </Link>
+      </nav>
 
-        {isNavbarOpen && (
-          <div className='account'>
-            <Link
-              title='Back'
-              to='#'
-              className='links__wrapper'
-              onClick={() => setNavbarOpen(false)}
-            >
-              <IoIosArrowBack />
-              <p>Back</p>
-            </Link>
-            <Link
-              title='Profile'
-              to={user.username}
-              className={location.pathname === `/${user.username}` ? 'active' : ''}
-            >
-              <div className='links__wrapper'>
-                {user.avatar ? (
-                  <img
-                    src={user.avatar}
-                    alt={user.username}
-                    style={{ borderColor: location.pathname === `/${user.username}` ? 'var(--body_color)' : '' }}
-                  />
-                ) : <GoPerson />}
-                <p className='underline'>Profile</p>
-              </div>
-            </Link>
-            <Link to='#' />
-            <Link
-              title='Notifications'
-              to='/notifications'
-              className={location.pathname === '/notifications' ? 'active' : ''}
-            >
-              <div className='links__wrapper'>
-                {location.pathname === '/notifications' ? <RiNotification4Fill /> : <RiNotification4Line />}
-                <p className='underline'>Notifications</p>
-              </div>
-            </Link>
-            <Link
-              title='Settings'
-              to='/settings'
-              className={location.pathname === '/settings' ? 'active' : ''}
-            >
-              <div className='links__wrapper'>
-                {location.pathname === '/settings' ? <IoSettingsSharp /> : <IoSettingsOutline />}
-                <p className='underline'>Settings</p>
-              </div>
-            </Link>
-            <Link
-              title='Logout'
-              to='#'
-              className='links__wrapper'
-              onClick={handleLogout}
-            >
-              <AiOutlineLogout />
-              <p>Logout</p>
-            </Link>
+      <nav className={isNavbarOpen ? 'visible' : 'hidden'}>
+        <Link
+          title='Back'
+          to='#'
+          className='links__wrapper'
+          onClick={() => setNavbarOpen(false)}
+        >
+          <IoIosArrowBack />
+          <p>Back</p>
+        </Link>
+        <Link
+          title='Profile'
+          to={user.username}
+          className={location.pathname === `/${user.username}` ? 'active' : ''}
+        >
+          <div className='links__wrapper'>
+            {user.avatar ? (
+              <img
+                src={user.avatar}
+                alt={user.username}
+                style={{ borderColor: location.pathname === `/${user.username}` ? 'var(--body_color)' : '' }}
+              />
+            ) : <GoPerson />}
+            <p className='underline'>Profile</p>
           </div>
-        )}
+        </Link>
+        <Link
+          title='Notifications'
+          to='/notifications'
+          className={location.pathname === '/notifications' ? 'active' : ''}
+        >
+          <div className='links__wrapper'>
+            {location.pathname === '/notifications' ? <RiNotification4Fill /> : <RiNotification4Line />}
+            <p className='underline'>Notifications</p>
+          </div>
+        </Link>
+        <Link
+          title='Settings'
+          to='/settings'
+          className={location.pathname === '/settings' ? 'active' : ''}
+        >
+          <div className='links__wrapper'>
+            {location.pathname === '/settings' ? <IoSettingsSharp /> : <IoSettingsOutline />}
+            <p className='underline'>Settings</p>
+          </div>
+        </Link>
+        <Link
+          title='Logout'
+          to='#'
+          className='links__wrapper'
+          onClick={handleLogout}
+        >
+          <AiOutlineLogout />
+          <p>Logout</p>
+        </Link>
       </nav>
     </>
   )
