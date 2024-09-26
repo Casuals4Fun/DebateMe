@@ -71,6 +71,7 @@ const Login = () => {
                         setIsAuthenticated(AuthStatus.Authenticated)
                         setAuthTab(AuthTab.Closed)
                         navigate(localStorage.getItem('route') || '/')
+                        localStorage.removeItem('route')
                         toast.success(response.message)
                     }
                     else {

@@ -16,8 +16,7 @@
 }
 
 #debate h1 {
-    font-size: 40px;
-    text-align: center;
+    font-size: 30px;
 }
 
 #debate .detail {
@@ -99,13 +98,35 @@
 }
 
 #debate .e-richtexteditor {
+    min-height: unset !important;
     background-color: transparent;
     border: none;
 }
 
 #debate .e-richtexteditor .e-rte-content .e-content {
     padding: 0;
-    font-size: 20px;
+    min-height: unset;
+    font-size: 18px;
+}
+
+#debate .actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#debate .actions p,
+#debate .actions button {
+    color: var(--card_color);
+    font-size: 15px;
+}
+
+#debate .actions button:hover {
+    text-decoration: underline;
+}
+
+#debate .divider {
+    border-top: 2px solid var(--border_primary);
 }
 
 #comment .header {
@@ -196,10 +217,11 @@
 @media screen and (max-width: 480px) {
     #debate {
         padding: 20px 10px;
+        margin-bottom: 60px;
     }
 
     #debate h1 {
-        font-size: 30px;
+        font-size: 25px;
     }
 
     #debate .detail {
