@@ -62,7 +62,7 @@ const Profile = () => {
                     onClick={handleNavbar}
                 >
                     {user.avatar ? (
-                        <img src={user.avatar} alt={user.username} loading='lazy' referrerPolicy='no-referrer' />
+                        <img src={user.avatar} alt='avatar' loading='lazy' referrerPolicy='no-referrer' />
                     ) : (
                         <GoPerson style={{ width: '50%', height: '50%' }} />
                     )}
@@ -83,7 +83,7 @@ const Profile = () => {
                         <div className='profile-wrapper'>
                             <Link to={user.username} className='modal-profile__image' onClick={handleNavbar}>
                                 {user.avatar ? (
-                                    <img src={user.avatar} alt={user.username} loading='lazy' referrerPolicy='no-referrer' />
+                                    <img src={user.avatar} alt='avatar' loading='lazy' referrerPolicy='no-referrer' />
                                 ) : (
                                     <GoPerson style={{ width: '50%', height: '50%' }} />
                                 )}

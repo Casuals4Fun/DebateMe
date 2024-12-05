@@ -78,7 +78,7 @@ const LeftSidebar = () => {
           {isAuthenticated === AuthStatus.Authenticating ? (
             <LoadingSkeleton style={{ width: '25px', height: '25px', borderRadius: '50%' }} />
           ) : isAuthenticated === AuthStatus.Failed ? <GoPerson /> : user.avatar ? (
-            <img src={user.avatar} alt={user.username} loading='lazy' referrerPolicy='no-referrer' />
+            <img src={user.avatar} alt='avatar' loading='lazy' referrerPolicy='no-referrer' />
           ) : <GoPerson />}
           {isAuthenticated === AuthStatus.Authenticating ? (
             <LoadingSkeleton />
@@ -105,7 +105,7 @@ const LeftSidebar = () => {
             {user.avatar ? (
               <img
                 src={user.avatar}
-                alt={user.username}
+                alt='avatar'
                 style={{ borderColor: location.pathname === `/${user.username}` ? 'var(--body_color)' : '' }}
               />
             ) : <GoPerson />}
