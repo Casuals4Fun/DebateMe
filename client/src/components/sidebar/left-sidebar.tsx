@@ -80,9 +80,7 @@ const LeftSidebar = () => {
           ) : isAuthenticated === AuthStatus.Failed ? <GoPerson /> : user.avatar ? (
             <img src={user.avatar} alt='avatar' loading='lazy' referrerPolicy='no-referrer' />
           ) : <GoPerson />}
-          {isAuthenticated === AuthStatus.Authenticating ? (
-            <LoadingSkeleton />
-          ) : <p>Account</p>}
+          Account
         </Link>
       </nav>
 
